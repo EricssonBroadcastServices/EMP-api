@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://video-metadata.tv4.se/tagging/v1"
+			  xmlns:common="http://video-metadata.tv4.se/common/v1"
+			  targetNamespace="http://video-metadata.tv4.se/tagging/v1" elementFormDefault="qualified"
+			  attributeFormDefault="unqualified" version="1.0">
+	<xs:import namespace="http://video-metadata.tv4.se/common/v1" schemaLocation="common.xsd" />
+	<!-- elements -->
+	<xs:element name="tagRefs" type="tagReferenceListType" />
+	<xs:element name="tagDefs" type="tagDefinitionListType" />
+	<!-- types -->
+	<xs:complexType name="tagReferenceListType">
+		<xs:annotation>
+			<xs:documentation>unique id for the tag
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tag" type="tagReferenceType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tagReferenceType">
+		<xs:annotation>
+			<xs:documentation>Use to refer to a tag, i.e. in content. Lower
+				priority number means higher importance.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="common:nidType">
+				<xs:attribute name="type" type="tagTypeType" use="required" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="tagDefinitionListType">
+		<xs:annotation>
+			<xs:documentation>unique id for the tag
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tag" type="tagDefinitionType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<!-- -->
+	<xs:complexType name="tagDefinitionType">
+		<xs:sequence>
+			<xs:element name="type" type="tagTypeType">
+				<xs:annotation>
+					<xs:documentation>Unique id for tag, should include provider name.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nid" type="common:nidType">
+				<xs:annotation>
+					<xs:documentation>Unique id for the tag. The id is a technical id and it must be unique.
+						Id will be used when referencing the tag.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<!-- Context? is it required? per channel, ... -->
+			<xs:element name="description" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Internal description of the tag, in the company
+						language (english).
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tagNames">
+				<xs:annotation>
+					<xs:documentation>Support for different tag text in different
+						languages, still pointing to same tag.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="tagName" type="tagNameDefType" minOccurs="1" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="externalReferenceList" type="common:externalReferenceListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>List of reference to external data related to the tag. E.g.,
+						URLs on IMDB or Twitter
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<!-- attributes -->
+		<xs:attribute name="created" type="xs:dateTime" use="required">
+			<xs:annotation>
+				<xs:documentation>Timestamp when document is created.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="deprecated" type="xs:dateTime">
+			<xs:annotation>
+				<xs:documentation>Timestamp when tag is deprecated. Deprecation has
+					the meaning that the tag should no longer be used to tag new
+					content. It is
+					not deleted as the tags may exist
+					and be in use on
+					already tagged content.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<!-- -->
+	<xs:simpleType name="tagTypeType">
+		<xs:annotation>
+			<xs:documentation>The defined tag types.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="person" /><!-- implicitly defined by participant, each participant shall define a tag as well -->
+			<xs:enumeration value="program" /><!-- implicitly defined by program, each program shall define a tag as well -->
+			<xs:enumeration value="subject" />
+			<xs:enumeration value="story" />
+			<xs:enumeration value="other">
+				<xs:annotation>
+					<xs:documentation>A free text tag.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tagNameType">
+		<xs:annotation>
+			<xs:documentation>Unique name for the tag, i.e. the textual representation.
+				Language attribute can be used to specify a localized name for the tag.
+				If more than one tag value is given without language
+				attribute, or the same language attribute is repeated, then
+				the selection order is undefined.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[\w^\p{Z}^\p{C}]+" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="tagNameDefType">
+		<xs:simpleContent>
+			<xs:extension base="tagNameType">
+				<xs:attribute name="language" type="xs:language">
+					<xs:annotation>
+						<xs:documentation>2 char ISO 639-1 language code
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+</xs:schema>

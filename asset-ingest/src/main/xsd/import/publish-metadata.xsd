@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:api-messages-common="http://video-metadata.tv4.se/api-messages-common/v1"
+           xmlns:publish="http://video-metadata.tv4.se/publish/v1"
+           targetNamespace="http://video-metadata.tv4.se/api-messages/v1" elementFormDefault="qualified"
+           attributeFormDefault="unqualified"
+           version="1.0">
+
+	<xs:import namespace="http://video-metadata.tv4.se/api-messages-common/v1" schemaLocation="api-messages-common.xsd" />
+	<xs:import namespace="http://video-metadata.tv4.se/publish/v1" schemaLocation="publish.xsd" />
+
+	<!-- Message definitions -->
+	<xs:element name="publish-metadata">
+		<xs:annotation>
+			<xs:documentation>Root element for content meta-data message.
+				Message is sent on create or update of a new entity.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="header" type="api-messages-common:messageHeaderType" />
+				<xs:element name="data" type="publish:publishType" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

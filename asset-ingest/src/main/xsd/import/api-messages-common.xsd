@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://video-metadata.tv4.se/api-messages-common/v1"
+           xmlns:common="http://video-metadata.tv4.se/common/v1"
+           targetNamespace="http://video-metadata.tv4.se/api-messages-common/v1" elementFormDefault="qualified"
+           attributeFormDefault="unqualified"
+           version="1.0">
+	<xs:import namespace="http://video-metadata.tv4.se/common/v1" schemaLocation="common.xsd" />
+
+	<!-- Message definitions -->
+	<xs:element name="response">
+		<xs:annotation>
+			<xs:documentation>
+				Root element for generic meta-data response messages
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="status" type="statusType" />
+				<xs:element name="message" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Type definitions -->
+	<xs:complexType name="messageHeaderType">
+		<xs:annotation>
+			<xs:documentation />
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="providerId" type="common:idType">
+				<xs:annotation>
+					<xs:documentation>
+						Unique id for the provider, could be for example
+						'se.tv4', 'com.cmore', 'se.nyhetsbolaget', ... ID defined by
+						receiver and agreed with sender.
+						The providerId is used to identify the owner of the rights for the data in the message.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="msgId" type="common:idType">
+				<xs:annotation>
+					<xs:documentation>
+						Id that is the unique id for asset, unique for each provider.
+						Will use a Java generated UUID. (Could be used when a auditlog is available to identify a sent messsage)
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- -->
+	<xs:complexType name="idListType">
+		<xs:choice>
+			<xs:element name="msgId" type="common:idType" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="brandId" type="common:idType" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="seasonId" type="common:idType" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="contentId" type="common:idType" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="materialId" type="common:idType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:choice>
+	</xs:complexType>
+
+	<xs:simpleType name="messageType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="content" />
+			<xs:enumeration value="schedule" />
+			<xs:enumeration value="query" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="statusType">
+		<xs:annotation>
+			<xs:documentation>A HTTP status code. ***SHOULD*** be same status code as the HTTP repsonse.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:short">
+			<xs:minInclusive value="0" />
+			<xs:maxInclusive value="999" />
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
