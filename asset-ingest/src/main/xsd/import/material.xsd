@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://video-metadata.tv4.se/material/v1"
-			  xmlns:common="http://video-metadata.tv4.se/common/v1"
-			  targetNamespace="http://video-metadata.tv4.se/material/v1" version="1.0">
-	<xs:import namespace="http://video-metadata.tv4.se/common/v1" schemaLocation="common.xsd" />
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://video-metadata.emp.ebsd.ericsson.net/material/v1"
+			  xmlns:common="http://video-metadata.emp.ebsd.ericsson.net/common/v1"
+			  targetNamespace="http://video-metadata.emp.ebsd.ericsson.net/material/v1" version="1.0">
+	<xs:import namespace="http://video-metadata.emp.ebsd.ericsson.net/common/v1" schemaLocation="common.xsd" />
 	<!-- -->
 	<xs:element name="material" type="materialType">
 		<xs:annotation>
@@ -12,21 +12,10 @@
 	<!-- -->
 	<xs:complexType name="materialType">
 		<xs:sequence>
-			<!-- Redundant as it already exists in api-messages-common:messageHeaderType on every message.
-			<xs:element name="providerId" type="common:idType">
-				<xs:annotation>
-					<xs:documentation>
-						Id for the provider of the material.
-						Not the
-						Could be for example 'cmore', 'mtv' or 'se.tv4'
-					</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			-->
 			<xs:element name="id" type="common:idType">
 				<xs:annotation>
 					<xs:documentation>
-						A unique id for material, should include providerId (located in api-messages-common) e.g. 'se.tv4.UUID' or 'mtv.UUID'
+						A unique id for material
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
@@ -48,15 +37,6 @@
 			<xs:element name="contentIdRef" type="common:idType" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>
-						No use at the moment but could be used for clips or such at a later date.
-						If we would start to send clips from louise or metabank that are not scheduled in louise, we would have material for the clip (videoformat, resolution etc) but we would not have an event to connect the material to.
-						So we need this element to connect the clip (or ad, or something else that does not have a scheduled event) to a content.
-
-						Say we have highlights from a UFC fight or an Idol episode, we have (at least) two usecases:
-						1: It is a clip from a recent episode that we want to use to promote watching of the episode on our VOD platform.
-						In this case we could reference the scheduled event instead of the content, however..
-
-						2: If it is an old clip from a publication event that has expired but we want to use it to promote a new season. Then we need to be able to connect it to a content/season/brand instead as we would not have an event to connect it to.
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
@@ -236,10 +216,10 @@
 	</xs:complexType>
 	<xs:simpleType name="accessibilityFormatType">
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="hearingImpairedSubtitle" /><!-- not used by TV4 -->
+			<xs:enumeration value="hearingImpairedSubtitle" />
 			<xs:enumeration value="signLanguageInterpretation" />
 			<xs:enumeration value="audioDescription" />
-			<xs:enumeration value="spokenSubtitle" /><!-- not used by TV4 -->
+			<xs:enumeration value="spokenSubtitle" />
 		</xs:restriction>
 	</xs:simpleType>
 
@@ -265,7 +245,6 @@
 					<xs:documentation>
 						url string value is an id, uri, url file path or any other reference to the media file.
 						Depends on the context.
-						E.g. for Tv4 this mostly is a filename named "PGMxxxxx", but for Cmore this could be the path to a specific videofile on a FTP-server.
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>

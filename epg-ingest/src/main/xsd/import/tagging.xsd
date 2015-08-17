@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://video-metadata.tv4.se/tagging/v1"
-			  xmlns:common="http://video-metadata.tv4.se/common/v1"
-			  targetNamespace="http://video-metadata.tv4.se/tagging/v1" elementFormDefault="qualified"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://video-metadata.emp.ebsd.ericsson.net/tagging/v1"
+			  xmlns:common="http://video-metadata.emp.ebsd.ericsson.net/common/v1"
+			  targetNamespace="http://video-metadata.emp.ebsd.ericsson.net/tagging/v1" elementFormDefault="qualified"
 			  attributeFormDefault="unqualified" version="1.0">
-	<xs:import namespace="http://video-metadata.tv4.se/common/v1" schemaLocation="common.xsd" />
+	<xs:import namespace="http://video-metadata.emp.ebsd.ericsson.net/common/v1" schemaLocation="common.xsd" />
 	<!-- elements -->
 	<xs:element name="tagRefs" type="tagReferenceListType" />
 	<xs:element name="tagDefs" type="tagDefinitionListType" />

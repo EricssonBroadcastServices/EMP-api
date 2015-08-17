@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://video-metadata.tv4.se/common/v1" targetNamespace="http://video-metadata.tv4.se/common/v1" version="1.0">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://video-metadata.emp.ebsd.ericsson.net/common/v1" targetNamespace="http://video-metadata.emp.ebsd.ericsson.net/common/v1" version="1.0">
 
 	<!-- Important note about xs:dateTime: Time zone is UTC if not specified. Possible future change may add a separate type for dateTimes that enforce use of time zone. -->
 

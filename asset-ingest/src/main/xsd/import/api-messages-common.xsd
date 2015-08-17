@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://video-metadata.tv4.se/api-messages-common/v1"
-           xmlns:common="http://video-metadata.tv4.se/common/v1"
-           targetNamespace="http://video-metadata.tv4.se/api-messages-common/v1" elementFormDefault="qualified"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://video-metadata.emp.ebsd.ericsson.net/api-messages-common/v1"
+           xmlns:common="http://video-metadata.emp.ebsd.ericsson.net/common/v1"
+           targetNamespace="http://video-metadata.emp.ebsd.ericsson.net/api-messages-common/v1" elementFormDefault="qualified"
            attributeFormDefault="unqualified"
            version="1.0">
-	<xs:import namespace="http://video-metadata.tv4.se/common/v1" schemaLocation="common.xsd" />
+	<xs:import namespace="http://video-metadata.emp.ebsd.ericsson.net/common/v1" schemaLocation="common.xsd" />
 
 	<!-- Message definitions -->
 	<xs:element name="response">
@@ -30,8 +30,7 @@
 			<xs:element name="providerId" type="common:idType">
 				<xs:annotation>
 					<xs:documentation>
-						Unique id for the provider, could be for example
-						'se.tv4', 'com.cmore', 'se.nyhetsbolaget', ... ID defined by
+						Unique id for the provider. ID defined by
 						receiver and agreed with sender.
 						The providerId is used to identify the owner of the rights for the data in the message.
 					</xs:documentation>

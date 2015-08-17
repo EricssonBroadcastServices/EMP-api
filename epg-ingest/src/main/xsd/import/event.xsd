@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://video-metadata.tv4.se/event/v1" xmlns:common="http://video-metadata.tv4.se/common/v1"
-	targetNamespace="http://video-metadata.tv4.se/event/v1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://video-metadata.emp.ebsd.ericsson.net/event/v1" xmlns:common="http://video-metadata.emp.ebsd.ericsson.net/common/v1"
+	targetNamespace="http://video-metadata.emp.ebsd.ericsson.net/event/v1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0"
 >
-	<xs:import namespace="http://video-metadata.tv4.se/common/v1" schemaLocation="common.xsd" />
+	<xs:import namespace="http://video-metadata.emp.ebsd.ericsson.net/common/v1" schemaLocation="common.xsd" />
 
 	<!--  -->
 	<xs:element name="event" type="eventType">
@@ -20,16 +20,14 @@
 			<xs:element name="id" type="common:idType">
 				<xs:annotation>
 					<xs:documentation>
-						This is the eventId from the scheduled event in louise.
-						Should start with provider name, for example 'se.tv4.123456'
+						This is the eventId
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="channelId" type="common:idType" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>
-						id for the current service or channel, could be for example 'se.tv4.tv4play'.
-						This specefies the 
+						id for the current service or channel
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
@@ -54,7 +52,6 @@
 				<xs:annotation>
 					<xs:documentation>
 						List of descriptions for the event...
-					<!-- TODO John : what is the use / requirement for this? -->
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
