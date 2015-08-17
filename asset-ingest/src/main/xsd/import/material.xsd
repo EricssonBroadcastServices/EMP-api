@@ -53,8 +53,7 @@
 					<xs:documentation>list of available media for this material
 					</xs:documentation>
 				</xs:annotation>
-            </xs:element>
-
+			</xs:element>
 			<xs:element name="audioList" type="audioListType" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>list of available audio for this material
@@ -305,26 +304,16 @@
 			<xs:element name="use" type="xs:string">
 				<xs:annotation>
 					<xs:documentation>
-						A string, usually an "A" follwed by a number e.g. A1, A2, etc.
-						If there are several mediarefs in a publish with different mediaIds this decides their order according to the number after the letter.
-
-						Example:
-						Say that we have a medialist with three media where two of the three have the same mediaRef but the third differs.
-						The two with the same mediaRef will then also have the same use element, in this case "A1".
-						The third media that have a different mediaRef will have a different use element, "A2".
-						This means that the media with use "A1" should be used before the media with "A2" when editing or transcoding the publish.
-						The order of the media with the same mediaRef and use is determined by the "in" and "out" elements.
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-
-			<!--
-			<xs:element name="breakType" type="segmentTypeType" minOccurs="0" />
-			-->
-			<!-- segmentList is not neccesary
-			<xs:element name="segmentList" type="segmentListType" />
-			-->
-
+			<xs:element name="breakList" type="breakListType" minOccurs="0">
+			  <xs:annotation>
+			    <xs:documentation>
+			      List of breaks for the media
+			    </xs:documentation>
+			  </xs:annotation>
+			</xs:element>
 			<xs:element name="rfa" type="xs:boolean">
 				<xs:annotation>
 					<xs:documentation>
@@ -336,30 +325,17 @@
 		</xs:sequence>
 	</xs:complexType>
 
-	<!-- segmentList is not neccesary
-	<xs:complexType name="segmentListType">
-		<xs:sequence>
-			<xs:element name="segment" type="segmentType" minOccurs="0" maxOccurs="unbounded" />
-		</xs:sequence>
+	<xs:complexType name="breakListType">
+	  <xs:sequence>
+	    <xs:element name="break" type="breakType" minOccurs="0" maxOccurs="unbounded"/>
+	  </xs:sequence>
 	</xs:complexType>
-	<xs:complexType name="segmentType">
-		<xs:sequence>
-			<xs:element name="in" type="timecodeType" />
-			<xs:element name="out" type="timecodeType" />
-			<xs:element name="breakType" type="segmentTypeType" minOccurs="0" />
-		</xs:sequence>
+
+	<xs:complexType name="breakType">
+	  <xs:sequence>
+	    <xs:element name="offset" type="timecodeType" />
+	  </xs:sequence>
 	</xs:complexType>
-	<xs:simpleType name="segmentTypeType">
-		<xs:annotation>
-			<xs:documentation></xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="mandatory" />
-			<xs:enumeration value="planned" />
-			<xs:enumeration value="bad" />
-		</xs:restriction>
-	</xs:simpleType>
-	-->
 
 	<xs:simpleType name="timecodeType">
 		<xs:annotation>
