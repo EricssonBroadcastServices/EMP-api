@@ -24,21 +24,13 @@
 			<xs:documentation>root node of publish</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="brand" type="content:brandType" minOccurs="0" />
+			<xs:element name="series" type="content:seriesType" minOccurs="0" />
 			<xs:element name="season" type="content:seasonType" minOccurs="0" />
-			<!-- Should content be change to use="required" instead? We never send more than one content per publish -->
 			<xs:element name="content" type="content:contentType" minOccurs="1" />
-			<!-- Not sure if materials always are available -->
+			<!-- TODO: Not sure if materials always are available. Is it? -->
 			<xs:element name="materialList" type="material:materialListType" minOccurs="0" maxOccurs="1" />
-			<!-- No publish without a publication event -->
+			<!-- TODO: No publish without a publication event, or? -->
 			<xs:element name="eventList" type="event:eventListType"/>
 		</xs:sequence>
-		<xs:attribute name="timestamp" type="xs:dateTime" use="required">
-			<xs:annotation>
-				<xs:documentation>
-					Timestamp when document is created
-				</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
 	</xs:complexType>
 </xs:schema>

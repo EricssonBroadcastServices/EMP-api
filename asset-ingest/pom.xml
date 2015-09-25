@@ -59,7 +59,7 @@
             <configuration>
               <packageName>net.ericsson.ebsd.emp.generated</packageName>
               <outputDirectory>${basedir}/target/generated/</outputDirectory>
-              <schemaDirectory>${basedir}/src/main/xsd/import</schemaDirectory>
+              <schemaDirectory>${basedir}/xsd</schemaDirectory>
             </configuration>
 	  </execution>
 	</executions>

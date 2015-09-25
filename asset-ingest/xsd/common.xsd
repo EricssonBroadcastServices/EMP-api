@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://video-metadata.emp.ebsd.ericsson.net/common/v1" targetNamespace="http://video-metadata.emp.ebsd.ericsson.net/common/v1" version="1.0">
+
+	<!-- Important note about xs:dateTime: Time zone is UTC if not specified. Possible future change may add a separate type for dateTimes that enforce use of time zone. -->
+
+	<!-- Common types used in all XSDs -->
+	<xs:simpleType name="idType">
+		<xs:annotation>
+			<xs:documentation>A general ID type for entities
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9a-zA-Z\-_]+" />
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- -->
+	<xs:simpleType name="nidType">
+		<xs:annotation>
+			<xs:documentation>Unique name id, i.e. the normalized textual
+				representation, e.g.: no space, lower case, no diacritic characters.
+				Language attribute can be used to specify a
+				localized name for the
+				tag.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9a-z\-]+" />
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- -->
+	<xs:complexType name="description">
+		<xs:annotation>
+			<xs:documentation> A general type for describing something, attribute
+				indicating the language.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="language" type="xs:language">
+					<xs:annotation>
+						<xs:documentation> code in ISO 639-1 Note that the language here
+							refers to the language on which the description is made.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	
+	<xs:complexType name="publicationRightsType">
+		<xs:annotation>
+			<xs:documentation> publication rights type
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="productList" type="productListType" />
+			<!-- viewDeviceList is not used today -->
+		    <xs:element name="viewDeviceList" type="deviceListType" />
+		     <xs:element name="playDeviceList" type="deviceListType" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="drmRestrictionsType">
+		<xs:annotation>
+			<xs:documentation> DRM Restrictions.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+		   
+			<xs:element name="includeCountries" type="countryListType" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="countryListType">
+		<xs:sequence>
+			<xs:element name="country" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>code in ISO 3166-1-alpha-2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="deviceListType">
+		<xs:sequence>
+			<xs:element name="device" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Name of the device</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="productListType">
+		<xs:sequence>
+			<xs:element name="product" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Name of the product</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="timeShiftDeviceTypeRights">
+		<xs:sequence>
+			<xs:element name="catchUpRights" type="catchUpRightsType" minOccurs="0" maxOccurs="1">
+			</xs:element>
+			<xs:element name="startOverRights" type="startOverRightsType" minOccurs="0" maxOccurs="1">
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="catchUpRightsType">
+		<xs:sequence>
+			<xs:element name="fastForward" type="xs:boolean" minOccurs="0" />
+			<xs:element name="rewind" type="xs:boolean" minOccurs="0" />
+			<xs:element name="pause" type="xs:boolean" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="startOverRightsType">
+		<xs:sequence>
+			<xs:element name="fastForward" type="xs:boolean" minOccurs="0" />
+			<xs:element name="rewind" type="xs:boolean" minOccurs="0" />
+			<xs:element name="pause" type="xs:boolean" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="shareToType">
+		<!-- TODO : specify if exclusive or exclusive right -->
+		<xs:annotation>
+			<xs:documentation>Tag identifying the channel that is allowed for
+				sharing. '*' to indicate all and anyware.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(\*)|(\w+)"></xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- -->
+	<xs:complexType name="propertyListType">
+		<xs:sequence>
+			<xs:element name="property" type="propertyType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="propertyType">
+		<xs:annotation>
+			<xs:documentation>A multi value property
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name" type="xs:Name" />
+			<xs:element name="type" type="propertyTypeType" />
+			<xs:element name="value" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="propertyTypeType">
+		<xs:annotation>
+			<xs:documentation>Definition of the typ of the property value content
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="string" />
+			<xs:enumeration value="integer" />
+			<xs:enumeration value="decimal" />
+			<xs:enumeration value="url" />
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

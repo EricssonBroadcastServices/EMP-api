@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://video-metadata.emp.ebsd.ericsson.net/event/v1" xmlns:common="http://video-metadata.emp.ebsd.ericsson.net/common/v1"
+	targetNamespace="http://video-metadata.emp.ebsd.ericsson.net/event/v1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0"
+>
+	<xs:import namespace="http://video-metadata.emp.ebsd.ericsson.net/common/v1" schemaLocation="common.xsd" />
+
+	<!--  -->
+	<xs:element name="event" type="eventType">
+		<xs:annotation>
+			<xs:documentation>root node of event</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!-- types -->
+	<xs:complexType name="eventType">
+		<xs:annotation>
+			<xs:documentation>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="common:idType">
+				<xs:annotation>
+					<xs:documentation>Per provider unique id for the event.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="contentIdRef" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Reference to contentId. I.E the content that is to be shown in this event.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="startTime" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Time when Vod is possible to start play.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="endTime" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Time when Vod is no longer possible to play.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="publishTime" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Time when the vod information can be exposed to the customer. Vod can not be played until startTime. If publish is
+						after start or empty (nil), then publishTime = startTime.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="publicationRights" type="common:publicationRightsType" minOccurs="0" />
+			<xs:element name="drmRestrictions" type="common:drmRestrictionsType" minOccurs="0" />
+			<xs:element name="additionalProperties" type="common:propertyListType" minOccurs="0"/>
+           </xs:sequence>
+	</xs:complexType>		
+	<xs:complexType name="eventListType">
+		<xs:annotation>
+			<xs:documentation>
+				This is used for better readability in higher nodes. 
+				I.e instead of having a sequence of eventTypes in the publishType, just add an element with this type.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="event" type="eventType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
