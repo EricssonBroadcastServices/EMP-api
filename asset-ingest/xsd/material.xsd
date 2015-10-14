@@ -72,7 +72,19 @@
 					<xs:documentation>list of available subtitles</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="additionalProperties" type="common:propertyListType" minOccurs="0"/>
+			<xs:element name="expiryDate" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Expiry date for licensing, if no date then default used
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="purgeDate" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Media would be purged, if no date then default used 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>	
+			<xs:element name="additionalProperties" type="common:propertyListType" minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
 	<!-- TODO: Need to add a RFA flag to Subtitles as well? -->

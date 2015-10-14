@@ -55,9 +55,8 @@
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="productList" type="productListType" />
-			<!-- viewDeviceList is not used today -->
-		    <xs:element name="viewDeviceList" type="deviceListType" />
-		     <xs:element name="playDeviceList" type="deviceListType" />
+			<xs:element name="platformList" type="platformListType" minOccurs="0"/>
+		        <xs:element name="playDeviceList" type="deviceListType" minOccurs="0"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="drmRestrictionsType">
@@ -81,23 +80,54 @@
 	</xs:complexType>
 	<xs:complexType name="deviceListType">
 		<xs:sequence>
-			<xs:element name="device" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="device" type="deviceType" minOccurs="1" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>Name of the device</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:complexType name="deviceType">
+		<xs:sequence>
+			<xs:element name="deviceType" type="deviceTypeType" minOccurs="1" />
+			<xs:element name="manufacturer" type="xs:string" minOccurs="0" />
+			<xs:element name="os" type="xs:string" minOccurs="0" />
+			<xs:element name="isDownloadable" type="xs:boolean" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="deviceTypeType">
+		<xs:annotation>
+			<xs:documentation>Controls the device type
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="WEB" />
+			<xs:enumeration value="MOBILE" />
+			<xs:enumeration value="TABLET" />
+			<xs:enumeration value="APPLE_TV" />
+			<xs:enumeration value="SMART_TV" />
+			<xs:enumeration value="CONSOLE" />
+			<xs:enumeration value="STB" />
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:complexType name="productListType">
 		<xs:sequence>
-			<xs:element name="product" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="product" type="xs:string" minOccurs="1" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>Name of the product</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
-	
+	<xs:complexType name="platformListType">
+		<xs:sequence>
+			<xs:element name="platform" type="xs:string" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Name of the platform</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 	<xs:complexType name="timeShiftDeviceTypeRights">
 		<xs:sequence>
 			<xs:element name="catchUpRights" type="catchUpRightsType" minOccurs="0" maxOccurs="1">

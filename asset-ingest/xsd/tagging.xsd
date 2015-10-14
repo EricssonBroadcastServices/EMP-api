@@ -28,7 +28,7 @@
 		</xs:annotation>
 		<xs:simpleContent>
 			<xs:extension base="common:nidType">
-				<xs:attribute name="type" type="tagTypeType" use="required" />
+				<xs:attribute name="type" type="xs:string" use="required" />
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
@@ -44,7 +44,7 @@
 	<!-- -->
 	<xs:complexType name="tagDefinitionType">
 		<xs:sequence>
-			<xs:element name="type" type="tagTypeType">
+			<xs:element name="type" type="xs:string">
 				<xs:annotation>
 					<xs:documentation>Unique id for tag, should include provider name.
 					</xs:documentation>
