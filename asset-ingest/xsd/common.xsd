@@ -25,7 +25,7 @@
 			</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
-			<xs:pattern value="[0-9a-z\-]+" />
+			<xs:pattern value="[0-9a-z\-_]+" />
 		</xs:restriction>
 	</xs:simpleType>
 	
@@ -119,7 +119,7 @@
 			<xs:element name="deviceType" type="deviceTypeType" minOccurs="1" />
 			<xs:element name="manufacturer" type="xs:string" minOccurs="0" />
 			<xs:element name="os" type="xs:string" minOccurs="0" />
-			<xs:element name="isDownloadable" type="xs:boolean" minOccurs="0" />
+			<xs:element name="downloadAllowed" type="xs:boolean" minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
 	<xs:simpleType name="deviceTypeType">
