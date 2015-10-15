@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://video-metadata.emp.ebsd.ericsson.net/content/v1" xmlns:common="http://video-metadata.emp.ebsd.ericsson.net/common/v1"
-	xmlns:tagging="http://video-metadata.emp.ebsd.ericsson.net/tagging/v1" targetNamespace="http://video-metadata.emp.ebsd.ericsson.net/content/v1" version="1.0">
+   targetNamespace="http://video-metadata.emp.ebsd.ericsson.net/content/v1" version="1.0">
 	<xs:import namespace="http://video-metadata.emp.ebsd.ericsson.net/common/v1" schemaLocation="common.xsd" />
-	<xs:import namespace="http://video-metadata.emp.ebsd.ericsson.net/tagging/v1" schemaLocation="tagging.xsd" />
+	
 
 	<!-- -->
 	<xs:element name="content" type="contentSeasonSeriesType">
@@ -232,15 +232,10 @@
 	</xs:complexType>
 	<xs:complexType name="tagListType">
 		<xs:sequence>
-			<xs:element name="tag" type="tagging:tagReferenceType" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="tag" type="common:tagReferenceType" minOccurs="0" maxOccurs="unbounded" />
 		</xs:sequence>
 	</xs:complexType>
-	<xs:complexType name="adTagListType">
-		<!-- TODO: Why typed tag reference, when the type is implicit? Change tagging:tagReferenceType to a common:nidType", else move this to the tagList-->
-		<xs:sequence>
-			<xs:element name="adTag" type="tagging:tagReferenceType" minOccurs="0" maxOccurs="unbounded" />
-		</xs:sequence>
-	</xs:complexType>
+	
 	<xs:complexType name="simpleTitleType">
 		<xs:simpleContent>
 			<xs:restriction base="simpleTextType">

@@ -28,6 +28,33 @@
 			<xs:pattern value="[0-9a-z\-]+" />
 		</xs:restriction>
 	</xs:simpleType>
+	
+	<xs:simpleType name="tagType">
+		<xs:annotation>
+			<xs:documentation>Unique name id, i.e. the normalized textual
+				representation, e.g.: no space, lower case, no diacritic characters.
+				Language attribute can be used to specify a
+				localized name for the
+				tag.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9a-zA-Z\-_ ]+" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:complexType name="tagReferenceType">
+		<xs:annotation>
+			<xs:documentation>Use to refer to a tag, i.e. in content. Lower
+				priority number means higher importance.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="tagType">
+				<xs:attribute name="type" type="nidType" use="required" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
 	<!-- -->
 	<xs:complexType name="description">
 		<xs:annotation>
