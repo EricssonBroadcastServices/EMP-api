@@ -50,7 +50,7 @@
 			</xs:documentation>
 		</xs:annotation>
 		<xs:simpleContent>
-			<xs:extension base="tagType">
+			<xs:extension base="xs:string">
 				<xs:attribute name="type" type="nidType" use="required" />
 			</xs:extension>
 		</xs:simpleContent>
