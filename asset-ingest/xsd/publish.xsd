@@ -3,7 +3,7 @@
            xmlns:event="http://video-metadata.emp.ebsd.ericsson.net/event/v1" xmlns:material="http://video-metadata.emp.ebsd.ericsson.net/material/v1"
            xmlns="http://video-metadata.emp.ebsd.ericsson.net/publish/v1"
            targetNamespace="http://video-metadata.emp.ebsd.ericsson.net/publish/v1" elementFormDefault="qualified"
-           attributeFormDefault="unqualified" version="1.0"
+           attributeFormDefault="unqualified" version="2.0"
       >
     <!--
       -->

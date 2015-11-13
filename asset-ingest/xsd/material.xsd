@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://video-metadata.emp.ebsd.ericsson.net/material/v1"
 			  xmlns:common="http://video-metadata.emp.ebsd.ericsson.net/common/v1"
-			  targetNamespace="http://video-metadata.emp.ebsd.ericsson.net/material/v1" version="1.0">
+			  targetNamespace="http://video-metadata.emp.ebsd.ericsson.net/material/v1" version="2.0">
 	<xs:import namespace="http://video-metadata.emp.ebsd.ericsson.net/common/v1" schemaLocation="common.xsd" />
 	<!-- -->
 	<xs:element name="material" type="materialType">
@@ -9,6 +9,18 @@
 			<xs:documentation>Root element for material object. Material </xs:documentation>
 		</xs:annotation>
 	</xs:element>
+	<xs:complexType name="materialRefType">
+					<xs:annotation>
+							<xs:documentation>Use to refer to a tag, i.e. in content. Lower
+									priority number means higher importance.
+							</xs:documentation>
+					</xs:annotation>
+					<xs:simpleContent>
+							<xs:extension base="xs:string">
+								<xs:attribute name="isSyndicated" type="xs:boolean" use="optional" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
 	<!-- -->
 	<xs:complexType name="materialType">
 		<xs:sequence>
@@ -20,14 +32,17 @@
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="materialRef" type="xs:string">
-				<xs:annotation>
+			<xs:element name="materialRef" type="materialRefType">
+			<xs:annotation>
 					<xs:documentation>
 						url string value is an id, uri, url file path or any other reference to the media file.
 						Depends on the context. 
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			
+			
+			
 			<xs:element name="contentIdRef" type="common:idType" minOccurs="0"> 
 				<xs:annotation>
 					<xs:documentation>
@@ -59,6 +74,21 @@
 				<xs:simpleType>
 					<xs:restriction base="xs:int" />
 				</xs:simpleType>
+			</xs:element>
+			<xs:element name="isDRMEnabled" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						If false, then this material is not encrypted. This is true by default.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:boolean" />
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="allowAds" type="xs:boolean" default="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Flag to indicate if ads are allowed in this vidoe (in the context of the publication/event)</xs:documentation>
+				</xs:annotation>
 			</xs:element>
 			<xs:element name="breakList" type="breakListType" minOccurs="0">
      			<xs:annotation>

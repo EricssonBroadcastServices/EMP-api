@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://video-metadata.emp.ebsd.ericsson.net/common/v1" targetNamespace="http://video-metadata.emp.ebsd.ericsson.net/common/v1" version="1.0">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://video-metadata.emp.ebsd.ericsson.net/common/v1" targetNamespace="http://video-metadata.emp.ebsd.ericsson.net/common/v1" version="2.0">
 
 	<!-- Important note about xs:dateTime: Time zone is UTC if not specified. Possible future change may add a separate type for dateTimes that enforce use of time zone. -->
 
@@ -43,6 +43,43 @@
 		</xs:restriction>
 	</xs:simpleType>
 	
+	<xs:complexType name="externalReferenceListType">
+		<xs:sequence>
+			<xs:element name="externalReference" type="externalReferenceType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>List of external resources that can used to
+						connect/boost the content data with.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="externalReferenceType">
+		<xs:sequence>
+			<xs:element name="provider" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Who is the provides for the extend data that can
+						be used for this content. It can for example be score24.com or
+						IMDB.com
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="id" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Data identifier to map this content to in the
+						external provider/partners data
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="uri" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Resource to use for reach the data at the
+						provider
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 	<xs:complexType name="tagReferenceType">
 		<xs:annotation>
 			<xs:documentation>Use to refer to a tag, i.e. in content. Lower
@@ -82,8 +119,7 @@
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="productList" type="productListType" />
-			<xs:element name="platformList" type="platformListType" minOccurs="0"/>
-		        <xs:element name="playDeviceList" type="deviceListType" minOccurs="0"/>
+			<xs:element name="serviceList" type="serviceListType" minOccurs="0"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="drmRestrictionsType">
@@ -92,8 +128,20 @@
 			</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-		   
-			<xs:element name="includeCountries" type="countryListType" />
+		<!--  false by default  -->
+		    <xs:element name="studioContractID" type="xs:string" minOccurs="0" />
+			<!--  false by default  -->
+		    <xs:element name="downloadAllowed" type="xs:boolean" minOccurs="0" />
+		    <!--  false by default  -->
+		    <xs:element name="mirroringAllowed" type="xs:boolean" minOccurs="0" />
+		    <!--  false by default  -->
+		    <xs:element name="HDAllowed" type="xs:boolean" minOccurs="0" />
+		    <!--  false by default  -->
+		     <xs:element name="HDMIAllowed" type="xs:boolean" minOccurs="0" />
+		     <!-- Max bit Rate in kbps -->
+		     <xs:element name="MaxBitRate" type="xs:long" minOccurs="0" />
+	  	    <xs:element name="includeCountries" type="countryListType" minOccurs="1"/>  
+			<xs:element name="deviceList" type="deviceListType" minOccurs="0"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="countryListType">
@@ -117,9 +165,10 @@
 	<xs:complexType name="deviceType">
 		<xs:sequence>
 			<xs:element name="deviceType" type="deviceTypeType" minOccurs="1" />
-			<xs:element name="manufacturer" type="xs:string" minOccurs="0" />
+			<xs:element name="vendor" type="xs:string" minOccurs="0" />
 			<xs:element name="os" type="xs:string" minOccurs="0" />
-			<xs:element name="downloadAllowed" type="xs:boolean" minOccurs="0" />
+			<xs:element name="osVersion" type="xs:string" minOccurs="0" />
+			<xs:element name="model" type="xs:string" minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
 	<xs:simpleType name="deviceTypeType">
@@ -128,12 +177,12 @@
 			</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="WEB" />
-			<xs:enumeration value="MOBILE" />
-			<xs:enumeration value="TABLET" />
-			<xs:enumeration value="APPLE_TV" />
-			<xs:enumeration value="SMART_TV" />
-			<xs:enumeration value="CONSOLE" />
+			<xs:enumeration value="Web" />
+			<xs:enumeration value="Mobile" />
+			<xs:enumeration value="Tablet" />
+			<xs:enumeration value="MediaPlayer" />
+			<xs:enumeration value="SmartTV" />
+			<xs:enumeration value="Console" />
 			<xs:enumeration value="STB" />
 		</xs:restriction>
 	</xs:simpleType>
@@ -146,48 +195,15 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
-	<xs:complexType name="platformListType">
+	<xs:complexType name="serviceListType">
 		<xs:sequence>
-			<xs:element name="platform" type="xs:string" minOccurs="1" maxOccurs="unbounded">
+			<xs:element name="service" type="xs:string" minOccurs="1" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>Name of the platform</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
-	<xs:complexType name="timeShiftDeviceTypeRights">
-		<xs:sequence>
-			<xs:element name="catchUpRights" type="catchUpRightsType" minOccurs="0" maxOccurs="1">
-			</xs:element>
-			<xs:element name="startOverRights" type="startOverRightsType" minOccurs="0" maxOccurs="1">
-			</xs:element>
-		</xs:sequence>
-	</xs:complexType>
-	<xs:complexType name="catchUpRightsType">
-		<xs:sequence>
-			<xs:element name="fastForward" type="xs:boolean" minOccurs="0" />
-			<xs:element name="rewind" type="xs:boolean" minOccurs="0" />
-			<xs:element name="pause" type="xs:boolean" minOccurs="0" />
-		</xs:sequence>
-	</xs:complexType>
-	<xs:complexType name="startOverRightsType">
-		<xs:sequence>
-			<xs:element name="fastForward" type="xs:boolean" minOccurs="0" />
-			<xs:element name="rewind" type="xs:boolean" minOccurs="0" />
-			<xs:element name="pause" type="xs:boolean" minOccurs="0" />
-		</xs:sequence>
-	</xs:complexType>
-	<xs:simpleType name="shareToType">
-		<!-- TODO : specify if exclusive or exclusive right -->
-		<xs:annotation>
-			<xs:documentation>Tag identifying the channel that is allowed for
-				sharing. '*' to indicate all and anyware.
-			</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:string">
-			<xs:pattern value="(\*)|(\w+)"></xs:pattern>
-		</xs:restriction>
-	</xs:simpleType>
 	<!-- -->
 	<xs:complexType name="propertyListType">
 		<xs:sequence>

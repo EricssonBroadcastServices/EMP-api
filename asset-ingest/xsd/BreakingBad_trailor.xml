@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:publish-metadata xmlns:p="http://video-metadata.emp.ebsd.ericsson.net/api-messages/v1" xmlns:p1="http://video-metadata.emp.ebsd.ericsson.net/publish/v1" xmlns:p2="http://video-metadata.emp.ebsd.ericsson.net/content/v1" xmlns:p3="http://video-metadata.emp.ebsd.ericsson.net/common/v1" xmlns:p4="http://video-metadata.emp.ebsd.ericsson.net/tagging/v1" xmlns:p5="http://video-metadata.emp.ebsd.ericsson.net/material/v1" xmlns:p6="http://video-metadata.emp.ebsd.ericsson.net/event/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://video-metadata.emp.ebsd.ericsson.net/api-messages/v1 publish-metadata.xsd ">
+  <p:data>
+    <p1:series>
+      <id>BreakingBad</id>
+      <studio>AMC</studio>
+      <productionYear>2008</productionYear>
+      <countryOfOriginList>
+        <country>USA</country>
+      </countryOfOriginList>
+      <titleList>
+        <title language="EN">Breaking Bad</title>
+      </titleList>
+      <descriptionList>
+        <description language="EN" length="short">A chemistry teacher diagnosed with terminal lung cancer teams up with his former student to cook and sell crystal meth.</description>
+      </descriptionList>
+      <tagList>
+        <tag type="genre">drama</tag>
+      </tagList>
+      <creditList>
+        <credit>
+          <name>Bryan Cranston</name>
+          <rolename>Walter White</rolename>
+          <function>Actor</function>
+        </credit>
+         <credit>
+          <name>Vince Gilligan</name>
+          <function>Creator</function>
+        </credit>
+      </creditList>
+      <imageList>
+        <image priority="0">
+          <id>id</id>
+          <url>url</url>
+          <width>0</width>
+          <height>0</height>
+          <purpose>banner</purpose>
+          <orientation>landscape</orientation>
+          <copyRightList>
+            <copyRight>copyRight</copyRight>
+          </copyRightList>
+        </image>
+      </imageList>
+      <parentalRatingList>
+        <parentalRating>
+          <rating>TV-MA</rating>
+          <scheme>TV Parental Guidelines</scheme>
+          <country>US</country>
+        </parentalRating>
+      </parentalRatingList>
+    </p1:series>
+   
+    <p1:content>
+      <id>BB0105_trailor</id>
+      <studio>studio</studio>
+    
+      <titleList>
+        <title language="EN">Grey Matter</title>
+      </titleList>
+      <descriptionList>
+        <description language="EN" length="short">Walt rejects everyone who tries to help him with the cancer. Jesse tries his best to create Walt's meth, with the help of an old friend.</description>
+      </descriptionList>
+      <contentType>trailer</contentType>
+      <contentIdRef>BB0105</contentIdRef>
+    
+    </p1:content>
+    <p1:materialList>
+      <material>
+        <id>BB0105_trailor</id>
+        <materialRef>URL</materialRef>
+        <contentIdRef>BB0105</contentIdRef>
+        <duration>2820000</duration>
+     
+        <breakList>
+          <break>
+            <offset>0</offset>
+            </break>
+             <break>
+            <offset>10000</offset>
+            
+            </break>
+        </breakList>
+        <subtitleList>
+          <subtitle language="EN">subtitle</subtitle>
+        </subtitleList>
+      
+      
+        <purgeDate>2099-12-31T12:00:00</purgeDate>
+        <additionalProperties>
+          <property>
+            <name>Name</name>
+            <type>string</type>
+            <value>value</value>
+          </property>
+        </additionalProperties>
+      </material>
+     
+    </p1:materialList>
+    <p1:eventList>
+      <p6:event>
+        <p6:id>4343443334</p6:id>
+        <p6:contentIdRef>p6:contentIdRef</p6:contentIdRef>
+        <p6:startTime>2001-12-31T12:00:00</p6:startTime>
+        <p6:endTime>2001-12-31T12:00:00</p6:endTime>
+        <p6:publishTime>2001-12-31T12:00:00</p6:publishTime>
+        <p6:publicationRights>
+          <productList>
+            <product>product</product>
+          </productList>
+         <serviceList>
+         		<service>dafd</service>
+         </serviceList>
+        </p6:publicationRights>
+        <p6:drmRestrictions>
+          <includeCountries>
+            <country>country</country>
+          </includeCountries>
+        </p6:drmRestrictions>
+        <p6:additionalProperties>
+          <property>
+            <name>Name</name>
+            <type>string</type>
+            <value>value</value>
+          </property>
+        </p6:additionalProperties>
+      </p6:event>
+    </p1:eventList>
+  </p:data>
+</p:publish-metadata>

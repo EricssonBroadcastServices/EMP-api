@@ -3,7 +3,7 @@
            xmlns:publish="http://video-metadata.emp.ebsd.ericsson.net/publish/v1"
            targetNamespace="http://video-metadata.emp.ebsd.ericsson.net/api-messages/v1" elementFormDefault="qualified"
            attributeFormDefault="unqualified"
-           version="1.0">
+           version="2.0">
 
 	
 	<xs:import namespace="http://video-metadata.emp.ebsd.ericsson.net/publish/v1" schemaLocation="publish.xsd" />
