@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<publish-metadata xmlns="http://video-metadata.emp.ebsd.ericsson.net/publish/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://video-metadata.emp.ebsd.ericsson.net/publish/v1 publish-metadata.xsd">
+<publish-metadata xmlns="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://video-metadata.emp.ebsd.ericsson.net/publish/v1 publish-metadata.xsd">
 	<data>
 		<series>
 			<id>id</id>
@@ -184,34 +184,32 @@
 			<contentIdRef>contentIdRef</contentIdRef>
 			<episodeNumber>0</episodeNumber>
 		</content>
-		<materialList>
-			<material>
-				<id>id</id>
-				<materialRef isSyndicated="true">materialRef</materialRef>
-				<contentIdRef>contentIdRef</contentIdRef>
-				<duration>0</duration>
-				<framerate>0</framerate>
-				<isDRMEnabled>true</isDRMEnabled>
-				<allowAds>true</allowAds>
-				<breakList>
-					<break>
-						<offset>0</offset>
-					</break>
-				</breakList>
-				<subtitleList>
-					<subtitle language="EN">subtitle</subtitle>
-				</subtitleList>
-				<expiryDate>2001-12-31T12:00:00</expiryDate>
-				<purgeDate>2001-12-31T12:00:00</purgeDate>
-				<additionalProperties>
-					<property>
-						<name>Name</name>
-						<type>string</type>
-						<value>value</value>
-					</property>
-				</additionalProperties>
-			</material>
-		</materialList>
+		<material>
+			<id>id</id>
+			<materialRef isSyndicated="true">materialRef</materialRef>
+			<contentIdRef>contentIdRef</contentIdRef>
+			<duration>0</duration>
+			<framerate>0</framerate>
+			<isDRMEnabled>true</isDRMEnabled>
+			<allowAds>true</allowAds>
+			<breakList>
+				<break>
+					<offset>0</offset>
+				</break>
+			</breakList>
+			<subtitleList>
+				<subtitle language="EN">subtitle</subtitle>
+			</subtitleList>
+			<expiryDate>2001-12-31T12:00:00</expiryDate>
+			<purgeDate>2001-12-31T12:00:00</purgeDate>
+			<additionalProperties>
+				<property>
+					<name>Name</name>
+					<type>string</type>
+					<value>value</value>
+				</property>
+			</additionalProperties>
+		</material>
 		<eventList>
 			<event>
 				<id>id</id>

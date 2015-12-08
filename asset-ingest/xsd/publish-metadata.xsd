@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:publish="http://video-metadata.emp.ebsd.ericsson.net/publish/v1" targetNamespace="http://video-metadata.emp.ebsd.ericsson.net/publish/v1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.0">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:publish="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1" targetNamespace="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.0">
 	<!-- Message definitions -->
 	<xs:element name="publish-metadata">
 		<xs:annotation>
@@ -23,7 +23,7 @@
 			<xs:element name="season" type="publish:seasonType" minOccurs="0"/>
 			<xs:element name="content" type="publish:contentType" minOccurs="1"/>
 			<!-- TODO: Not sure if materials always are available. Is it? -->
-			<xs:element name="materialList" type="publish:materialListType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="material" type="publish:materialType" minOccurs="0" maxOccurs="1"/>
 			<!-- TODO: No publish without a publication event, or? -->
 			<xs:element name="eventList" type="publish:eventListType"/>
 		</xs:sequence>

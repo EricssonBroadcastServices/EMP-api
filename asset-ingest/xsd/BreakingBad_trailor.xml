@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<publish-metadata xmlns="http://video-metadata.emp.ebsd.ericsson.net/publish/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://video-metadata.emp.ebsd.ericsson.net/publish/v1 publish-metadata.xsd">
+<publish-metadata xmlns="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://video-metadata.emp.ebsd.ericsson.net/publish/v1 publish-metadata.xsd">
 	<data>
 		<series>
 			<id>BreakingBad</id>
@@ -62,33 +62,31 @@
 			<contentType>trailer</contentType>
 			<contentIdRef>BB0105</contentIdRef>
 		</content>
-		<materialList>
-			<material>
-				<id>BB0105_trailor</id>
-				<materialRef>URL</materialRef>
-				<contentIdRef>BB0105</contentIdRef>
-				<duration>2820000</duration>
-				<breakList>
-					<break>
-						<offset>0</offset>
-					</break>
-					<break>
-						<offset>10000</offset>
-					</break>
-				</breakList>
-				<subtitleList>
-					<subtitle language="EN">subtitle</subtitle>
-				</subtitleList>
-				<purgeDate>2099-12-31T12:00:00</purgeDate>
-				<additionalProperties>
-					<property>
-						<name>Name</name>
-						<type>string</type>
-						<value>value</value>
-					</property>
-				</additionalProperties>
-			</material>
-		</materialList>
+		<material>
+			<id>BB0105_trailor</id>
+			<materialRef>URL</materialRef>
+			<contentIdRef>BB0105</contentIdRef>
+			<duration>2820000</duration>
+			<breakList>
+				<break>
+					<offset>0</offset>
+				</break>
+				<break>
+					<offset>10000</offset>
+				</break>
+			</breakList>
+			<subtitleList>
+				<subtitle language="EN">subtitle</subtitle>
+			</subtitleList>
+			<purgeDate>2099-12-31T12:00:00</purgeDate>
+			<additionalProperties>
+				<property>
+					<name>Name</name>
+					<type>string</type>
+					<value>value</value>
+				</property>
+			</additionalProperties>
+		</material>
 		<eventList>
 			<event>
 				<id>4343443334</id>
