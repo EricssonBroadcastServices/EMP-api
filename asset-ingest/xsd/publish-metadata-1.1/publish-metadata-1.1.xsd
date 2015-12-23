@@ -1,0 +1,1432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:publish="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1" targetNamespace="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.0">
+	<!-- Message definitions -->
+	<xs:element name="publish-metadata">
+		<xs:annotation>
+			<xs:documentation>Root element for the content metadata message. A publish-metadata message is sent to create or update an entity. Deletion/removal of an entity is not currently supported</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="data" type="publish:publishType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- Type Definitions -->
+	<!-- Publish -->
+	<xs:complexType name="publishType">
+		<xs:annotation>
+			<xs:documentation>The root node of a publish-metadata. It can contain details of any entity that the Ericsson Managed Player supports.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="series" type="publish:seriesType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="season" type="publish:seasonType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="asset" type="publish:assetType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="material" type="publish:materialType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="publicationList" type="publish:publicationListType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Material -->
+	<xs:complexType name="materialRefType">
+		<xs:annotation>
+			<xs:documentation>A reference to an external media file. This can be an ID, a URI a URL or any other String value.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="publish:notNullString">
+				<xs:attribute name="syndicated" type="xs:boolean" use="optional"/>
+				<xs:attribute name="syndicatedProvider" type="publish:notNullString" use="optional"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<!-- -->
+	<xs:complexType name="materialType">
+		<xs:sequence>
+			<xs:element name="id" type="publish:idType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>This is used to couple material with an event. This id should be matched from materialIdRef in events. Usually is a version-key from Louise. Not clear yet if it could be anything else than a version-key.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="materialRef" type="publish:materialRefType">
+				<xs:annotation>
+					<xs:documentation>A reference to an external media file. This can be an ID, a URI a URL or any other String value.. Depends on the context.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="assetIdRef" type="publish:idType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>No use at the moment but could be used for clips or such at a later date. If we would start to send clips from louise or metabank that are not scheduled in louise, we would have material for the clip (videoformat, resolution etc) but we would not have an event to connect the material to. So we need this element to connect the clip (or ad, or something else that does not have a scheduled event) to a content. Say we have highlights from a UFC fight or an Idol episode, we have (at least) two usecases: 1: It is a clip from a recent episode that we want to use to promote watching of the episode on our VOD platform. In this case we could reference the scheduled event instead of the content, however.. 2: If it is an old clip from a publication event that has expired but we want to use it to promote a new season. Then we need to be able to connect it to a content/season/brand instead as we would not have an event to connect it to.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="duration" type="xs:duration" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>An ISO 8601 duration in format PnYnMnDTnHnMn.NNNS.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="framerate" type="xs:positiveInteger" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>If applicable, framerate for the material in FPS</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DRMEnabled" type="xs:boolean" default="true" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>If false then this material is not encrypted. This is true by default.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="allowAds" type="xs:boolean" default="true" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Flag to indicate if ads are allowed in this video (in the context of the publication/event)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="breakList" type="publish:breakListType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>List of breaks for the media</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="subtitleList" type="publish:subtitleListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>List of available subtitles</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="expiryDate" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Expiry date for licensing in ISO 8601 fornat ("YYYY-MM-DDThh:mm:ss.SSS"]. Timezone may be included by specifying as Zulu time or by adding a UTC offset. If no value is given then a default value will be used</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="purgeDate" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Media would be purged, if no date then default used</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- TODO: Need to add a RFA flag to Subtitles as well? -->
+	<xs:complexType name="subtitleListType">
+		<xs:sequence>
+			<xs:element name="subtitle" type="publish:subtitleType" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>reference to a subtitle item, for example a teletext page or a subtitle file</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="subtitleType">
+		<xs:simpleContent>
+			<xs:extension base="publish:notNullString">
+				<xs:attribute name="language" type="publish:language">
+					<xs:annotation>
+						<xs:documentation>code in ISO 639-1</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="format" type="publish:subtitleFormatType">
+					<xs:annotation>
+						<xs:documentation>The format of the subtitles</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="subtitleFormatType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="closed"/>
+			<!-- text-tv text -->
+			<xs:enumeration value="open"/>
+			<xs:enumeration value="openAndTeletext"/>
+			<xs:enumeration value="teletext"/>
+			<xs:enumeration value="dvbText"/>
+			<xs:enumeration value="other"/>
+			<xs:enumeration value="N/A"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="mediaListType">
+		<xs:sequence>
+			<xs:element name="media" type="publish:mediaType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="materialReferenceTypeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="video"/>
+			<xs:enumeration value="audio"/>
+			<xs:enumeration value="subtitle"/>
+			<xs:enumeration value="graphics"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="mediaType">
+		<xs:sequence>
+			<xs:element name="subtitleList" type="publish:subtitleListType" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>list of available subtitles</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="rfa" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>"Ready For Airing": This flag will be set to true if the media has been checked by QC (Quality Control). If this flag is not set to true it means that the file is not yet availble.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="materialRightsListType">
+		<xs:sequence>
+			<xs:element name="rights" type="publish:materialRightsType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="materialRightsType">
+		<xs:annotation>
+			<xs:documentation>DateTime in UTC</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="validFrom" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Start of period where right is valid</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="validTo" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>End of period where right is valid</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="materialListType">
+		<xs:annotation>
+			<xs:documentation>This is used for better readability in higher nodes. I.e instead of having a sequence of materialTypes in the publishType, just add an element with this type.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="material" type="publish:materialType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="breakListType">
+		<xs:sequence>
+			<xs:element name="break" type="publish:breakType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="breakType">
+		<xs:sequence>
+			<xs:annotation>
+				<xs:documentation>Use the same unit in offset as in duration</xs:documentation>
+			</xs:annotation>
+			<xs:element name="offset" type="xs:duration" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Common -->
+	<xs:simpleType name="idType">
+		<xs:annotation>
+			<xs:documentation>A general ID type for entities</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9a-zA-Z\-_]+"/>
+			<xs:minLength value="3"/>
+			<xs:maxLength value="128"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="nidType">
+		<xs:annotation>
+			<xs:documentation>Unique name id, i.e. the normalized textual representation, e.g.: no space, lower case, no diacritic characters. Language attribute can be used to specify a localized name for the tag.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9a-z\-_]+"/>
+			<xs:minLength value="3"/>
+			<xs:maxLength value="128"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="externalReferenceListType">
+		<xs:sequence>
+			<xs:element name="externalReference" type="publish:externalReferenceType" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>List of external resources that can used to connect/boost the content data with.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="externalReferenceType">
+		<xs:sequence>
+			<xs:element name="provider" type="publish:notNullString" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Who is the provides for the extend data that can be used for this content. It can for example be score24.com or IMDB.com</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="id" type="publish:idType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Data identifier to map this content to in the external provider/partners data</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="uri" type="xs:anyURI" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Resource to use for reach the data at the provider</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tagListType">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="tagIdRef" type="publish:idType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Reference to an existing tag</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="tag" type="publish:tagReferenceType" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tagReferenceType">
+		<xs:annotation>
+			<xs:documentation>Use to refer to a tag, i.e. in content. Lower priority number means higher importance.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tagName" type="publish:tagNameType"  minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="publish:idType" use="required" />
+		<xs:attribute name="type" type="publish:nidType" use="required"/>
+		<xs:attribute name="parentTagId" type="publish:idType" use="optional" />
+	</xs:complexType>
+	<xs:complexType name="tagNameType">
+		<xs:simpleContent>
+			<xs:restriction base="publish:localizedTextType">
+				<xs:minLength value="1"/>
+				<xs:maxLength value="300"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="tagType">
+		<xs:annotation>
+			<xs:documentation>Unique name id, i.e. the normalized textual representation, e.g.: no space, lower case, no diacritic characters. Language attribute can be used to specify a localized name for the tag.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="3"/>
+			<xs:maxLength value="128"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:complexType name="description">
+		<xs:annotation>
+			<xs:documentation>A general type for describing something, attribute indicating the language.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="language" type="publish:language">
+					<xs:annotation>
+						<xs:documentation>code in ISO 639-1 Note that the language here refers to the language on which the description is made.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="publicationRightsType">
+		<xs:annotation>
+			<xs:documentation>publication rights type</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="productList" type="publish:productListType"/>
+			<xs:element name="serviceList" type="publish:serviceListType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="drmRestrictionsType">
+		<xs:annotation>
+			<xs:documentation>DRM Restrictions.</xs:documentation>
+		</xs:annotation>
+	<xs:sequence>
+		<xs:choice>
+			<xs:annotation>
+				<xs:documentation>If studioContractID is defined then all other
+					properties, except includeContries, are defined elsewhere.
+				</xs:documentation>
+			</xs:annotation>
+			<xs:element name="studioContractID" type="xs:string" minOccurs="0" />
+			<xs:sequence>
+				<xs:element name="downloadAllowed" type="xs:boolean" minOccurs="0" />
+				<xs:element name="mirroringAllowed" type="xs:boolean" minOccurs="0" />
+				<xs:element name="HDAllowed" type="xs:boolean" minOccurs="0" />
+				<xs:element name="HDMIAllowed" type="xs:boolean" minOccurs="0" />
+				<xs:element name="MaxBitRate" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:long">
+							<xs:minInclusive value="1" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="deviceList" type="publish:deviceListType" minOccurs="0" />
+			</xs:sequence>
+		</xs:choice>
+		<xs:element name="includeCountries" type="publish:countryListType" minOccurs="0" />
+	</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="countryListType">
+		<xs:sequence>
+			<xs:element name="country" type="publish:ISOCountry" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>code in ISO 3166-1-alpha-2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="deviceListType">
+		<xs:sequence>
+			<xs:element name="device" type="publish:deviceType" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Name of the device</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="deviceType">
+		<xs:sequence>
+			<xs:element name="deviceType" type="publish:deviceTypeType" minOccurs="1"/>
+			<xs:element name="vendor" type="xs:string" minOccurs="0"/>
+			<xs:element name="os" type="xs:string" minOccurs="0"/>
+			<xs:element name="osVersion" type="xs:string" minOccurs="0"/>
+			<xs:element name="model" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="deviceTypeType">
+		<xs:annotation>
+			<xs:documentation>Controls the device type</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Web"/>
+			<xs:enumeration value="Mobile"/>
+			<xs:enumeration value="Tablet"/>
+			<xs:enumeration value="MediaPlayer"/>
+			<xs:enumeration value="SmartTV"/>
+			<xs:enumeration value="Console"/>
+			<xs:enumeration value="STB"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="productListType">
+		<xs:sequence>
+			<xs:element name="product" type="xs:string" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Name of the product</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="serviceListType">
+		<xs:sequence>
+			<xs:element name="service" type="xs:string" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Name of the platform</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="contentSeasonSeriesType">
+		<xs:sequence>
+			<xs:element name="series" type="publish:seriesType" minOccurs="0"/>
+			<xs:element name="season" type="publish:seasonType" minOccurs="0"/>
+			<xs:element name="content" type="publish:assetType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="abstractContentType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>Abstract type that holds attributes common to series, season and content</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="publish:idType">
+				<xs:annotation>
+					<xs:documentation>unique id for asset, unique within each provider</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="studio" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Name of production studio.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="productionYear" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[1-2][0-9][0-9][0-9]"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="countryOfOriginList" type="publish:countryListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>list of production countries. Use country codes in IS0 3166-1-alpha-2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="titleList" type="publish:titleListType">
+				<xs:annotation>
+					<xs:documentation>Title list for content. At least one occurrence with the language used in the market/country displaying the content.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="descriptionList" type="publish:descriptionListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>List of descriptions</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tagList" type="publish:tagListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>list of tags for the content.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="creditList" type="publish:creditListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>list of actors, producers etc. should be consistent within each provider</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="imageList" type="publish:imageListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>list of content related images.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="parentalRatingList" type="publish:parentalRatingListType" minOccurs="0"/>
+			<xs:element name="externalReferenceList" type="publish:externalReferenceListType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="seriesType">
+		<xs:complexContent>
+			<xs:extension base="publish:abstractContentType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="seasonType">
+		<xs:complexContent>
+			<xs:extension base="publish:abstractContentType">
+				<xs:sequence>
+					<xs:element name="seriesId" type="publish:idType" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>id for Series, not unique</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="seasonNumber" type="xs:positiveInteger" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Season number for the series.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="numberOfEpisodes" type="xs:positiveInteger" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>If the content belongs to a series/season, this is the total number of episodes in that series/season.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="assetType">
+		<xs:complexContent>
+			<xs:extension base="publish:abstractContentType">
+				<xs:sequence>
+					<xs:element name="assetType" type="publish:assetTypeType" minOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Type of the asset</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="seriesId" type="publish:idType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>id for series, not unique. Only present if content is connected to a series.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="seasonId" type="publish:idType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>id for season, not unique. Only present if content is connected to a season.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="assetIdRef" type="publish:idType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Reference to other asset entity that is related. Use is for a trailer to reference the original content.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="episodeNumber" type="xs:positiveInteger" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Episode number for the program or "null" if no episode information.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="assetTypeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="episode"/>
+			<xs:enumeration value="movie"/>
+			<xs:enumeration value="trailer"/>
+			<xs:enumeration value="ad"/>
+			<xs:enumeration value="clip"/>
+			<xs:enumeration value="other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="titleListType">
+		<xs:sequence>
+			<xs:element name="title" type="publish:titleType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="descriptionListType">
+		<xs:annotation>
+			<xs:documentation>Editorial text that describes the content, can be publically published.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="description" type="publish:descriptionType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="commentListType">
+		<xs:annotation>
+			<xs:documentation>Editorial description that shall not be published, but it can be indexed in a search. Thought usage is to write down descriptive intro, manuscript or voice-over that applies to the content, Text is not required to be written to be ready for public view, but the content will be indexed and possible to use in a search.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="comment" type="publish:descriptionType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="parentalRatingListType">
+		<xs:sequence>
+			<xs:element name="parentalRating" type="publish:parentalRatingType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="parentalRatingType">
+		<xs:annotation>
+			<xs:documentation>See http://en.wikipedia.org/wiki/Motion_picture_rating_system for more information about parental ratings.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="rating" type="publish:notNullString" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Parental rating age in year. 0 years => No restriction. Also see http://en.wikipedia.org/wiki/Motion_picture_rating_system for more information.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="scheme" type="publish:notNullString" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Rating code that motivates the parental guidance. Code to descriptive text is mapped in client GUI.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="country" type="publish:ISOCountry" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Two char country code accoring to ISO 3166-1-alpha-2. Empty or absent country attribute has the meaning that it is global default value for any country. Specific country declaration overrides the default. If country value is repeted, result is undefined which one to select.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="simpleTitleType">
+		<xs:simpleContent>
+			<xs:restriction base="publish:simpleTextType">
+				<xs:maxLength value="100"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="titleType">
+		<xs:simpleContent>
+			<xs:extension base="publish:untypedTitleType"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="untypedTitleType">
+		<xs:simpleContent>
+			<xs:restriction base="publish:localizedTextType">
+				<xs:minLength value="1"/>
+				<xs:maxLength value="300"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="descriptionType">
+		<xs:simpleContent>
+			<xs:extension base="publish:untypedDescriptionType">
+				<xs:attribute name="length" type="publish:descriptionLengthType" use="optional">
+					<xs:annotation>
+						<xs:documentation/>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="descriptionLengthType">
+		<xs:annotation>
+			<xs:documentation>length (and content) of the description e.g, tiny may be 1-25 characters, short 26-140,medium 141-240, long 241-999, extended > 1000</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="short"/>
+			<xs:enumeration value="medium"/>
+			<xs:enumeration value="long"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="untypedDescriptionType">
+		<xs:simpleContent>
+			<xs:restriction base="publish:localizedTextType">
+				<xs:minLength value="1"/>
+				<xs:maxLength value="3000"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="localizedTextType">
+		<xs:annotation>
+			<xs:documentation>Localized text element with language attribute.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="language" type="publish:language">
+					<xs:annotation>
+						<xs:documentation>code in ISO 639-1</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="creditListType">
+		<xs:sequence>
+			<xs:element name="credit" type="publish:creditType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="creditType">
+		<xs:sequence>
+			<xs:element name="name" type="publish:notNullString" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="rolename" type="publish:notNullString" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="function" type="publish:notNullString" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="imageType">
+		<xs:sequence>
+			<xs:element name="id" type="publish:idType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The id of the image from the origin system. For example it might be img_123.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="url" type="xs:anyURI" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="width" type="xs:positiveInteger" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>In unit px.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="height" type="xs:positiveInteger" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>In unit px.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="purpose" minOccurs="1" maxOccurs="1">
+				<xs:simpleType>
+					<xs:annotation>
+						<xs:documentation>Purpose of image, initial intended usage for the image from source system.</xs:documentation>
+					</xs:annotation>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="banner"/>
+						<xs:enumeration value="poster"/>
+						<xs:enumeration value="logo"/>
+						<xs:enumeration value="thumbnail"/>
+						<xs:enumeration value="cover"/>
+							<xs:enumeration value="other"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="orientation" minOccurs="0" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="landscape"/>
+						<xs:enumeration value="portrait"/>
+						<xs:enumeration value="square"/>
+						<xs:enumeration value="unknown"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="copyright" type="publish:notNullString" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="priority" use="optional">
+			<xs:annotation>
+				<xs:documentation>lower priority number means higher importance</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:long">
+					<xs:minInclusive value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="language" type="publish:language" use="optional">
+			<xs:annotation>
+				<xs:documentation>Language of the image if applicable</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="imageListType">
+		<xs:annotation>
+			<xs:documentation>priority attribute on image element indicate "sort order", lower priority number means higher importance.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="image" type="publish:imageType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="simpleTextType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="language" type="publish:language">
+					<xs:annotation>
+						<xs:documentation>code in ISO 639-1</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="publicationType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="publish:idType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Per provider unique id for the event.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="assetIdRef" type="publish:idType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Reference to an asset id. Should only be provided when an actual asset element is NOT provided.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:annotation>
+					<xs:documentation>A publish time either needs to have start/end/publish times or a revoked tag.</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="startTime" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Time when Vod is possible to start play.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="endTime" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Time when Vod is no longer possible to play.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="publishTime" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Time when the vod information can be exposed to the customer. Vod can not be played until startTime. If publish is after start or empty (nil), then publishTime = startTime.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:element name="revoked" type="xs:boolean" minOccurs="1" maxOccurs="1" default="false">
+					<xs:annotation>
+						<xs:documentation>If this flag is set to true then the publication is to be marked for revocation.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="publicationRights" type="publish:publicationRightsType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="drmRestrictions" type="publish:drmRestrictionsType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="publicationListType">
+		<xs:sequence>
+			<xs:element name="publication" type="publish:publicationType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="notNullString">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="3000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<!-- Begin long country/language codes -->
+	<xs:simpleType name="ISOCountry">
+		<xs:annotation>
+			<xs:documentation>
+				Two-letter (alpha-2) ISO 3166-1 code for one of the 243 countries.
+			</xs:documentation>
+		</xs:annotation>
+
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="AF"/> <!-- AFGHANISTAN -->
+			<xs:enumeration value="AX"/> <!-- &Aring;LAND ISLANDS -->
+			<xs:enumeration value="AL"/> <!-- ALBANIA -->
+			<xs:enumeration value="DZ"/> <!-- ALGERIA -->
+			<xs:enumeration value="AS"/> <!-- AMERICAN SAMOA -->
+			<xs:enumeration value="AD"/> <!-- ANDORRA -->
+			<xs:enumeration value="AO"/> <!-- ANGOLA -->
+			<xs:enumeration value="AI"/> <!-- ANGUILLA -->
+			<xs:enumeration value="AQ"/> <!-- ANTARCTICA -->
+			<xs:enumeration value="AG"/> <!-- ANTIGUA AND BARBUDA -->
+			<xs:enumeration value="AR"/> <!-- ARGENTINA -->
+			<xs:enumeration value="AM"/> <!-- ARMENIA -->
+			<xs:enumeration value="AW"/> <!-- ARUBA -->
+			<xs:enumeration value="AU"/> <!-- AUSTRALIA -->
+			<xs:enumeration value="AT"/> <!-- AUSTRIA -->
+			<xs:enumeration value="AZ"/> <!-- AZERBAIJAN -->
+			<xs:enumeration value="BS"/> <!-- BAHAMAS -->
+			<xs:enumeration value="BH"/> <!-- BAHRAIN -->
+			<xs:enumeration value="BD"/> <!-- BANGLADESH -->
+			<xs:enumeration value="BB"/> <!-- BARBADOS -->
+			<xs:enumeration value="BY"/> <!-- BELARUS -->
+			<xs:enumeration value="BE"/> <!-- BELGIUM -->
+			<xs:enumeration value="BZ"/> <!-- BELIZE -->
+			<xs:enumeration value="BJ"/> <!-- BENIN -->
+			<xs:enumeration value="BM"/> <!-- BERMUDA -->
+			<xs:enumeration value="BT"/> <!-- BHUTAN -->
+			<xs:enumeration value="BO"/> <!-- BOLIVIA -->
+			<xs:enumeration value="BA"/> <!-- BOSNIA AND HERZEGOVINA -->
+			<xs:enumeration value="BW"/> <!-- BOTSWANA -->
+			<xs:enumeration value="BV"/> <!-- BOUVET ISLAND -->
+			<xs:enumeration value="BR"/> <!-- BRAZIL -->
+			<xs:enumeration value="IO"/> <!-- BRITISH INDIAN OCEAN TERRITORY -->
+			<xs:enumeration value="BN"/> <!-- BRUNEI DARUSSALAM -->
+			<xs:enumeration value="BG"/> <!-- BULGARIA -->
+			<xs:enumeration value="BF"/> <!-- BURKINA FASO -->
+			<xs:enumeration value="BI"/> <!-- BURUNDI -->
+			<xs:enumeration value="KH"/> <!-- CAMBODIA -->
+			<xs:enumeration value="CM"/> <!-- CAMEROON -->
+			<xs:enumeration value="CA"/> <!-- CANADA -->
+			<xs:enumeration value="CV"/> <!-- CAPE VERDE -->
+			<xs:enumeration value="KY"/> <!-- CAYMAN ISLANDS -->
+			<xs:enumeration value="CF"/> <!-- CENTRAL AFRICAN REPUBLIC -->
+			<xs:enumeration value="TD"/> <!-- CHAD -->
+			<xs:enumeration value="CL"/> <!-- CHILE -->
+			<xs:enumeration value="CN"/> <!-- CHINA -->
+			<xs:enumeration value="CX"/> <!-- CHRISTMAS ISLAND -->
+			<xs:enumeration value="CC"/> <!-- COCOS (KEELING) ISLANDS -->
+			<xs:enumeration value="CO"/> <!-- COLOMBIA -->
+			<xs:enumeration value="KM"/> <!-- COMOROS -->
+			<xs:enumeration value="CG"/> <!-- CONGO -->
+			<xs:enumeration value="CD"/> <!-- CONGO, THE DEMOCRATIC REPUBLIC OF THE -->
+			<xs:enumeration value="CK"/> <!-- COOK ISLANDS -->
+			<xs:enumeration value="CR"/> <!-- COSTA RICA -->
+			<xs:enumeration value="CI"/> <!-- COTE D'IVOIRE -->
+			<xs:enumeration value="HR"/> <!-- CROATIA -->
+			<xs:enumeration value="CU"/> <!-- CUBA -->
+			<xs:enumeration value="CY"/> <!-- CYPRUS -->
+			<xs:enumeration value="CZ"/> <!-- CZECH REPUBLIC -->
+			<xs:enumeration value="DK"/> <!-- DENMARK -->
+			<xs:enumeration value="DJ"/> <!-- DJIBOUTI -->
+			<xs:enumeration value="DM"/> <!-- DOMINICA -->
+			<xs:enumeration value="DO"/> <!-- DOMINICAN REPUBLIC -->
+			<xs:enumeration value="EC"/> <!-- ECUADOR -->
+			<xs:enumeration value="EG"/> <!-- EGYPT -->
+			<xs:enumeration value="SV"/> <!-- EL SALVADOR -->
+			<xs:enumeration value="GQ"/> <!-- EQUATORIAL GUINEA -->
+			<xs:enumeration value="ER"/> <!-- ERITREA -->
+			<xs:enumeration value="EE"/> <!-- ESTONIA -->
+			<xs:enumeration value="ET"/> <!-- ETHIOPIA -->
+			<xs:enumeration value="FK"/> <!-- FALKLAND ISLANDS (MALVINAS) -->
+			<xs:enumeration value="FO"/> <!-- FAROE ISLANDS -->
+			<xs:enumeration value="FJ"/> <!-- FIJI -->
+			<xs:enumeration value="FI"/> <!-- FINLAND -->
+			<xs:enumeration value="FR"/> <!-- FRANCE -->
+			<xs:enumeration value="GF"/> <!-- FRENCH GUIANA -->
+			<xs:enumeration value="PF"/> <!-- FRENCH POLYNESIA -->
+			<xs:enumeration value="TF"/> <!-- FRENCH SOUTHERN TERRITORIES -->
+			<xs:enumeration value="GA"/> <!-- GABON -->
+			<xs:enumeration value="GM"/> <!-- GAMBIA -->
+			<xs:enumeration value="GE"/> <!-- GEORGIA -->
+			<xs:enumeration value="DE"/> <!-- GERMANY -->
+			<xs:enumeration value="GH"/> <!-- GHANA -->
+			<xs:enumeration value="GI"/> <!-- GIBRALTAR -->
+			<xs:enumeration value="GR"/> <!-- GREECE -->
+			<xs:enumeration value="GL"/> <!-- GREENLAND -->
+			<xs:enumeration value="GD"/> <!-- GRENADA -->
+			<xs:enumeration value="GP"/> <!-- GUADELOUPE -->
+			<xs:enumeration value="GU"/> <!-- GUAM -->
+			<xs:enumeration value="GT"/> <!-- GUATEMALA -->
+			<xs:enumeration value="GG"/> <!-- GUERNSEY -->
+			<xs:enumeration value="GN"/> <!-- GUINEA -->
+			<xs:enumeration value="GW"/> <!-- GUINEA-BISSAU -->
+			<xs:enumeration value="GY"/> <!-- GUYANA -->
+			<xs:enumeration value="HT"/> <!-- HAITI -->
+			<xs:enumeration value="HM"/> <!-- HEARD ISLAND AND MCDONALD ISLANDS -->
+			<xs:enumeration value="VA"/> <!-- HOLY SEE (VATICAN CITY STATE) -->
+			<xs:enumeration value="HN"/> <!-- HONDURAS -->
+			<xs:enumeration value="HK"/> <!-- HONG KONG -->
+			<xs:enumeration value="HU"/> <!-- HUNGARY -->
+			<xs:enumeration value="IS"/> <!-- ICELAND -->
+			<xs:enumeration value="IN"/> <!-- INDIA -->
+			<xs:enumeration value="ID"/> <!-- INDONESIA -->
+			<xs:enumeration value="IR"/> <!-- IRAN, ISLAMIC REPUBLIC OF -->
+			<xs:enumeration value="IQ"/> <!-- IRAQ -->
+			<xs:enumeration value="IE"/> <!-- IRELAND -->
+			<xs:enumeration value="IM"/> <!-- ISLE OF MAN -->
+			<xs:enumeration value="IL"/> <!-- ISRAEL -->
+			<xs:enumeration value="IT"/> <!-- ITALY -->
+			<xs:enumeration value="JM"/> <!-- JAMAICA -->
+			<xs:enumeration value="JP"/> <!-- JAPAN -->
+			<xs:enumeration value="JE"/> <!-- JERSEY -->
+			<xs:enumeration value="JO"/> <!-- JORDAN -->
+			<xs:enumeration value="KZ"/> <!-- KAZAKHSTAN -->
+			<xs:enumeration value="KE"/> <!-- KENYA -->
+			<xs:enumeration value="KI"/> <!-- KIRIBATI -->
+			<xs:enumeration value="KP"/> <!-- KOREA, DEMOCRATIC PEOPLE'S REPUBLIC OF -->
+			<xs:enumeration value="KR"/> <!-- KOREA, REPUBLIC OF -->
+			<xs:enumeration value="KW"/> <!-- KUWAIT -->
+			<xs:enumeration value="KG"/> <!-- KYRGYZSTAN -->
+			<xs:enumeration value="LA"/> <!-- LAO PEOPLE'S DEMOCRATIC REPUBLIC -->
+			<xs:enumeration value="LV"/> <!-- LATVIA -->
+			<xs:enumeration value="LB"/> <!-- LEBANON -->
+			<xs:enumeration value="LS"/> <!-- LESOTHO -->
+			<xs:enumeration value="LR"/> <!-- LIBERIA -->
+			<xs:enumeration value="LY"/> <!-- LIBYAN ARAB JAMAHIRIYA -->
+			<xs:enumeration value="LI"/> <!-- LIECHTENSTEIN -->
+			<xs:enumeration value="LT"/> <!-- LITHUANIA -->
+			<xs:enumeration value="LU"/> <!-- LUXEMBOURG -->
+			<xs:enumeration value="MO"/> <!-- MACAO -->
+			<xs:enumeration value="MK"/> <!-- MACEDONIA, THE FORMER YUGOSLAV REPUBLIC OF -->
+			<xs:enumeration value="MG"/> <!-- MADAGASCAR -->
+			<xs:enumeration value="MW"/> <!-- MALAWI -->
+			<xs:enumeration value="MY"/> <!-- MALAYSIA -->
+			<xs:enumeration value="MV"/> <!-- MALDIVES -->
+			<xs:enumeration value="ML"/> <!-- MALI -->
+			<xs:enumeration value="MT"/> <!-- MALTA -->
+			<xs:enumeration value="MH"/> <!-- MARSHALL ISLANDS -->
+			<xs:enumeration value="MQ"/> <!-- MARTINIQUE -->
+			<xs:enumeration value="MR"/> <!-- MAURITANIA -->
+			<xs:enumeration value="MU"/> <!-- MAURITIUS -->
+			<xs:enumeration value="YT"/> <!-- MAYOTTE -->
+			<xs:enumeration value="MX"/> <!-- MEXICO -->
+			<xs:enumeration value="FM"/> <!-- MICRONESIA, FEDERATED STATES OF -->
+			<xs:enumeration value="MD"/> <!-- MOLDOVA, REPUBLIC OF -->
+			<xs:enumeration value="MC"/> <!-- MONACO -->
+			<xs:enumeration value="MN"/> <!-- MONGOLIA -->
+			<xs:enumeration value="MS"/> <!-- MONTSERRAT -->
+			<xs:enumeration value="MA"/> <!-- MOROCCO -->
+			<xs:enumeration value="MZ"/> <!-- MOZAMBIQUE -->
+			<xs:enumeration value="MM"/> <!-- MYANMAR -->
+			<xs:enumeration value="NA"/> <!-- NAMIBIA -->
+			<xs:enumeration value="NR"/> <!-- NAURU -->
+			<xs:enumeration value="NP"/> <!-- NEPAL -->
+			<xs:enumeration value="NL"/> <!-- NETHERLANDS -->
+			<xs:enumeration value="AN"/> <!-- NETHERLANDS ANTILLES -->
+			<xs:enumeration value="NC"/> <!-- NEW CALEDONIA -->
+			<xs:enumeration value="NZ"/> <!-- NEW ZEALAND -->
+			<xs:enumeration value="NI"/> <!-- NICARAGUA -->
+			<xs:enumeration value="NE"/> <!-- NIGER -->
+			<xs:enumeration value="NG"/> <!-- NIGERIA -->
+			<xs:enumeration value="NU"/> <!-- NIUE -->
+			<xs:enumeration value="NF"/> <!-- NORFOLK ISLAND -->
+			<xs:enumeration value="MP"/> <!-- NORTHERN MARIANA ISLANDS -->
+			<xs:enumeration value="NO"/> <!-- NORWAY -->
+			<xs:enumeration value="OM"/> <!-- OMAN -->
+			<xs:enumeration value="PK"/> <!-- PAKISTAN -->
+			<xs:enumeration value="PW"/> <!-- PALAU -->
+			<xs:enumeration value="PS"/> <!-- PALESTINIAN TERRITORY, OCCUPIED -->
+			<xs:enumeration value="PA"/> <!-- PANAMA -->
+			<xs:enumeration value="PG"/> <!-- PAPUA NEW GUINEA -->
+			<xs:enumeration value="PY"/> <!-- PARAGUAY -->
+			<xs:enumeration value="PE"/> <!-- PERU -->
+			<xs:enumeration value="PH"/> <!-- PHILIPPINES -->
+			<xs:enumeration value="PN"/> <!-- PITCAIRN -->
+			<xs:enumeration value="PL"/> <!-- POLAND -->
+			<xs:enumeration value="PT"/> <!-- PORTUGAL -->
+			<xs:enumeration value="PR"/> <!-- PUERTO RICO -->
+			<xs:enumeration value="QA"/> <!-- QATAR -->
+			<xs:enumeration value="RE"/> <!-- REUNION -->
+			<xs:enumeration value="RO"/> <!-- ROMANIA -->
+			<xs:enumeration value="RU"/> <!-- RUSSIAN FEDERATION -->
+			<xs:enumeration value="RW"/> <!-- RWANDA -->
+			<xs:enumeration value="SH"/> <!-- SAINT HELENA -->
+			<xs:enumeration value="KN"/> <!-- SAINT KITTS AND NEVIS -->
+			<xs:enumeration value="LC"/> <!-- SAINT LUCIA -->
+			<xs:enumeration value="PM"/> <!-- SAINT PIERRE AND MIQUELON -->
+			<xs:enumeration value="VC"/> <!-- SAINT VINCENT AND THE GRENADINES -->
+			<xs:enumeration value="WS"/> <!-- SAMOA -->
+			<xs:enumeration value="SM"/> <!-- SAN MARINO -->
+			<xs:enumeration value="ST"/> <!-- SAO TOME AND PRINCIPE -->
+			<xs:enumeration value="SA"/> <!-- SAUDI ARABIA -->
+			<xs:enumeration value="SN"/> <!-- SENEGAL -->
+			<xs:enumeration value="CS"/> <!-- SERBIA AND MONTENEGRO -->
+			<xs:enumeration value="SC"/> <!-- SEYCHELLES -->
+			<xs:enumeration value="SL"/> <!-- SIERRA LEONE -->
+			<xs:enumeration value="SG"/> <!-- SINGAPORE -->
+			<xs:enumeration value="SK"/> <!-- SLOVAKIA -->
+			<xs:enumeration value="SI"/> <!-- SLOVENIA -->
+			<xs:enumeration value="SB"/> <!-- SOLOMON ISLANDS -->
+			<xs:enumeration value="SO"/> <!-- SOMALIA -->
+			<xs:enumeration value="ZA"/> <!-- SOUTH AFRICA -->
+			<xs:enumeration value="GS"/> <!-- SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS -->
+			<xs:enumeration value="ES"/> <!-- SPAIN -->
+			<xs:enumeration value="LK"/> <!-- SRI LANKA -->
+			<xs:enumeration value="SD"/> <!-- SUDAN -->
+			<xs:enumeration value="SR"/> <!-- SURINAME -->
+			<xs:enumeration value="SJ"/> <!-- SVALBARD AND JAN MAYEN -->
+			<xs:enumeration value="SZ"/> <!-- SWAZILAND -->
+			<xs:enumeration value="SE"/> <!-- SWEDEN -->
+			<xs:enumeration value="CH"/> <!-- SWITZERLAND -->
+			<xs:enumeration value="SY"/> <!-- SYRIAN ARAB REPUBLIC -->
+			<xs:enumeration value="TW"/> <!-- TAIWAN, PROVINCE OF CHINA -->
+			<xs:enumeration value="TJ"/> <!-- TAJIKISTAN -->
+			<xs:enumeration value="TZ"/> <!-- TANZANIA, UNITED REPUBLIC OF -->
+			<xs:enumeration value="TH"/> <!-- THAILAND -->
+			<xs:enumeration value="TL"/> <!-- TIMOR-LESTE -->
+			<xs:enumeration value="TG"/> <!-- TOGO -->
+			<xs:enumeration value="TK"/> <!-- TOKELAU -->
+			<xs:enumeration value="TO"/> <!-- TONGA -->
+			<xs:enumeration value="TT"/> <!-- TRINIDAD AND TOBAGO -->
+			<xs:enumeration value="TN"/> <!-- TUNISIA -->
+			<xs:enumeration value="TR"/> <!-- TURKEY -->
+			<xs:enumeration value="TM"/> <!-- TURKMENISTAN -->
+			<xs:enumeration value="TC"/> <!-- TURKS AND CAICOS ISLANDS -->
+			<xs:enumeration value="TV"/> <!-- TUVALU -->
+			<xs:enumeration value="UG"/> <!-- UGANDA -->
+			<xs:enumeration value="UA"/> <!-- UKRAINE -->
+			<xs:enumeration value="AE"/> <!-- UNITED ARAB EMIRATES -->
+			<xs:enumeration value="GB"/> <!-- UNITED KINGDOM -->
+			<xs:enumeration value="US"/> <!-- UNITED STATES -->
+			<xs:enumeration value="UM"/> <!-- UNITED STATES MINOR OUTLYING ISLANDS -->
+			<xs:enumeration value="UY"/> <!-- URUGUAY -->
+			<xs:enumeration value="UZ"/> <!-- UZBEKISTAN -->
+			<xs:enumeration value="VU"/> <!-- VANUATU -->
+			<xs:enumeration value="VE"/> <!-- VENEZUELA -->
+			<xs:enumeration value="VN"/> <!-- VIET NAM -->
+			<xs:enumeration value="VG"/> <!-- VIRGIN ISLANDS, BRITISH -->
+			<xs:enumeration value="VI"/> <!-- VIRGIN ISLANDS, U.S. -->
+			<xs:enumeration value="WF"/> <!-- WALLIS AND FUTUNA -->
+			<xs:enumeration value="EH"/> <!-- WESTERN SAHARA -->
+			<xs:enumeration value="YE"/> <!-- YEMEN -->
+			<xs:enumeration value="ZM"/> <!-- ZAMBIA -->
+			<xs:enumeration value="ZW"/> <!-- ZIMBABWE -->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="language">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ab" /> <!-- ABKHAZ -->
+			<xs:enumeration value="abk" /> <!-- ABKHAZ -->
+			<xs:enumeration value="aa" /> <!-- AFAR -->
+			<xs:enumeration value="aar" /> <!-- AFAR -->
+			<xs:enumeration value="af" /> <!-- AFRIKAANS -->
+			<xs:enumeration value="afr" /> <!-- AFRIKAANS -->
+			<xs:enumeration value="ak" /> <!-- AKAN -->
+			<xs:enumeration value="aka" /> <!-- AKAN -->
+			<xs:enumeration value="sq" /> <!-- ALBANIAN -->
+			<xs:enumeration value="sqi" /> <!-- ALBANIAN -->
+			<xs:enumeration value="am" /> <!-- AMHARIC -->
+			<xs:enumeration value="amh" /> <!-- AMHARIC -->
+			<xs:enumeration value="ar" /> <!-- ARABIC -->
+			<xs:enumeration value="ara" /> <!-- ARABIC -->
+			<xs:enumeration value="an" /> <!-- ARAGONESE -->
+			<xs:enumeration value="arg" /> <!-- ARAGONESE -->
+			<xs:enumeration value="hy" /> <!-- ARMENIAN -->
+			<xs:enumeration value="hye" /> <!-- ARMENIAN -->
+			<xs:enumeration value="as" /> <!-- ASSAMESE -->
+			<xs:enumeration value="asm" /> <!-- ASSAMESE -->
+			<xs:enumeration value="av" /> <!-- AVARIC -->
+			<xs:enumeration value="ava" /> <!-- AVARIC -->
+			<xs:enumeration value="ae" /> <!-- AVESTAN -->
+			<xs:enumeration value="ave" /> <!-- AVESTAN -->
+			<xs:enumeration value="ay" /> <!-- AYMARA -->
+			<xs:enumeration value="aym" /> <!-- AYMARA -->
+			<xs:enumeration value="az" /> <!-- AZERBAIJANI -->
+			<xs:enumeration value="aze" /> <!-- AZERBAIJANI -->
+			<xs:enumeration value="bm" /> <!-- BAMBARA -->
+			<xs:enumeration value="bam" /> <!-- BAMBARA -->
+			<xs:enumeration value="ba" /> <!-- BASHKIR -->
+			<xs:enumeration value="bak" /> <!-- BASHKIR -->
+			<xs:enumeration value="eu" /> <!-- BASQUE -->
+			<xs:enumeration value="eus" /> <!-- BASQUE -->
+			<xs:enumeration value="be" /> <!-- BELARUSIAN -->
+			<xs:enumeration value="bel" /> <!-- BELARUSIAN -->
+			<xs:enumeration value="bn" /> <!-- BENGALI -->
+			<xs:enumeration value="ben" /> <!-- BENGALI -->
+			<xs:enumeration value="bh" /> <!-- BIHARI -->
+			<xs:enumeration value="bih" /> <!-- BIHARI -->
+			<xs:enumeration value="bi" /> <!-- BISLAMA -->
+			<xs:enumeration value="bis" /> <!-- BISLAMA -->
+			<xs:enumeration value="bs" /> <!-- BOSNIAN -->
+			<xs:enumeration value="bos" /> <!-- BOSNIAN -->
+			<xs:enumeration value="br" /> <!-- BRETON -->
+			<xs:enumeration value="bre" /> <!-- BRETON -->
+			<xs:enumeration value="bg" /> <!-- BULGARIAN -->
+			<xs:enumeration value="bul" /> <!-- BULGARIAN -->
+			<xs:enumeration value="my" /> <!-- BURMESE -->
+			<xs:enumeration value="mya" /> <!-- BURMESE -->
+			<xs:enumeration value="ca" /> <!-- CATALAN -->
+			<xs:enumeration value="cat" /> <!-- CATALAN -->
+			<xs:enumeration value="ch" /> <!-- CHAMORRO -->
+			<xs:enumeration value="cha" /> <!-- CHAMORRO -->
+			<xs:enumeration value="ce" /> <!-- CHECHEN -->
+			<xs:enumeration value="che" /> <!-- CHECHEN -->
+			<xs:enumeration value="ny" /> <!-- CHICHEWA -->
+			<xs:enumeration value="nya" /> <!-- CHICHEWA -->
+			<xs:enumeration value="zh" /> <!-- CHINESE -->
+			<xs:enumeration value="zho" /> <!-- CHINESE -->
+			<xs:enumeration value="cv" /> <!-- CHUVASH -->
+			<xs:enumeration value="chv" /> <!-- CHUVASH -->
+			<xs:enumeration value="kw" /> <!-- CORNISH -->
+			<xs:enumeration value="cor" /> <!-- CORNISH -->
+			<xs:enumeration value="co" /> <!-- CORSICAN -->
+			<xs:enumeration value="cos" /> <!-- CORSICAN -->
+			<xs:enumeration value="cr" /> <!-- CREE -->
+			<xs:enumeration value="cre" /> <!-- CREE -->
+			<xs:enumeration value="hr" /> <!-- CROATIAN -->
+			<xs:enumeration value="hrv" /> <!-- CROATIAN -->
+			<xs:enumeration value="cs" /> <!-- CZECH -->
+			<xs:enumeration value="ces" /> <!-- CZECH -->
+			<xs:enumeration value="da" /> <!-- DANISH -->
+			<xs:enumeration value="dan" /> <!-- DANISH -->
+			<xs:enumeration value="dv" /> <!-- DIVEHI -->
+			<xs:enumeration value="div" /> <!-- DIVEHI -->
+			<xs:enumeration value="nl" /> <!-- DUTCH -->
+			<xs:enumeration value="nld" /> <!-- DUTCH -->
+			<xs:enumeration value="dz" /> <!-- DZONGKHA -->
+			<xs:enumeration value="dzo" /> <!-- DZONGKHA -->
+			<xs:enumeration value="en" /> <!-- ENGLISH -->
+			<xs:enumeration value="eng" /> <!-- ENGLISH -->
+			<xs:enumeration value="eo" /> <!-- ESPERANTO -->
+			<xs:enumeration value="epo" /> <!-- ESPERANTO -->
+			<xs:enumeration value="et" /> <!-- ESTONIAN -->
+			<xs:enumeration value="est" /> <!-- ESTONIAN -->
+			<xs:enumeration value="ee" /> <!-- EWE -->
+			<xs:enumeration value="ewe" /> <!-- EWE -->
+			<xs:enumeration value="fo" /> <!-- FAROESE -->
+			<xs:enumeration value="fao" /> <!-- FAROESE -->
+			<xs:enumeration value="fj" /> <!-- FIJIAN -->
+			<xs:enumeration value="fij" /> <!-- FIJIAN -->
+			<xs:enumeration value="fi" /> <!-- FINNISH -->
+			<xs:enumeration value="fin" /> <!-- FINNISH -->
+			<xs:enumeration value="fr" /> <!-- FRENCH -->
+			<xs:enumeration value="fra" /> <!-- FRENCH -->
+			<xs:enumeration value="ff" /> <!-- FULA -->
+			<xs:enumeration value="ful" /> <!-- FULA -->
+			<xs:enumeration value="gl" /> <!-- GALICIAN -->
+			<xs:enumeration value="glg" /> <!-- GALICIAN -->
+			<xs:enumeration value="ka" /> <!-- GEORGIAN -->
+			<xs:enumeration value="kat" /> <!-- GEORGIAN -->
+			<xs:enumeration value="de" /> <!-- GERMAN -->
+			<xs:enumeration value="deu" /> <!-- GERMAN -->
+			<xs:enumeration value="el" /> <!-- GREEK -->
+			<xs:enumeration value="ell" /> <!-- GREEK -->
+			<xs:enumeration value="gn" /> <!-- GUARAN -->
+			<xs:enumeration value="grn" /> <!-- GUARAN -->
+			<xs:enumeration value="gu" /> <!-- GUJARATI -->
+			<xs:enumeration value="guj" /> <!-- GUJARATI -->
+			<xs:enumeration value="ht" /> <!-- HAITIAN -->
+			<xs:enumeration value="hat" /> <!-- HAITIAN -->
+			<xs:enumeration value="ha" /> <!-- HAUSA -->
+			<xs:enumeration value="hau" /> <!-- HAUSA -->
+			<xs:enumeration value="he" /> <!-- HEBREW -->
+			<xs:enumeration value="heb" /> <!-- HEBREW -->
+			<xs:enumeration value="hz" /> <!-- HERERO -->
+			<xs:enumeration value="her" /> <!-- HERERO -->
+			<xs:enumeration value="hi" /> <!-- HINDI -->
+			<xs:enumeration value="hin" /> <!-- HINDI -->
+			<xs:enumeration value="ho" /> <!-- HIRI -->
+			<xs:enumeration value="hmo" /> <!-- HIRI -->
+			<xs:enumeration value="hu" /> <!-- HUNGARIAN -->
+			<xs:enumeration value="hun" /> <!-- HUNGARIAN -->
+			<xs:enumeration value="ia" /> <!-- INTERLINGUA -->
+			<xs:enumeration value="ina" /> <!-- INTERLINGUA -->
+			<xs:enumeration value="id" /> <!-- INDONESIAN -->
+			<xs:enumeration value="ind" /> <!-- INDONESIAN -->
+			<xs:enumeration value="ie" /> <!-- INTERLINGUE -->
+			<xs:enumeration value="ile" /> <!-- INTERLINGUE -->
+			<xs:enumeration value="ga" /> <!-- IRISH -->
+			<xs:enumeration value="gle" /> <!-- IRISH -->
+			<xs:enumeration value="ig" /> <!-- IGBO -->
+			<xs:enumeration value="ibo" /> <!-- IGBO -->
+			<xs:enumeration value="ik" /> <!-- INUPIAQ -->
+			<xs:enumeration value="ipk" /> <!-- INUPIAQ -->
+			<xs:enumeration value="io" /> <!-- IDO -->
+			<xs:enumeration value="ido" /> <!-- IDO -->
+			<xs:enumeration value="is" /> <!-- ICELANDIC -->
+			<xs:enumeration value="isl" /> <!-- ICELANDIC -->
+			<xs:enumeration value="it" /> <!-- ITALIAN -->
+			<xs:enumeration value="ita" /> <!-- ITALIAN -->
+			<xs:enumeration value="iu" /> <!-- INUKTITUT -->
+			<xs:enumeration value="iku" /> <!-- INUKTITUT -->
+			<xs:enumeration value="ja" /> <!-- JAPANESE -->
+			<xs:enumeration value="jpn" /> <!-- JAPANESE -->
+			<xs:enumeration value="jv" /> <!-- JAVANESE -->
+			<xs:enumeration value="jav" /> <!-- JAVANESE -->
+			<xs:enumeration value="kl" /> <!-- KALAALLISUT -->
+			<xs:enumeration value="kal" /> <!-- KALAALLISUT -->
+			<xs:enumeration value="kn" /> <!-- KANNADA -->
+			<xs:enumeration value="kan" /> <!-- KANNADA -->
+			<xs:enumeration value="kr" /> <!-- KANURI -->
+			<xs:enumeration value="kau" /> <!-- KANURI -->
+			<xs:enumeration value="ks" /> <!-- KASHMIRI -->
+			<xs:enumeration value="kas" /> <!-- KASHMIRI -->
+			<xs:enumeration value="kk" /> <!-- KAZAKH -->
+			<xs:enumeration value="kaz" /> <!-- KAZAKH -->
+			<xs:enumeration value="km" /> <!-- KHMER -->
+			<xs:enumeration value="khm" /> <!-- KHMER -->
+			<xs:enumeration value="ki" /> <!-- KIKUYU -->
+			<xs:enumeration value="kik" /> <!-- KIKUYU -->
+			<xs:enumeration value="rw" /> <!-- KINYARWANDA -->
+			<xs:enumeration value="kin" /> <!-- KINYARWANDA -->
+			<xs:enumeration value="ky" /> <!-- KYRGYZ -->
+			<xs:enumeration value="kir" /> <!-- KYRGYZ -->
+			<xs:enumeration value="kv" /> <!-- KOMI -->
+			<xs:enumeration value="kom" /> <!-- KOMI -->
+			<xs:enumeration value="kg" /> <!-- KONGO -->
+			<xs:enumeration value="kon" /> <!-- KONGO -->
+			<xs:enumeration value="ko" /> <!-- KOREAN -->
+			<xs:enumeration value="kor" /> <!-- KOREAN -->
+			<xs:enumeration value="ku" /> <!-- KURDISH -->
+			<xs:enumeration value="kur" /> <!-- KURDISH -->
+			<xs:enumeration value="kj" /> <!-- KWANYAMA -->
+			<xs:enumeration value="kua" /> <!-- KWANYAMA -->
+			<xs:enumeration value="la" /> <!-- LATIN -->
+			<xs:enumeration value="lat" /> <!-- LATIN -->
+			<xs:enumeration value="lb" /> <!-- LUXEMBOURGISH -->
+			<xs:enumeration value="ltz" /> <!-- LUXEMBOURGISH -->
+			<xs:enumeration value="lg" /> <!-- GANDA -->
+			<xs:enumeration value="lug" /> <!-- GANDA -->
+			<xs:enumeration value="li" /> <!-- LIMBURGISH -->
+			<xs:enumeration value="lim" /> <!-- LIMBURGISH -->
+			<xs:enumeration value="ln" /> <!-- LINGALA -->
+			<xs:enumeration value="lin" /> <!-- LINGALA -->
+			<xs:enumeration value="lo" /> <!-- LAO -->
+			<xs:enumeration value="lao" /> <!-- LAO -->
+			<xs:enumeration value="lt" /> <!-- LITHUANIAN -->
+			<xs:enumeration value="lit" /> <!-- LITHUANIAN -->
+			<xs:enumeration value="lu" /> <!-- LUBA -->
+			<xs:enumeration value="lub" /> <!-- LUBA -->
+			<xs:enumeration value="lv" /> <!-- LATVIAN -->
+			<xs:enumeration value="lav" /> <!-- LATVIAN -->
+			<xs:enumeration value="gv" /> <!-- MANX -->
+			<xs:enumeration value="glv" /> <!-- MANX -->
+			<xs:enumeration value="mk" /> <!-- MACEDONIAN -->
+			<xs:enumeration value="mkd" /> <!-- MACEDONIAN -->
+			<xs:enumeration value="mg" /> <!-- MALAGASY -->
+			<xs:enumeration value="mlg" /> <!-- MALAGASY -->
+			<xs:enumeration value="ms" /> <!-- MALAY -->
+			<xs:enumeration value="msa" /> <!-- MALAY -->
+			<xs:enumeration value="ml" /> <!-- MALAYALAM -->
+			<xs:enumeration value="mal" /> <!-- MALAYALAM -->
+			<xs:enumeration value="mt" /> <!-- MALTESE -->
+			<xs:enumeration value="mlt" /> <!-- MALTESE -->
+			<xs:enumeration value="mi" /> <!-- MAORI -->
+			<xs:enumeration value="mri" /> <!-- MAORI -->
+			<xs:enumeration value="mr" /> <!-- MARATHI -->
+			<xs:enumeration value="mar" /> <!-- MARATHI -->
+			<xs:enumeration value="mh" /> <!-- MARSHALLESE -->
+			<xs:enumeration value="mah" /> <!-- MARSHALLESE -->
+			<xs:enumeration value="mn" /> <!-- MONGOLIAN -->
+			<xs:enumeration value="mon" /> <!-- MONGOLIAN -->
+			<xs:enumeration value="na" /> <!-- NAURU -->
+			<xs:enumeration value="nau" /> <!-- NAURU -->
+			<xs:enumeration value="nv" /> <!-- NAVAJO -->
+			<xs:enumeration value="nav" /> <!-- NAVAJO -->
+			<xs:enumeration value="nd" /> <!-- NORTHERN_NDEBELE -->
+			<xs:enumeration value="nde" /> <!-- NORTHERN_NDEBELE -->
+			<xs:enumeration value="ne" /> <!-- NEPALI -->
+			<xs:enumeration value="nep" /> <!-- NEPALI -->
+			<xs:enumeration value="ng" /> <!-- NDONGA -->
+			<xs:enumeration value="ndo" /> <!-- NDONGA -->
+			<xs:enumeration value="nb" /> <!-- NORWEGIAN_BOKMAL -->
+			<xs:enumeration value="nob" /> <!-- NORWEGIAN_BOKMAL -->
+			<xs:enumeration value="nn" /> <!-- NORWEGIAN_NYNORSK -->
+			<xs:enumeration value="nno" /> <!-- NORWEGIAN_NYNORSK -->
+			<xs:enumeration value="no" /> <!-- NORWEGIAN -->
+			<xs:enumeration value="nor" /> <!-- NORWEGIAN -->
+			<xs:enumeration value="ii" /> <!-- NUOSU -->
+			<xs:enumeration value="iii" /> <!-- NUOSU -->
+			<xs:enumeration value="nr" /> <!-- SOUTHERN_NDEBELE -->
+			<xs:enumeration value="nbl" /> <!-- SOUTHERN_NDEBELE -->
+			<xs:enumeration value="oc" /> <!-- OCCITAN -->
+			<xs:enumeration value="oci" /> <!-- OCCITAN -->
+			<xs:enumeration value="oj" /> <!-- OJIBWE -->
+			<xs:enumeration value="oji" /> <!-- OJIBWE -->
+			<xs:enumeration value="cu" /> <!-- CHURCH_SLAVIC -->
+			<xs:enumeration value="chu" /> <!-- CHURCH_SLAVIC -->
+			<xs:enumeration value="om" /> <!-- OROMO -->
+			<xs:enumeration value="orm" /> <!-- OROMO -->
+			<xs:enumeration value="or" /> <!-- ORIYA -->
+			<xs:enumeration value="ori" /> <!-- ORIYA -->
+			<xs:enumeration value="os" /> <!-- OSSETIAN -->
+			<xs:enumeration value="oss" /> <!-- OSSETIAN -->
+			<xs:enumeration value="pa" /> <!-- PANJABI -->
+			<xs:enumeration value="pan" /> <!-- PANJABI -->
+			<xs:enumeration value="pi" /> <!-- PALI -->
+			<xs:enumeration value="pli" /> <!-- PALI -->
+			<xs:enumeration value="fa" /> <!-- PERSIAN -->
+			<xs:enumeration value="fas" /> <!-- PERSIAN -->
+			<xs:enumeration value="pl" /> <!-- POLISH -->
+			<xs:enumeration value="pol" /> <!-- POLISH -->
+			<xs:enumeration value="ps" /> <!-- PASHTO -->
+			<xs:enumeration value="pus" /> <!-- PASHTO -->
+			<xs:enumeration value="pt" /> <!-- PORTUGUESE -->
+			<xs:enumeration value="por" /> <!-- PORTUGUESE -->
+			<xs:enumeration value="qu" /> <!-- QUECHUA -->
+			<xs:enumeration value="que" /> <!-- QUECHUA -->
+			<xs:enumeration value="rm" /> <!-- ROMANSH -->
+			<xs:enumeration value="roh" /> <!-- ROMANSH -->
+			<xs:enumeration value="rn" /> <!-- KIRUNDI -->
+			<xs:enumeration value="run" /> <!-- KIRUNDI -->
+			<xs:enumeration value="ro" /> <!-- ROMANIAN -->
+			<xs:enumeration value="ron" /> <!-- ROMANIAN -->
+			<xs:enumeration value="ru" /> <!-- RUSSIAN -->
+			<xs:enumeration value="rus" /> <!-- RUSSIAN -->
+			<xs:enumeration value="sa" /> <!-- SANSKRIT -->
+			<xs:enumeration value="san" /> <!-- SANSKRIT -->
+			<xs:enumeration value="sc" /> <!-- SARDINIAN -->
+			<xs:enumeration value="srd" /> <!-- SARDINIAN -->
+			<xs:enumeration value="sd" /> <!-- SINDHI -->
+			<xs:enumeration value="snd" /> <!-- SINDHI -->
+			<xs:enumeration value="se" /> <!-- NORTHERN -->
+			<xs:enumeration value="sme" /> <!-- NORTHERN -->
+			<xs:enumeration value="sm" /> <!-- SAMOAN -->
+			<xs:enumeration value="smo" /> <!-- SAMOAN -->
+			<xs:enumeration value="sg" /> <!-- SANGO -->
+			<xs:enumeration value="sag" /> <!-- SANGO -->
+			<xs:enumeration value="sr" /> <!-- SERBIAN -->
+			<xs:enumeration value="srp" /> <!-- SERBIAN -->
+			<xs:enumeration value="gd" /> <!-- SCOTTISH -->
+			<xs:enumeration value="gla" /> <!-- SCOTTISH -->
+			<xs:enumeration value="sn" /> <!-- SHONA -->
+			<xs:enumeration value="sna" /> <!-- SHONA -->
+			<xs:enumeration value="si" /> <!-- SINHALA -->
+			<xs:enumeration value="sin" /> <!-- SINHALA -->
+			<xs:enumeration value="sk" /> <!-- SLOVAK -->
+			<xs:enumeration value="slk" /> <!-- SLOVAK -->
+			<xs:enumeration value="sl" /> <!-- SLOVENE -->
+			<xs:enumeration value="slv" /> <!-- SLOVENE -->
+			<xs:enumeration value="so" /> <!-- SOMALI -->
+			<xs:enumeration value="som" /> <!-- SOMALI -->
+			<xs:enumeration value="st" /> <!-- SOUTHERN -->
+			<xs:enumeration value="sot" /> <!-- SOUTHERN -->
+			<xs:enumeration value="es" /> <!-- SPANISH -->
+			<xs:enumeration value="spa" /> <!-- SPANISH -->
+			<xs:enumeration value="su" /> <!-- SUNDANESE -->
+			<xs:enumeration value="sun" /> <!-- SUNDANESE -->
+			<xs:enumeration value="sw" /> <!-- SWAHILI -->
+			<xs:enumeration value="swa" /> <!-- SWAHILI -->
+			<xs:enumeration value="ss" /> <!-- SWATI -->
+			<xs:enumeration value="ssw" /> <!-- SWATI -->
+			<xs:enumeration value="sv" /> <!-- SWEDISH -->
+			<xs:enumeration value="swe" /> <!-- SWEDISH -->
+			<xs:enumeration value="ta" /> <!-- TAMIL -->
+			<xs:enumeration value="tam" /> <!-- TAMIL -->
+			<xs:enumeration value="te" /> <!-- TELUGU -->
+			<xs:enumeration value="tel" /> <!-- TELUGU -->
+			<xs:enumeration value="tg" /> <!-- TAJIK -->
+			<xs:enumeration value="tgk" /> <!-- TAJIK -->
+			<xs:enumeration value="th" /> <!-- THAI -->
+			<xs:enumeration value="tha" /> <!-- THAI -->
+			<xs:enumeration value="ti" /> <!-- TIGRINYA -->
+			<xs:enumeration value="tir" /> <!-- TIGRINYA -->
+			<xs:enumeration value="bo" /> <!-- TIBETAN -->
+			<xs:enumeration value="bod" /> <!-- TIBETAN -->
+			<xs:enumeration value="tk" /> <!-- TURKMEN -->
+			<xs:enumeration value="tuk" /> <!-- TURKMEN -->
+			<xs:enumeration value="tl" /> <!-- TAGALOG -->
+			<xs:enumeration value="tgl" /> <!-- TAGALOG -->
+			<xs:enumeration value="tn" /> <!-- TSWANA -->
+			<xs:enumeration value="tsn" /> <!-- TSWANA -->
+			<xs:enumeration value="to" /> <!-- TONGA -->
+			<xs:enumeration value="ton" /> <!-- TONGA -->
+			<xs:enumeration value="tr" /> <!-- TURKISH -->
+			<xs:enumeration value="tur" /> <!-- TURKISH -->
+			<xs:enumeration value="ts" /> <!-- TSONGA -->
+			<xs:enumeration value="tso" /> <!-- TSONGA -->
+			<xs:enumeration value="tt" /> <!-- TATAR -->
+			<xs:enumeration value="tat" /> <!-- TATAR -->
+			<xs:enumeration value="tw" /> <!-- TWI -->
+			<xs:enumeration value="twi" /> <!-- TWI -->
+			<xs:enumeration value="ty" /> <!-- TAHITIAN -->
+			<xs:enumeration value="tah" /> <!-- TAHITIAN -->
+			<xs:enumeration value="ug" /> <!-- UYGHUR -->
+			<xs:enumeration value="uig" /> <!-- UYGHUR -->
+			<xs:enumeration value="uk" /> <!-- UKRAINIAN -->
+			<xs:enumeration value="ukr" /> <!-- UKRAINIAN -->
+			<xs:enumeration value="ur" /> <!-- URDU -->
+			<xs:enumeration value="urd" /> <!-- URDU -->
+			<xs:enumeration value="uz" /> <!-- UZBEK -->
+			<xs:enumeration value="uzb" /> <!-- UZBEK -->
+			<xs:enumeration value="ve" /> <!-- VENDA -->
+			<xs:enumeration value="ven" /> <!-- VENDA -->
+			<xs:enumeration value="vi" /> <!-- VIETNAMESE -->
+			<xs:enumeration value="vie" /> <!-- VIETNAMESE -->
+			<xs:enumeration value="vo" /> <!-- VOLAP -->
+			<xs:enumeration value="vol" /> <!-- VOLAP -->
+			<xs:enumeration value="wa" /> <!-- WALLOON -->
+			<xs:enumeration value="wln" /> <!-- WALLOON -->
+			<xs:enumeration value="cy" /> <!-- WELSH -->
+			<xs:enumeration value="cym" /> <!-- WELSH -->
+			<xs:enumeration value="wo" /> <!-- WOLOF -->
+			<xs:enumeration value="wol" /> <!-- WOLOF -->
+			<xs:enumeration value="fy" /> <!-- WESTERN -->
+			<xs:enumeration value="fry" /> <!-- WESTERN -->
+			<xs:enumeration value="xh" /> <!-- XHOSA -->
+			<xs:enumeration value="xho" /> <!-- XHOSA -->
+			<xs:enumeration value="yi" /> <!-- YIDDISH -->
+			<xs:enumeration value="yid" /> <!-- YIDDISH -->
+			<xs:enumeration value="yo" /> <!-- YORUBA -->
+			<xs:enumeration value="yor" /> <!-- YORUBA -->
+			<xs:enumeration value="za" /> <!-- ZHUANG -->
+			<xs:enumeration value="zha" /> <!-- ZHUANG -->
+			<xs:enumeration value="zu" /> <!-- ZULU -->
+			<xs:enumeration value="zul" /> <!-- ZULU -->
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
