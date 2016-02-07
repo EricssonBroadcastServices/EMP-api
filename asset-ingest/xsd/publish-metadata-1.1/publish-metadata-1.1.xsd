@@ -21,6 +21,7 @@
 		<xs:sequence>
 			<xs:element name="series" type="publish:seriesType" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="season" type="publish:seasonType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="tag" type="publish:tagType" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="asset" type="publish:assetType" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="material" type="publish:materialType" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="publicationList" type="publish:publicationListType" minOccurs="0" maxOccurs="1"/>
@@ -41,12 +42,12 @@
 	<!-- -->
 	<xs:complexType name="materialType">
 		<xs:sequence>
-			<xs:element name="id" type="publish:idType" minOccurs="1" maxOccurs="1">
+			<xs:element name="id" type="publish:idType" minOccurs="0" maxOccurs="1">
 				<xs:annotation>
-					<xs:documentation>This is used to couple material with an event. This id should be matched from materialIdRef in events. Usually is a version-key from Louise. Not clear yet if it could be anything else than a version-key.</xs:documentation>
+					<xs:documentation>This is used to couple material with an event. If not provided, an id will be generated based on the asset id.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="materialRef" type="publish:materialRefType">
+			<xs:element name="materialRef" type="publish:materialRefType"  minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>A reference to an external media file. This can be an ID, a URI a URL or any other String value.. Depends on the context.</xs:documentation>
 				</xs:annotation>
@@ -81,23 +82,34 @@
 					<xs:documentation>List of breaks for the media</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="subtitleList" type="publish:subtitleListType" minOccurs="0">
+			<xs:element name="subtitleList" type="publish:subtitleListType" minOccurs="0"  maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>List of available subtitles</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="expiryDate" type="xs:dateTime" minOccurs="0">
+			<xs:element name="expiryDate" type="xs:dateTime" minOccurs="0"  maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Expiry date for licensing in ISO 8601 fornat ("YYYY-MM-DDThh:mm:ss.SSS"]. Timezone may be included by specifying as Zulu time or by adding a UTC offset. If no value is given then a default value will be used</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="purgeDate" type="xs:dateTime" minOccurs="0">
+			<xs:element name="purgeDate" type="xs:dateTime" minOccurs="0"  maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Media would be purged, if no date then default used</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="videoQuality" type="publish:videoQuality" minOccurs="0"  maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Select video quality, SD or HD.</xs:documentation>
+				</xs:annotation>
+			</xs:element>			
 		</xs:sequence>
 	</xs:complexType>
+	<xs:simpleType name="videoQuality">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SD"/>
+			<xs:enumeration value="HD"/>
+		</xs:restriction>
+	</xs:simpleType>
 	<!-- TODO: Need to add a RFA flag to Subtitles as well? -->
 	<xs:complexType name="subtitleListType">
 		<xs:sequence>
@@ -263,39 +275,39 @@
 						<xs:documentation>Reference to an existing tag</xs:documentation>
 					</xs:annotation>
 				</xs:element>
-				<xs:element name="tag" type="publish:tagReferenceType" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="tag" type="publish:tagType" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:choice>
 		</xs:sequence>
 	</xs:complexType>
-	<xs:complexType name="tagReferenceType">
+	<xs:complexType name="tagType">
 		<xs:annotation>
-			<xs:documentation>Use to refer to a tag, i.e. in content. Lower priority number means higher importance.</xs:documentation>
+			<xs:documentation>Use to define a tag, i.e. in content. Lower priority number means higher importance.</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="tagName" type="publish:tagNameType"  minOccurs="1" maxOccurs="unbounded"/>
+			<xs:element name="tagNames" type="publish:tagNameListType"  minOccurs="1" maxOccurs="1"/>
+			<xs:element name="tagParents" type="publish:tagParentListType"  minOccurs="0" maxOccurs="1"/>
 		</xs:sequence>
 		<xs:attribute name="id" type="publish:idType" use="required" />
 		<xs:attribute name="type" type="publish:nidType" use="required"/>
-		<xs:attribute name="parentTagId" type="publish:idType" use="optional" />
+	</xs:complexType>
+	<xs:complexType name="tagNameListType">
+		<xs:sequence>
+			<xs:element name="tagName" type="publish:tagNameType"  minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tagParentListType">
+		<xs:sequence>
+			<xs:element name="tagIdRef" type="publish:idType"  minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="tagNameType">
 		<xs:simpleContent>
 			<xs:restriction base="publish:localizedTextType">
-				<xs:minLength value="1"/>
+				<xs:minLength value="3"/>
 				<xs:maxLength value="300"/>
 			</xs:restriction>
 		</xs:simpleContent>
-	</xs:complexType>
-	<xs:simpleType name="tagType">
-		<xs:annotation>
-			<xs:documentation>Unique name id, i.e. the normalized textual representation, e.g.: no space, lower case, no diacritic characters. Language attribute can be used to specify a localized name for the tag.</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:string">
-			<xs:minLength value="3"/>
-			<xs:maxLength value="128"/>
-		</xs:restriction>
-	</xs:simpleType>
-	
+	</xs:complexType>	
 	<xs:complexType name="description">
 		<xs:annotation>
 			<xs:documentation>A general type for describing something, attribute indicating the language.</xs:documentation>
@@ -452,14 +464,14 @@
 					<xs:documentation>List of descriptions</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="tagList" type="publish:tagListType" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>list of tags for the content.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
 			<xs:element name="creditList" type="publish:creditListType" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>list of actors, producers etc. should be consistent within each provider</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tagList" type="publish:tagListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>list of tags for the content.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="imageList" type="publish:imageListType" minOccurs="0">
