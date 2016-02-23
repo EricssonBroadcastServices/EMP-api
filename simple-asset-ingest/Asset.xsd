@@ -1,578 +1,549 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <xs:schema elementFormDefault="qualified" targetNamespace="http://emp.ebstv.net/asset"
-	xmlns:asset="http://emp.ebstv.net/asset" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	<!-- Assets Root element representing multiple assets. Could be used to 
-		start an ingest or multiple ingests (when that is supported for a customer). 
-		The element could also be used when EMP is sending out current asset information 
-		for one or multiple assets. Note: EMP always expect and send an assets element 
-		even if there is only one asset, the asset element is never used as root 
-		element. -->
-	<xs:element name="assets">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element maxOccurs="unbounded" minOccurs="1" ref="asset:asset" />
-			</xs:sequence>
-			<!-- Should be possible to support different versions of the assets element. 
-				Currently supported version presented in this XSD is 1.0 -->
-			<xs:attribute name="version" type="xs:decimal" use="required" />
-		</xs:complexType>
-	</xs:element>
-	<!-- Assets Events Root element representing multiple asset events. An asset 
-		event is a media status change for an asset, something happened with an asset. 
-		Note: EMP always expect and send an assetevents element even if there is 
-		only one asset event, the asset element is never used as root element. It 
-		should be possible to resend the last event (current status) for all (a list 
-		of assets) in one single message -->
-	<xs:element name="asset-events">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element maxOccurs="unbounded" minOccurs="1"
-					ref="asset:asset-event" />
-			</xs:sequence>
-			<!-- Should be possible to support different versions of the asset-events 
-				element. Currently supported version presented in this XSD is 1.0 -->
-			<xs:attribute name="version" type="xs:decimal" use="required" />
-		</xs:complexType>
-	</xs:element>
-	<!-- Asset event, contains information about an asset event, i.e. a status 
-		change -->
-	<xs:element name="asset-event">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element maxOccurs="1" minOccurs="1" ref="asset:asset-id" />
-				<xs:element maxOccurs="1" minOccurs="1"
-					ref="asset:customer-asset-id" />
-				<xs:element maxOccurs="1" minOccurs="1" ref="asset:event-time" />
-				<xs:element maxOccurs="1" minOccurs="0" ref="asset:duration" />
-				<xs:element maxOccurs="1" minOccurs="1" ref="asset:status" />
-				<xs:element maxOccurs="1" minOccurs="1"
-					ref="asset:status-message" />
-			</xs:sequence>
-			<xs:attribute name="default-language" type="asset:language"
-				use="required" />
-		</xs:complexType>
-	</xs:element>
-	<!-- Asset information, contains information about an asset, could be used 
-		both as an ingest request and as a current asset information message -->
-	<xs:element name="asset">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element maxOccurs="1" minOccurs="1"
-					ref="asset:customer-asset-id" />
-				<xs:element maxOccurs="1" minOccurs="0" ref="asset:asset-name" />
-				<xs:element maxOccurs="1" minOccurs="1" ref="asset:asset-type" />
-				<xs:element maxOccurs="1" minOccurs="0"
-					ref="asset:original-title" />
-				<xs:element maxOccurs="1" minOccurs="1" ref="asset:titles" />
-				<xs:element maxOccurs="1" minOccurs="0" ref="asset:texts" />
-				<xs:element maxOccurs="1" minOccurs="0" ref="asset:duration" />
-				<xs:element maxOccurs="1" minOccurs="0" ref="asset:source" />
-				<xs:element maxOccurs="1" minOccurs="0" ref="asset:rightsPeriod" />
-				<xs:element maxOccurs="1" minOccurs="0" ref="asset:purgeTime" />
-				<xs:element maxOccurs="1" minOccurs="0"
-					ref="asset:source-created" />
-				<xs:element maxOccurs="1" minOccurs="0" ref="asset:images" />
-				<xs:element maxOccurs="1" minOccurs="0" ref="asset:keywords" />
-				<xs:element maxOccurs="1" minOccurs="0" ref="asset:genre" />
-				<xs:element maxOccurs="1" minOccurs="0" ref="asset:sub-genre" />
-				<xs:element maxOccurs="1" minOccurs="0" ref="asset:participants" />
-				<xs:element maxOccurs="1" minOccurs="0" ref="asset:products" />
-				<xs:element maxOccurs="1" minOccurs="0" ref="asset:tags" />
-				<xs:element maxOccurs="1" minOccurs="0" ref="asset:application" />
-				<xs:element maxOccurs="1" minOccurs="0"
-					ref="asset:geo-restrictions" />
-				<xs:element maxOccurs="1" minOccurs="0"
-					ref="asset:publish-events" />
-				<xs:element maxOccurs="1" minOccurs="0" ref="asset:markers" />
-			</xs:sequence>
-			<xs:attribute name="default-language" type="asset:language"
-				use="required" />
-			<xs:attribute name="migration" type="xs:boolean" use="optional" />
-			<xs:attribute name="drm-protected" type="xs:boolean"
-				use="optional" />
-		</xs:complexType>
-	</xs:element>
-	<xs:simpleType name="assetType">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="Episode" />
-			<xs:enumeration value="Movie" />
-			<xs:enumeration value="Trailer" />
-			<xs:enumeration value="Clip" />
-			<xs:enumeration value="Ad" />
-			<xs:enumeration value="Live show" />
-			<xs:enumeration value="Other" />
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="descriptionType">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="tiny" />
-			<xs:enumeration value="short" />
-			<xs:enumeration value="medium" />
-			<xs:enumeration value="long" />
-			<xs:enumeration value="extended" />
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="function">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="actor" />
-			<xs:enumeration value="director" />
-			<xs:enumeration value="producer" />
-			<xs:enumeration value="camera_operator" />
-			<xs:enumeration value="scriptwriter" />
-			<xs:enumeration value="executive_producer" />
-			<xs:enumeration value="narrator" />
-			<xs:enumeration value="unknown" />
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="id">
-		<xs:restriction base="xs:string">
-			<xs:pattern value="[\w _-]*" />
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="restricted-string">
-		<xs:restriction base="xs:string">
-			<xs:pattern value="[a-zA-Z0-9_-]*" />
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="no-dot-string">
-		<xs:restriction base="xs:string">
-			<xs:pattern value="[^\.]*" />
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="language">
-		<xs:restriction base="xs:string">
-			<xs:pattern value="[a-z][a-z]" />
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="orientation">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="portrait" />
-			<xs:enumeration value="landscape" />
-			<xs:enumeration value="unknown" />
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="status">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="cleaning" />
-			<xs:enumeration value="cleaned" />
-			<xs:enumeration value="deleting" />
-			<xs:enumeration value="deleted" />
-			<xs:enumeration value="disabled" />
-			<xs:enumeration value="enabled" />
-			<xs:enumeration value="purged" />
-			<xs:enumeration value="purging" />
-			<xs:enumeration value="received" />
-			<xs:enumeration value="transcoding" />
-			<xs:enumeration value="failed" />
-			<xs:enumeration value="unknown" />
-			<xs:enumeration value="queued" />
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="unit">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="px" />
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:element name="rightsPeriod">
-		<xs:complexType>
-			<xs:attribute name="end" type="xs:dateTime" use="optional" />
-			<xs:attribute name="start" type="xs:dateTime" use="optional" />
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="purgeTime" type="xs:dateTime" />
-	<xs:element name="application">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element maxOccurs="unbounded" minOccurs="0" ref="asset:flag" />
-				<xs:element maxOccurs="unbounded" minOccurs="0"
-					ref="asset:variable" />
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="asset-id" type="asset:id" />
-	<xs:element name="asset-name" type="xs:string" />
-	<xs:element name="asset-type" type="asset:assetType" />
-	<xs:element name="tag">
-		<xs:complexType mixed="true">
-			<xs:simpleContent>
-				<xs:extension base="xs:string">
-					<xs:attribute name="nid" type="asset:no-dot-string"
-						use="required" />
-					<xs:attribute name="language" type="asset:language"
-						use="required" />
-					<xs:attribute name="type" type="asset:restricted-string"
-						use="required" />
-				</xs:extension>
-			</xs:simpleContent>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="tags">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element maxOccurs="unbounded" minOccurs="1" ref="asset:tag" />
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="force-ingest" type="xs:boolean" />
-	<xs:element name="cdn-profile">
-		<xs:complexType>
-			<xs:attribute name="edge" type="xs:boolean" use="optional" />
-			<xs:attribute name="name" type="asset:id" use="required" />
-			<xs:attribute name="origin" type="xs:boolean" use="optional" />
-			<xs:attribute name="priority" type="xs:int" use="optional" />
-			<xs:attribute name="threshold" type="xs:int" use="optional" />
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="cdn-profiles">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element maxOccurs="unbounded" minOccurs="1"
-					ref="asset:cdn-profile" />
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="customer-asset-id" type="asset:id" />
-	<xs:element name="description">
-		<xs:complexType mixed="true">
-			<xs:simpleContent>
-				<xs:extension base="xs:string">
-					<xs:attribute name="type" type="asset:descriptionType"
-						use="required" />
-				</xs:extension>
-			</xs:simpleContent>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="duration" type="xs:duration" />
-	<xs:element name="event-time" type="xs:dateTime" />
-	<xs:element name="file">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element maxOccurs="1" minOccurs="1" ref="asset:fileName" />
-				<xs:element maxOccurs="1" minOccurs="0" ref="asset:filePath" />
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="fileName" type="xs:string" />
-	<xs:element name="filePath" type="xs:string" />
-	<xs:element name="flag">
-		<xs:complexType>
-			<xs:simpleContent>
-				<xs:extension base="xs:boolean">
-					<xs:attribute name="name" type="xs:string" use="required" />
-				</xs:extension>
-			</xs:simpleContent>
-		</xs:complexType>
-	</xs:element>
-	<xs:simpleType name="format">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="ISO 8601" />
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:element name="function" type="asset:function" />
-	<xs:element name="genre" type="asset:genreType" />
-	<xs:element name="sub-genre" type="asset:genreType" />
-	<xs:complexType name="genreType">
-		<xs:simpleContent>
-			<xs:extension base="xs:string">
-				<xs:attribute name="language" type="asset:language"
-					use="required" />
-			</xs:extension>
-		</xs:simpleContent>
-	</xs:complexType>
-	<xs:element name="image">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element maxOccurs="1" minOccurs="1" ref="asset:url" />
-				<xs:element maxOccurs="1" minOccurs="0" ref="asset:size" />
-			</xs:sequence>
-			<xs:attribute default="unknown" name="orientation" type="asset:orientation"
-				use="optional" />
-			<xs:attribute default="unknown" name="purpose"
-				type="asset:restricted-string" use="optional" />
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="images">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element maxOccurs="unbounded" minOccurs="1" ref="asset:image" />
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="ingestion-profile">
-		<xs:complexType>
-			<xs:attribute name="name" type="asset:id" use="required" />
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="keyword">
-		<xs:complexType>
-			<xs:simpleContent>
-				<xs:extension base="xs:string">
-					<xs:attribute name="language" type="asset:language"
-						use="required" />
-				</xs:extension>
-			</xs:simpleContent>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="keywords">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element maxOccurs="unbounded" minOccurs="1"
-					ref="asset:keyword" />
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="name" type="xs:string" />
-	<xs:element name="original-title" type="xs:string" />
-	<xs:element name="participants">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element maxOccurs="unbounded" minOccurs="1"
-					ref="asset:participant" />
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="participant">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element maxOccurs="1" minOccurs="1" ref="asset:name" />
-				<xs:element maxOccurs="1" minOccurs="0" ref="asset:role" />
-				<xs:element maxOccurs="1" minOccurs="0" ref="asset:personId" />
-				<xs:element maxOccurs="1" minOccurs="1" ref="asset:function" />
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="publish-events">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element maxOccurs="unbounded" minOccurs="1"
-					ref="asset:publish" />
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="publish">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element maxOccurs="1" minOccurs="1" ref="asset:publish-id" />
-				<xs:element maxOccurs="1" minOccurs="1" ref="asset:products" />
-				<xs:element maxOccurs="1" minOccurs="1" ref="asset:services" />
-				<xs:element maxOccurs="1" minOccurs="1" ref="asset:start" />
-				<xs:element maxOccurs="1" minOccurs="1" ref="asset:end" />
-				<xs:element maxOccurs="1" minOccurs="0"
-					ref="asset:geo-restrictions" />
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="publish-id" type="asset:id" />
-	<xs:element name="start" type="xs:dateTime" />
-	<xs:element name="end" type="xs:dateTime" />
-	<xs:element name="products">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element maxOccurs="unbounded" minOccurs="1"
-					ref="asset:product" />
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="product">
-		<xs:complexType>
-			<xs:attribute name="name" type="asset:id" use="required" />
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="services">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element maxOccurs="unbounded" minOccurs="1"
-					ref="asset:service" />
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="service">
-		<xs:complexType>
-			<xs:attribute name="name" type="asset:id" use="required" />
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="role" type="xs:string" />
-	<xs:element name="personId" type="xs:string" />
-	<xs:element name="size">
-		<xs:complexType>
-			<xs:attribute name="height" type="xs:int" use="required" />
-			<xs:attribute default="px" name="unit" type="asset:unit"
-				use="optional" />
-			<xs:attribute name="width" type="xs:int" use="required" />
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="source">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:choice>
-					<xs:element maxOccurs="1" minOccurs="0" ref="asset:name" />
-					<xs:element ref="asset:url" />
-				</xs:choice>
-				<xs:element maxOccurs="1" minOccurs="0"
-					ref="asset:ingestion-profile" />
-				<xs:element maxOccurs="1" minOccurs="0" ref="asset:cdn-profiles" />
-				<xs:element maxOccurs="1" minOccurs="0" ref="asset:action" />
-				<xs:element maxOccurs="1" minOccurs="0" ref="asset:force-ingest" />
-				<xs:choice>
-					<xs:element maxOccurs="1" minOccurs="0" ref="asset:app" />
-					<xs:element maxOccurs="1" minOccurs="0" ref="asset:amp-group" />
-				</xs:choice>
-				<xs:element maxOccurs="1" minOccurs="0" ref="asset:subtitles" />
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="source-created" type="xs:dateTime" />
-	<xs:element name="status" type="asset:status" />
-	<xs:element name="status-message" type="xs:string" />
-	<xs:element name="app" type="xs:string" />
-	<xs:element name="amp-group" type="xs:string" />
-	<xs:element name="subtitles">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element maxOccurs="unbounded" minOccurs="1"
-					ref="asset:subtitle" />
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="subtitle">
-		<xs:complexType>
-			<xs:simpleContent>
-				<xs:extension base="xs:string">
-					<xs:attribute name="language" type="asset:language"
-						use="required" />
-					<xs:attribute name="name" type="xs:string" use="optional" />
-					<xs:attribute name="default" type="xs:boolean" use="optional" />
-				</xs:extension>
-			</xs:simpleContent>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="text">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element maxOccurs="unbounded" minOccurs="1"
-					ref="asset:description" />
-			</xs:sequence>
-			<xs:attribute name="language" type="asset:language" use="required" />
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="texts">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element maxOccurs="unbounded" minOccurs="1" ref="asset:text" />
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="title">
-		<xs:complexType>
-			<xs:simpleContent>
-				<xs:extension base="xs:string">
-					<xs:attribute name="language" type="asset:language"
-						use="required" />
-				</xs:extension>
-			</xs:simpleContent>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="titles">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element maxOccurs="unbounded" minOccurs="1" ref="asset:title" />
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="url" type="xs:anyURI" />
-	<xs:element name="variable">
-		<xs:complexType>
-			<xs:simpleContent>
-				<xs:extension base="xs:string">
-					<xs:attribute name="name" type="xs:string" use="required" />
-				</xs:extension>
-			</xs:simpleContent>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="geo-restrictions">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element maxOccurs="1" minOccurs="0"
-					ref="asset:included-countries" />
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="included-countries">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element maxOccurs="unbounded" minOccurs="0"
-					ref="asset:country" />
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="excluded-countries">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element maxOccurs="unbounded" minOccurs="0"
-					ref="asset:country" />
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="geo-countries">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element maxOccurs="unbounded" minOccurs="0"
-					ref="asset:country" />
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="country" type="xs:string" />
+           xmlns:asset="http://emp.ebstv.net/asset" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <!-- Assets Root element representing multiple assets. Could be used to
+        start an ingest or multiple ingests (when that is supported for a customer).
+        The element could also be used when EMP is sending out current asset information
+        for one or multiple assets. Note: EMP always expect and send an assets element
+        even if there is only one asset, the asset element is never used as root
+        element. -->
+    <xs:element name="assets">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="1" ref="asset:asset"/>
+            </xs:sequence>
+            <!-- Should be possible to support different versions of the assets element.
+                Currently supported version presented in this XSD is 1.0 -->
+            <xs:attribute name="version" type="xs:decimal" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <!-- Assets Events Root element representing multiple asset events. An asset
+        event is a media status change for an asset, something happened with an asset.
+        Note: EMP always expect and send an assetevents element even if there is
+        only one asset event, the asset element is never used as root element. It
+        should be possible to resend the last event (current status) for all (a list
+        of assets) in one single message -->
+    <xs:element name="asset-events">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="1" ref="asset:asset-event"/>
+            </xs:sequence>
+            <!-- Should be possible to support different versions of the asset-events
+                element. Currently supported version presented in this XSD is 1.0 -->
+            <xs:attribute name="version" type="xs:decimal" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <!-- Asset event, contains information about an asset event, i.e. a status
+        change -->
+    <xs:element name="asset-event">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="1" minOccurs="1" ref="asset:asset-id"/>
+                <xs:element maxOccurs="1" minOccurs="1" ref="asset:customer-asset-id"/>
+                <xs:element maxOccurs="1" minOccurs="1" ref="asset:event-time"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:duration"/>
+                <xs:element maxOccurs="1" minOccurs="1" ref="asset:status"/>
+                <xs:element maxOccurs="1" minOccurs="1" ref="asset:status-message"/>
+            </xs:sequence>
+            <xs:attribute name="default-language" type="asset:language" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <!-- Asset information, contains information about an asset, could be used
+        both as an ingest request and as a current asset information message -->
+    <xs:element name="asset">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="1" minOccurs="1" ref="asset:customer-asset-id"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:asset-name"/>
+                <xs:element maxOccurs="1" minOccurs="1" ref="asset:asset-type"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:original-title"/>
+                <xs:element maxOccurs="1" minOccurs="1" ref="asset:titles"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:texts"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:duration"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:source"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:rightsPeriod"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:purgeTime"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:source-created"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:images"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:keywords"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:genre"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:sub-genre"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:participants"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:products"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:tags"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:application"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:geo-restrictions"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:publish-events"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:markers"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:disable-drm-token-validation"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:priority"/>                
+            </xs:sequence>
+            <xs:attribute name="default-language" type="asset:language" use="required"/>
+            <xs:attribute name="migration" type="xs:boolean" use="optional"/>
+            <xs:attribute name="drm-protected" type="xs:boolean" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="assetType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Episode"/>
+            <xs:enumeration value="Movie"/>
+            <xs:enumeration value="Trailer"/>
+            <xs:enumeration value="Clip"/>
+            <xs:enumeration value="Ad"/>
+            <xs:enumeration value="Live show"/>
+            <xs:enumeration value="Other"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="descriptionType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="tiny"/>
+            <xs:enumeration value="short"/>
+            <xs:enumeration value="medium"/>
+            <xs:enumeration value="long"/>
+            <xs:enumeration value="extended"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="function">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="actor"/>
+            <xs:enumeration value="director"/>
+            <xs:enumeration value="producer"/>
+            <xs:enumeration value="camera_operator"/>
+            <xs:enumeration value="scriptwriter"/>
+            <xs:enumeration value="executive_producer"/>
+            <xs:enumeration value="narrator"/>
+            <xs:enumeration value="unknown"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="id">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[\w _-]*"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="restricted-string">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[a-zA-Z0-9_-]*"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="no-dot-string">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[^\.]*"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="language">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[a-z][a-z]"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="orientation">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="portrait"/>
+            <xs:enumeration value="landscape"/>
+            <xs:enumeration value="unknown"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="status">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="cleaning"/>
+            <xs:enumeration value="cleaned"/>
+            <xs:enumeration value="deleting"/>
+            <xs:enumeration value="deleted"/>
+            <xs:enumeration value="disabled"/>
+            <xs:enumeration value="enabled"/>
+            <xs:enumeration value="purged"/>
+            <xs:enumeration value="purging"/>
+            <xs:enumeration value="received"/>
+            <xs:enumeration value="transcoding"/>
+            <xs:enumeration value="failed"/>
+            <xs:enumeration value="unknown"/>
+            <xs:enumeration value="queued"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="unit">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="px"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="rightsPeriod">
+        <xs:complexType>
+            <xs:attribute name="end" type="xs:dateTime" use="optional"/>
+            <xs:attribute name="start" type="xs:dateTime" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="purgeTime" type="xs:dateTime"/>
+    <xs:element name="application">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="asset:flag"/>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="asset:variable"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="asset-id" type="asset:id"/>
+    <xs:element name="asset-name" type="xs:string"/>
+    <xs:element name="asset-type" type="asset:assetType"/>
+    <xs:element name="disable-drm-token-validation" type="xs:boolean"/>
+    <xs:element name="tag">
+        <xs:complexType mixed="true">
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="nid" type="asset:no-dot-string" use="required"/>
+                    <xs:attribute name="language" type="asset:language" use="required"/>
+                    <xs:attribute name="type" type="asset:restricted-string" use="required"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="tags">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="1" ref="asset:tag"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="force-ingest" type="xs:boolean"/>
+    <xs:element name="cdn-profile">
+        <xs:complexType>
+            <xs:attribute name="edge" type="xs:boolean" use="optional"/>
+            <xs:attribute name="name" type="asset:id" use="required"/>
+            <xs:attribute name="origin" type="xs:boolean" use="optional"/>
+            <xs:attribute name="priority" type="xs:int" use="optional"/>
+            <xs:attribute name="threshold" type="xs:int" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="cdn-profiles">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="1" ref="asset:cdn-profile"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="customer-asset-id" type="asset:id"/>
+    <xs:element name="description">
+        <xs:complexType mixed="true">
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="type" type="asset:descriptionType" use="required"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="duration" type="xs:duration"/>
+    <xs:element name="event-time" type="xs:dateTime"/>
+    <xs:element name="file">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="1" minOccurs="1" ref="asset:fileName"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:filePath"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="fileName" type="xs:string"/>
+    <xs:element name="filePath" type="xs:string"/>
+    <xs:element name="flag">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:boolean">
+                    <xs:attribute name="name" type="xs:string" use="required"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="format">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ISO 8601"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="function" type="asset:function"/>
+    <xs:element name="genre" type="asset:genreType"/>
+    <xs:element name="sub-genre" type="asset:genreType"/>
+    <xs:complexType name="genreType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="language" type="asset:language" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:element name="image">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="1" minOccurs="1" ref="asset:url"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:size"/>
+            </xs:sequence>
+            <xs:attribute default="unknown" name="orientation" type="asset:orientation" use="optional"/>
+            <xs:attribute default="unknown" name="purpose" type="asset:restricted-string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="images">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="1" ref="asset:image"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ingestion-profile">
+        <xs:complexType>
+            <xs:attribute name="name" type="asset:id" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="keyword">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="language" type="asset:language"  use="required"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="keywords">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="1" ref="asset:keyword"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="name" type="xs:string"/>
+    <xs:element name="original-title" type="xs:string"/>
+    <xs:element name="participants">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="1" ref="asset:participant"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="participant">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="1" minOccurs="1" ref="asset:name"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:role"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:personId"/>
+                <xs:element maxOccurs="1" minOccurs="1" ref="asset:function"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="publish-events">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="1" ref="asset:publish"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="publish">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="1" minOccurs="1" ref="asset:publish-id"/>
+                <xs:element maxOccurs="1" minOccurs="1" ref="asset:products"/>
+                <xs:element maxOccurs="1" minOccurs="1" ref="asset:services"/>
+                <xs:element maxOccurs="1" minOccurs="1" ref="asset:start"/>
+                <xs:element maxOccurs="1" minOccurs="1" ref="asset:end"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:geo-restrictions"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="publish-id" type="asset:id"/>
+    <xs:element name="start" type="xs:dateTime"/>
+    <xs:element name="end" type="xs:dateTime"/>
+    <xs:element name="products">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="1" ref="asset:product"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="product">
+        <xs:complexType>
+            <xs:attribute name="name" type="asset:id" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="services">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="1" ref="asset:service"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="service">
+        <xs:complexType>
+            <xs:attribute name="name" type="asset:id" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="role" type="xs:string"/>
+    <xs:element name="personId" type="xs:string"/>
+    <xs:element name="size">
+        <xs:complexType>
+            <xs:attribute name="height" type="xs:int" use="required"/>
+            <xs:attribute default="px" name="unit" type="asset:unit" use="optional"/>
+            <xs:attribute name="width" type="xs:int" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="source">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice>
+                    <xs:element maxOccurs="1" minOccurs="0" ref="asset:name"/>
+                    <xs:element ref="asset:url"/>
+                </xs:choice>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:ingestion-profile"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:cdn-profiles"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:action"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:force-ingest"/>
+                <xs:choice>
+                    <xs:element maxOccurs="1" minOccurs="0" ref="asset:app"/>
+                    <xs:element maxOccurs="1" minOccurs="0" ref="asset:amp-group"/>
+                </xs:choice>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:subtitles"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="source-created" type="xs:dateTime"/>
+    <xs:element name="status" type="asset:status"/>
+    <xs:element name="status-message" type="xs:string"/>
+    <xs:element name="app" type="xs:string"/>
+    <xs:element name="amp-group" type="xs:string"/>
+    <xs:element name="subtitles">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="1" ref="asset:subtitle"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="subtitle">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="language" type="asset:language" use="required"/>
+                    <xs:attribute name="name" type="xs:string" use="optional"/>
+                    <xs:attribute name="default" type="xs:boolean" use="optional"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="text">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="1" ref="asset:description"/>
+            </xs:sequence>
+            <xs:attribute name="language" type="asset:language" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="texts">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="1" ref="asset:text"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="title">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="language" type="asset:language" use="required"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="titles">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="1" ref="asset:title"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="url" type="xs:anyURI"/>
+    <xs:element name="variable">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="name" type="xs:string" use="required"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="geo-restrictions">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:included-countries"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="included-countries">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="asset:country"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="excluded-countries">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="asset:country"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="geo-countries">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="asset:country"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="country" type="xs:string"/>
 
-	<xs:simpleType name="action">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="none" />
-			<xs:enumeration value="transcode" />
-			<xs:enumeration value="re-transcode" />
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:element name="action" type="asset:action" />
-	
-	<xs:simpleType name="markerType">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="adVast" />
-			<xs:enumeration value="adVastChop" />
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:element name="marker-type" type="asset:markerType" />
-	<xs:element name="marker-data" type="xs:string" />
-	<xs:element name="millisOffset" type="xs:int" />
-	<xs:element name="offsetType" type="asset:offsetType" />
+    <xs:simpleType name="action">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="none"/>
+            <xs:enumeration value="transcode"/>
+            <xs:enumeration value="re-transcode"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="action" type="asset:action"/>
 
-	<xs:simpleType name="offsetType">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="preRoll" />
-			<xs:enumeration value="postRoll" />
-		</xs:restriction>
-	</xs:simpleType>
+    <xs:simpleType name="markerType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="adVast"/>
+            <xs:enumeration value="adVastChop"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="marker-type" type="asset:markerType"/>
+    <xs:element name="marker-data" type="xs:string"/>
+    <xs:element name="millisOffset" type="xs:int"/>
+    <xs:element name="offsetType" type="asset:offsetType"/>
+
+    <xs:simpleType name="offsetType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="preRoll"/>
+            <xs:enumeration value="postRoll"/>
+        </xs:restriction>
+    </xs:simpleType>
 
 
-	<xs:element name="markers">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element maxOccurs="unbounded" minOccurs="0"
-					ref="asset:marker" />
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="marker">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element maxOccurs="1" minOccurs="1" ref="asset:marker-type" />
-				<xs:element maxOccurs="1" minOccurs="0" ref="asset:duration" />
-				<xs:element maxOccurs="1" minOccurs="0" ref="asset:marker-data" />
-				<xs:choice>
-					<xs:element maxOccurs="1" minOccurs="1" ref="asset:millisOffset" />
-					<xs:element maxOccurs="1" minOccurs="1" name="offsetType"
-						type="asset:offsetType" />
-				</xs:choice>
+    <xs:element name="markers">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="asset:marker"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="marker">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="1" minOccurs="1" ref="asset:marker-type"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:duration"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:marker-data"/>
+                <xs:choice>
+                    <xs:element maxOccurs="1" minOccurs="1" ref="asset:millisOffset"/>
+                    <xs:element maxOccurs="1" minOccurs="1" name="offsetType" type="asset:offsetType"/>
+                </xs:choice>
 
-			</xs:sequence>
-		</xs:complexType>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+	<xs:element name="priority">
+	   <xs:simpleType>
+	      <xs:restriction base="xs:integer">
+	         <xs:minInclusive value="1"/>
+	         <xs:maxInclusive value="100"/>
+	      </xs:restriction>
+	   </xs:simpleType>
 	</xs:element>
-
 </xs:schema>
