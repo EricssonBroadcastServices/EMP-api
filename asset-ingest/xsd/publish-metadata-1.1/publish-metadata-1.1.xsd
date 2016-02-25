@@ -281,7 +281,7 @@
 	<xs:complexType name="tagListType">
 		<xs:sequence>
 			<xs:choice>
-				<xs:element name="tagIdRef" type="publish:idType" minOccurs="0">
+				<xs:element name="tagIdRef" type="publish:idType" minOccurs="0" maxOccurs="unbounded">
 					<xs:annotation>
 						<xs:documentation>Reference to an existing tag</xs:documentation>
 					</xs:annotation>
