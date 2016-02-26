@@ -19,13 +19,19 @@
       </descriptionList>
       <tagList>
         <tag id="DRAMA" type="genre">
-          <tagName language="en">Drama</tagName>
+          <tagNames>
+            <tagName language="en">Drama</tagName>
+          </tagNames>
         </tag>
         <tag id="THRILLER" type="genre">
-          <tagName language="en">Thriller</tagName>
+          <tagNames>
+            <tagName language="en">Thriller</tagName>
+          </tagNames>
         </tag>
         <tag id="DRAMA" type="genre">
-          <tagName language="ro">Dramă</tagName>
+          <tagNames>
+            <tagName language="ro">Dramă</tagName>
+          </tagNames>
         </tag>
       </tagList>
       <creditList>
@@ -90,7 +96,9 @@
       </descriptionList>
       <tagList>
         <tag id="DRAMA" type="genre">
-          <tagName language="en">Drama</tagName>
+          <tagNames>
+            <tagName language="en">Drama</tagName>
+          </tagNames>
         </tag>
       </tagList>
       <creditList>
@@ -144,7 +152,9 @@
       </descriptionList>
       <tagList>
         <tag id="DRAMA" type="genre">
-          <tagName language="en">Drama</tagName>
+          <tagNames>
+            <tagName language="en">Drama</tagName>
+          </tagNames>
         </tag>
       </tagList>
       <creditList>
