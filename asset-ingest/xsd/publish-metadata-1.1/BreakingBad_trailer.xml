@@ -26,7 +26,7 @@
     </asset>
     <material>
       <id>ML_BB0105_TR</id>
-      <materialRef>breakingbad/s01/ep05-trailer.mp4</materialRef>
+      <materialRef>ep05-trailer.mp4</materialRef>
       <assetIdRef>BB0105_Trailer</assetIdRef> <!-- Points to the trailer asset (abowe)-->
       <duration>PT55S</duration>
       <framerate>60</framerate>

@@ -17,17 +17,6 @@
         <description language="en" length="medium">A chemistry teacher teams up with his former student to cook and sell crystal meth.</description>
         <description language="en" length="long">A chemistry teacher diagnosed with terminal lung cancer teams up with his former student to cook and sell crystal meth.</description>
       </descriptionList>
-      <tagList>
-        <tag id="DRAMA" type="genre">
-          <tagName language="en">Drama</tagName>
-        </tag>
-        <tag id="THRILLER" type="genre">
-          <tagName language="en">Thriller</tagName>
-        </tag>
-        <tag id="DRAMA" type="genre">
-          <tagName language="ro">Dramă</tagName>
-        </tag>
-      </tagList>
       <creditList>
         <credit>
           <name>Bryan Cranston</name>
@@ -39,6 +28,23 @@
           <function>Creator</function>
         </credit>
       </creditList>
+      <tagList>
+        <tag id="DRAMA" type="genre">
+          <tagNames>
+            <tagName language="en">Drama</tagName>
+          </tagNames>
+        </tag>
+        <tag id="THRILLER" type="genre">
+          <tagNames>
+            <tagName language="en">Thriller</tagName>
+          </tagNames>
+        </tag>
+        <tag id="DRAMA" type="genre">
+          <tagNames>
+            <tagName language="ro">Dramă</tagName>
+          </tagNames>
+        </tag>
+      </tagList>
       <imageList>
         <image language="en" priority="0">
           <id>breaking_bad_series</id>
@@ -88,18 +94,20 @@
       <descriptionList>
         <description language="en" length="short">Walt rejects everyone who tries to help him with the cancer. Jesse tries his best to create Walt's meth, with the help of an old friend.</description>
       </descriptionList>
-      <tagList>
-        <tag id="DRAMA" type="genre">
-          <tagName language="en">Drama</tagName>
-        </tag>
-      </tagList>
-      <creditList>
+       <creditList>
         <credit>
           <name>Bryan Cranston</name>
           <rolename>Walter White</rolename>
           <function>Actor</function>
         </credit>
       </creditList>
+     <tagList>
+        <tag id="DRAMA" type="genre">
+          <tagNames>
+            <tagName language="en">Drama</tagName>
+          </tagNames>
+        </tag>
+      </tagList>
       <imageList>
         <image language="en" priority="0">
           <id>breaking_bad_season1</id>
@@ -142,11 +150,6 @@
       <descriptionList>
         <description language="en" length="short">Walt rejects everyone who tries to help him with the cancer. Jesse tries his best to create Walt's meth, with the help of an old friend.</description>
       </descriptionList>
-      <tagList>
-        <tag id="DRAMA" type="genre">
-          <tagName language="en">Drama</tagName>
-        </tag>
-      </tagList>
       <creditList>
         <credit>
           <name>Bryan Cranston</name>
@@ -154,6 +157,13 @@
           <function>Actor</function>
         </credit>
       </creditList>
+      <tagList>
+        <tag id="DRAMA" type="genre">
+          <tagNames>
+            <tagName language="en">Drama</tagName>
+          </tagNames>
+        </tag>
+      </tagList>
       <imageList>
         <image language="en" priority="0">
           <id>breaking_bad_epsisode_s01e05</id>
