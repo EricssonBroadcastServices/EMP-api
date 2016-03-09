@@ -94,7 +94,18 @@
       <descriptionList>
         <description language="en" length="short">Walt rejects everyone who tries to help him with the cancer. Jesse tries his best to create Walt's meth, with the help of an old friend.</description>
       </descriptionList>
+<<<<<<< HEAD
        <creditList>
+=======
+      <tagList>
+        <tag id="DRAMA" type="genre">
+          <tagNames>
+            <tagName language="en">Drama</tagName>
+          </tagNames>
+        </tag>
+      </tagList>
+      <creditList>
+>>>>>>> origin/master
         <credit>
           <name>Bryan Cranston</name>
           <rolename>Walter White</rolename>
@@ -150,6 +161,16 @@
       <descriptionList>
         <description language="en" length="short">Walt rejects everyone who tries to help him with the cancer. Jesse tries his best to create Walt's meth, with the help of an old friend.</description>
       </descriptionList>
+<<<<<<< HEAD
+=======
+      <tagList>
+        <tag id="DRAMA" type="genre">
+          <tagNames>
+            <tagName language="en">Drama</tagName>
+          </tagNames>
+        </tag>
+      </tagList>
+>>>>>>> origin/master
       <creditList>
         <credit>
           <name>Bryan Cranston</name>
