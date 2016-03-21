@@ -1,0 +1,31 @@
+<jxb:bindings xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:jxb="http://java.sun.com/xml/ns/jaxb" version="2.1">
+
+	<jxb:bindings schemaLocation="v13_am1/mpeg7_tva.xsd">
+		<jxb:bindings node="//xs:complexType[@name='UserActionType']">
+			<jxb:class name="Mpeg7UserActionType" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings schemaLocation="v13_am1/tva_metadata_v13_am1.xsd">
+		<jxb:bindings node="//xs:complexType[@name='UserActionType']">
+			<jxb:class name="MetaDataUserActionType2" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings schemaLocation="v13_am1/mpeg7_tva.xsd">
+		<jxb:bindings node="//xs:complexType[@name='ClassificationSchemeType']">
+			<jxb:class name="Mpeg7ClassificationSchemeType1" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings schemaLocation="v13_am1/tva_metadata_v13_am1.xsd">
+		<jxb:bindings node="//xs:complexType[@name='ClassificationSchemeType']">
+			<jxb:class name="MetaDataClassificationSchemeType2" />
+		</jxb:bindings>
+	</jxb:bindings>
+	<jxb:bindings schemaLocation="v13_am1/tva_metadata_v13_am1.xsd">
+		<jxb:bindings node="//xs:complexType[@name='MultiLanguageType']">
+			 <jxb:bindings node=".//xs:attribute[@name='value']">
+                <jxb:property name="ValueAttribute"/>
+            </jxb:bindings>
+		</jxb:bindings>
+	</jxb:bindings>
+</jxb:bindings>

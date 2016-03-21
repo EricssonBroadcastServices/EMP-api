@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by BDS (BBC Broadcasting Dataservices Ltd) -->
+<schema targetNamespace="urn:bds:metadata:2004" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tva="urn:tva:metadata:2004" xmlns:mpeg7="urn:mpeg:mpeg7:schema:2001" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<import namespace="urn:tva:metadata:2004" schemaLocation="v13_am1/tva_metadata_v13_am1.xsd"/>
+	<import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="v13_am1/xml_2001.xsd"/>
+	<import namespace="urn:mpeg:mpeg7:schema:2001" schemaLocation="v13_am1/mpeg7_tva.xsd"/>
+</schema>

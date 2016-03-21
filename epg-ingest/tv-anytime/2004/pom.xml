@@ -1,0 +1,86 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.ebstv.emp</groupId>
+  <artifactId>tv-anytime-2004</artifactId>
+  <packaging>jar</packaging>
+  <version>1.1-SNAPSHOT</version>
+  
+  <name>TVAnytime 2004</name>
+  <description>This version of TVAnytime is depricated but still used by some customers</description>
+
+  <properties>
+    <jaxb2MavenPluginVersion>1.6</jaxb2MavenPluginVersion>
+  </properties>
+
+  <scm>
+    <connection>scm:git:git@github.com\:/EricssonBroadcastServices/Integration.git</connection>
+    <developerConnection>scm:git:git@github.com\:/EricssonBroadcastServices/Integration.git</developerConnection>
+    <url>scm:git:git://github.com\:/EricssonBroadcastServices/Integration.git</url>
+    <tag>HEAD</tag>
+  </scm>
+
+  <distributionManagement>
+    <repository>
+      <id>nexus-releases</id>
+      <url>http://172.16.1.15:8081/nexus/content/repositories/releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>nexus-snapshots</id>
+      <url>http://172.16.1.15:8081/nexus/content/repositories/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <build>
+    <resources>
+      <resource>
+	<directory>${basedir}/src/main/xsd</directory>
+	<includes>
+	  <include>**/*</include>
+	</includes>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+	<groupId>org.codehaus.mojo</groupId>
+	<artifactId>properties-maven-plugin</artifactId>
+	<version>1.0-alpha-2</version>
+	<executions>
+	  <execution>
+	    <id>set-additional-system-properties</id>
+	    <goals>
+	      <goal>set-system-properties</goal>
+	    </goals>
+	  </execution>
+	</executions>
+	<configuration>
+	  <properties>
+	    <property>
+	      <name>javax.xml.accessExternalSchema</name>
+	      <value>file,http</value>
+	    </property>
+	  </properties>
+	</configuration>
+      </plugin>
+      <plugin>
+	<groupId>org.codehaus.mojo</groupId>
+	<artifactId>jaxb2-maven-plugin</artifactId>
+	<version>${jaxb2MavenPluginVersion}</version>
+	<executions>
+	  <execution>
+	    <id>generate-tv-anytime</id>
+	    <phase>generate-sources</phase>
+	    <goals>
+	      <goal>xjc</goal>
+	    </goals>
+	    <configuration>
+	      <packageName>net.ericsson.ebsd.emp.customer.generic.tvanytime.v2004.generated</packageName>
+	      <outputDirectory>${basedir}/target/generated/</outputDirectory>
+	      <schemaDirectory>${basedir}/src/main/xsd/</schemaDirectory>
+	      <bindingDirectory>${basedir}/src/main/xsd/</bindingDirectory>
+	    </configuration>
+	  </execution>
+	</executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
