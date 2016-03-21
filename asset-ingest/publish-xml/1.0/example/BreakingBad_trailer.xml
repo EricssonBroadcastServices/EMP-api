@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<publish-metadata xmlns="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata.xsd ">
+  <data>
+    <asset>
+      <id>BB0105_Trailer</id>
+      <studio>Sony Pictures Television</studio>
+      <productionYear>2008</productionYear>
+      <countryOfOriginList>
+        <country>US</country>
+      </countryOfOriginList>
+      <titleList>
+        <title language="en">Grey Matter - Trailer</title>
+      </titleList>
+      <descriptionList>
+        <description language="en" length="short">Trailer for the fifth episode of Breaking bad</description>
+      </descriptionList>
+      <parentalRatingList>
+        <parentalRating>
+          <rating>PG-13</rating>
+          <scheme>MPAA</scheme>
+          <country>US</country>
+        </parentalRating>
+      </parentalRatingList>
+      <assetType>trailer</assetType>
+      <assetIdRef>BB0105</assetIdRef> <!-- Points to the episode asset -->
+    </asset>
+    <material>
+      <id>ML_BB0105_TR</id>
+      <materialRef syndicated="true" syndicatedProvider="AMC">breakingbad/s01/ep05-trailer.mpeg</materialRef>
+      <assetIdRef>BB0105_Trailer</assetIdRef> <!-- Points to the trailer asset (abowe)-->
+      <duration>PT55S</duration>
+      <framerate>60</framerate>
+      <DRMEnabled>false</DRMEnabled>
+      <subtitleList>
+        <subtitle format="closed" language="en">Subtitle</subtitle>
+      </subtitleList>
+      <expiryDate>2020-11-30T12:00:00</expiryDate>
+      <purgeDate>2020-12-31T12:00:00</purgeDate>
+    </material>
+    <publicationList>
+      <publication>
+        <id>4343443334-trailer</id>
+        <startTime>2015-11-24T12:00:00</startTime>
+        <endTime>2020-11-30T12:00:00</endTime>
+        <publishTime>2015-11-24T12:00:00</publishTime>
+        <publicationRights>
+          <productList>
+            <product>dramaSeries</product>
+          </productList>
+          <serviceList>
+            <service>service</service>
+          </serviceList>
+        </publicationRights>
+      </publication>
+    </publicationList>
+  </data>
+</publish-metadata>
