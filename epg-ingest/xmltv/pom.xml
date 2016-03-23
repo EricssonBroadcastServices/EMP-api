@@ -3,32 +3,14 @@
   <groupId>net.ebstv.emp</groupId>
   <artifactId>xmltv</artifactId>
   <packaging>jar</packaging>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   
   <name>XML-TV</name>
-  <description>XML-TV is the other EPG format supported by the generic customer app. The latest version of the XSDs defining this format is found in the master branch of this repository</description>  
+  <description>XML-TV is supported by EMP but not the recomended format for EPG ingest.</description>
 
   <properties>
     <jaxb2MavenPluginVersion>1.6</jaxb2MavenPluginVersion>
   </properties>
-
-  <scm>
-    <connection>scm:git:git@github.com\:/EricssonBroadcastServices/Integration.git</connection>
-    <developerConnection>scm:git:git@github.com\:/EricssonBroadcastServices/Integration.git</developerConnection>
-    <url>scm:git:git://github.com\:/EricssonBroadcastServices/Integration.git</url>
-    <tag>HEAD</tag>
-  </scm>
-
-  <distributionManagement>
-    <repository>
-      <id>nexus-releases</id>
-      <url>http://172.16.1.15:8081/nexus/content/repositories/releases</url>
-    </repository>
-    <snapshotRepository>
-      <id>nexus-snapshots</id>
-      <url>http://172.16.1.15:8081/nexus/content/repositories/snapshots</url>
-    </snapshotRepository>
-  </distributionManagement>
 
   <build>
     <resources>
@@ -73,7 +55,7 @@
 	      <goal>xjc</goal>
 	    </goals>
 	    <configuration>
-	      <packageName>net.ericsson.ebsd.emp.customer.generic.xmltv.generated</packageName>
+	      <packageName>net.ericsson.ebsd.emp.generated.epg.xmltv</packageName>
 	      <outputDirectory>${basedir}/target/generated/</outputDirectory>
 	      <schemaDirectory>${basedir}/src/main/xsd/</schemaDirectory>
 	      <bindingDirectory>${basedir}/src/main/xsd/</bindingDirectory>
