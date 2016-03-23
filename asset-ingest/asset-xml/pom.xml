@@ -3,7 +3,7 @@
   <groupId>net.ebstv.emp</groupId>
   <artifactId>asset-xml</artifactId>
   <packaging>jar</packaging>
-  <version>1.0</version>
+  <version>1.0.0</version>
   
   <name>AssetXML</name>
   <description>AssetXML is the simplest format for VOD ingest supported by EMP. Only suitable for for limited metadata requirements</description>

@@ -3,7 +3,7 @@
   <groupId>net.ebstv.emp</groupId>
   <artifactId>tv-anytime-2012</artifactId>
   <packaging>jar</packaging>
-  <version>1.0</version>
+  <version>1.0.0</version>
   
   <name>TVAnytime 2012</name>
   <description>This is the recomended EPG-ingest format for EMP.</description>

@@ -3,7 +3,7 @@
   <groupId>net.ebstv.emp</groupId>
   <artifactId>xmltv</artifactId>
   <packaging>jar</packaging>
-  <version>1.0</version>
+  <version>1.0.0</version>
   
   <name>XML-TV</name>
   <description>XML-TV is supported by EMP but not the recomended format for EPG ingest.</description>
