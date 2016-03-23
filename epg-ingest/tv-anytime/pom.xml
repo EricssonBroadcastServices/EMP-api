@@ -3,7 +3,7 @@
   <groupId>net.ebstv.emp</groupId>
   <artifactId>tv-anytime-2012</artifactId>
   <packaging>jar</packaging>
-  <version>1.1-SNAPSHOT</version>
+  <version>1.0</version>
   
   <name>TVAnytime 2012</name>
   <description>This is the recomended EPG-ingest format for EMP.</description>
@@ -11,24 +11,6 @@
   <properties>
     <jaxb2MavenPluginVersion>1.6</jaxb2MavenPluginVersion>
   </properties>
-
-  <scm>
-    <connection>scm:git:git@github.com\:/EricssonBroadcastServices/Integration.git</connection>
-    <developerConnection>scm:git:git@github.com\:/EricssonBroadcastServices/Integration.git</developerConnection>
-    <url>scm:git:git://github.com\:/EricssonBroadcastServices/Integration.git</url>
-    <tag>HEAD</tag>
-  </scm>
-
-  <distributionManagement>
-    <repository>
-      <id>nexus-releases</id>
-      <url>http://172.16.1.15:8081/nexus/content/repositories/releases</url>
-    </repository>
-    <snapshotRepository>
-      <id>nexus-snapshots</id>
-      <url>http://172.16.1.15:8081/nexus/content/repositories/snapshots</url>
-    </snapshotRepository>
-  </distributionManagement>
 
   <build>
     <resources>
@@ -73,7 +55,7 @@
 	      <goal>xjc</goal>
 	    </goals>
 	    <configuration>
-	      <packageName>net.ericsson.ebsd.emp.customer.generic.tvanytime.v2012.generated</packageName>
+	      <packageName>net.ericsson.ebsd.emp.generated.epg.tvanytime2012</packageName>
 	      <outputDirectory>${basedir}/target/generated/</outputDirectory>
 	      <schemaDirectory>${basedir}/src/main/xsd/</schemaDirectory>
 	      <bindingDirectory>${basedir}/src/main/xsd/</bindingDirectory>
