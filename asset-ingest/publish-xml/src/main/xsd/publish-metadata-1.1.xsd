@@ -46,7 +46,8 @@
 	<xs:complexType name="materialRefType">
 		<xs:annotation>
 			<xs:documentation>A reference to an external media file. This can be
-				an ID, a URI a URL or any other String value.</xs:documentation>
+				an ID, a URI a URL or any other String value.
+			</xs:documentation>
 		</xs:annotation>
 		<xs:simpleContent>
 			<xs:extension base="publish:notNullString">
@@ -72,7 +73,8 @@
 				<xs:annotation>
 					<xs:documentation>A reference to an external media file. This can
 						be an ID, a URI a URL or any other String value.. Depends on the
-						context.</xs:documentation>
+						context.
+					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="assetIdRef" type="publish:idType"
@@ -93,14 +95,16 @@
 						event that has expired but we want to use it to promote a new
 						season. Then we need to be able to connect it to a
 						content/season/brand instead as we would not have an event to
-						connect it to.</xs:documentation>
+						connect it to.
+					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="duration" type="xs:duration" minOccurs="0"
 				maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>An ISO 8601 duration in format
-						PnYnMnDTnHnMn.NNNS.</xs:documentation>
+						PnYnMnDTnHnMn.NNNS.
+					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="framerate" type="xs:positiveInteger"
@@ -114,14 +118,16 @@
 				minOccurs="0" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>If false then this material is not encrypted.
-						This is true by default.</xs:documentation>
+						This is true by default.
+					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="allowAds" type="xs:boolean" default="true"
 				minOccurs="0" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Flag to indicate if ads are allowed in this video
-						(in the context of the publication/event)</xs:documentation>
+						(in the context of the publication/event)
+					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="breakList" type="publish:breakListType"
@@ -142,14 +148,16 @@
 					<xs:documentation>Expiry date for licensing in ISO 8601 fornat
 						("YYYY-MM-DDThh:mm:ss.SSS"]. Timezone may be included by
 						specifying as Zulu time or by adding a UTC offset. If no value is
-						given then a default value will be used</xs:documentation>
+						given then a default value will be used
+					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="purgeDate" type="xs:dateTime" minOccurs="0"
 				maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Media would be purged, if no date then default
-						used</xs:documentation>
+						used
+					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="videoQuality" type="publish:videoQuality"
@@ -163,7 +171,8 @@
 				minOccurs="0" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Priority to use when ingesting this material as a
-						media</xs:documentation>
+						media
+					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -181,7 +190,8 @@
 				minOccurs="1" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>reference to a subtitle item, for example a
-						teletext page or a subtitle file</xs:documentation>
+						teletext page or a subtitle file
+					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -241,7 +251,8 @@
 					<xs:documentation>"Ready For Airing": This flag will be set to true
 						if the media has been checked by QC (Quality Control). If this
 						flag is not set to true it means that the file is not yet
-						availble.</xs:documentation>
+						availble.
+					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -275,7 +286,8 @@
 		<xs:annotation>
 			<xs:documentation>This is used for better readability in higher
 				nodes. I.e instead of having a sequence of materialTypes in the
-				publishType, just add an element with this type.</xs:documentation>
+				publishType, just add an element with this type.
+			</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="material" type="publish:materialType"
@@ -320,7 +332,8 @@
 			<xs:documentation>Unique name id, i.e. the normalized textual
 				representation, e.g.: no space, lower case, no diacritic characters.
 				Language attribute can be used to specify a localized name for the
-				tag.</xs:documentation>
+				tag.
+			</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:pattern value="[0-9a-z\-_]+" />
@@ -334,7 +347,8 @@
 				minOccurs="1" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>List of external resources that can used to
-						connect/boost the content data with.</xs:documentation>
+						connect/boost the content data with.
+					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -346,19 +360,22 @@
 				<xs:annotation>
 					<xs:documentation>Who is the provides for the extend data that can
 						be used for this content. It can for example be score24.com or
-						IMDB.com</xs:documentation>
+						IMDB.com
+					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="id" type="publish:idType" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>Data identifier to map this content to in the
-						external provider/partners data</xs:documentation>
+						external provider/partners data
+					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="uri" type="xs:anyURI" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>Resource to use for reach the data at the
-						provider</xs:documentation>
+						provider
+					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -380,7 +397,8 @@
 	<xs:complexType name="tagType">
 		<xs:annotation>
 			<xs:documentation>Use to define a tag, i.e. in content. Lower
-				priority number means higher importance.</xs:documentation>
+				priority number means higher importance.
+			</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="tagNames" type="publish:tagNameListType"
@@ -414,7 +432,8 @@
 	<xs:complexType name="description">
 		<xs:annotation>
 			<xs:documentation>A general type for describing something, attribute
-				indicating the language.</xs:documentation>
+				indicating the language.
+			</xs:documentation>
 		</xs:annotation>
 		<xs:simpleContent>
 			<xs:extension base="xs:string">
@@ -539,20 +558,11 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
-	<xs:complexType name="contentSeasonSeriesType">
-		<xs:sequence>
-			<xs:element name="series" type="publish:seriesType"
-				minOccurs="0" />
-			<xs:element name="season" type="publish:seasonType"
-				minOccurs="0" />
-			<xs:element name="content" type="publish:assetType"
-				minOccurs="0" />
-		</xs:sequence>
-	</xs:complexType>
-	<xs:complexType name="abstractContentType" abstract="true">
+	<xs:complexType name="abstractAssetType" abstract="true">
 		<xs:annotation>
 			<xs:documentation>Abstract type that holds attributes common to
-				series, season and content</xs:documentation>
+				series, season and content
+			</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="id" type="publish:idType">
@@ -577,14 +587,16 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>list of production countries. Use country codes
-						in IS0 3166-1-alpha-2</xs:documentation>
+						in IS0 3166-1-alpha-2
+					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="titleList" type="publish:titleListType">
 				<xs:annotation>
 					<xs:documentation>Title list for content. At least one occurrence
 						with the language used in the market/country displaying the
-						content.</xs:documentation>
+						content.
+					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="descriptionList" type="publish:descriptionListType"
@@ -597,7 +609,8 @@
 				minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>list of actors, producers etc. should be
-						consistent within each provider</xs:documentation>
+						consistent within each provider
+					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="tagList" type="publish:tagListType"
@@ -621,12 +634,12 @@
 	</xs:complexType>
 	<xs:complexType name="seriesType">
 		<xs:complexContent>
-			<xs:extension base="publish:abstractContentType" />
+			<xs:extension base="publish:abstractAssetType" />
 		</xs:complexContent>
 	</xs:complexType>
 	<xs:complexType name="seasonType">
 		<xs:complexContent>
-			<xs:extension base="publish:abstractContentType">
+			<xs:extension base="publish:abstractAssetType">
 				<xs:sequence>
 					<xs:element name="seriesId" type="publish:idType"
 						minOccurs="1" maxOccurs="1">
@@ -655,26 +668,12 @@
 	</xs:complexType>
 	<xs:complexType name="assetType">
 		<xs:complexContent>
-			<xs:extension base="publish:abstractContentType">
+			<xs:extension base="publish:abstractAssetType">
 				<xs:sequence>
 					<xs:element name="assetType" type="publish:assetTypeType"
 						minOccurs="1">
 						<xs:annotation>
 							<xs:documentation>Type of the asset</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="seriesId" type="publish:idType"
-						minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>id for series, not unique. Only present if
-								content is connected to a series.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="seasonId" type="publish:idType"
-						minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>id for season, not unique. Only present if
-								content is connected to a season.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="assetIdRef" type="publish:idType"
@@ -685,13 +684,29 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element name="episodeNumber" type="xs:positiveInteger"
-						minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Episode number for the program or "null" if no
-								episode information.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
+					<xs:sequence minOccurs="0">
+						<xs:element name="seriesId" type="publish:idType">
+							<xs:annotation>
+								<xs:documentation>id for series, not unique. Only present if
+									content is connected to a series.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="seasonId" type="publish:idType">
+							<xs:annotation>
+								<xs:documentation>id for season, not unique. Only present if
+									content is connected to a season.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="episodeNumber" type="xs:positiveInteger"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Episode number for the program
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -715,7 +730,8 @@
 	<xs:complexType name="descriptionListType">
 		<xs:annotation>
 			<xs:documentation>Editorial text that describes the content, can be
-				publically published.</xs:documentation>
+				publically published.
+			</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="description" type="publish:descriptionType"
@@ -729,7 +745,8 @@
 				descriptive intro, manuscript or voice-over that applies to the
 				content, Text is not required to be written to be ready for public
 				view, but the content will be indexed and possible to use in a
-				search.</xs:documentation>
+				search.
+			</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="comment" type="publish:descriptionType"
@@ -746,7 +763,8 @@
 		<xs:annotation>
 			<xs:documentation>See
 				http://en.wikipedia.org/wiki/Motion_picture_rating_system for more
-				information about parental ratings.</xs:documentation>
+				information about parental ratings.
+			</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="rating" type="publish:notNullString"
@@ -755,7 +773,8 @@
 					<xs:documentation>Parental rating age in year. 0 years => No
 						restriction. Also see
 						http://en.wikipedia.org/wiki/Motion_picture_rating_system for more
-						information.</xs:documentation>
+						information.
+					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="scheme" type="publish:notNullString"
@@ -773,7 +792,8 @@
 						3166-1-alpha-2. Empty or absent country attribute has the meaning
 						that it is global default value for any country. Specific country
 						declaration overrides the default. If country value is repeted,
-						result is undefined which one to select.</xs:documentation>
+						result is undefined which one to select.
+					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -814,7 +834,8 @@
 		<xs:annotation>
 			<xs:documentation>length (and content) of the description e.g, tiny
 				may be 1-25 characters, short 26-140,medium 141-240, long 241-999,
-				extended > 1000</xs:documentation>
+				extended > 1000
+			</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="short" />
@@ -867,7 +888,8 @@
 				maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>The id of the image from the origin system. For
-						example it might be img_123.</xs:documentation>
+						example it might be img_123.
+					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="url" type="xs:anyURI" minOccurs="1"
@@ -888,7 +910,8 @@
 				<xs:simpleType>
 					<xs:annotation>
 						<xs:documentation>Purpose of image, initial intended usage for the
-							image from source system.</xs:documentation>
+							image from source system.
+						</xs:documentation>
 					</xs:annotation>
 					<xs:restriction base="xs:string">
 						<xs:enumeration value="banner" />
@@ -970,13 +993,15 @@
 				minOccurs="0" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Reference to an asset id. Should only be provided
-						when an actual asset element is NOT provided.</xs:documentation>
+						when an actual asset element is NOT provided.
+					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:choice>
 				<xs:annotation>
 					<xs:documentation>A publish time either needs to have
-						start/end/publish times or a revoked tag.</xs:documentation>
+						start/end/publish times or a revoked tag.
+					</xs:documentation>
 				</xs:annotation>
 				<xs:sequence>
 					<xs:element name="startTime" type="xs:dateTime"
@@ -1007,7 +1032,8 @@
 					maxOccurs="1" default="false">
 					<xs:annotation>
 						<xs:documentation>If this flag is set to true then the publication
-							is to be marked for revocation.</xs:documentation>
+							is to be marked for revocation.
+						</xs:documentation>
 					</xs:annotation>
 				</xs:element>
 			</xs:choice>
