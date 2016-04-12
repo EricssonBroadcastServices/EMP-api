@@ -175,6 +175,14 @@
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="reingest" type="xs:boolean" minOccurs="0"
+				maxOccurs="1" default="false">
+				<xs:annotation>
+					<xs:documentation>Set this to true to force a reingest of the
+						asset
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:simpleType name="videoQuality">
@@ -699,8 +707,7 @@
 								</xs:documentation>
 							</xs:annotation>
 						</xs:element>
-						<xs:element name="episodeNumber" type="xs:positiveInteger"
-							minOccurs="0">
+						<xs:element name="episodeNumber" type="xs:positiveInteger">
 							<xs:annotation>
 								<xs:documentation>Episode number for the program
 								</xs:documentation>
