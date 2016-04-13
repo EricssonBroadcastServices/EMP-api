@@ -692,8 +692,15 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:choice>
-						<xs:sequence minOccurs="0" maxOccurs="1">
+					<xs:sequence minOccurs="0" maxOccurs="1">
+						<xs:element name="seriesId" type="publish:idType" minOccurs="0" maxOccurs="1">
+							<xs:annotation>
+								<xs:documentation>id for series. Has to be globally unique. Only present if
+									content is connected to a series.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:sequence minOccurs="1" maxOccurs="1">
 							<xs:element name="seasonId" type="publish:idType">
 								<xs:annotation>
 									<xs:documentation>id for season, not unique. Only present if
@@ -708,29 +715,7 @@
 								</xs:annotation>
 							</xs:element>
 						</xs:sequence>
-						<xs:sequence minOccurs="0" maxOccurs="1">
-							<xs:element name="seriesId" type="publish:idType">
-								<xs:annotation>
-									<xs:documentation>id for series, not unique. Only present if
-										content is connected to a series.
-									</xs:documentation>
-								</xs:annotation>
-							</xs:element>
-							<xs:element name="seasonId" type="publish:idType">
-								<xs:annotation>
-									<xs:documentation>id for season, not unique. Only present if
-										content is connected to a season.
-									</xs:documentation>
-								</xs:annotation>
-							</xs:element>
-							<xs:element name="episodeNumber" type="xs:positiveInteger">
-								<xs:annotation>
-									<xs:documentation>Episode number for the program
-									</xs:documentation>
-								</xs:annotation>
-							</xs:element>
-						</xs:sequence>
-					</xs:choice>
+					</xs:sequence>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>

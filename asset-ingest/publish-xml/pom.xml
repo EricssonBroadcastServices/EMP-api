@@ -3,7 +3,7 @@
   <groupId>net.ebstv.emp</groupId>
   <artifactId>publish-xml</artifactId>
   <packaging>jar</packaging>
-  <version>1.2.2</version>
+  <version>1.2.4</version>
   
   <name>PublishXML</name>
   <description>PublishXML is the recomended format for VOD ingest into EMP.</description>
