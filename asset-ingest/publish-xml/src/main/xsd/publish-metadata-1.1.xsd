@@ -730,8 +730,10 @@
 	</xs:simpleType>
 	<xs:complexType name="titleListType">
 		<xs:sequence>
-			<xs:element name="title" type="publish:titleType"
-				minOccurs="1" maxOccurs="unbounded" />
+			<xs:sequence minOccurs="1" maxOccurs="unbounded" >
+				<xs:element name="title" type="publish:titleType"/>
+				<xs:element name="sortingTitle" type="publish:titleType" minOccurs="0"/>
+			</xs:sequence>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="descriptionListType">
