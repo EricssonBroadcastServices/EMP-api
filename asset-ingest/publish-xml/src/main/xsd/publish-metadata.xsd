@@ -4,7 +4,7 @@
 	xmlns:publish="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1"
 	targetNamespace="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1"
 	elementFormDefault="qualified" attributeFormDefault="unqualified"
-	version="2.0">
+	version="@@version@@">
 	<!-- Message definitions -->
 	<xs:element name="publish-metadata">
 		<xs:annotation>
