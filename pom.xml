@@ -9,8 +9,10 @@
   <name>metadata-ingest</name>
 
   <modules>
-    <module>asset-ingest</module>
-    <module>epg-ingest</module>
+    <module>asset-ingest/asset-xml</module>
+    <module>asset-ingest/publish-xml</module>
+    <module>epg-ingest/tv-anytime</module>
+    <module>epg-ingest/xmltv</module>
   </modules>
   
   <properties>
