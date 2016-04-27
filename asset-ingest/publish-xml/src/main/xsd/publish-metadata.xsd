@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:publish="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1"
-	targetNamespace="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1"
-	elementFormDefault="qualified" attributeFormDefault="unqualified"
-	version="@@version@@">
+		   xmlns:publish="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1"
+		   targetNamespace="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1"
+		   elementFormDefault="qualified" attributeFormDefault="unqualified"
+		   version="@@version@@">
 	<!-- Message definitions -->
 	<xs:element name="publish-metadata">
 		<xs:annotation>
@@ -29,17 +29,19 @@
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="series" type="publish:seriesType"
-				minOccurs="0" maxOccurs="1" />
+						minOccurs="0" maxOccurs="1" />
 			<xs:element name="season" type="publish:seasonType"
-				minOccurs="0" maxOccurs="1" />
+						minOccurs="0" maxOccurs="1" />
 			<xs:element name="tag" type="publish:tagType" minOccurs="0"
-				maxOccurs="1" />
+						maxOccurs="1" />
 			<xs:element name="asset" type="publish:assetType"
-				minOccurs="0" maxOccurs="1" />
+						minOccurs="0" maxOccurs="1" />
 			<xs:element name="material" type="publish:materialType"
-				minOccurs="0" maxOccurs="1" />
+						minOccurs="0" maxOccurs="1" />
 			<xs:element name="publicationList" type="publish:publicationListType"
-				minOccurs="0" maxOccurs="1" />
+						minOccurs="0" maxOccurs="1" />
+			<xs:element name="contract" type="publish:contractType"
+						minOccurs="0" maxOccurs="1" />
 		</xs:sequence>
 	</xs:complexType>
 	<!-- Material -->
@@ -53,7 +55,7 @@
 			<xs:extension base="publish:notNullString">
 				<xs:attribute name="syndicated" type="xs:boolean" use="optional" />
 				<xs:attribute name="syndicatedProvider" type="publish:notNullString"
-					use="optional" />
+							  use="optional" />
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
@@ -61,7 +63,7 @@
 	<xs:complexType name="materialType">
 		<xs:sequence>
 			<xs:element name="id" type="publish:idType" minOccurs="0"
-				maxOccurs="1">
+						maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>This is used to couple material with an event. If
 						not provided, an id will be generated based on the asset id.
@@ -69,7 +71,7 @@
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="materialRef" type="publish:materialRefType"
-				minOccurs="1" maxOccurs="1">
+						minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>A reference to an external media file. This can
 						be an ID, a URI a URL or any other String value.. Depends on the
@@ -78,7 +80,7 @@
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="assetIdRef" type="publish:idType"
-				minOccurs="0" maxOccurs="1">
+						minOccurs="0" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>No use at the moment but could be used for clips
 						or such at a later date. If we would start to send clips from
@@ -100,7 +102,7 @@
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="duration" type="xs:duration" minOccurs="0"
-				maxOccurs="1">
+						maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>An ISO 8601 duration in format
 						PnYnMnDTnHnMn.NNNS.
@@ -108,14 +110,14 @@
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="framerate" type="xs:positiveInteger"
-				minOccurs="0" maxOccurs="1">
+						minOccurs="0" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>If applicable, framerate for the material in FPS
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="DRMEnabled" type="xs:boolean" default="true"
-				minOccurs="0" maxOccurs="1">
+						minOccurs="0" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>If false then this material is not encrypted.
 						This is true by default.
@@ -123,7 +125,7 @@
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="allowAds" type="xs:boolean" default="true"
-				minOccurs="0" maxOccurs="1">
+						minOccurs="0" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Flag to indicate if ads are allowed in this video
 						(in the context of the publication/event)
@@ -131,19 +133,19 @@
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="breakList" type="publish:breakListType"
-				minOccurs="0" maxOccurs="1">
+						minOccurs="0" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>List of breaks for the media</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="subtitleList" type="publish:subtitleListType"
-				minOccurs="0" maxOccurs="1">
+						minOccurs="0" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>List of available subtitles</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="expiryDate" type="xs:dateTime"
-				minOccurs="0" maxOccurs="1">
+						minOccurs="0" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Expiry date for licensing in ISO 8601 fornat
 						("YYYY-MM-DDThh:mm:ss.SSS"]. Timezone may be included by
@@ -153,7 +155,7 @@
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="purgeDate" type="xs:dateTime" minOccurs="0"
-				maxOccurs="1">
+						maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Media would be purged, if no date then default
 						used
@@ -161,14 +163,14 @@
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="videoQuality" type="publish:videoQuality"
-				minOccurs="0" maxOccurs="1">
+						minOccurs="0" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Select video quality, SD or HD.
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="priority" type="publish:priority"
-				minOccurs="0" maxOccurs="1">
+						minOccurs="0" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Priority to use when ingesting this material as a
 						media
@@ -176,7 +178,7 @@
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="reingest" type="xs:boolean" minOccurs="0"
-				maxOccurs="1" default="false">
+						maxOccurs="1" default="false">
 				<xs:annotation>
 					<xs:documentation>Set this to true to force a reingest of the
 						asset
@@ -195,7 +197,7 @@
 	<xs:complexType name="subtitleListType">
 		<xs:sequence>
 			<xs:element name="subtitle" type="publish:subtitleType"
-				minOccurs="1" maxOccurs="unbounded">
+						minOccurs="1" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>reference to a subtitle item, for example a
 						teletext page or a subtitle file
@@ -235,7 +237,7 @@
 	<xs:complexType name="mediaListType">
 		<xs:sequence>
 			<xs:element name="media" type="publish:mediaType"
-				minOccurs="1" maxOccurs="unbounded" />
+						minOccurs="1" maxOccurs="unbounded" />
 		</xs:sequence>
 	</xs:complexType>
 	<xs:simpleType name="materialReferenceTypeType">
@@ -249,7 +251,7 @@
 	<xs:complexType name="mediaType">
 		<xs:sequence>
 			<xs:element name="subtitleList" type="publish:subtitleListType"
-				minOccurs="1">
+						minOccurs="1">
 				<xs:annotation>
 					<xs:documentation>list of available subtitles</xs:documentation>
 				</xs:annotation>
@@ -268,7 +270,7 @@
 	<xs:complexType name="materialRightsListType">
 		<xs:sequence>
 			<xs:element name="rights" type="publish:materialRightsType"
-				minOccurs="1" maxOccurs="unbounded" />
+						minOccurs="1" maxOccurs="unbounded" />
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="materialRightsType">
@@ -299,13 +301,13 @@
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="material" type="publish:materialType"
-				minOccurs="1" maxOccurs="unbounded" />
+						minOccurs="1" maxOccurs="unbounded" />
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="breakListType">
 		<xs:sequence>
 			<xs:element name="break" type="publish:breakType"
-				minOccurs="1" maxOccurs="unbounded" />
+						minOccurs="1" maxOccurs="unbounded" />
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="breakType">
@@ -315,7 +317,7 @@
 				</xs:documentation>
 			</xs:annotation>
 			<xs:element name="offset" type="xs:duration" minOccurs="1"
-				maxOccurs="1" />
+						maxOccurs="1" />
 		</xs:sequence>
 	</xs:complexType>
 	<!-- Common -->
@@ -352,7 +354,7 @@
 	<xs:complexType name="externalReferenceListType">
 		<xs:sequence>
 			<xs:element name="externalReference" type="publish:externalReferenceType"
-				minOccurs="1" maxOccurs="unbounded">
+						minOccurs="1" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>List of external resources that can used to
 						connect/boost the content data with.
@@ -364,7 +366,7 @@
 	<xs:complexType name="externalReferenceType">
 		<xs:sequence>
 			<xs:element name="provider" type="publish:notNullString"
-				minOccurs="1" maxOccurs="1">
+						minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Who is the provides for the extend data that can
 						be used for this content. It can for example be score24.com or
@@ -392,13 +394,13 @@
 		<xs:sequence>
 			<xs:choice>
 				<xs:element name="tagIdRef" type="publish:idType"
-					minOccurs="0" maxOccurs="unbounded">
+							minOccurs="0" maxOccurs="unbounded">
 					<xs:annotation>
 						<xs:documentation>Reference to an existing tag</xs:documentation>
 					</xs:annotation>
 				</xs:element>
 				<xs:element name="tag" type="publish:tagType" minOccurs="0"
-					maxOccurs="unbounded" />
+							maxOccurs="unbounded" />
 			</xs:choice>
 		</xs:sequence>
 	</xs:complexType>
@@ -410,9 +412,9 @@
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="tagNames" type="publish:tagNameListType"
-				minOccurs="1" maxOccurs="1" />
+						minOccurs="1" maxOccurs="1" />
 			<xs:element name="tagParents" type="publish:tagParentListType"
-				minOccurs="0" maxOccurs="1" />
+						minOccurs="0" maxOccurs="1" />
 		</xs:sequence>
 		<xs:attribute name="id" type="publish:idType" use="required" />
 		<xs:attribute name="type" type="publish:nidType" use="required" />
@@ -420,13 +422,13 @@
 	<xs:complexType name="tagNameListType">
 		<xs:sequence>
 			<xs:element name="tagName" type="publish:tagNameType"
-				minOccurs="1" maxOccurs="unbounded" />
+						minOccurs="1" maxOccurs="unbounded" />
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="tagParentListType">
 		<xs:sequence>
 			<xs:element name="tagIdRef" type="publish:idType"
-				minOccurs="1" maxOccurs="unbounded" />
+						minOccurs="1" maxOccurs="unbounded" />
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="tagNameType">
@@ -462,7 +464,7 @@
 		<xs:sequence>
 			<xs:element name="productList" type="publish:productListType" />
 			<xs:element name="serviceList" type="publish:serviceListType"
-				minOccurs="0" />
+						minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="drmRestrictionsType">
@@ -477,16 +479,16 @@
 					</xs:documentation>
 				</xs:annotation>
 				<xs:element name="studioContractID" type="xs:string"
-					minOccurs="0" />
+							minOccurs="0" />
 				<xs:sequence>
 					<xs:element name="downloadAllowed" type="xs:boolean"
-						minOccurs="0" />
+								minOccurs="0" />
 					<xs:element name="mirroringAllowed" type="xs:boolean"
-						minOccurs="0" />
+								minOccurs="0" />
 					<xs:element name="HDAllowed" type="xs:boolean"
-						minOccurs="0" />
+								minOccurs="0" />
 					<xs:element name="HDMIAllowed" type="xs:boolean"
-						minOccurs="0" />
+								minOccurs="0" />
 					<xs:element name="MaxBitRate" minOccurs="0">
 						<xs:simpleType>
 							<xs:restriction base="xs:long">
@@ -495,17 +497,17 @@
 						</xs:simpleType>
 					</xs:element>
 					<xs:element name="deviceList" type="publish:deviceListType"
-						minOccurs="0" />
+								minOccurs="0" />
 				</xs:sequence>
 			</xs:choice>
 			<xs:element name="includeCountries" type="publish:countryListType"
-				minOccurs="0" />
+						minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="countryListType">
 		<xs:sequence>
 			<xs:element name="country" type="publish:ISOCountry"
-				minOccurs="1" maxOccurs="unbounded">
+						minOccurs="1" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>code in ISO 3166-1-alpha-2</xs:documentation>
 				</xs:annotation>
@@ -515,7 +517,7 @@
 	<xs:complexType name="deviceListType">
 		<xs:sequence>
 			<xs:element name="device" type="publish:deviceType"
-				minOccurs="1" maxOccurs="unbounded">
+						minOccurs="1" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>Name of the device</xs:documentation>
 				</xs:annotation>
@@ -525,7 +527,7 @@
 	<xs:complexType name="deviceType">
 		<xs:sequence>
 			<xs:element name="deviceType" type="publish:deviceTypeType"
-				minOccurs="1" />
+						minOccurs="1" />
 			<xs:element name="vendor" type="xs:string" minOccurs="0" />
 			<xs:element name="os" type="xs:string" minOccurs="0" />
 			<xs:element name="osVersion" type="xs:string" minOccurs="0" />
@@ -549,7 +551,7 @@
 	<xs:complexType name="productListType">
 		<xs:sequence>
 			<xs:element name="product" type="xs:string" minOccurs="1"
-				maxOccurs="unbounded">
+						maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>Name of the product</xs:documentation>
 				</xs:annotation>
@@ -559,7 +561,7 @@
 	<xs:complexType name="serviceListType">
 		<xs:sequence>
 			<xs:element name="service" type="xs:string" minOccurs="1"
-				maxOccurs="unbounded">
+						maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>Name of the platform</xs:documentation>
 				</xs:annotation>
@@ -592,7 +594,7 @@
 				</xs:simpleType>
 			</xs:element>
 			<xs:element name="countryOfOriginList" type="publish:countryListType"
-				minOccurs="0">
+						minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>list of production countries. Use country codes
 						in IS0 3166-1-alpha-2
@@ -608,13 +610,13 @@
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="descriptionList" type="publish:descriptionListType"
-				minOccurs="0">
+						minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>List of descriptions</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="creditList" type="publish:creditListType"
-				minOccurs="0">
+						minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>list of actors, producers etc. should be
 						consistent within each provider
@@ -622,22 +624,22 @@
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="tagList" type="publish:tagListType"
-				minOccurs="0">
+						minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>list of tags for the content.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="imageList" type="publish:imageListType"
-				minOccurs="0">
+						minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>list of content related images.
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="parentalRatingList" type="publish:parentalRatingListType"
-				minOccurs="0" />
+						minOccurs="0" />
 			<xs:element name="externalReferenceList" type="publish:externalReferenceListType"
-				minOccurs="0" />
+						minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="seriesType">
@@ -650,20 +652,20 @@
 			<xs:extension base="publish:abstractAssetType">
 				<xs:sequence>
 					<xs:element name="seriesId" type="publish:idType"
-						minOccurs="1" maxOccurs="1">
+								minOccurs="1" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>id for Series, not unique</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="seasonNumber" type="xs:positiveInteger"
-						minOccurs="0">
+								minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>Season number for the series.
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="numberOfEpisodes" type="xs:positiveInteger"
-						minOccurs="0">
+								minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>If the content belongs to a series/season, this
 								is the total number of episodes in that series/season.
@@ -679,13 +681,13 @@
 			<xs:extension base="publish:abstractAssetType">
 				<xs:sequence>
 					<xs:element name="assetType" type="publish:assetTypeType"
-						minOccurs="1">
+								minOccurs="1">
 						<xs:annotation>
 							<xs:documentation>Type of the asset</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="assetIdRef" type="publish:idType"
-						minOccurs="0">
+								minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>Reference to other asset entity that is
 								related. Use is for a trailer to reference the original content.
@@ -735,7 +737,7 @@
 			<xs:sequence minOccurs="1" maxOccurs="unbounded">
 				<xs:element name="title" type="publish:titleType" />
 				<xs:element name="sortingTitle" type="publish:titleType"
-					minOccurs="0" />
+							minOccurs="0" />
 			</xs:sequence>
 		</xs:sequence>
 	</xs:complexType>
@@ -747,7 +749,7 @@
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="description" type="publish:descriptionType"
-				minOccurs="1" maxOccurs="unbounded" />
+						minOccurs="1" maxOccurs="unbounded" />
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="commentListType">
@@ -762,13 +764,13 @@
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="comment" type="publish:descriptionType"
-				minOccurs="1" maxOccurs="unbounded" />
+						minOccurs="1" maxOccurs="unbounded" />
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="parentalRatingListType">
 		<xs:sequence>
 			<xs:element name="parentalRating" type="publish:parentalRatingType"
-				minOccurs="1" maxOccurs="unbounded" />
+						minOccurs="1" maxOccurs="unbounded" />
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="parentalRatingType">
@@ -780,7 +782,7 @@
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="rating" type="publish:notNullString"
-				minOccurs="1">
+						minOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Parental rating age in year. 0 years => No
 						restriction. Also see
@@ -790,7 +792,7 @@
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="scheme" type="publish:notNullString"
-				minOccurs="1">
+						minOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Rating code that motivates the parental guidance.
 						Code to descriptive text is mapped in client GUI.
@@ -798,9 +800,9 @@
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="country" type="publish:ISOCountry"
-				minOccurs="0">
+						minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>Two char country code accoring to ISO
+					<xs:documentation>Two char country code according to ISO
 						3166-1-alpha-2. Empty or absent country attribute has the meaning
 						that it is global default value for any country. Specific country
 						declaration overrides the default. If country value is repeted,
@@ -834,7 +836,7 @@
 		<xs:simpleContent>
 			<xs:extension base="publish:untypedDescriptionType">
 				<xs:attribute name="length" type="publish:descriptionLengthType"
-					use="optional">
+							  use="optional">
 					<xs:annotation>
 						<xs:documentation />
 					</xs:annotation>
@@ -881,23 +883,23 @@
 	<xs:complexType name="creditListType">
 		<xs:sequence>
 			<xs:element name="credit" type="publish:creditType"
-				minOccurs="1" maxOccurs="unbounded" />
+						minOccurs="1" maxOccurs="unbounded" />
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="creditType">
 		<xs:sequence>
 			<xs:element name="name" type="publish:notNullString"
-				minOccurs="1" maxOccurs="1" />
+						minOccurs="1" maxOccurs="1" />
 			<xs:element name="rolename" type="publish:notNullString"
-				minOccurs="0" maxOccurs="1" />
+						minOccurs="0" maxOccurs="1" />
 			<xs:element name="function" type="publish:notNullString"
-				minOccurs="0" maxOccurs="1" />
+						minOccurs="0" maxOccurs="1" />
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="imageType">
 		<xs:sequence>
 			<xs:element name="id" type="publish:idType" minOccurs="1"
-				maxOccurs="1">
+						maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>The id of the image from the origin system. For
 						example it might be img_123.
@@ -905,15 +907,15 @@
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="url" type="xs:anyURI" minOccurs="1"
-				maxOccurs="1" />
+						maxOccurs="1" />
 			<xs:element name="width" type="xs:positiveInteger"
-				minOccurs="0" maxOccurs="1">
+						minOccurs="0" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>In unit px.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="height" type="xs:positiveInteger"
-				minOccurs="0" maxOccurs="1">
+						minOccurs="0" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>In unit px.</xs:documentation>
 				</xs:annotation>
@@ -946,7 +948,7 @@
 				</xs:simpleType>
 			</xs:element>
 			<xs:element name="copyright" type="publish:notNullString"
-				minOccurs="0" maxOccurs="1" />
+						minOccurs="0" maxOccurs="1" />
 		</xs:sequence>
 		<xs:attribute name="priority" use="optional">
 			<xs:annotation>
@@ -960,7 +962,7 @@
 			</xs:simpleType>
 		</xs:attribute>
 		<xs:attribute name="language" type="publish:language"
-			use="optional">
+					  use="optional">
 			<xs:annotation>
 				<xs:documentation>Language of the image if applicable
 				</xs:documentation>
@@ -975,7 +977,7 @@
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="image" type="publish:imageType"
-				minOccurs="1" maxOccurs="unbounded" />
+						minOccurs="1" maxOccurs="unbounded" />
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="simpleTextType">
@@ -995,14 +997,14 @@
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="id" type="publish:idType" minOccurs="1"
-				maxOccurs="1">
+						maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Per provider unique id for the event.
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="assetIdRef" type="publish:idType"
-				minOccurs="0" maxOccurs="1">
+						minOccurs="0" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>Reference to an asset id. Should only be provided
 						when an actual asset element is NOT provided.
@@ -1017,21 +1019,21 @@
 				</xs:annotation>
 				<xs:sequence>
 					<xs:element name="startTime" type="xs:dateTime"
-						minOccurs="1" maxOccurs="1">
+								minOccurs="1" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>Time when Vod is possible to start play.
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="endTime" type="xs:dateTime" minOccurs="1"
-						maxOccurs="1">
+								maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>Time when Vod is no longer possible to play.
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="publishTime" type="xs:dateTime"
-						minOccurs="0" maxOccurs="1">
+								minOccurs="0" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>Time when the vod information can be exposed to
 								the customer. Vod can not be played until startTime. If publish
@@ -1041,7 +1043,7 @@
 					</xs:element>
 				</xs:sequence>
 				<xs:element name="revoked" type="xs:boolean" minOccurs="1"
-					maxOccurs="1" default="false">
+							maxOccurs="1" default="false">
 					<xs:annotation>
 						<xs:documentation>If this flag is set to true then the publication
 							is to be marked for revocation.
@@ -1050,15 +1052,15 @@
 				</xs:element>
 			</xs:choice>
 			<xs:element name="publicationRights" type="publish:publicationRightsType"
-				minOccurs="0" maxOccurs="1" />
+						minOccurs="0" maxOccurs="1" />
 			<xs:element name="drmRestrictions" type="publish:drmRestrictionsType"
-				minOccurs="0" maxOccurs="1" />
+						minOccurs="0" maxOccurs="1" />
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="publicationListType">
 		<xs:sequence>
 			<xs:element name="publication" type="publish:publicationType"
-				minOccurs="1" maxOccurs="unbounded" />
+						minOccurs="1" maxOccurs="unbounded" />
 		</xs:sequence>
 	</xs:complexType>
 	<xs:simpleType name="notNullString">
@@ -1068,6 +1070,139 @@
 		</xs:restriction>
 	</xs:simpleType>
 
+	<!-- Begin Contract -->
+	<xs:complexType name="contractType">
+		<xs:sequence>
+			<xs:element name="id" type="publish:idType" minOccurs="1"
+						maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Per provider unique id for the contract.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="externalId" type="publish:idType"
+						minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Reference to a contract id only be provided
+						when an actual id element is NOT provided.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="contractName" type="xs:string" minOccurs="1" maxOccurs="1" />
+			<xs:element name="originator" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="created" type="xs:dateTime"
+						minOccurs="1" maxOccurs="1" />
+			<xs:element name="changed" type="xs:dateTime"
+						minOccurs="0" maxOccurs="1" />
+			<xs:element name="assetRights" type="publish:assetRightsType"
+						minOccurs="0" maxOccurs="1" />
+			<xs:element name="allowedCountries" type="publish:countryListType"
+						minOccurs="0" />
+			<xs:element name="catchupAllowed" type="xs:boolean" minOccurs="0" />
+			<xs:element name="devices" type="publish:contractDeviceList" minOccurs="0" />
+			<xs:element name="studio" type="xs:string" minOccurs="0" />
+			<xs:element name="rentalHours" type="xs:integer"
+						minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="contractDeviceList">
+		<xs:sequence>
+			<xs:element name="contractDevice" type="publish:contractDeviceType"
+						minOccurs="1" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="contractDeviceType">
+		<xs:sequence>
+			<xs:element name="contractDeviceDataType" type="publish:contractDeviceTypeType"
+						minOccurs="1" />
+			<xs:element name="manufacturer" type="xs:string" minOccurs="0" />
+			<xs:element name="os" type="xs:string" minOccurs="0" />
+			<xs:element name="osVersion" type="xs:string" minOccurs="0" />
+			<xs:element name="model" type="xs:string" minOccurs="0" />
+			<xs:element name="assetRights" type="publish:assetRightsType"
+						minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="contractDeviceTypeType">
+		<xs:annotation>
+			<xs:documentation>
+				Supported device types for contract device
+			</xs:documentation>
+		</xs:annotation>
+
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="WEB" /> <!-- WEB -->
+			<xs:enumeration value="MOBILE" /> <!-- MOBILE -->
+			<xs:enumeration value="TABLET" /> <!-- TABLET -->
+			<xs:enumeration value="APPLE_TV" /> <!-- APPLE TV -->
+			<xs:enumeration value="SMART_TV" /> <!-- SMART TV -->
+			<xs:enumeration value="CONSOLE" /> <!-- CONSOLE -->
+			<xs:enumeration value="STB" /> <!-- STB -->
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="assetRightsType">
+		<xs:annotation>
+			<xs:documentation>
+				Asset rights specified in the contract/device
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="minBitrate" type="xs:integer"
+						minOccurs="0" maxOccurs="1" />
+			<xs:element name="maxBitrate" type="xs:integer"
+						minOccurs="0" maxOccurs="1" />
+			<xs:element name="maxResWidth" type="xs:integer"
+						minOccurs="0" maxOccurs="1" />
+			<xs:element name="maxResHeight" type="xs:integer"
+						minOccurs="0" maxOccurs="1" />
+			<xs:element name="playCount" type="xs:integer"
+						minOccurs="0" maxOccurs="1" />
+			<xs:element name="maxFileSize" type="xs:long"
+						minOccurs="0" maxOccurs="1" />
+			<xs:element name="activation" type="xs:dateTime"
+						minOccurs="0" maxOccurs="1" />
+			<xs:element name="expiration" type="xs:dateTime"
+						minOccurs="0" maxOccurs="1" />
+			<xs:element name="maxAds" type="xs:integer"
+						minOccurs="0" maxOccurs="1" />
+			<xs:element name="wifiBlocked" type="xs:boolean"
+						minOccurs="0" maxOccurs="1" />
+			<xs:element name="threeGBlocked" type="xs:boolean"
+						minOccurs="0" maxOccurs="1" />
+			<xs:element name="fourGBlocked" type="xs:boolean"
+						minOccurs="0" maxOccurs="1" />
+			<xs:element name="HDMIBlocked" type="xs:boolean"
+						minOccurs="0" maxOccurs="1" />
+			<xs:element name="airplayBlocked" type="xs:boolean"
+						minOccurs="0" maxOccurs="1" />
+			<xs:element name="downloadBlocked" type="xs:boolean"
+						minOccurs="0" maxOccurs="1" />
+			<xs:element name="streamingBlocked" type="xs:boolean"
+						minOccurs="0" maxOccurs="1" />
+			<xs:element name="analyticsEnabled" type="xs:boolean"
+						minOccurs="0" maxOccurs="1" />
+			<xs:element name="sessionShiftEnabled" type="xs:boolean"
+						minOccurs="0" maxOccurs="1" />
+			<xs:element name="rwEnabled" type="xs:boolean"
+						minOccurs="0" maxOccurs="1" />
+			<xs:element name="ffEnabled" type="xs:boolean"
+						minOccurs="0" maxOccurs="1" />
+			<xs:element name="amcDebugLogEnabled" type="xs:boolean"
+						minOccurs="0" maxOccurs="1" />
+			<xs:element name="locationEnabled" type="xs:boolean"
+						minOccurs="0" maxOccurs="1" />
+			<xs:element name="minPlayPosition" type="xs:integer"
+						minOccurs="0" maxOccurs="1" />
+			<xs:element name="maxPlayPosition" type="xs:integer"
+						minOccurs="0" maxOccurs="1" />
+			<xs:element name="jailbrokenBlocked" type="xs:boolean"
+						minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
 	<!-- Begin long country/language codes -->
 	<xs:simpleType name="ISOCountry">
 		<xs:annotation>
