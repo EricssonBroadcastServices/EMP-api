@@ -1,0 +1,20 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+	 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <parent>
+    <groupId>net.ebstv.emp</groupId>
+    <artifactId>metadata-ingest</artifactId>
+    <version>1.0.0</version>
+  </parent>
+  
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>asset-ingest</artifactId>
+  <packaging>pom</packaging>
+  <version>1.0.0</version>
+  <name>asset-ingest</name>
+
+  <modules>
+    <module>publish-xml</module>
+    <module>publish-xml-1.0</module>
+    <module>asset-xml</module>
+  </modules>
+</project>
