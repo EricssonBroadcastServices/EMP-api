@@ -71,7 +71,7 @@
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="materialRef" type="publish:materialRefType"
-						minOccurs="1" maxOccurs="1">
+						minOccurs="0" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>A reference to an external media file. This can
 						be an ID, a URI a URL or any other String value.. Depends on the
