@@ -1058,10 +1058,11 @@
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="publicationListType">
-		<xs:sequence>
+		<xs:sequence>	
 			<xs:element name="publication" type="publish:publicationType"
 						minOccurs="1" maxOccurs="unbounded" />
 		</xs:sequence>
+		<xs:attribute name="revokeAll" type="xs:boolean" />
 	</xs:complexType>
 	<xs:simpleType name="notNullString">
 		<xs:restriction base="xs:string">
