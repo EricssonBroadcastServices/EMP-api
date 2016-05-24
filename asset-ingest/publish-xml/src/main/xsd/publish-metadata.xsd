@@ -1060,7 +1060,7 @@
 	<xs:complexType name="publicationListType">
 		<xs:sequence>	
 			<xs:element name="publication" type="publish:publicationType"
-						minOccurs="1" maxOccurs="unbounded" />
+						minOccurs="0" maxOccurs="unbounded" />
 		</xs:sequence>
 		<xs:attribute name="revokeAll" type="xs:boolean" />
 	</xs:complexType>
