@@ -60,6 +60,8 @@
                 <xs:element maxOccurs="1" minOccurs="1" ref="asset:titles"/>
                 <xs:element maxOccurs="1" minOccurs="0" ref="asset:texts"/>
                 <xs:element maxOccurs="1" minOccurs="0" ref="asset:duration"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:aspectRatio"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:videoQuality"/>
                 <xs:element maxOccurs="1" minOccurs="0" ref="asset:source"/>
                 <xs:element maxOccurs="1" minOccurs="0" ref="asset:rightsPeriod"/>
                 <xs:element maxOccurs="1" minOccurs="0" ref="asset:purgeTime"/>
@@ -92,6 +94,18 @@
             <xs:enumeration value="Ad"/>
             <xs:enumeration value="Live show"/>
             <xs:enumeration value="Other"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="aspectRatio">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="4:3"/>
+            <xs:enumeration value="16:9"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="videoQuality">
+		<xs:restriction base="xs:string">
+            <xs:enumeration value="SD"/>
+            <xs:enumeration value="HD"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="descriptionType">
