@@ -60,8 +60,8 @@
                 <xs:element maxOccurs="1" minOccurs="1" ref="asset:titles"/>
                 <xs:element maxOccurs="1" minOccurs="0" ref="asset:texts"/>
                 <xs:element maxOccurs="1" minOccurs="0" ref="asset:duration"/>
-                <xs:element maxOccurs="1" minOccurs="0" ref="asset:aspectRatio"/>
-                <xs:element maxOccurs="1" minOccurs="0" ref="asset:videoQuality"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:aspect-ratio"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:video-quality"/>
                 <xs:element maxOccurs="1" minOccurs="0" ref="asset:source"/>
                 <xs:element maxOccurs="1" minOccurs="0" ref="asset:rightsPeriod"/>
                 <xs:element maxOccurs="1" minOccurs="0" ref="asset:purgeTime"/>
@@ -196,6 +196,8 @@
     <xs:element name="asset-id" type="asset:id"/>
     <xs:element name="asset-name" type="xs:string"/>
     <xs:element name="asset-type" type="asset:assetType"/>
+    <xs:element name="video-quality" type="asset:videoQuality"/>
+    <xs:element name="aspect-ratio" type="asset:aspectRatio"/>
     <xs:element name="disable-drm-token-validation" type="xs:boolean"/>
     <xs:element name="tag">
         <xs:complexType mixed="true">

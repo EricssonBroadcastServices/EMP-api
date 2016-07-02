@@ -5,7 +5,7 @@
   <groupId>net.ebstv.emp</groupId>
   <artifactId>metadata-ingest</artifactId>
   <packaging>pom</packaging>
-  <version>1.0.1</version>
+  <version>1.0.0</version>
   <name>metadata-ingest</name>
 
   <modules>
