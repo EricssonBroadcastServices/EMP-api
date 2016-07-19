@@ -82,22 +82,8 @@
 			<xs:element name="assetIdRef" type="publish:idType"
 						minOccurs="0" maxOccurs="1">
 				<xs:annotation>
-					<xs:documentation>No use at the moment but could be used for clips
-						or such at a later date. If we would start to send clips from
-						louise or metabank that are not scheduled in louise, we would have
-						material for the clip (videoformat, resolution etc) but we would
-						not have an event to connect the material to. So we need this
-						element to connect the clip (or ad, or something else that does
-						not have a scheduled event) to a content. Say we have highlights
-						from a UFC fight or an Idol episode, we have (at least) two
-						usecases: 1: It is a clip from a recent episode that we want to
-						use to promote watching of the episode on our VOD platform. In
-						this case we could reference the scheduled event instead of the
-						content, however.. 2: If it is an old clip from a publication
-						event that has expired but we want to use it to promote a new
-						season. Then we need to be able to connect it to a
-						content/season/brand instead as we would not have an event to
-						connect it to.
+					<xs:documentation>Used when no asset is provided in this message. 
+						The assetIdRef should identify the asset to create the material for.
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
