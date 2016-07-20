@@ -312,7 +312,7 @@
 			<xs:documentation>A general ID type for entities</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
-			<xs:pattern value="[0-9a-zA-Z\-_]+" />
+			<xs:pattern value="[0-9\p{L}\-_]+" />
 			<xs:minLength value="3" />
 			<xs:maxLength value="128" />
 		</xs:restriction>
