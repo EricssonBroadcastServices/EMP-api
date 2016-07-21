@@ -1188,6 +1188,11 @@
 						minOccurs="0" maxOccurs="1" />
 			<xs:element name="jailbrokenBlocked" type="xs:boolean"
 						minOccurs="0" maxOccurs="1" />
+                        <xs:element name="downloadMaxSecondsAfterDownload" type="xs:integer"
+                                                minOccurs="0" maxOccurs="1" />
+                        <xs:element name="downloadMaxSecondsAfterPlay" type="xs:integer"
+                                                minOccurs="0" maxOccurs="1" />
+
 		</xs:sequence>
 	</xs:complexType>
 	<!-- Begin long country/language codes -->
