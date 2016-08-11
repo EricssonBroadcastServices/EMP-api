@@ -332,7 +332,7 @@
 			</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
-			<xs:pattern value="[0-9a-z\-_]+" />
+			<xs:pattern value="[0-9A-Za-z\-_]+" />
 			<xs:minLength value="3" />
 			<xs:maxLength value="128" />
 		</xs:restriction>
