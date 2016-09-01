@@ -7,9 +7,9 @@
   </parent>
   
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>asset-xml</artifactId>
+  <artifactId>adi-xml-1.1</artifactId>
   <packaging>jar</packaging>
-  <version>1.0.1</version>
+  <version>1.0.0</version>
   
   <name>ADIXML</name>
   <description></description>
