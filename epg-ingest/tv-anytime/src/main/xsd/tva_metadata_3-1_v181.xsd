@@ -69,6 +69,7 @@
 			<element name="Definition" type="mpeg7:TextualType" minOccurs="0"/>
 		</sequence>
 		<attribute name="href" type="mpeg7:termReferenceType" use="required"/>
+		<attribute name="termid" type="string" use="optional"/>
 	</complexType>
 	<complexType name="TVAIDRefElementType">
 		<attribute name="ref" type="tva:TVAIDRefType" use="required"/>
