@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+VU Export file;
+Produced: Mon Mar 07 09:45:41 GMT 2016;
+Product: 01163982
+PAID: 001031401
+ -->
+
+<ADI>
+<Metadata>
+<AMS Verb="" Product="TVOD" Asset_Name="Indiana Jones und der letzte Kreuzzug" Description="Indiana Jones und der letzte Kreuzzug Package" Provider_ID="vubiquity.co.uk" Creation_Date="2015-12-22" Asset_ID="PAID0000000001163982" Version_Major="1" Version_Minor="0" Provider="VU" Asset_Class="package"/>
+<App_Data Value="CableLabsVOD1.1" Name="Metadata_Spec_Version" App="TVOD"/>
+<App_Data Value="OTT" Name="Provider_Content_Tier" App="TVOD"/>
+</Metadata>
+<Asset>
+<Metadata>
+<AMS Verb="" Product="TVOD" Asset_ID="PAID00000000001031401" Provider_ID="vubiquity.co.uk" Creation_Date="2015-12-22" Description="Indiana Jones und der letzte Kreuzzug Title" Version_Minor="0" Version_Major="1" Asset_Name="Indiana Jones und der letzte Kreuzzug" Provider="VU"  Asset_Class="title"/>
+<App_Data Value="CableLabsVOD1.1" Name="Metadata_Spec_Version" App="TVOD"/>
+<App_Data Value="title" Name="Type" App="TVOD"/>
+<App_Data Value="PG" Name="Rating" App="TVOD"/>
+<App_Data Value="01:43:16:22 " Name="Run_Time" App="TVOD"/>
+<App_Data Value="01:43:16" Name="Display_Run_Time" App="TVOD"/>
+<App_Data Value="2011" Name="Year" App="TVOD"/>
+<App_Data Value="USA" Name="Country_of_Origin" App="TVOD"/>
+<App_Data Value="WAR" Name="Studio_Code" App="TVOD"/>
+<App_Data Value="WARNER" Name="Studio_Name" App="TVOD"/>
+<App_Data Value="Movie" Name="Show_Type" App="TVOD"/>
+<App_Data Value="Komödie" Name="Genre" App="TVOD"/>
+<App_Data Value="001031401" Name="Billing_ID" App="TVOD"/>
+<App_Data Value="10023088" Name="Publish_ID" App="TVOD"/>
+<App_Data Value="3.99" Name="Suggested_Price" App="TVOD"/>
+<App_Data Value="2016-01-14T06:00:00" Name="Licensing_Window_Start" App="TVOD"/>
+<App_Data Value="2016-12-31T05:59:59" Name="Licensing_Window_End" App="TVOD"/>
+<App_Data Value="2" Name="Propagation_Priority" App="TVOD"/>
+<App_Data Value="00:24:00" Name="Maximum_Viewing_Length" App="TVOD"/>
+<App_Data Value="Indiana Jones und der letzte Kreuzzug" Language="de" Name="Title" App="TVOD"/>
+<App_Data Value="Indiana Jones und der letzte Kreuzzug" Language="de" Name="Title_Brief" App="TVOD"/>
+<App_Data Value="Indiana Jones und der letzte Kreuzzug" Language="de" Name="Title_Sort_Name" App="TVOD"/>
+<App_Data Value="Indiana Jones soll den Heiligen Gral finden. Am meisten darüber weiß Indies Vater, Dr. Henry Jones. Aber den muss der Archäologieprofessor mit der Peitsche erst aus den Händen der Nazis befreien. Gemeinsam machen sich Professor Jones und &quot;Junior&quot; auf die Suche nach dem Gral. Doch den wollen auch die Nazis haben. Dritter Teil der Abenteuer-Saga" Language="de" Name="Summary_Long" App="TVOD"/>
+<App_Data Value="Indiana Jones soll den Heiligen Gral finden. Am meisten darüber weiß Indies Vater, Dr. Henry Jones." Language="de" Name="Summary_Short" App="TVOD"/>
+<App_Data Value="Biel, Jessica " Name="Actors" App="TVOD"/>
+<App_Data Value="Jon Bon Jovi" Name="Actors" App="TVOD"/>
+<App_Data Value="Berry, Halle " Name="Actors" App="TVOD"/>
+<App_Data Value="Jessica Biel, Jon Bon Jovi, Halle Berry" Name="Actors_Display" App="TVOD"/>
+<App_Data Value="Garry Marshall" Name="Director" App="TVOD"/>
+<App_Data Value="_ApplicationSupport@vubiquity.co.uk" Name="Provider_QA_Contact" App="TVOD"/>
+</Metadata>
+<Asset>
+<Metadata>
+<AMS Verb="" Asset_Class="movie" Product="TVOD" Provider="VU" Version_Minor="0" Version_Major="1" Asset_ID="PAID0000000001676085" Creation_Date="2015-12-22" Provider_ID="ondemand.co.uk" Description="Indiana Jones und der letzte Kreuzzug Movie" Asset_Name="Indiana Jones und der letzte Kreuzzug"/>
+<App_Data App="TVOD" Value="movie" Name="Type"/>
+<App_Data Value="Dolby5.1" Name="Audio_Type" App="TVOD"/>
+<App_Data Value="3750" Name="Bit_Rate" App="TVOD"/>
+<App_Data Value="Y" Name="Encryption" App="TVOD"/>
+<App_Data Value="Widescreen" Name="Screen_Format" App="TVOD"/>
+<App_Data Name="HDContent" App="TVOD" Value="Y"/>
+<App_Data Value="en" Name="Languages" App="TVOD"/>
+<App_Data Value="Y" Name="Copy_Protection" App="TVOD"/>
+<App_Data Value="Y" Name="Copy_Protection_Verbose" App="TVOD"/>
+<App_Data Value="1" Name="Analogue_Protection_System" App="TVOD"/>
+<App_Data Value="3" Name="Encryption_TVODe_indicator" App="TVOD"/>
+<App_Data Value="3" Name="CGMS_A" App="TVOD"/>
+<App_Data Value="1" Name="Constrained_Image_Trigger" App="TVOD"/>
+<App_Data Value="14" Name="Content_FileSize" App="TVOD"/>
+<App_Data Value="67b0b5b41f9d993638e8dc5968594b65" Name="Content_CheckSum" App="TVOD"/>
+</Metadata>
+<Content Value="VU01676085.mpg"/>
+</Asset>
+<Asset>
+<Metadata>
+<AMS Asset_Class="preview" Product="TVOD" Provider="VU" Version_Minor="0" Version_Major="1" Asset_ID="PAID0000000001705680" Creation_Date="2016-02-10" Provider_ID="vubiquity.co.uk" Description="Indiana Jones und der letzte Kreuzzug Preview" Asset_Name="Indiana Jones und der letzte Kreuzzug" Verb=""/>
+<App_Data Value="preview" Name="Type" App="TVOD"/>
+<App_Data Value="Stereo" Name="Audio_Type" App="TVOD"/>
+<App_Data Value="3750" Name="Bit_Rate" App="TVOD"/>
+<App_Data Value="Y" Name="Encryption" App="TVOD"/>
+<App_Data Value="Widescreen" Name="Screen_Format" App="TVOD"/>
+<App_Data Name="HDContent" App="TVOD" Value="Y"/>
+<App_Data Value="de" Name="Languages" App="TVOD"/>
+<App_Data Value="PG" Name="Rating" App="TVOD"/>
+<App_Data Value="00:00:30" Name="Run_Time" App="TVOD"/>
+<App_Data Value="Y" Name="Copy_Protection" App="TVOD"/>
+<App_Data Value="26495028" Name="Content_FileSize" App="TVOD"/>
+<App_Data Value="658f4449f29fd45376b34d3fefb8774e" Name="Content_CheckSum" App="TVOD"/>
+</Metadata>
+<Content Value="VU01705680.mpg"/>
+</Asset>
+<Asset>
+<Metadata>
+<AMS Verb="" Asset_Class="poster" Product="TVOD" Provider="VU" Version_Minor="0" Version_Major="1" Asset_ID="PAID0000000001675782" Creation_Date="2015-12-22" Provider_ID="vubiquity.co.uk" Description="New Year's Eve Image" Asset_Name="New Year's Eve"/>
+<App_Data Value="poster" Name="Type" App="TVOD"/>
+<App_Data Value="1140628" Name="Content_FileSize" App="TVOD"/>
+<App_Data Value="1000x1400" Name="Image_Aspect_Ratio" App="TVOD"/>
+</Metadata>
+<Content Value="VU01675782.png"/>
+</Asset>
+<Asset>
+<Metadata>
+<AMS Verb="" Asset_Class="poster" Product="TVOD" Provider="VU" Version_Minor="0" Version_Major="1" Asset_ID="PAID0000000001675783" Creation_Date="2015-12-22" Provider_ID="vubiquity.co.uk" Description="New Year's Eve Image" Asset_Name="New Year's Eve"/>
+<App_Data Value="poster" Name="Type" App="TVOD"/>
+<App_Data Value="1140629" Name="Content_FileSize" App="TVOD"/>
+<App_Data Value="1920x1080" Name="Image_Aspect_Ratio" App="TVOD"/>
+</Metadata>
+<Content Value="VU01675783.png"/>
+</Asset>
+</Asset>
+</ADI>
