@@ -462,6 +462,8 @@
 				<xs:annotation>
 					<xs:documentation>If studioContractID is defined then all other
 						properties, except includeContries, are defined elsewhere.
+						
+						Also, if used on asset level we currently only care about includeCountries.
 					</xs:documentation>
 				</xs:annotation>
 				<xs:element name="studioContractID" type="xs:string"
@@ -699,6 +701,14 @@
 							<xs:element name="episodeNumber" type="xs:positiveInteger">
 								<xs:annotation>
 									<xs:documentation>Episode number for the program
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="drmRestrictions" type="publish:drmRestrictionsType" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation>
+									Used to set geo restrictions for whole asset. Note we only support included countries at this stage on asset level.
+									We reuse the same object as defined on publication level.
 									</xs:documentation>
 								</xs:annotation>
 							</xs:element>
