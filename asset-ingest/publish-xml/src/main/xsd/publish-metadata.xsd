@@ -155,6 +155,13 @@
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="videoQuality" type="publish:aspectRatio”
+						minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Aspect ratio 16_9 or 4_3.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="priority" type="publish:priority"
 						minOccurs="0" maxOccurs="1">
 				<xs:annotation>
@@ -177,6 +184,12 @@
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="SD" />
 			<xs:enumeration value="HD" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="aspectRatio">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value=“16_9” />
+			<xs:enumeration value=“4_3” />
 		</xs:restriction>
 	</xs:simpleType>
 	<!-- TODO: Need to add a RFA flag to Subtitles as well? -->
