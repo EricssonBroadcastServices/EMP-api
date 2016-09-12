@@ -110,6 +110,14 @@
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="migration" type="xs:boolean" default="false"
+						minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Use this to mark this material as a migration material.
+						This is false by default.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="allowAds" type="xs:boolean" default="true"
 						minOccurs="0" maxOccurs="1">
 				<xs:annotation>
