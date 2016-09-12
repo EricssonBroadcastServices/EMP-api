@@ -188,8 +188,8 @@
 	</xs:simpleType>
 	<xs:simpleType name="aspectRatio">
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="16_9" />
-			<xs:enumeration value="4_3" />
+			<xs:enumeration value="16:9" />
+			<xs:enumeration value="4:3" />
 		</xs:restriction>
 	</xs:simpleType>
 	<!-- TODO: Need to add a RFA flag to Subtitles as well? -->
