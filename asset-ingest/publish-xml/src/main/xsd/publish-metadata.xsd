@@ -523,7 +523,7 @@
 	<xs:complexType name="countryListType">
 		<xs:sequence>
 			<xs:element name="country" type="publish:ISOCountry"
-						minOccurs="1" maxOccurs="unbounded">
+						minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>code in ISO 3166-1-alpha-2</xs:documentation>
 				</xs:annotation>
