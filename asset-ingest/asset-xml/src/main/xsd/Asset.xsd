@@ -158,19 +158,27 @@
     </xs:simpleType>
     <xs:simpleType name="status">
         <xs:restriction base="xs:string">
-            <xs:enumeration value="cleaning"/>
+    		<xs:enumeration value="cleaning"/>
             <xs:enumeration value="cleaned"/>
             <xs:enumeration value="deleting"/>
             <xs:enumeration value="deleted"/>
             <xs:enumeration value="disabled"/>
+            <xs:enumeration value="downloading"/>
             <xs:enumeration value="enabled"/>
+            <xs:enumeration value="failed"/>
+            <xs:enumeration value="mrrdownloading"/>
+            <xs:enumeration value="mrrqueued"/>
+            <xs:enumeration value="preparing"/>
             <xs:enumeration value="purged"/>
             <xs:enumeration value="purging"/>
+            <xs:enumeration value="queued"/>            
             <xs:enumeration value="received"/>
             <xs:enumeration value="transcoding"/>
-            <xs:enumeration value="failed"/>
+            <xs:enumeration value="started"/>
+            <xs:enumeration value="suspended"/>
             <xs:enumeration value="unknown"/>
-            <xs:enumeration value="queued"/>
+            <xs:enumeration value="uploading"/>
+        	<xs:enumeration value="waiting"/>        
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="unit">
