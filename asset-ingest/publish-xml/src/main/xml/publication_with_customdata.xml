@@ -21,6 +21,16 @@
         </serviceList>
       </publicationRights>
       <studioContractId>SONY123456</studioContractId>
+      <customData>
+        <object>
+          <mapEntry name="key1">
+            <string>My value 1</string>
+          </mapEntry>
+          <mapEntry name="key2">
+            <string>My value 2</string>
+          </mapEntry>
+        </object>
+      </customData>
     </publication>
   </publicationList>
   </data>

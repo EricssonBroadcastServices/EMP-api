@@ -256,15 +256,15 @@
             <xs:documentation>code in ISO 639-1</xs:documentation>
           </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="format" type="publish:subtitleFormatType">
+        <xs:attribute name="name" type="xs:string">
           <xs:annotation>
-            <xs:documentation>The format of the subtitles
+            <xs:documentation>name of the subtitle. If not provided, the name will be equal to the language
             </xs:documentation>
           </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="name" type="xs:string">
+        <xs:attribute name="format" type="publish:subtitleFormatType">
           <xs:annotation>
-            <xs:documentation>Presentation name of the subtitle. e.g "English"
+            <xs:documentation>The format of the subtitles
             </xs:documentation>
           </xs:annotation>
         </xs:attribute>
@@ -1175,7 +1175,6 @@
       <xs:maxLength value="3000" />
     </xs:restriction>
   </xs:simpleType>
-
   <!-- Begin Contract -->
   <xs:complexType name="contractType">
     <xs:sequence>
