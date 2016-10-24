@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<publish-metadata xmlns="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata.xsd">
+<publishMetadata xmlns="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata.xsd">
 	<data>
 		<asset>
 			<id>000001</id>
@@ -16,4 +16,4 @@
 			<materialRef syndicated="true" syndicatedProvider="Provider">http://streaming.syndicated-provider.com/breaking-bad</materialRef>
 		</material>
 	</data>
-</publish-metadata>
+</publishMetadata>

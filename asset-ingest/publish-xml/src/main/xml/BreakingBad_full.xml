@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<publish-metadata xmlns="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.1.xsd ">
+<publishMetadata xmlns="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.1.xsd ">
   <data>
     <series>
       <id>BreakingBad</id>
@@ -94,13 +94,6 @@
       <descriptionList>
         <description language="en" length="short">Walt rejects everyone who tries to help him with the cancer. Jesse tries his best to create Walt's meth, with the help of an old friend.</description>
       </descriptionList>
-      <tagList>
-        <tag id="DRAMA" type="genre">
-          <tagNames>
-            <tagName language="en">Drama</tagName>
-          </tagNames>
-        </tag>
-      </tagList>
       <creditList>
         <credit>
           <name>Bryan Cranston</name>
@@ -157,13 +150,6 @@
       <descriptionList>
         <description language="en" length="short">Walt rejects everyone who tries to help him with the cancer. Jesse tries his best to create Walt's meth, with the help of an old friend.</description>
       </descriptionList>
-      <tagList>
-        <tag id="DRAMA" type="genre">
-          <tagNames>
-            <tagName language="en">Drama</tagName>
-          </tagNames>
-        </tag>
-      </tagList>
       <creditList>
         <credit>
           <name>Bryan Cranston</name>
@@ -215,15 +201,10 @@
       <duration>PT1H30M5S</duration>
       <framerate>60</framerate>
       <DRMEnabled>true</DRMEnabled>
-      <allowAds>true</allowAds>
-      <breakList>
-        <break>
-          <offset>PT30M</offset>
-        </break>
-        <break>
-          <offset>PT50M</offset>
-        </break>
-      </breakList>
+      <adInsertionMarkers>
+        <marker>PT30M</marker>
+        <marker>PT50M</marker>
+      </adInsertionMarkers>
       <subtitleList>
         <subtitle format="closed" language="en">Subtitle</subtitle> <!-- Remark: Current EMP format support is unclear -->
       </subtitleList>
@@ -244,31 +225,8 @@
             <service>service</service>
           </serviceList>
         </publicationRights>
-        <drmRestrictions>
-          <downloadAllowed>false</downloadAllowed>
-          <mirroringAllowed>true</mirroringAllowed>
-          <HDAllowed>true</HDAllowed>
-          <HDMIAllowed>true</HDMIAllowed>
-          <MaxBitRate>12000</MaxBitRate>
-          <deviceList>
-            <device> <!-- Remark: Currently on deviceType is used in the system-->
-              <deviceType>Mobile</deviceType>
-              <os>iOS</os>
-            </device>
-            <device>
-              <deviceType>Tablet</deviceType>
-              <vendor>HTC</vendor>
-              <os>Android</os>
-              <osVersion>4+</osVersion>              
-              <model>Nexus 9</model>
-            </device>
-          </deviceList>          
-          <includeCountries>
-            <country>SE</country>
-            <country>RO</country>
-          </includeCountries>
-        </drmRestrictions>
+        <studioContractId>SONY123456</studioContractId>
       </publication>
     </publicationList>
   </data>
-</publish-metadata>
+</publishMetadata>

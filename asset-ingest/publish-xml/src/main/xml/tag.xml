@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<publishMetadata
+  xmlns="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-2.0.xsd ">
+  <data>
+    <tag id="DRAMA" type="genre">
+      <tagNames>
+        <tagName language="en">Drama</tagName>
+      </tagNames>
+      <tagParents>
+        <tagIdRef>SERIES_TAG</tagIdRef>
+      </tagParents>
+    </tag>
+  </data>
+</publishMetadata>

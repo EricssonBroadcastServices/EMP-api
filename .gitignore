@@ -1,7 +1,36 @@
+docker-compose.yml
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+*.ipr
+*.iml
+out/
+build/
+.idea/
 target/
+.DS_Store/
+*.iws
+local.properties
+apidocs.zip
+.DS_Store
+api-files/
+api.html
+service.json
+
 .classpath
+.metadata
 .project
 .settings
-.DS_Store
-.idea/*
-\#*\#
+*.orig
+
+sshuttle.pid
+
