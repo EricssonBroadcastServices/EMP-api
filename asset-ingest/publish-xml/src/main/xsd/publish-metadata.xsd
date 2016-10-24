@@ -228,6 +228,11 @@
 						<xs:documentation>code in ISO 639-1</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
+				<xs:attribute name="name" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>name of the subtitle. If not provided, the name will be equal to the language</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
 				<xs:attribute name="format" type="publish:subtitleFormatType">
 					<xs:annotation>
 						<xs:documentation>The format of the subtitles</xs:documentation>
