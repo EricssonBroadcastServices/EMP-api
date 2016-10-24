@@ -1214,7 +1214,6 @@
         minOccurs="0" maxOccurs="1" />
     </xs:sequence>
   </xs:complexType>
-
   <xs:complexType name="contractDeviceList">
     <xs:sequence>
       <xs:element name="contractDevice" type="publish:contractDeviceType"

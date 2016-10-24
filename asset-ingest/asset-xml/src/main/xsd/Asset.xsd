@@ -78,7 +78,7 @@
                 <xs:element maxOccurs="1" minOccurs="0" ref="asset:publish-events"/>
                 <xs:element maxOccurs="1" minOccurs="0" ref="asset:markers"/>
                 <xs:element maxOccurs="1" minOccurs="0" ref="asset:disable-drm-token-validation"/>
-                <xs:element maxOccurs="1" minOccurs="0" ref="asset:priority"/>                
+                <xs:element maxOccurs="1" minOccurs="0" ref="asset:priority"/> 
             </xs:sequence>
             <xs:attribute name="default-language" type="asset:language" use="required"/>
             <xs:attribute name="migration" type="xs:boolean" use="optional"/>
