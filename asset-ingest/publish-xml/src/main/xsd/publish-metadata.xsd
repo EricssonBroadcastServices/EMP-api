@@ -221,6 +221,11 @@
           </xs:documentation>
         </xs:annotation>
       </xs:element>
+      <xs:element name="drmRestrictions" type="publish:drmIncludeCountriesType" minOccurs="0" maxOccurs="1">
+	    <xs:annotation>
+		  <xs:documentation>Used to set geo restrictions for the material (material level)</xs:documentation>
+		</xs:annotation>
+	  </xs:element>
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="videoQuality">
