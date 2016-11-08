@@ -222,10 +222,15 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="drmRestrictions" type="publish:drmIncludeCountriesType" minOccurs="0" maxOccurs="1">
-	    <xs:annotation>
-		  <xs:documentation>Used to set geo restrictions for the material (material level)</xs:documentation>
-		</xs:annotation>
-	  </xs:element>
+  	    <xs:annotation>
+  	   	  <xs:documentation>Used to set geo restrictions for the material (material level)</xs:documentation>
+    		</xs:annotation>
+  	  </xs:element>
+      <xs:element name="preProccessingDirective" type="preProccessingDirectiveType" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Used to state customer specific pre-processing directives</xs:documentation>
+        </xs:annotation>
+      </xs:element>
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="videoQuality">
@@ -370,6 +375,13 @@
         minOccurs="1" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
+  <xs:simpleType name="preProcessingDirecitiveType">
+    <xs:annotation>
+      <xs:documentation>Custom specific pre-processing directives
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
   <!-- Common -->
   <xs:simpleType name="idType">
     <xs:annotation>
