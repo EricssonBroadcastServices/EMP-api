@@ -192,7 +192,12 @@
 						Used to set geo restrictions for the material (material level) 
 					</xs:documentation>
 				</xs:annotation>
-			</xs:element>			
+			</xs:element>
+            <xs:element name="preProccessingDirective" type="publish:preProccessingDirectiveType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Used to state customer specific pre-processing directives</xs:documentation>
+                </xs:annotation>
+            </xs:element>		
 		</xs:sequence>
 	</xs:complexType>
 	<xs:simpleType name="videoQuality">
@@ -201,6 +206,13 @@
 			<xs:enumeration value="HD" />
 		</xs:restriction>
 	</xs:simpleType>
+    <xs:simpleType name="preProcessingDirecitiveType">
+        <xs:annotation>
+            <xs:documentation>Custom specific pre-processing directives
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
 	<xs:simpleType name="aspectRatio">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="16:9" />
