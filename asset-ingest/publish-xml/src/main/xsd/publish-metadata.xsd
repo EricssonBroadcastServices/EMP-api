@@ -226,7 +226,7 @@
   	   	  <xs:documentation>Used to set geo restrictions for the material (material level)</xs:documentation>
     		</xs:annotation>
   	  </xs:element>
-      <xs:element name="preProccessingDirective" type="preProccessingDirectiveType" minOccurs="0" maxOccurs="1">
+      <xs:element name="preProccessingDirective" type="publish:preProccessingDirectiveType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>Used to state customer specific pre-processing directives</xs:documentation>
         </xs:annotation>
