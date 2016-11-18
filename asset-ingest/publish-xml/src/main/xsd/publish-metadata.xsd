@@ -34,24 +34,38 @@
 	</xs:complexType>
 	<xs:complexType name="customDataType">
 		<xs:choice>
-			<xs:element name="array" type="publish:arrayType"/>
+			<xs:element name="objectArray" type="publish:objectArrayType"/>
 			<xs:element name="object" type="publish:objectType"/>
 		</xs:choice>
 	</xs:complexType>
 	<!--  Empty tag  -->
 	<xs:complexType name="emptyTagType"/>
-	<!-- Array -->
-	<xs:complexType name="arrayType">
+	<!-- Array of boolean -->
+	<xs:complexType name="booleanArrayType">
 		<xs:choice maxOccurs="unbounded">
-			<xs:element name="object" type="publish:objectType"/>
-			<xs:element name="array" type="publish:arrayType"/>
-			<xs:element name="string" type="xs:string"/>
-			<xs:element name="number" type="xs:decimal"/>
-			<xs:element name="null" type="publish:emptyTagType"/>
 			<xs:element name="true" type="publish:emptyTagType"/>
 			<xs:element name="false" type="publish:emptyTagType"/>
 		</xs:choice>
 	</xs:complexType>
+	<!-- Array of strings -->
+	<xs:complexType name="stringArrayType">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="1" name="string" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Array of numbers -->
+	<xs:complexType name="numberArrayType">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="1" name="number" type="xs:decimal"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Array of complex types-->
+	<xs:complexType name="objectArrayType">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="1" name="object" type="publish:objectType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Arrays of arrays not supported since elasticSearch doesn't really handle them in any good way -->
 	<!-- Object -->
 	<xs:complexType name="objectType">
 		<xs:sequence>
@@ -61,8 +75,11 @@
 	<!-- Map entry -->
 	<xs:complexType name="MapEntryType">
 		<xs:choice maxOccurs="unbounded">
+			<xs:element name="stringArray" type="publish:stringArrayType"/>
+			<xs:element name="numberArray" type="publish:numberArrayType"/>
+			<xs:element name="booleanArray" type="publish:booleanArrayType"/>
+			<xs:element name="objectArray" type="publish:objectArrayType"/>
 			<xs:element name="object" type="publish:objectType"/>
-			<xs:element name="array" type="publish:arrayType"/>
 			<xs:element name="string" type="xs:string"/>
 			<xs:element name="number" type="xs:decimal"/>
 			<xs:element name="null" type="publish:emptyTagType"/>
