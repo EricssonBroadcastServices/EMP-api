@@ -1049,8 +1049,8 @@
 			<xs:element maxOccurs="1" minOccurs="0" name="publicationRights" type="publish:publicationRightsType"/>
 			<xs:element maxOccurs="1" minOccurs="0" name="drmRestrictions" type="publish:drmRestrictionsType"/>
 			<xs:element maxOccurs="1" minOccurs="0" name="customData" type="publish:customDataType"/>
-			<xs:element maxOccurs="1" minOccurs="0" name="assetRights" type="publish:rightsType"/>
-			<xs:element minOccurs="0" name="devices" type="publish:deviceRightsList"/>
+			<xs:element maxOccurs="1" minOccurs="0" name="assetRights" type="publish:assetRightsType"/>
+			<xs:element minOccurs="0" name="deviceRightsList" type="publish:deviceRightsList"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="publicationListType">
@@ -1165,57 +1165,44 @@
 			<xs:element maxOccurs="1" minOccurs="0" name="downloadMaxSecondsAfterPlay" type="xs:integer"/>
 		</xs:sequence>
 	</xs:complexType>
-	<!-- copy of asserRights with a more generic name used in publications. -->
+	<!-- copy of ContractDevice with a more generic name used in publications. -->
 	<xs:complexType name="deviceRightsList">
 		<xs:sequence>
-			<xs:element maxOccurs="unbounded" minOccurs="1" name="contractDevice" type="publish:deviceRightsType"/>
+			<xs:element maxOccurs="unbounded" minOccurs="1" name="deviceRights" type="publish:deviceRightsType"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="deviceRightsType">
 		<xs:sequence>
-			<xs:element minOccurs="1" name="contractDeviceDataType" type="publish:contractDeviceTypeType"/>
+			<xs:element minOccurs="1" name="deviceType" type="publish:deviceRightsTypeType"/>
 			<xs:element minOccurs="0" name="manufacturer" type="xs:string"/>
 			<xs:element minOccurs="0" name="os" type="xs:string"/>
 			<xs:element minOccurs="0" name="osVersion" type="xs:string"/>
 			<xs:element minOccurs="0" name="model" type="xs:string"/>
-			<xs:element maxOccurs="1" minOccurs="1" name="assetRights" type="publish:rightsType"/>
+			<xs:element maxOccurs="1" minOccurs="1" name="assetRights" type="publish:assetRightsType"/>
 		</xs:sequence>
 	</xs:complexType>
-	<xs:complexType name="rightsType">
+	<xs:simpleType name="deviceRightsTypeType">
 		<xs:annotation>
-			<xs:documentation>Asset rights specified in the contract/device
+			<xs:documentation>Supported device types for device rights
 			</xs:documentation>
 		</xs:annotation>
-		<xs:sequence>
-			<xs:element maxOccurs="1" minOccurs="0" name="minBitrate" type="xs:integer"/>
-			<xs:element maxOccurs="1" minOccurs="0" name="maxBitrate" type="xs:integer"/>
-			<xs:element maxOccurs="1" minOccurs="0" name="maxResWidth" type="xs:integer"/>
-			<xs:element maxOccurs="1" minOccurs="0" name="maxResHeight" type="xs:integer"/>
-			<xs:element maxOccurs="1" minOccurs="0" name="playCount" type="xs:integer"/>
-			<xs:element maxOccurs="1" minOccurs="0" name="maxFileSize" type="xs:long"/>
-			<xs:element maxOccurs="1" minOccurs="0" name="activation" type="xs:dateTime"/>
-			<xs:element maxOccurs="1" minOccurs="0" name="expiration" type="xs:dateTime"/>
-			<xs:element maxOccurs="1" minOccurs="0" name="maxAds" type="xs:integer"/>
-			<xs:element maxOccurs="1" minOccurs="0" name="wifiBlocked" type="xs:boolean"/>
-			<xs:element maxOccurs="1" minOccurs="0" name="threeGBlocked" type="xs:boolean"/>
-			<xs:element maxOccurs="1" minOccurs="0" name="fourGBlocked" type="xs:boolean"/>
-			<xs:element maxOccurs="1" minOccurs="0" name="HDMIBlocked" type="xs:boolean"/>
-			<xs:element maxOccurs="1" minOccurs="0" name="airplayBlocked" type="xs:boolean"/>
-			<xs:element maxOccurs="1" minOccurs="0" name="downloadBlocked" type="xs:boolean"/>
-			<xs:element maxOccurs="1" minOccurs="0" name="streamingBlocked" type="xs:boolean"/>
-			<xs:element maxOccurs="1" minOccurs="0" name="analyticsEnabled" type="xs:boolean"/>
-			<xs:element maxOccurs="1" minOccurs="0" name="sessionShiftEnabled" type="xs:boolean"/>
-			<xs:element maxOccurs="1" minOccurs="0" name="rwEnabled" type="xs:boolean"/>
-			<xs:element maxOccurs="1" minOccurs="0" name="ffEnabled" type="xs:boolean"/>
-			<xs:element maxOccurs="1" minOccurs="0" name="amcDebugLogEnabled" type="xs:boolean"/>
-			<xs:element maxOccurs="1" minOccurs="0" name="locationEnabled" type="xs:boolean"/>
-			<xs:element maxOccurs="1" minOccurs="0" name="minPlayPosition" type="xs:integer"/>
-			<xs:element maxOccurs="1" minOccurs="0" name="maxPlayPosition" type="xs:integer"/>
-			<xs:element maxOccurs="1" minOccurs="0" name="jailbrokenBlocked" type="xs:boolean"/>
-			<xs:element maxOccurs="1" minOccurs="0" name="downloadMaxSecondsAfterDownload" type="xs:integer"/>
-			<xs:element maxOccurs="1" minOccurs="0" name="downloadMaxSecondsAfterPlay" type="xs:integer"/>
-		</xs:sequence>
-	</xs:complexType>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="WEB"/>
+			<!-- WEB -->
+			<xs:enumeration value="MOBILE"/>
+			<!-- MOBILE -->
+			<xs:enumeration value="TABLET"/>
+			<!-- TABLET -->
+			<xs:enumeration value="APPLE_TV"/>
+			<!-- APPLE TV -->
+			<xs:enumeration value="SMART_TV"/>
+			<!-- SMART TV -->
+			<xs:enumeration value="CONSOLE"/>
+			<!-- CONSOLE -->
+			<xs:enumeration value="STB"/>
+			<!-- STB -->
+		</xs:restriction>
+	</xs:simpleType>
 	<!-- Begin long country/language codes -->
 	<xs:simpleType name="ISOCountry">
 		<xs:annotation>
