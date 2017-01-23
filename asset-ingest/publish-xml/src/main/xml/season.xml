@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<publishMetadata
+<publish-metadata
   xmlns="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-2.0.xsd ">
@@ -81,10 +81,10 @@
       <customData>
         <object>
           <mapEntry name="key1">
-            <array>
+            <stringArray>
               <string>hello,</string>
               <string>world!</string>
-            </array>
+            </stringArray>
           </mapEntry>
           <mapEntry name="key2">
             <string>string</string>
@@ -96,4 +96,4 @@
       <numberOfEpisodes>1</numberOfEpisodes>
     </season>
   </data>
-</publishMetadata>
+</publish-metadata>

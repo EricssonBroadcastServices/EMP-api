@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<publishMetadata
+<publish-metadata
   xmlns="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-2.0.xsd ">
@@ -79,26 +79,27 @@
         </externalReference>
       </externalReferenceList>
       <customData>
-        <array>
-          <object>
-            <mapEntry name="key1">
-              <array>
-                <string>hello,</string>
-                <string>world!</string>
-              </array>
-            </mapEntry>
-            <mapEntry name="key2">
-              <string>string</string>
-            </mapEntry>
-          </object>
-          <null/>
-          <true/>
-          <false/>
-          <array>
+        <object>
+          <mapEntry name="stringEntry">
+            <string>seriesString</string>
+          </mapEntry>
+          <mapEntry name="numberEntry">
             <number>1</number>
-            <number>2</number>
-          </array>
-        </array>
+          </mapEntry>
+          <mapEntry name="booleanEntry">
+            <false/>
+          </mapEntry>
+          <mapEntry name="objectEntry">
+            <object>
+              <mapEntry name="struíngArrayEntry">
+                <stringArray>
+                  <string>entry1</string>
+                  <string>entry2</string>
+                </stringArray>
+              </mapEntry>
+            </object>
+          </mapEntry>
+        </object>
       </customData>
       <assetType>episode</assetType>
       <assetIdRef>BBS01-Trailer</assetIdRef>
@@ -112,4 +113,4 @@
       <episodeNumber>5</episodeNumber>
     </asset>
   </data>
-</publishMetadata>
+</publish-metadata>

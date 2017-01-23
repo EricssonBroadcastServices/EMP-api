@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<publishMetadata
+<publish-metadata
   xmlns="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-2.0.xsd ">
@@ -11,10 +11,10 @@
       <duration>PT50M30S</duration>
       <framerate>25</framerate>
       <DRMEnabled>true</DRMEnabled>
-      <adInsertionMarkers>
-        <marker>PT10S</marker>
-        <marker>PT50M30S</marker>
-      </adInsertionMarkers>
+      <breakList>
+        <break><offset>PT30M</offset></break>
+        <break><offset>PT50M</offset></break>
+      </breakList>
       <subtitleList>
         <subtitle language="sv" format="other" name="Swedish">uri_sv</subtitle>
         <subtitle language="en" format="other" name="English">uri_en</subtitle>
@@ -26,4 +26,4 @@
       <priority>50</priority>
     </material>
   </data>
-</publishMetadata>
+</publish-metadata>

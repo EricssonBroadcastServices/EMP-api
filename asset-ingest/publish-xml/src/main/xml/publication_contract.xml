@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<publishMetadata
+<publish-metadata
   xmlns="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-2.0.xsd ">
@@ -20,8 +20,10 @@
           <service>MyService</service>
         </serviceList>
       </publicationRights>
-      <studioContractId>SONY123456</studioContractId>
+      <drmRestrictions>
+        <studioContractID>SONY123456</studioContractID>
+      </drmRestrictions>
     </publication>
   </publicationList>
   </data>
-</publishMetadata>
+</publish-metadata>
