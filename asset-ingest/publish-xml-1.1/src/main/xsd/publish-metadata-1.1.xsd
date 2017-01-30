@@ -206,7 +206,7 @@
 			<xs:enumeration value="HD" />
 		</xs:restriction>
 	</xs:simpleType>
-    <xs:simpleType name="preProcessingDirecitiveType">
+    <xs:simpleType name="preProccessingDirectiveType">
         <xs:annotation>
             <xs:documentation>Custom specific pre-processing directives
             </xs:documentation>

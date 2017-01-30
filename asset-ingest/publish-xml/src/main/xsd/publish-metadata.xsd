@@ -231,6 +231,13 @@
 			<xs:enumeration value="HD"/>
 		</xs:restriction>
 	</xs:simpleType>
+	 <xs:simpleType name="preProccessingDirectiveType">
+        <xs:annotation>
+            <xs:documentation>Custom specific pre-processing directives
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
 	<xs:simpleType name="aspectRatio">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="16:9"/>
