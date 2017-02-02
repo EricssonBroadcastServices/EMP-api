@@ -218,7 +218,7 @@
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="preProccessingDirective" type="publish:preProccessingDirectiveType" minOccurs="0" maxOccurs="1">
+			<xs:element name="preProcessingDirective" type="publish:preProcessingDirectiveType" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
                     <xs:documentation>Used to state customer specific pre-processing directives</xs:documentation>
                 </xs:annotation>
@@ -231,7 +231,7 @@
 			<xs:enumeration value="HD"/>
 		</xs:restriction>
 	</xs:simpleType>
-	 <xs:simpleType name="preProccessingDirectiveType">
+	 <xs:simpleType name="preProcessingDirectiveType">
         <xs:annotation>
             <xs:documentation>Custom specific pre-processing directives
             </xs:documentation>
