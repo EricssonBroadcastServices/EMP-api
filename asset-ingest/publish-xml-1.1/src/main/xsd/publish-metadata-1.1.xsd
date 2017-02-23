@@ -1238,8 +1238,6 @@
 						minOccurs="0" maxOccurs="1" />
 			<xs:element name="rwEnabled" type="xs:boolean"
 						minOccurs="0" maxOccurs="1" />
-			<xs:element name="timeshiftDisabled" type="xs:boolean"
-						minOccurs="0" maxOccurs="1" />
 			<xs:element name="ffEnabled" type="xs:boolean"
 						minOccurs="0" maxOccurs="1" />
 			<xs:element name="amcDebugLogEnabled" type="xs:boolean"
