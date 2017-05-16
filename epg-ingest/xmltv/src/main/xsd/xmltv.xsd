@@ -83,7 +83,7 @@
   conforming to this DTD.  Written by Ed Avis (ed@membled.com) and
   Gottfried Szing, thanks to others for suggestions.
   
-  $Id: xmltv.dtd,v 1.30 2004/04/16 18:50:48 epaepa Exp $
+  $Id: xmltv.dtd,v 1.47 2014/05/02 07:27:51 bilbo_uk Exp $
   
 -->
 <!--
@@ -123,15 +123,15 @@
   <xs:element name="tv">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" maxOccurs="unbounded" name="channel" type="channel"/>
-        <xs:element minOccurs="0" maxOccurs="unbounded" name="programme" type="programme"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="channel"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="programme"/>
       </xs:sequence>
-      <xs:attribute name="date" type="xs:string"/>
-      <xs:attribute name="source-info-url" type="xs:string"/>
-      <xs:attribute name="source-info-name" type="xs:string"/>
-      <xs:attribute name="source-data-url" type="xs:string"/>
-      <xs:attribute name="generator-info-name" type="xs:string"/>
-      <xs:attribute name="generator-info-url" type="xs:string"/>
+      <xs:attribute name="date"/>
+      <xs:attribute name="source-info-url"/>
+      <xs:attribute name="source-info-name"/>
+      <xs:attribute name="source-data-url"/>
+      <xs:attribute name="generator-info-name"/>
+      <xs:attribute name="generator-info-url"/>
     </xs:complexType>
   </xs:element>
   <!--
@@ -171,21 +171,26 @@
     However it makes things like diffing easier if you write the channel
     elements sorted by ASCII order of their ids.
   -->
-  <xs:complexType name="channel">
+  <xs:element name="channel">
+    <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="1" maxOccurs="1" name="display-name" type="xs:string"/>
-        <xs:element minOccurs="0" maxOccurs="1" name="icon" type="image"/>
-        <xs:element minOccurs="0" maxOccurs="1" name="url" type="xs:string"/>
+        <xs:element maxOccurs="unbounded" ref="display-name"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="icon"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="url"/>
       </xs:sequence>
-      <xs:attribute name="id" use="required" type="xs:string"/>
-  </xs:complexType>
+      <xs:attribute name="id" use="required"/>
+    </xs:complexType>
+  </xs:element>
   <!--
+    A user-friendly name for the channel - maybe even a channel
+    number.  List the most canonical / common ones first and the most
+    obscure names last.  The lang attribute follows RFC 1766.
+  -->
   <xs:element name="display-name">
     <xs:complexType mixed="true">
       <xs:attribute name="lang"/>
     </xs:complexType>
   </xs:element>
-  -->
   <!--
     A URL where you can find out more about the element that contains
     it (programme or channel).  This might be the official site, or a fan
@@ -194,6 +199,7 @@
     If multiple url elements are given, the most authoritative or official
     (which might conflict...) sites should be listed first.
   -->
+  <xs:element name="url" type="xs:string"/>
   <!--
     programme - details of a single programme transmission
     
@@ -230,52 +236,71 @@
     element, but the DTD doesn't give a way to specify this constraint.
     Perhaps there is some better XML syntax we could use for that.
   -->
-    <xs:complexType name="programme">
+  <xs:element name="programme">
+    <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="1" maxOccurs="unbounded" name="title" type="lstring"/>
-        <xs:element minOccurs="0" maxOccurs="unbounded" name="sub-title" type="lstring"/>
-        <xs:element minOccurs="0" maxOccurs="unbounded" name="desc" type="lstring"/>
-        <xs:element minOccurs="0" maxOccurs="1" name="credits" type="credits"/>
-        <xs:element minOccurs="0" maxOccurs="1" name="date" type="xs:string"/>
-        <xs:element minOccurs="0" maxOccurs="unbounded" name="category" type="lstring"/>
-        <xs:element minOccurs="0" maxOccurs="unbounded" name="language" type="lstring"/>
-        <xs:element minOccurs="0" maxOccurs="unbounded" name="orig-language" type="lstring"/>
-        <xs:element minOccurs="0" maxOccurs="1" name="length" type="length"/>
-        <xs:element minOccurs="0" maxOccurs="unbounded" name="icon" type="image"/>
-        <xs:element minOccurs="0" maxOccurs="unbounded" name="url" type="xs:string"/>
-        <xs:element minOccurs="0" maxOccurs="unbounded" name="country" type="lstring"/>
-        <xs:element minOccurs="0" maxOccurs="unbounded" name="episode-num" type="episode-num"/>
-        <xs:element minOccurs="0" maxOccurs="1" name="video" type="video"/>
-        <xs:element minOccurs="0" maxOccurs="1" name="audio" type="audio"/>
-        <xs:element minOccurs="0" maxOccurs="1" name="previously-shown" type="previously-shown"/>
-        <xs:element minOccurs="0" maxOccurs="1" name="premiere" type="lstring"/>
-        <xs:element minOccurs="0" maxOccurs="1" name="last-chance" type="lstring"/>
-        <xs:element minOccurs="0" maxOccurs="1" name="new" type="new"/>
-        <xs:element minOccurs="0" maxOccurs="unbounded" name="subtitles" type="subtitles"/>
-        <xs:element minOccurs="0" maxOccurs="unbounded" name="rating" type="rating"/>
-        <xs:element minOccurs="0" maxOccurs="1" name="star-rating" type="star-rating"/>
+        <xs:element maxOccurs="unbounded" ref="title"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="sub-title"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="desc"/>
+        <xs:element minOccurs="0" ref="credits"/>
+        <xs:element minOccurs="0" ref="date"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="category"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="keyword"/>
+        <xs:element minOccurs="0" ref="language"/>
+        <xs:element minOccurs="0" ref="orig-language"/>
+        <xs:element minOccurs="0" ref="length"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="icon"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="url"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="country"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="episode-num"/>
+        <xs:element minOccurs="0" ref="video"/>
+        <xs:element minOccurs="0" ref="audio"/>
+        <xs:element minOccurs="0" ref="previously-shown"/>
+        <xs:element minOccurs="0" ref="premiere"/>
+        <xs:element minOccurs="0" ref="last-chance"/>
+        <xs:element minOccurs="0" ref="new"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="subtitles"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="rating"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="star-rating"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="review"/>
       </xs:sequence>
-      <xs:attribute name="start" use="required" type="xs:string"/>
-      <xs:attribute name="stop" type="xs:string"/>
-      <xs:attribute name="pdc-start" type="xs:string"/>
-      <xs:attribute name="vps-start" type="xs:string"/>
-      <xs:attribute name="showview" type="xs:string"/>
-      <xs:attribute name="videoplus" type="xs:string"/>
-      <xs:attribute name="channel" use="required" type="xs:string"/>
-      <xs:attribute name="clumpidx" default="0/1" type="xs:string"/>
+      <xs:attribute name="start" use="required"/>
+      <xs:attribute name="stop"/>
+      <xs:attribute name="pdc-start"/>
+      <xs:attribute name="vps-start"/>
+      <xs:attribute name="showview"/>
+      <xs:attribute name="videoplus"/>
+      <xs:attribute name="channel" use="required"/>
+      <xs:attribute name="clumpidx" default="0/1"/>
     </xs:complexType>
+  </xs:element>
   <!-- Programme title, eg 'The Simpsons'. -->
-
-
-  <xs:complexType name="lstring">
-    <xs:simpleContent>
-      <xs:extension base="xs:string">
-        <xs:attribute name="lang" type="xs:string" use="optional"/>
-      </xs:extension>
-    </xs:simpleContent>
-  </xs:complexType>
-
-
+  <xs:element name="title">
+    <xs:complexType mixed="true">
+      <xs:attribute name="lang"/>
+    </xs:complexType>
+  </xs:element>
+  <!--
+    Sub-title or episode title, eg 'Datalore'.   Should probably be
+    called 'secondary title' to avoid confusion with captioning!
+  -->
+  <xs:element name="sub-title">
+    <xs:complexType mixed="true">
+      <xs:attribute name="lang"/>
+    </xs:complexType>
+  </xs:element>
+  <!--
+    Description of the programme or episode.
+    
+    Unlike other elements, long bits of whitespace here are treated as
+    equivalent to a single space and newlines are permitted, so you can
+    break lines and write a pretty-looking paragraph if you wish.
+  -->
+  <xs:element name="desc">
+    <xs:complexType mixed="true">
+      <xs:attribute name="lang"/>
+    </xs:complexType>
+  </xs:element>
   <!--
     Credits for the programme.
     
@@ -290,29 +315,62 @@
     should be separate, but if so how would 'translator' fit in with the
     'language' element?
   -->
-    <xs:complexType name="credits">
+  <xs:element name="credits">
+    <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" maxOccurs="unbounded" name="director" type="xs:string"/>
-        <xs:element minOccurs="0" maxOccurs="unbounded" name="actor" type="xs:string"/>
-        <xs:element minOccurs="0" maxOccurs="unbounded" name="writer" type="xs:string"/>
-        <xs:element minOccurs="0" maxOccurs="unbounded" name="adapter" type="xs:string"/>
-        <xs:element minOccurs="0" maxOccurs="unbounded" name="producer" type="xs:string"/>
-        <xs:element minOccurs="0" maxOccurs="unbounded" name="presenter" type="xs:string"/>
-        <xs:element minOccurs="0" maxOccurs="unbounded" name="commentator" type="xs:string"/>
-        <xs:element minOccurs="0" maxOccurs="unbounded" name="guest" type="xs:string"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="director"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="actor"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="writer"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="adapter"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="producer"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="composer"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="editor"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="presenter"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="commentator"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="guest"/>
       </xs:sequence>
     </xs:complexType>
-
+  </xs:element>
+  <xs:element name="director" type="xs:string"/>
+  <xs:element name="actor">
+    <xs:complexType mixed="true">
+      <xs:attribute name="role"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="writer" type="xs:string"/>
+  <xs:element name="adapter" type="xs:string"/>
+  <xs:element name="producer" type="xs:string"/>
+  <xs:element name="composer" type="xs:string"/>
+  <xs:element name="editor" type="xs:string"/>
+  <xs:element name="presenter" type="xs:string"/>
+  <xs:element name="commentator" type="xs:string"/>
+  <xs:element name="guest" type="xs:string"/>
   <!--
     The date the programme or film was finished.  This will probably
     be the same as the copyright date.
   -->
-
+  <xs:element name="date" type="xs:string"/>
   <!--
     Type of programme, eg 'soap', 'comedy' or whatever the
     equivalents are in your language.  There's no predefined set of
     categories and it's okay for a programme to belong to several.
   -->
+  <xs:element name="category">
+    <xs:complexType mixed="true">
+      <xs:attribute name="lang"/>
+    </xs:complexType>
+  </xs:element>
+  <!--
+    Keywords for the programme, eg 'prison-drama', 'based-on-novel',
+    'super-hero'.  There's no predefined set of keywords and it's likely
+    for a programme to have several.  It is recommended that keywords
+    containing multiple words are hyphenated.
+  -->
+  <xs:element name="keyword">
+    <xs:complexType mixed="true">
+      <xs:attribute name="lang"/>
+    </xs:complexType>
+  </xs:element>
   <!--
     The language the programme will be broadcast in.  This does not
     include the language of any subtitles, but it is affected by dubbing
@@ -326,10 +384,20 @@
     
     <language lang="fr">Allemand</language>
   -->
+  <xs:element name="language">
+    <xs:complexType mixed="true">
+      <xs:attribute name="lang"/>
+    </xs:complexType>
+  </xs:element>
   <!--
     The original language, before dubbing.  The same remarks as for
     'language' apply.
   -->
+  <xs:element name="orig-language">
+    <xs:complexType mixed="true">
+      <xs:attribute name="lang"/>
+    </xs:complexType>
+  </xs:element>
   <!--
     The true length of the programme, not counting advertisements or
     trailers.  But this does take account of any bits which were cut out
@@ -337,7 +405,8 @@
     and then padded with 20 minutes of advertising, length will be 110
     minutes even though end time minus start time is 130 minutes.
   -->
-    <xs:complexType name="length">
+  <xs:element name="length">
+    <xs:complexType mixed="true">
       <xs:attribute name="units" use="required">
         <xs:simpleType>
           <xs:restriction base="xs:token">
@@ -348,6 +417,7 @@
         </xs:simpleType>
       </xs:attribute>
     </xs:complexType>
+  </xs:element>
   <!--
     An icon associated with the element that contains it.
     src: uri of image
@@ -356,14 +426,13 @@
     These dimensions are pixel dimensions for the time being, eventually
     this will change to be more like HTML's 'img'.
   -->
-
-
-  <xs:complexType name="image">
-      <xs:attribute name="src" use="required" type="xs:string"/>
-      <xs:attribute name="width" use="optional" type="xs:int"/>
-      <xs:attribute name="height" use="optional" type="xs:int"/>
-  </xs:complexType>
-
+  <xs:element name="icon">
+    <xs:complexType>
+      <xs:attribute name="src" use="required"/>
+      <xs:attribute name="width"/>
+      <xs:attribute name="height"/>
+    </xs:complexType>
+  </xs:element>
   <!--
     The value of the element that contains it.  This is for elements
     that can have both a textual 'value' and an icon.  At present there is
@@ -371,6 +440,7 @@
     (although a document explaining what 'PG' actually means would be).
     It happens that 'value' is used only for this sort of thing.
   -->
+  <xs:element name="value" type="xs:string"/>
   <!--
     A country where the programme was made or one of the countries in
     a joint production.  You can give the name of a country, in which case
@@ -381,6 +451,11 @@
     <country lang="en">Italy</country>
     <country>GB</country>
   -->
+  <xs:element name="country">
+    <xs:complexType mixed="true">
+      <xs:attribute name="lang"/>
+    </xs:complexType>
+  </xs:element>
   <!--
     Episode number
     
@@ -427,17 +502,21 @@
     not general enough for your needs, let me know.  But if you want, you
     can use your own system and give the 'system' attribute as a URL
     describing the system you use.
+    
+    Systems proposed in 2013 to refer to common metadatabases in a
+    common way:
+    'themoviedb.org' with the content 'movie/1234' to refer to a movie,
+    'thetvdb.com' with the content 'series/123456' to refer to a series,
+    'thetvdb.com' with the content 'episode/123456' to refer to one episode
+    of a series and 'imdb.com' with the content 'title/tt123455' to refer to
+    a movie, series or episode.
+    
   -->
-
-
-  <xs:complexType name="episode-num">
-    <xs:simpleContent>
-      <xs:extension base="xs:string">
-        <xs:attribute name="system" type="xs:string" use="optional" default="onscreen"/>
-      </xs:extension>
-    </xs:simpleContent>
-  </xs:complexType>
-
+  <xs:element name="episode-num">
+    <xs:complexType mixed="true">
+      <xs:attribute name="system" default="onscreen"/>
+    </xs:complexType>
+  </xs:element>
   <!--
     Video details: the subelements describe the picture quality as
     follows:
@@ -450,29 +529,45 @@
     colour: 'yes' for colour, 'no' for black-and-white.
     
     aspect: The horizontal:vertical aspect ratio, eg '4:3' or '16:9'.
+    
+    quality: information on the quality, eg 'HDTV', '800x600'.
+    
   -->
-    <xs:complexType name="video">
+  <xs:element name="video">
+    <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" maxOccurs="1" name="present" type="xs:string"/>
-        <xs:element minOccurs="0" maxOccurs="1" name="colour" type="xs:string"/>
-        <xs:element minOccurs="0" maxOccurs="1" name="aspect" type="xs:string"/>
+        <xs:element minOccurs="0" ref="present"/>
+        <xs:element minOccurs="0" ref="colour"/>
+        <xs:element minOccurs="0" ref="aspect"/>
+        <xs:element minOccurs="0" ref="quality"/>
       </xs:sequence>
     </xs:complexType>
+  </xs:element>
+  <xs:element name="present" type="xs:string"/>
+  <xs:element name="colour" type="xs:string"/>
+  <xs:element name="aspect" type="xs:string"/>
+  <xs:element name="quality" type="xs:string"/>
   <!--
     Audio details, similar to video details above.
     
     present: whether this programme has any sound at all, 'yes' or 'no'.
     
     stereo: Description of the stereo-ness of the sound.  Legal values
-    are currently 'mono' and 'stereo' and 'surround'; others like 'quad'
-    might be added later.
+    are currently 'mono','stereo','dolby','dolby digital','bilingual'
+    and 'surround'. 'bilingual' in this case refers to a single audio
+    stream where the left and right channels contain monophonic audio
+    in different languages.  Other values may be added later.
+    
   -->
-    <xs:complexType name="audio">
+  <xs:element name="audio">
+    <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" maxOccurs="1" name="present" type="xs:string"/>
-        <xs:element minOccurs="0" maxOccurs="1" name="stereo" type="xs:string"/>
+        <xs:element minOccurs="0" ref="present"/>
+        <xs:element minOccurs="0" ref="stereo"/>
       </xs:sequence>
     </xs:complexType>
+  </xs:element>
+  <xs:element name="stereo" type="xs:string"/>
   <!--
     When and where the programme was last shown, if known.  Normally
     in TV listings 'repeat' means 'previously shown on this channel', but
@@ -485,10 +580,12 @@
     The absence of this element does not say for certain that the
     programme is brand new and has never been screened anywhere before.
   -->
-    <xs:complexType name="previously-shown">
-      <xs:attribute name="start" type="xs:string"/>
-      <xs:attribute name="channel" type="xs:string"/>
+  <xs:element name="previously-shown">
+    <xs:complexType>
+      <xs:attribute name="start"/>
+      <xs:attribute name="channel"/>
     </xs:complexType>
+  </xs:element>
   <!--
     'Premiere'.  Different channels have different meanings for this
     word - sometimes it means a film has never before been seen on TV in
@@ -511,6 +608,11 @@
     
     <premiere />
   -->
+  <xs:element name="premiere">
+    <xs:complexType mixed="true">
+      <xs:attribute name="lang"/>
+    </xs:complexType>
+  </xs:element>
   <!--
     Last-chance.  In a way this is the opposite of premiere.  Some
     channels buy the rights to show a movie a certain number of times, and
@@ -522,7 +624,11 @@
     
     <last-chance />
   -->
- 
+  <xs:element name="last-chance">
+    <xs:complexType mixed="true">
+      <xs:attribute name="lang"/>
+    </xs:complexType>
+  </xs:element>
   <!--
     New.  This is the first screened programme from a new show that
     has never been shown on television before - if not worldwide then at
@@ -534,27 +640,33 @@
     existing show.  You can express part of that using the episode-num
     stuff.
   -->
-    <xs:complexType name="new"/>
+  <xs:element name="new">
+    <xs:complexType/>
+  </xs:element>
   <!--
     Subtitles.  These can be either 'teletext' (sent digitally, and
-    displayed at the viewer's request) or 'onscreen' (superimposed on the
-    picture and impossible to get rid of).  You can have multiple subtitle
+    displayed at the viewer's request), 'onscreen' (superimposed on the
+    picture and impossible to get rid of), or 'deaf-signed' (in-vision
+    signing for users of sign language). You can have multiple subtitle
     streams to handle different languages.  Language for subtitles is
     specified in the same way as for programmes.
   -->
-    <xs:complexType name="subtitles">
+  <xs:element name="subtitles">
+    <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" maxOccurs="unbounded" name="language" type="lstring"/>
+        <xs:element minOccurs="0" ref="language"/>
       </xs:sequence>
       <xs:attribute name="type">
         <xs:simpleType>
           <xs:restriction base="xs:token">
             <xs:enumeration value="teletext"/>
             <xs:enumeration value="onscreen"/>
+            <xs:enumeration value="deaf-signed"/>
           </xs:restriction>
         </xs:simpleType>
       </xs:attribute>
     </xs:complexType>
+  </xs:element>
   <!--
     Rating.  Various bodies decide on classifications for films -
     usually a minimum age you must be to see it.  In principle the same
@@ -562,13 +674,15 @@
     systems for doing this, you can also specify the rating system used
     (which in practice is the same as the body which made the rating).
   -->
-    <xs:complexType  name="rating">
+  <xs:element name="rating">
+    <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="1" maxOccurs="1" name="value" type="xs:string"/>
-        <xs:element minOccurs="0" maxOccurs="1" name="icon" type="image"/>
+        <xs:element ref="value"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="icon"/>
       </xs:sequence>
-      <xs:attribute name="system" type="xs:string"/>
+      <xs:attribute name="system"/>
     </xs:complexType>
+  </xs:element>
   <!--
     'Star rating' - many listings guides award a programme a score as
     a quick guide to how good it is.  The value of this element should be
@@ -577,14 +691,46 @@
     'unrated').  You should try to map whatever wacky system your listings
     source uses to a number of stars: so for example if they have thumbs
     up, thumbs sideways and thumbs down, you could map that to two, one or
-    zero stars out of two.  Whitespace between the numbers and slash is
-    ignored.
+    zero stars out of two.  If a programme is marked as recommended in a
+    listings guide you could map this to '1 / 1'. Because there could be many
+    ways to provide star-ratings or recommendations for a programme, you can
+    specify multiple star-ratings. You can specify the star-rating system
+    used, or the provider of the recommendation, with the system attribute.
+    Whitespace between the numbers and slash is ignored.
   -->
-    <xs:complexType name="star-rating">
+  <xs:element name="star-rating">
+    <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="1" maxOccurs="1" name="value" type="xs:string"/>
+        <xs:element ref="value"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="icon"/>
       </xs:sequence>
+      <xs:attribute name="system"/>
     </xs:complexType>
+  </xs:element>
+  <!--
+    Review.  Listings guides may provide reviews of programmes in
+    addition to, or in place of, standard programme descriptions. They are
+    usually written by in-house reviewers, but reviews can also be made
+    available by third-party organisations/individuals. The value of this
+    element must be either the text of the review, or a URL that links to it.
+    Optional attributes giving the review source and the individual reviewer
+    can also be specified.
+  -->
+  <xs:element name="review">
+    <xs:complexType mixed="true">
+      <xs:attribute name="type" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="text"/>
+            <xs:enumeration value="url"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="source"/>
+      <xs:attribute name="reviewer"/>
+      <xs:attribute name="lang"/>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>
 <!--
   (Why are things like 'stereo', which must be one of a small
