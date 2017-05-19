@@ -223,8 +223,40 @@
                     <xs:documentation>Used to state customer specific pre-processing directives</xs:documentation>
                 </xs:annotation>
             </xs:element>
+			<xs:element maxOccurs="1" minOccurs="0" name="externalMediaLocatorList" type="publish:externalMediaLocatorListType"/>
 		</xs:sequence>
 	</xs:complexType>
+
+	<xs:complexType name="externalMediaLocatorListType">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="1" name="externalMediaLocator" type="publish:externalMediaLocatorType"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="externalMediaLocatorType">
+		<xs:simpleContent>
+			<xs:extension base="xs:anyURI">
+		        <xs:attribute name="drm" type="publish:drm"/>
+                <xs:attribute name="manifestFormat" type="publish:manifestFormat"/>
+			</xs:extension>
+		</xs:simpleContent>
+    </xs:complexType>
+
+    <xs:simpleType name="drm">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="EDRM" />
+            <xs:enumeration value="CENC" />
+            <xs:enumeration value="UNENCRYPTED" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="manifestFormat">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="HLS" />
+            <xs:enumeration value="DASH" />
+        </xs:restriction>
+    </xs:simpleType>
+
 	<xs:simpleType name="videoQuality">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="SD"/>
