@@ -731,7 +731,7 @@
         <xs:complexContent>
             <xs:extension base="publish:abstractAssetType">
                 <xs:sequence>
-                    <xs:element maxOccurs="1" minOccurs="1" name="seriesId" type="publish:idType">
+                    <xs:element maxOccurs="1" minOccurs="0" name="seriesId" type="publish:idType">
                         <xs:annotation>
                             <xs:documentation>id for Series, not unique</xs:documentation>
                         </xs:annotation>
