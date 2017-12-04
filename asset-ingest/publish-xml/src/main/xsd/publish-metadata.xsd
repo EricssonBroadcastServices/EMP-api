@@ -1242,6 +1242,7 @@
             <xs:element maxOccurs="1" minOccurs="0" name="jailbrokenBlocked" type="xs:boolean"/>
             <xs:element maxOccurs="1" minOccurs="0" name="downloadMaxSecondsAfterDownload" type="xs:integer"/>
             <xs:element maxOccurs="1" minOccurs="0" name="downloadMaxSecondsAfterPlay" type="xs:integer"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="anonymousIpBlocked" type="xs:boolean"/>
         </xs:sequence>
     </xs:complexType>
     <!-- copy of ContractDevice with a more generic name used in publications. -->
