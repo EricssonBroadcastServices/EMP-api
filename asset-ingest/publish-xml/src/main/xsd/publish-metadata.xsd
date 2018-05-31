@@ -235,6 +235,8 @@
             </xs:element>
             <xs:element maxOccurs="1" minOccurs="0" name="externalMediaLocatorList"
                         type="publish:externalMediaLocatorListType"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="liveConfig"
+                        type="publish:liveConfigType"/>
         </xs:sequence>
     </xs:complexType>
 
@@ -245,6 +247,46 @@
         </xs:sequence>
     </xs:complexType>
 
+    <xs:complexType name="liveConfigType">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="0" name="archiveLength" type="xs:int"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="archiveSegmentLength" type="xs:int"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="lookaheadFragments" type="xs:int"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="dvrWindowLength" type="xs:int"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="fixedGOP" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="hlsClientManifestVersion" type="xs:int"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="hlsMinimumFragmentLength" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="mpdSuggestedPresentationDelay" type="xs:int"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="hlsNoMultiplex" type="xs:boolean"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="includeSubtitles" type="xs:boolean"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="keyInfo" type="publish:keyInfoType"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+     <xs:complexType name="keyInfoType">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="0" name="cenc" type="publish:keyInfoCencType"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="hls" type="publish:keyInfoHlsType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+     <xs:complexType name="keyInfoCencType">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="0" name="keyId" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="keyValue" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="widevineLicensServer" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="playreadyLicensServer" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+     <xs:complexType name="keyInfoHlsType">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="0" name="keyIV" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="keyValue" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="licenseServerUrl" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    
     <xs:complexType name="externalMediaLocatorType">
         <xs:simpleContent>
             <xs:extension base="xs:anyURI">
