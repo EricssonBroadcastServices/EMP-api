@@ -1,0 +1,60 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <parent>
+    <groupId>net.ebstv.emp</groupId>
+    <artifactId>asset-ingest</artifactId>
+    <version>1.0.0</version>
+  </parent>
+
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>publish-xml</artifactId>
+  <packaging>jar</packaging>
+  <version>3.0.0</version>
+  <name>PublishXML</name>
+  <description>PublishXML is the recomended format for VOD ingest into EMP.</description>
+
+  <build>
+    <plugins>
+      <plugin>
+	<groupId>org.codehaus.mojo</groupId>
+	<artifactId>jaxb2-maven-plugin</artifactId>
+	<version>${jaxb2MavenPluginVersion}</version>
+	<executions>
+	  <execution>
+	    <id>generate-publishxml</id>
+	    <phase>generate-sources</phase>
+	    <goals>
+	      <goal>xjc</goal>
+	    </goals>
+	    <configuration>
+	      <packageName>net.ericsson.ebsd.emp.generated.asset.publishxml</packageName>
+	      <outputDirectory>${basedir}/target/generated/</outputDirectory>
+	      <schemaDirectory>${basedir}/src/main/xsd/</schemaDirectory>
+	      <bindingDirectory>${basedir}/src/main/xsd/</bindingDirectory>
+	    </configuration>
+	  </execution>
+	</executions>
+      </plugin>
+      <plugin>
+	<groupId>com.google.code.maven-replacer-plugin</groupId>
+	<artifactId>replacer</artifactId>
+	<version>1.5.2</version>
+	<executions>
+	  <execution>
+	    <phase>process-resources</phase>
+	    <goals>
+	      <goal>replace</goal>
+	    </goals>
+	  </execution>
+	</executions>
+	<configuration>
+	  <includes>
+	    <include>target/**/*.xsd</include>
+	  </includes>
+	  <token>@@version@@</token>
+	  <value>${version}</value>
+	</configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

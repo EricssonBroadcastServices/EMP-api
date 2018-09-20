@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<publish-metadata
+  xmlns="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-2.0.xsd ">
+  <data>
+    <season>
+      <id>BBS01</id>
+      <studio>Sony Pictures Television</studio>
+      <productionYear>2008</productionYear>
+      <countryOfOriginList>
+        <country>US</country>
+      </countryOfOriginList>
+      <titleList>
+        <title language="en">Grey Matter</title>
+        <sortingTitle language="en">Grey Matter</sortingTitle>
+      </titleList>
+      <descriptionList>
+        <description language="en" length="short">Walt rejects
+          everyone who tries to help him with the cancer. Jesse tries
+          his best to create Walt's meth, with the help of an old
+          friend.</description>
+        <description language="en" length="medium">Walt rejects
+          everyone who tries to help him with the cancer. Jesse tries
+          his best to create Walt's meth, with the help of an old
+          friend....</description>
+        <description language="en" length="long">Walt rejects
+          everyone who tries to help him with the cancer. Jesse tries
+          his best to create Walt's meth, with the help of an old
+          friend........</description>
+      </descriptionList>
+      <creditList>
+        <credit>
+          <name>Bryan Cranston</name>
+          <rolename>Walter White</rolename>
+          <function>Actor</function>
+        </credit>
+      </creditList>
+      <tagList>
+        <tag id="DRAMA" type="genre">
+          <tagNames>
+            <tagName language="en">Drama</tagName>
+          </tagNames>
+        </tag>
+        <tag id="THRILLER" type="genre">
+          <tagNames>
+            <tagName language="en">Thriller</tagName>
+          </tagNames>
+        </tag>
+      </tagList>
+      <imageList>
+        <image language="en" priority="0">
+          <id>breaking_bad_season1</id>
+          <url>http://tempuri.org/breaking_bad_season1.png</url>
+          <width>160</width>
+          <height>90</height>
+          <purpose>banner</purpose>
+          <orientation>landscape</orientation>
+          <copyright>Public Domain</copyright>
+        </image>
+      </imageList>
+      <parentalRatingList>
+        <parentalRating>
+          <rating>R</rating>
+          <scheme>MPAA</scheme>
+          <country>US</country>
+        </parentalRating>
+        <parentalRating>
+          <rating>15</rating>
+          <scheme>Statens medieråd</scheme>
+          <country>SE</country>
+        </parentalRating>
+      </parentalRatingList>
+      <externalReferenceList>
+        <externalReference>
+          <provider>Wikipedia</provider>
+          <id>15465618</id>
+          <uri>https://en.wikipedia.org/?curid=</uri>
+        </externalReference>
+      </externalReferenceList>
+      <customData>
+        <object>
+          <mapEntry name="key1">
+            <stringArray>
+              <string>hello,</string>
+              <string>world!</string>
+            </stringArray>
+          </mapEntry>
+          <mapEntry name="key2">
+            <string>string</string>
+          </mapEntry>
+        </object>
+      </customData>
+      <seriesId>BreakingBad</seriesId>
+      <seasonNumber>1</seasonNumber>
+      <numberOfEpisodes>1</numberOfEpisodes>
+    </season>
+  </data>
+</publish-metadata>

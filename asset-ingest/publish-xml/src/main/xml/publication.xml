@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<publish-metadata
+  xmlns="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-2.0.xsd ">
+  <data>
+  <publicationList>
+    <publication>
+      <id>BB0105_PUB1</id>
+      <assetIdRef>BB0105</assetIdRef>
+      <!--  how does this relate to asset rights? -->
+      <startTime>2016-10-17T00:00:00+01:00</startTime>
+      <endTime>2017-10-17T00:00:00+01:00</endTime>
+      <publishTime>2016-10-10T00:00:00+01:00</publishTime>
+      <publicationRights>
+        <productList>
+          <product>SVOD</product>
+        </productList>
+        <serviceList>
+          <!--  who know about this?? -->
+          <service>Is this really used</service>
+        </serviceList>
+      </publicationRights>
+      <drmRestrictions>
+        <includeCountries>
+          <country>SE</country>
+        </includeCountries>
+      </drmRestrictions>
+      <assetRights>
+        <!--  ?? bps, kbps??? -->
+        <minBitrate>800000</minBitrate>
+        <maxBitrate>2000000 </maxBitrate>
+        <maxResWidth>854</maxResWidth>
+        <maxResHeight>480</maxResHeight>
+        <!--  meaning?? -->
+        <playCount>10</playCount>
+        <!--  unit kb,bytes -->
+        <maxFileSize>1000000</maxFileSize>
+        <!--  time stated how UTC? -->
+        <activation>2016-10-17T00:00:00+01:00</activation>
+        <expiration>2017-10-17T00:00:00+01:00</expiration>
+        <maxAds>0</maxAds>
+        <wifiBlocked>false</wifiBlocked>
+        <threeGBlocked>false</threeGBlocked>
+        <fourGBlocked>false</fourGBlocked>
+        <HDMIBlocked>false</HDMIBlocked>
+        <airplayBlocked>false</airplayBlocked>
+        <downloadBlocked>true</downloadBlocked>
+        <streamingBlocked>false</streamingBlocked>
+        <analyticsEnabled>true</analyticsEnabled>
+        <sessionShiftEnabled>true</sessionShiftEnabled>
+        <rwEnabled>false</rwEnabled>
+        <ffEnabled>false</ffEnabled>
+        <amcDebugLogEnabled>false</amcDebugLogEnabled>
+        <locationEnabled>false</locationEnabled>
+        <!--  units ??? -->
+        <minPlayPosition>0</minPlayPosition>
+        <maxPlayPosition>0</maxPlayPosition>
+        <jailbrokenBlocked>true</jailbrokenBlocked>
+        <downloadMaxSecondsAfterDownload>0</downloadMaxSecondsAfterDownload>
+        <downloadMaxSecondsAfterPlay>0</downloadMaxSecondsAfterPlay>
+      </assetRights>
+      <deviceRightsList>
+        <deviceRights>
+          <deviceType>APPLE_TV</deviceType>
+          <!--  Valid values? -->
+          <manufacturer>string</manufacturer>
+          <os>string</os>
+          <osVersion>string</osVersion>
+          <model>string</model>
+          <assetRights>
+            <!--  ?? bps, kbps??? -->
+            <minBitrate>800000</minBitrate>
+            <maxBitrate>2000000 </maxBitrate>
+            <maxResWidth>854</maxResWidth>
+            <maxResHeight>480</maxResHeight>
+            <playCount>10</playCount>
+            <!--  unit kb,bytes -->
+            <maxFileSize>1000000</maxFileSize>
+            <!--  time stated how UTC? -->
+            <activation>2016-10-17T00:00:00+01:00</activation>
+            <expiration>2017-10-17T00:00:00+01:00</expiration>
+            <maxAds>0</maxAds>
+            <wifiBlocked>false</wifiBlocked>
+            <threeGBlocked>false</threeGBlocked>
+            <fourGBlocked>false</fourGBlocked>
+            <HDMIBlocked>false</HDMIBlocked>
+            <airplayBlocked>false</airplayBlocked>
+            <downloadBlocked>true</downloadBlocked>
+            <streamingBlocked>false</streamingBlocked>
+            <analyticsEnabled>true</analyticsEnabled>
+            <sessionShiftEnabled>true</sessionShiftEnabled>
+            <rwEnabled>false</rwEnabled>
+            <ffEnabled>false</ffEnabled>
+            <amcDebugLogEnabled>false</amcDebugLogEnabled>
+            <locationEnabled>false</locationEnabled>
+            <minPlayPosition>0</minPlayPosition>
+            <maxPlayPosition>0</maxPlayPosition>
+            <jailbrokenBlocked>true</jailbrokenBlocked>
+            <downloadMaxSecondsAfterDownload>0</downloadMaxSecondsAfterDownload>
+            <downloadMaxSecondsAfterPlay>0</downloadMaxSecondsAfterPlay>
+          </assetRights>
+        </deviceRights>
+      </deviceRightsList>
+    </publication>
+  </publicationList>
+  </data>
+</publish-metadata>

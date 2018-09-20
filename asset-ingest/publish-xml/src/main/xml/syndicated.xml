@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<publish-metadata xmlns="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata.xsd">
+	<data>
+		<asset>
+			<id>000001</id>
+			<titleList>
+				<title language="en">My syndicated asset</title>
+			</titleList>
+			<descriptionList>
+				<description language="en" length="short">Short description for my syndicated asset</description>
+			</descriptionList>
+			<assetType>movie</assetType>
+		</asset>
+		<material>
+			<materialRef syndicated="true" syndicatedProvider="Provider">http://streaming.syndicated-provider.com/breaking-bad</materialRef>
+		</material>
+	</data>
+</publish-metadata>
