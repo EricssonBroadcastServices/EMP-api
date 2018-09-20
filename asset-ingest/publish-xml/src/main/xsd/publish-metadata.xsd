@@ -169,9 +169,14 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element maxOccurs="1" minOccurs="0" name="breakList" type="publish:breakListType">
+            <xs:element maxOccurs="1" minOccurs="0" name="adBreaks" type="publish:adBreakListType">
                 <xs:annotation>
-                    <xs:documentation>List of breaks for the media</xs:documentation>
+                    <xs:documentation>List of ad breaks for the media</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+             <xs:element maxOccurs="1" minOccurs="0" name="shortcuts" type="publish:shortcutsListType">
+                <xs:annotation>
+                    <xs:documentation>List of ad breaks for the media</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element maxOccurs="1" minOccurs="0" name="subtitleList" type="publish:subtitleListType">
@@ -442,29 +447,24 @@
             <xs:element maxOccurs="unbounded" minOccurs="1" name="material" type="publish:materialType"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:complexType name="breakListType">
+    <xs:complexType name="adBreakListType">
         <xs:sequence>
-            <xs:element maxOccurs="unbounded" minOccurs="1" name="break" type="publish:breakType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="pre" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="mid" type="publish:midAdBreakType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="post" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:complexType name="breakType">
+    <xs:complexType name="midAdBreakType">
+    	<xs:attribute name="offset" type="xs:time" use="required"/>
+    </xs:complexType>
+     <xs:complexType name="shortcutsListType">
         <xs:sequence>
-            <xs:annotation>
-                <xs:documentation>Use the same unit in offset as in duration
-                </xs:documentation>
-            </xs:annotation>
-            <xs:choice>
-                <xs:element maxOccurs="1" minOccurs="1" name="namedOffset" type="publish:namedOffsetType"/>
-                <xs:element maxOccurs="1" minOccurs="1" name="offset" type="xs:duration"/>
-            </xs:choice>
+            <xs:element minOccurs="1" maxOccurs="unbounded" name="pre" type="publish:shortcutType"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:simpleType name="namedOffsetType">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="preRoll"/>
-            <xs:enumeration value="postRoll"/>
-        </xs:restriction>
-    </xs:simpleType>
+     <xs:complexType name="shortcutType">
+    	<xs:attribute name="offset" type="xs:time" use="required"/>
+    </xs:complexType>
     <!-- Common -->
     <xs:simpleType name="idType">
         <xs:annotation>
