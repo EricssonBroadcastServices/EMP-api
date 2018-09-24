@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
-           targetNamespace="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1" version="@@version@@"
-           xmlns:publish="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1"
-           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1" version="@@version@@" xmlns:publish="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <!-- Message definitions -->
     <xs:element name="publish-metadata">
         <xs:annotation>
@@ -91,6 +88,31 @@
         <xs:attribute name="name" type="xs:string"/>
     </xs:complexType>
     <!-- Material -->
+    <xs:complexType name="SegmentType">
+        <xs:sequence>
+            <xs:element name="start" type="xs:dateTime"/>
+            <xs:element name="end" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="SegmentListType">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="segment" type="publish:SegmentType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="LiveSourceTypeType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="EPG"/>
+            <xs:enumeration value="EDIT_LIST"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="LiveSourceType">
+        <xs:sequence>
+            <xs:element name="type" type="publish:LiveSourceTypeType"/>
+            <xs:element name="channelId" type="publish:idType"/>
+            <xs:element minOccurs="0" name="programId" type="publish:idType"/>
+            <xs:element minOccurs="0" name="segments" type="publish:SegmentListType"/>
+        </xs:sequence>
+    </xs:complexType>
     <xs:complexType name="materialRefType">
         <xs:annotation>
             <xs:documentation>A reference to an external media file. This can be
@@ -120,14 +142,22 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element maxOccurs="1" minOccurs="0" name="materialRef" type="publish:materialRefType">
-                <xs:annotation>
-                    <xs:documentation>A reference to an external media file. This can
+            <xs:choice>
+                <xs:element maxOccurs="1" minOccurs="0" name="materialRef" type="publish:materialRefType">
+                    <xs:annotation>
+                        <xs:documentation>A reference to an external media file. This can
                         be an ID, a URI a URL or any other String value.. Depends on the
                         context.
                     </xs:documentation>
-                </xs:annotation>
-            </xs:element>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element maxOccurs="1" minOccurs="0" name="liveSource" type="publish:LiveSourceType">
+                    <xs:annotation>
+                        <xs:documentation>If the source is a live channel a live source should be used instead of a materialRef.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:choice>
             <xs:element maxOccurs="1" minOccurs="0" name="assetIdRef" type="publish:idType">
                 <xs:annotation>
                     <xs:documentation>Used when no asset is provided in this message.
@@ -174,7 +204,7 @@
                     <xs:documentation>List of ad breaks for the media</xs:documentation>
                 </xs:annotation>
             </xs:element>
-             <xs:element maxOccurs="1" minOccurs="0" name="shortcuts" type="publish:shortcutsListType">
+            <xs:element maxOccurs="1" minOccurs="0" name="shortcuts" type="publish:shortcutsListType">
                 <xs:annotation>
                     <xs:documentation>List of ad breaks for the media</xs:documentation>
                 </xs:annotation>
@@ -219,39 +249,21 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element default="false" maxOccurs="1" minOccurs="0" name="reingest" type="xs:boolean">
-                <xs:annotation>
-                    <xs:documentation>Set this to true to force a reingest of the
-                        asset
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
             <xs:element maxOccurs="1" minOccurs="0" name="drmRestrictions" type="publish:drmIncludeCountriesType">
                 <xs:annotation>
                     <xs:documentation>Used to set geo restrictions for the material (material level)
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="preProcessingDirective" type="publish:preProcessingDirectiveType" minOccurs="0"
-                        maxOccurs="1">
-                <xs:annotation>
-                    <xs:documentation>Used to state customer specific pre-processing directives</xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element maxOccurs="1" minOccurs="0" name="externalMediaLocatorList"
-                        type="publish:externalMediaLocatorListType"/>
-            <xs:element maxOccurs="1" minOccurs="0" name="liveConfig"
-                        type="publish:liveConfigType"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="externalMediaLocatorList" type="publish:externalMediaLocatorListType"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="liveConfig" type="publish:liveConfigType"/>
         </xs:sequence>
     </xs:complexType>
-
     <xs:complexType name="externalMediaLocatorListType">
         <xs:sequence>
-            <xs:element maxOccurs="unbounded" minOccurs="1" name="externalMediaLocator"
-                        type="publish:externalMediaLocatorType"/>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="externalMediaLocator" type="publish:externalMediaLocatorType"/>
         </xs:sequence>
     </xs:complexType>
-
     <xs:complexType name="liveConfigType">
         <xs:sequence>
             <xs:element maxOccurs="1" minOccurs="0" name="archiveLength" type="xs:int"/>
@@ -266,15 +278,13 @@
             <xs:element maxOccurs="1" minOccurs="0" name="keyInfo" type="publish:keyInfoType"/>
         </xs:sequence>
     </xs:complexType>
-    
-     <xs:complexType name="keyInfoType">
+    <xs:complexType name="keyInfoType">
         <xs:sequence>
             <xs:element maxOccurs="1" minOccurs="0" name="cenc" type="publish:keyInfoCencType"/>
             <xs:element maxOccurs="1" minOccurs="0" name="hls" type="publish:keyInfoHlsType"/>
         </xs:sequence>
     </xs:complexType>
-
-     <xs:complexType name="keyInfoCencType">
+    <xs:complexType name="keyInfoCencType">
         <xs:sequence>
             <xs:element maxOccurs="1" minOccurs="0" name="keyId" type="xs:string"/>
             <xs:element maxOccurs="1" minOccurs="0" name="keyValue" type="xs:string"/>
@@ -282,15 +292,13 @@
             <xs:element maxOccurs="1" minOccurs="0" name="playreadyLicensServer" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
-    
-     <xs:complexType name="keyInfoHlsType">
+    <xs:complexType name="keyInfoHlsType">
         <xs:sequence>
             <xs:element maxOccurs="1" minOccurs="0" name="keyIV" type="xs:string"/>
             <xs:element maxOccurs="1" minOccurs="0" name="keyValue" type="xs:string"/>
             <xs:element maxOccurs="1" minOccurs="0" name="licenseServerUrl" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
-    
     <xs:complexType name="externalMediaLocatorType">
         <xs:simpleContent>
             <xs:extension base="xs:anyURI">
@@ -299,7 +307,6 @@
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
-
     <xs:simpleType name="drm">
         <xs:restriction base="xs:string">
             <xs:enumeration value="EDRM"/>
@@ -307,14 +314,12 @@
             <xs:enumeration value="UNENCRYPTED"/>
         </xs:restriction>
     </xs:simpleType>
-
     <xs:simpleType name="manifestFormat">
         <xs:restriction base="xs:string">
             <xs:enumeration value="HLS"/>
             <xs:enumeration value="DASH"/>
         </xs:restriction>
     </xs:simpleType>
-
     <xs:simpleType name="videoQuality">
         <xs:restriction base="xs:string">
             <xs:enumeration value="SD"/>
@@ -449,21 +454,21 @@
     </xs:complexType>
     <xs:complexType name="adBreakListType">
         <xs:sequence>
-            <xs:element minOccurs="0" maxOccurs="1" name="pre" type="xs:string"/>
-            <xs:element minOccurs="0" maxOccurs="unbounded" name="mid" type="publish:midAdBreakType"/>
-            <xs:element minOccurs="0" maxOccurs="1" name="post" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="pre" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="mid" type="publish:midAdBreakType"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="post" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="midAdBreakType">
-    	<xs:attribute name="offset" type="xs:time" use="required"/>
+        <xs:attribute name="offset" type="xs:time" use="required"/>
     </xs:complexType>
-     <xs:complexType name="shortcutsListType">
+    <xs:complexType name="shortcutsListType">
         <xs:sequence>
-            <xs:element minOccurs="1" maxOccurs="unbounded" name="pre" type="publish:shortcutType"/>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="pre" type="publish:shortcutType"/>
         </xs:sequence>
     </xs:complexType>
-     <xs:complexType name="shortcutType">
-    	<xs:attribute name="offset" type="xs:time" use="required"/>
+    <xs:complexType name="shortcutType">
+        <xs:attribute name="offset" type="xs:time" use="required"/>
     </xs:complexType>
     <!-- Common -->
     <xs:simpleType name="idType">
@@ -498,8 +503,7 @@
     </xs:simpleType>
     <xs:complexType name="externalReferenceListType">
         <xs:sequence>
-            <xs:element maxOccurs="unbounded" minOccurs="1" name="externalReference"
-                        type="publish:externalReferenceType">
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="externalReference" type="publish:externalReferenceType">
                 <xs:annotation>
                     <xs:documentation>List of external resources that can used to
                         connect/boost the content data with.
@@ -816,8 +820,7 @@
                             </xs:documentation>
                         </xs:annotation>
                     </xs:element>
-                    <xs:element maxOccurs="1" minOccurs="0" name="drmRestrictions"
-                                type="publish:drmIncludeCountriesType">
+                    <xs:element maxOccurs="1" minOccurs="0" name="drmRestrictions" type="publish:drmIncludeCountriesType">
                         <xs:annotation>
                             <xs:documentation>Used to set geo restrictions for the asset (asset level and not
                                 publication level)
