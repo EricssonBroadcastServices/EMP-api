@@ -472,7 +472,8 @@
     </xs:complexType>
     <xs:complexType name="shortcutsListType">
         <xs:sequence>
-            <xs:element maxOccurs="unbounded" minOccurs="1" name="pre" type="publish:shortcutType"/>
+            <xs:element name="intro" maxOccurs="1" minOccurs="0" type="publish:shortcutType"/>
+            <xs:element name="credits" maxOccurs="1" minOccurs="0" type="publish:shortcutType"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="shortcutType">
