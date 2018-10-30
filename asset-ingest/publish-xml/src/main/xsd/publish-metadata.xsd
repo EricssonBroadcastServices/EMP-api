@@ -1267,15 +1267,15 @@
             </xs:documentation>
         </xs:annotation>
         <xs:sequence>
-            <xs:element maxOccurs="1" minOccurs="0" name="minBitrate" type="xs:integer"/>
-            <xs:element maxOccurs="1" minOccurs="0" name="maxBitrate" type="xs:integer"/>
-            <xs:element maxOccurs="1" minOccurs="0" name="maxResWidth" type="xs:integer"/>
-            <xs:element maxOccurs="1" minOccurs="0" name="maxResHeight" type="xs:integer"/>
-            <xs:element maxOccurs="1" minOccurs="0" name="playCount" type="xs:integer"/>
-            <xs:element maxOccurs="1" minOccurs="0" name="maxFileSize" type="xs:long"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="minBitrate" type="xs:unsignedInt"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="maxBitrate" type="xs:unsignedInt"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="maxResWidth" type="xs:unsignedInt"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="maxResHeight" type="xs:unsignedInt"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="playCount" type="xs:unsignedInt"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="maxFileSize" type="xs:unsignedLong"/>
             <xs:element maxOccurs="1" minOccurs="0" name="activation" type="xs:dateTime"/>
             <xs:element maxOccurs="1" minOccurs="0" name="expiration" type="xs:dateTime"/>
-            <xs:element maxOccurs="1" minOccurs="0" name="maxAds" type="xs:integer"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="maxAds" type="xs:unsignedInt"/>
             <xs:element maxOccurs="1" minOccurs="0" name="wifiBlocked" type="xs:boolean"/>
             <xs:element maxOccurs="1" minOccurs="0" name="threeGBlocked" type="xs:boolean"/>
             <xs:element maxOccurs="1" minOccurs="0" name="fourGBlocked" type="xs:boolean"/>
@@ -1290,11 +1290,11 @@
             <xs:element maxOccurs="1" minOccurs="0" name="timeshiftEnabled" type="xs:boolean"/>
             <xs:element maxOccurs="1" minOccurs="0" name="amcDebugLogEnabled" type="xs:boolean"/>
             <xs:element maxOccurs="1" minOccurs="0" name="locationEnabled" type="xs:boolean"/>
-            <xs:element maxOccurs="1" minOccurs="0" name="minPlayPosition" type="xs:integer"/>
-            <xs:element maxOccurs="1" minOccurs="0" name="maxPlayPosition" type="xs:integer"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="minPlayPosition" type="xs:unsignedInt"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="maxPlayPosition" type="xs:unsignedInt"/>
             <xs:element maxOccurs="1" minOccurs="0" name="jailbrokenBlocked" type="xs:boolean"/>
-            <xs:element maxOccurs="1" minOccurs="0" name="downloadMaxSecondsAfterDownload" type="xs:integer"/>
-            <xs:element maxOccurs="1" minOccurs="0" name="downloadMaxSecondsAfterPlay" type="xs:integer"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="downloadMaxSecondsAfterDownload" type="xs:unsignedInt"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="downloadMaxSecondsAfterPlay" type="xs:unsignedInt"/>
             <xs:element maxOccurs="1" minOccurs="0" name="anonymousIpBlocked" type="xs:boolean"/>
         </xs:sequence>
     </xs:complexType>
