@@ -324,6 +324,7 @@
         <xs:restriction base="xs:string">
             <xs:enumeration value="SD"/>
             <xs:enumeration value="HD"/>
+            <xs:enumeration value="UHD"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="preProcessingDirectiveType">
