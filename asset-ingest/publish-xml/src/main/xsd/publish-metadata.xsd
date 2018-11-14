@@ -90,6 +90,7 @@
     <!-- Material -->
     <xs:complexType name="SegmentType">
         <xs:sequence>
+            <xs:element name="channelId" type="publish:idType" minOccurs="0"/>
             <xs:element name="start" type="xs:dateTime"/>
             <xs:element name="end" type="xs:dateTime"/>
         </xs:sequence>
@@ -108,7 +109,7 @@
     <xs:complexType name="LiveSourceType">
         <xs:sequence>
             <xs:element name="type" type="publish:LiveSourceTypeType"/>
-            <xs:element name="channelId" type="publish:idType"/>
+            <xs:element minOccurs="0" name="channelId" type="publish:idType"/>
             <xs:element minOccurs="0" name="programId" type="publish:idType"/>
             <xs:element minOccurs="0" name="segments" type="publish:SegmentListType"/>
         </xs:sequence>
