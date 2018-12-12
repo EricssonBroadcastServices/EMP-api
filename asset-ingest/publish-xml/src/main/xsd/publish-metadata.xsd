@@ -257,6 +257,7 @@
             </xs:element>
             <xs:element maxOccurs="1" minOccurs="0" name="externalMediaLocatorList" type="publish:externalMediaLocatorListType"/>
             <xs:element maxOccurs="1" minOccurs="0" name="liveConfig" type="publish:liveConfigType"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="ingestDirective" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="externalMediaLocatorListType">
