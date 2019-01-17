@@ -106,6 +106,80 @@
             <xs:enumeration value="EDIT_LIST"/>
         </xs:restriction>
     </xs:simpleType>
+    <xs:complexType name="VideoTrackType">
+        <xs:sequence>
+            <xs:element name="name" type="publish:notNullString"/>
+            <xs:element name="bitrate" type="xs:long"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="VideoTrackListType">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="videoTrack" type="publish:VideoTrackType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="AudioTrackType">
+        <xs:sequence>
+            <xs:element name="name" type="publish:notNullString"/>
+            <xs:element name="bitrate" type="xs:long"/>
+            <xs:element name="language" type="xs:language"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="AudioTrackListType">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="audioTrack" type="publish:AudioTrackType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="SubtitleTrackType">
+        <xs:sequence>
+            <xs:element name="name" type="publish:notNullString"/>
+            <xs:element name="bitrate" type="xs:long" minOccurs="0"/>
+            <xs:element name="language" type="xs:language"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="SubtitleTrackListType">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="audioTrack" type="publish:SubtitleTrackType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ExternalEncodingType">
+        <xs:annotation>
+            <xs:documentation>
+                Should be used when ingesting media that is prepared outside of MOTT.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="source" type="publish:notNullString">
+                <xs:annotation>
+                    <xs:documentation>
+                        Where are the actual files located. Should either be a archive (tar or zip) or a "folder" (Azure
+                        blob storage).
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="videoTracks" type="publish:VideoTrackListType">
+                <xs:annotation>
+                    <xs:documentation>
+                        A list of which of the files at the destination that are video tracks.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="audioTracks" type="publish:AudioTrackListType">
+                <xs:annotation>
+                    <xs:documentation>
+                        A list of which of the files at the destination that are audio tracks.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="subtitleTracks" type="publish:SubtitleTrackListType">
+                <xs:annotation>
+                    <xs:documentation>
+                        A list of which of the files at the destination that are subtitle tracks.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="removeSourceAfterIngest" type="xs:boolean" default="true"/>
+    </xs:complexType>
     <xs:complexType name="LiveSourceType">
         <xs:sequence>
             <xs:element name="type" type="publish:LiveSourceTypeType"/>
@@ -153,6 +227,12 @@
                     </xs:annotation>
                 </xs:element>
                 <xs:element maxOccurs="1" minOccurs="0" name="liveSource" type="publish:LiveSourceType">
+                    <xs:annotation>
+                        <xs:documentation>If the source is a live channel a live source should be used instead of a materialRef.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element maxOccurs="1" minOccurs="0" name="externalEncoding" type="publish:ExternalEncodingType">
                     <xs:annotation>
                         <xs:documentation>If the source is a live channel a live source should be used instead of a materialRef.
                         </xs:documentation>
