@@ -122,7 +122,7 @@
     </xs:complexType>
     <xs:complexType name="VideoTrackListType">
         <xs:sequence>
-            <xs:element maxOccurs="unbounded" name="videoTrack" type="publish:VideoTrackType"/>
+            <xs:element maxOccurs="unbounded" name="videoTracks" type="publish:VideoTrackType"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="AudioTrackType">
@@ -148,7 +148,7 @@
     </xs:complexType>
     <xs:complexType name="AudioTrackListType">
         <xs:sequence>
-            <xs:element maxOccurs="unbounded" name="audioTrack" type="publish:AudioTrackType"/>
+            <xs:element maxOccurs="unbounded" name="audioTracks" type="publish:AudioTrackType"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="SubtitleTrackType">
@@ -169,7 +169,7 @@
     </xs:complexType>
     <xs:complexType name="SubtitleTrackListType">
         <xs:sequence>
-            <xs:element maxOccurs="unbounded" name="audioTrack" type="publish:SubtitleTrackType"/>
+            <xs:element maxOccurs="unbounded" name="subtitleTracks" type="publish:SubtitleTrackType"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="ExternalEncodingType">
