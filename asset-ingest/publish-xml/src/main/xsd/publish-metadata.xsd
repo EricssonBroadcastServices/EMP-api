@@ -108,7 +108,7 @@
     </xs:simpleType>
     <xs:complexType name="VideoTrackType">
         <xs:sequence>
-            <xs:element name="name" type="publish:notNullString">
+            <xs:element name="filename" type="publish:notNullString">
                 <xs:annotation>
                     <xs:documentation>The filename of this track in the source</xs:documentation>
                 </xs:annotation>
@@ -127,7 +127,7 @@
     </xs:complexType>
     <xs:complexType name="AudioTrackType">
         <xs:sequence>
-            <xs:element name="name" type="publish:notNullString">
+            <xs:element name="filename" type="publish:notNullString">
                 <xs:annotation>
                     <xs:documentation>The filename of this track in the source</xs:documentation>
                 </xs:annotation>
@@ -153,7 +153,7 @@
     </xs:complexType>
     <xs:complexType name="SubtitleTrackType">
         <xs:sequence>
-            <xs:element name="name" type="publish:notNullString">
+            <xs:element name="filename" type="publish:notNullString">
                 <xs:annotation>
                     <xs:documentation>The filename of this track in the source</xs:documentation>
                 </xs:annotation>
