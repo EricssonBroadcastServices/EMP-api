@@ -108,8 +108,16 @@
     </xs:simpleType>
     <xs:complexType name="VideoTrackType">
         <xs:sequence>
-            <xs:element name="name" type="publish:notNullString"/>
-            <xs:element name="bitrate" type="xs:long"/>
+            <xs:element name="name" type="publish:notNullString">
+                <xs:annotation>
+                    <xs:documentation>The filename of this track in the source</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="targetBitrate" type="xs:long">
+                <xs:annotation>
+                    <xs:documentation>The "conceptual" bitrate of this track</xs:documentation>
+                </xs:annotation>
+            </xs:element>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="VideoTrackListType">
@@ -119,8 +127,22 @@
     </xs:complexType>
     <xs:complexType name="AudioTrackType">
         <xs:sequence>
-            <xs:element name="name" type="publish:notNullString"/>
-            <xs:element name="bitrate" type="xs:long"/>
+            <xs:element name="name" type="publish:notNullString">
+                <xs:annotation>
+                    <xs:documentation>The filename of this track in the source</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="targetBitrate" type="xs:long">
+                <xs:annotation>
+                    <xs:documentation>The "conceptual" bitrate of this track</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="displayName" type="publish:notNullString">
+                <xs:annotation>
+                    <xs:documentation>The name that should be shown in drop-downs in the player.
+                        If none is given the 2-letter language code will be used instead</xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:element name="language" type="xs:language"/>
         </xs:sequence>
     </xs:complexType>
@@ -131,8 +153,17 @@
     </xs:complexType>
     <xs:complexType name="SubtitleTrackType">
         <xs:sequence>
-            <xs:element name="name" type="publish:notNullString"/>
-            <xs:element name="bitrate" type="xs:long" minOccurs="0"/>
+            <xs:element name="name" type="publish:notNullString">
+                <xs:annotation>
+                    <xs:documentation>The filename of this track in the source</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="displayName" type="publish:notNullString">
+                <xs:annotation>
+                    <xs:documentation>The name that should be shown in drop-downs in the player.
+                        If none is given the 2-letter language code will be used instead</xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:element name="language" type="xs:language"/>
         </xs:sequence>
     </xs:complexType>
@@ -145,14 +176,15 @@
         <xs:annotation>
             <xs:documentation>
                 Should be used when ingesting media that is prepared outside of MOTT.
+                At the moment we only support unencrypted and demuxed fMP4 or MP4 files.
             </xs:documentation>
         </xs:annotation>
         <xs:sequence>
             <xs:element name="source" type="publish:notNullString">
                 <xs:annotation>
                     <xs:documentation>
-                        Where are the actual files located. Should either be a archive (tar or zip) or a "folder" (Azure
-                        blob storage).
+                        Where are the actual files located. Should either be a URL to a archive (tar or zip) or a "folder" (Azure
+                        blob storage, UNC path or a partial HTTP-URL that can be appended by the track-names to get a valid URL).
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -178,7 +210,11 @@
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
-        <xs:attribute name="removeSourceAfterIngest" type="xs:boolean" default="true"/>
+        <xs:attribute name="removeSourceAfterIngest" type="xs:boolean" default="true">
+            <xs:annotation>
+                <xs:documentation>This will only work for some storage solutions</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
     <xs:complexType name="LiveSourceType">
         <xs:sequence>
