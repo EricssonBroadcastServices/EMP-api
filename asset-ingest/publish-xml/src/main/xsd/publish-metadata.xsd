@@ -122,7 +122,7 @@
     </xs:complexType>
     <xs:complexType name="VideoTrackListType">
         <xs:sequence>
-            <xs:element maxOccurs="unbounded" name="videoTracks" type="publish:VideoTrackType"/>
+            <xs:element maxOccurs="unbounded" name="videoTrack" type="publish:VideoTrackType"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="AudioTrackType">
@@ -148,7 +148,7 @@
     </xs:complexType>
     <xs:complexType name="AudioTrackListType">
         <xs:sequence>
-            <xs:element maxOccurs="unbounded" name="audioTracks" type="publish:AudioTrackType"/>
+            <xs:element maxOccurs="unbounded" name="audioTrack" type="publish:AudioTrackType"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="SubtitleTrackType">
@@ -188,21 +188,21 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="videoTracks" type="publish:VideoTrackListType">
+            <xs:element name="videoTracks" minOccurs="0" type="publish:VideoTrackListType">
                 <xs:annotation>
                     <xs:documentation>
                         A list of which of the files at the destination that are video tracks.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="audioTracks" type="publish:AudioTrackListType">
+            <xs:element name="audioTracks" minOccurs="0" type="publish:AudioTrackListType">
                 <xs:annotation>
                     <xs:documentation>
                         A list of which of the files at the destination that are audio tracks.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="subtitleTracks" type="publish:SubtitleTrackListType">
+            <xs:element name="subtitleTracks" minOccurs="0" type="publish:SubtitleTrackListType">
                 <xs:annotation>
                     <xs:documentation>
                         A list of which of the files at the destination that are subtitle tracks.
