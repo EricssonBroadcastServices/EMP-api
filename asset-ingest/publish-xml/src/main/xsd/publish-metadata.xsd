@@ -169,7 +169,7 @@
     </xs:complexType>
     <xs:complexType name="SubtitleTrackListType">
         <xs:sequence>
-            <xs:element maxOccurs="unbounded" name="subtitleTracks" type="publish:SubtitleTrackType"/>
+            <xs:element maxOccurs="unbounded" name="subtitleTrack" type="publish:SubtitleTrackType"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="ExternalEncodingType">
