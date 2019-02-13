@@ -113,6 +113,11 @@
                     <xs:documentation>The filename of this track in the source</xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element name="outputFilename" minOccurs="0" type="publish:notNullString">
+                <xs:annotation>
+                    <xs:documentation>The filename of this track at the destination</xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:element name="targetBitrate" type="xs:long">
                 <xs:annotation>
                     <xs:documentation>The "conceptual" bitrate of this track</xs:documentation>
@@ -130,6 +135,11 @@
             <xs:element name="filename" type="publish:notNullString">
                 <xs:annotation>
                     <xs:documentation>The filename of this track in the source</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="outputFilename" minOccurs="0" type="publish:notNullString">
+                <xs:annotation>
+                    <xs:documentation>The filename of this track at the destination</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="targetBitrate" type="xs:long">
@@ -158,6 +168,11 @@
                     <xs:documentation>The filename of this track in the source</xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element name="outputFilename" minOccurs="0" type="publish:notNullString">
+                <xs:annotation>
+                    <xs:documentation>The filename of this track at the destination</xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:element name="displayName" type="publish:notNullString">
                 <xs:annotation>
                     <xs:documentation>The name that should be shown in drop-downs in the player.
@@ -172,6 +187,51 @@
             <xs:element maxOccurs="unbounded" name="subtitleTrack" type="publish:SubtitleTrackType"/>
         </xs:sequence>
     </xs:complexType>
+    <xs:simpleType name="ExternalEncodingSourceTypeType">
+        <xs:annotation>
+            <xs:documentation>Supported source types</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="URL">
+                <xs:annotation>
+                    <xs:documentation>
+                        The source should be a URL with basic auth credentials or SAS tokens included and appending the filename
+                        to the source should give a valid and accessible URL
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="LOCAL_FOLDER"/>
+            <xs:enumeration value="ARCHIVE">
+                <xs:annotation>
+                    <xs:documentation>
+                        The source should be a URL pointing to a archive file of some sort (tar, zip, etc.).
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="ExternalEncodingSourceType">
+        <xs:simpleContent>
+            <xs:extension base="publish:notNullString">
+                <xs:annotation>
+                    <xs:documentation>
+                        Where are the actual files located. Should either be a URL to a archive (tar or zip) or a "folder" (Azure
+                        blob storage, UNC path or a partial HTTP-URL that can be appended by the track-names to get a valid URL).
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:attribute name="type" type="publish:ExternalEncodingSourceTypeType" default="URL">
+                    <xs:annotation>
+                        <xs:documentation>What type of source is this</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="removeAfterIngest" type="xs:boolean" default="false">
+                    <xs:annotation>
+                        <xs:documentation>This will only work for some storage solutions</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
     <xs:complexType name="ExternalEncodingType">
         <xs:annotation>
             <xs:documentation>
@@ -180,14 +240,7 @@
             </xs:documentation>
         </xs:annotation>
         <xs:sequence>
-            <xs:element name="source" type="publish:notNullString">
-                <xs:annotation>
-                    <xs:documentation>
-                        Where are the actual files located. Should either be a URL to a archive (tar or zip) or a "folder" (Azure
-                        blob storage, UNC path or a partial HTTP-URL that can be appended by the track-names to get a valid URL).
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
+            <xs:element name="source" type="publish:ExternalEncodingSourceType"/>
             <xs:element name="videoTracks" minOccurs="0" type="publish:VideoTrackListType">
                 <xs:annotation>
                     <xs:documentation>
@@ -210,11 +263,6 @@
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
-        <xs:attribute name="removeSourceAfterIngest" type="xs:boolean" default="true">
-            <xs:annotation>
-                <xs:documentation>This will only work for some storage solutions</xs:documentation>
-            </xs:annotation>
-        </xs:attribute>
     </xs:complexType>
     <xs:complexType name="LiveSourceType">
         <xs:sequence>
