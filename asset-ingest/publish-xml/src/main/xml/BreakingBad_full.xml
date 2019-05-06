@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<publish-metadata xmlns="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.1.xsd ">
+<publish-metadata xmlns="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1
+                                      ../xsd/publish-metadata.xsd ">
   <data>
     <series>
       <id>BreakingBad</id>
@@ -29,21 +32,8 @@
         </credit>
       </creditList>
       <tagList>
-        <tag id="DRAMA" type="genre">
-          <tagNames>
-            <tagName language="en">Drama</tagName>
-          </tagNames>
-        </tag>
-        <tag id="THRILLER" type="genre">
-          <tagNames>
-            <tagName language="en">Thriller</tagName>
-          </tagNames>
-        </tag>
-        <tag id="DRAMA" type="genre">
-          <tagNames>
-            <tagName language="ro">Dramă</tagName>
-          </tagNames>
-        </tag>
+        <tagIdRef>DRAMA</tagIdRef>
+        <tagIdRef>THRILLER</tagIdRef>
       </tagList>
       <imageList>
         <image language="en" priority="0">
@@ -102,11 +92,7 @@
         </credit>
       </creditList>
      <tagList>
-        <tag id="DRAMA" type="genre">
-          <tagNames>
-            <tagName language="en">Drama</tagName>
-          </tagNames>
-        </tag>
+       <tagIdRef>DRAMA</tagIdRef>
       </tagList>
       <imageList>
         <image language="en" priority="0">
@@ -137,6 +123,17 @@
       <seasonNumber>1</seasonNumber>
       <numberOfEpisodes>12</numberOfEpisodes>
     </season>
+    <tag id="DRAMA" type="genre">
+      <tagNames>
+        <tagName language="en">Drama</tagName>
+        <tagName language="ro">Dramă</tagName>
+      </tagNames>
+    </tag>
+    <tag id="THRILLER" type="genre">
+      <tagNames>
+        <tagName language="en">Thriller</tagName>
+      </tagNames>
+    </tag>
     <asset>
       <id>BB0105</id>
       <studio>Sony Pictures Television</studio>
@@ -158,11 +155,7 @@
         </credit>
       </creditList>
       <tagList>
-        <tag id="DRAMA" type="genre">
-          <tagNames>
-            <tagName language="en">Drama</tagName>
-          </tagNames>
-        </tag>
+        <tagIdRef>DRAMA</tagIdRef>
       </tagList>
       <imageList>
         <image language="en" priority="0">
@@ -201,10 +194,6 @@
       <duration>PT1H30M5S</duration>
       <framerate>60</framerate>
       <DRMEnabled>true</DRMEnabled>
-      <breakList>
-        <break><offset>PT30M</offset></break>
-          <break><offset>PT50M</offset></break>
-      </breakList>
       <subtitleList>
         <subtitle format="closed" language="en">Subtitle</subtitle> <!-- Remark: Current EMP format support is unclear -->
       </subtitleList>

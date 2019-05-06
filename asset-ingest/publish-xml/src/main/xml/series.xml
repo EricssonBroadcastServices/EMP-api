@@ -2,7 +2,8 @@
 <publish-metadata
   xmlns="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-2.0.xsd ">
+  xsi:schemaLocation="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1
+                      ../xsd/publish-metadata.xsd ">
   <data>
     <series>
       <id>BreakingBad</id>
@@ -34,16 +35,8 @@
         </credit>
       </creditList>
       <tagList>
-        <tag id="DRAMA" type="genre">
-          <tagNames>
-            <tagName language="en">Drama</tagName>
-          </tagNames>
-        </tag>
-        <tag id="THRILLER" type="genre">
-          <tagNames>
-            <tagName language="en">Thriller</tagName>
-          </tagNames>
-        </tag>
+        <tagIdRef>DRAMA</tagIdRef>
+        <tagIdRef>THRILLER</tagIdRef>
       </tagList>
       <imageList>
         <image language="en" priority="0">
@@ -89,5 +82,15 @@
         </object>
       </customData>
     </series>
+    <tag id="DRAMA" type="genre">
+      <tagNames>
+        <tagName language="en">Drama</tagName>
+      </tagNames>
+    </tag>
+    <tag id="THRILLER" type="genre">
+      <tagNames>
+        <tagName language="en">Thriller</tagName>
+      </tagNames>
+    </tag>
   </data>
 </publish-metadata>
