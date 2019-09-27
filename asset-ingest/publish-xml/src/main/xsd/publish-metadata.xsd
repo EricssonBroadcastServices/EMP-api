@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1" version="@@version@@" xmlns:publish="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           targetNamespace="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1" version="@@version@@"
+           xmlns:publish="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <!-- Message definitions -->
     <xs:element name="publish-metadata">
         <xs:annotation>
@@ -150,7 +153,8 @@
             <xs:element name="displayName" type="publish:notNullString">
                 <xs:annotation>
                     <xs:documentation>The name that should be shown in drop-downs in the player.
-                        If none is given the 2-letter language code will be used instead</xs:documentation>
+                        If none is given the 2-letter language code will be used instead
+                    </xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="language" type="xs:language"/>
@@ -176,7 +180,8 @@
             <xs:element name="displayName" type="publish:notNullString">
                 <xs:annotation>
                     <xs:documentation>The name that should be shown in drop-downs in the player.
-                        If none is given the 2-letter language code will be used instead</xs:documentation>
+                        If none is given the 2-letter language code will be used instead
+                    </xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="language" type="xs:language"/>
@@ -195,7 +200,8 @@
             <xs:enumeration value="URL">
                 <xs:annotation>
                     <xs:documentation>
-                        The source should be a URL with basic auth credentials or SAS tokens included and appending the filename
+                        The source should be a URL with basic auth credentials or SAS tokens included and appending the
+                        filename
                         to the source should give a valid and accessible URL
                     </xs:documentation>
                 </xs:annotation>
@@ -215,8 +221,10 @@
             <xs:extension base="publish:notNullString">
                 <xs:annotation>
                     <xs:documentation>
-                        Where are the actual files located. Should either be a URL to a archive (tar or zip) or a "folder" (Azure
-                        blob storage, UNC path or a partial HTTP-URL that can be appended by the track-names to get a valid URL).
+                        Where are the actual files located. Should either be a URL to a archive (tar or zip) or a
+                        "folder" (Azure
+                        blob storage, UNC path or a partial HTTP-URL that can be appended by the track-names to get a
+                        valid URL).
                     </xs:documentation>
                 </xs:annotation>
                 <xs:attribute name="type" type="publish:ExternalEncodingSourceTypeType" default="URL">
@@ -272,18 +280,170 @@
             <xs:element minOccurs="0" name="segments" type="publish:SegmentListType"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:complexType name="materialRefType">
+    <xs:complexType name="materialRefType" mixed="true">
         <xs:annotation>
             <xs:documentation>A reference to an external media file. This can be
                 an ID, a URI a URL or any other String value.
             </xs:documentation>
         </xs:annotation>
-        <xs:simpleContent>
-            <xs:extension base="publish:notNullString">
-                <xs:attribute name="syndicated" type="xs:boolean" use="optional"/>
-                <xs:attribute name="syndicatedProvider" type="publish:notNullString" use="optional"/>
+        <xs:sequence>
+            <xs:element type="publish:audioListType" name="audioList" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="syndicated" type="xs:boolean"/>
+        <xs:attribute name="syndicatedProvider" type="publish:notNullString"/>
+    </xs:complexType>
+    <xs:complexType name="audioSpecificationType" abstract="true">
+        <xs:annotation>
+            <xs:documentation>
+                Specifies the number of audio tracks and their respective use and language.
+
+                If no audio tracks are specified we try to analyze the file and detect languages etc. of the
+                existing audio tracks from the metadata
+                If we can't analyze the file and no audio channels are specified we assume stereo sound in the order
+                LR or a single stereo track depending on the file format
+                If more audio tracks are specified then there are audio tracks in the actual file the ingest request
+                might return 200 OK but the ingest might still fail or produce unpredictable results
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="language" type="publish:notNullString">
+            <xs:annotation>
+                <xs:documentation>
+                    A valid ISO 639-1 Code or the string UNKNOWN.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="displayName" type="publish:notNullString">
+            <xs:annotation>
+                <xs:documentation>
+                    ny string. It will be used in the "audio track picker" in the player. If no displayName is
+                    given the displayName of the language in our system will be used which might be the english name for
+                    the language or a localised version depending on language.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="channels" type="publish:notNullString">
+            <xs:annotation>
+                <xs:documentation>
+                    A number of integers or integers followed by a 's' separated by a '-' indicating the number
+                    of mono tracks in this group of tracks. If the integer is followed by a 's' that number of tracks
+                    will be skipped in the source file.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="channelDisplayNames" type="publish:notNullString">
+            <xs:annotation>
+                <xs:documentation>
+                    Any strings (including the empty string) not containing a '-' separated by a '-'. They will
+                    be postfixed to the displayName in the yielding the final string shown to endusers in the "audio
+                    track picker" in the player. If not given we will use the empty string to indicate stereo and for
+                    other track numbers an attempt to figure out something sensible like "5.1" or "7.1" will be made
+                    with no guarantes that it will succede. If we fail to figure out a good channelDisplayName for a
+                    given integer the empty string will be used. The number of groups in the order attribute MUST
+                    correspond to the number of groups in the channels attribute that don't contain a 's'.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="order" type="publish:notNullString">
+            <xs:annotation>
+                <xs:documentation>
+                    Any strings separated by a '-' made by concatenating strings from the following set
+                    {L,R,C,Ls,Rs,Lss,Rss,Lrs,Rrs,LFE} indicating which order the mono tracks appear in the source file.
+                    The number of groups in the order attribute MUST correspond to the number of groups in the
+                    channels attribute that don't contain a 's'.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="audioType">
+        <xs:annotation>
+            <xs:documentation>
+                If no language is given we assume the audio track in the source is the same
+                as the default language for the OU if we aren't able to analyze the file
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:restriction base="publish:audioSpecificationType"/>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="audioListType">
+        <xs:annotation>
+            <xs:documentation>
+                If this element is missing we assume the audio track in the source is the same
+                as the default language for the OU if we aren't able to analyze the file
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="audio" type="publish:audioType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="dubType">
+        <xs:annotation>
+            <xs:documentation>
+                If no language is given we assume the audio track in the source is the same
+                as the default language for the OU if we aren't able to analyze the file
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:annotation>
+                <xs:documentation>
+                    The file name of the file containing the audi tracks should be the content of this element
+                </xs:documentation>
+            </xs:annotation>
+            <xs:extension base="publish:audioSpecificationType">
+                <xs:all>
+                    <xs:element name="filename">
+                        <xs:complexType>
+                            <xs:simpleContent>
+                                <xs:extension base="xs:string"/>
+                            </xs:simpleContent>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:all>
             </xs:extension>
-        </xs:simpleContent>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="dubListType">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="dub" type="publish:dubType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="commentaryType">
+        <xs:annotation>
+            <xs:documentation>
+                If no language is given we assume the audio track in the source is the same
+                as the default language for the OU if we aren't able to analyze the file
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:annotation>
+                <xs:documentation>f
+                    The file name of the file containing the audi tracks should be the content of this element
+                </xs:documentation>
+            </xs:annotation>
+            <xs:extension base="publish:audioSpecificationType">
+                <xs:all>
+                    <xs:element name="filename">
+                        <xs:complexType>
+                            <xs:simpleContent>
+                                <xs:extension base="xs:string"/>
+                            </xs:simpleContent>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:all>
+                <xs:attribute name="type" type="publish:commentaryTypeType"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:simpleType name="commentaryTypeType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="actor"/>
+            <xs:enumeration value="director"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="commentaryListType">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="commentary" type="publish:commentaryType"/>
+        </xs:sequence>
     </xs:complexType>
     <!-- -->
     <xs:complexType name="materialType">
@@ -305,20 +465,22 @@
                 <xs:element maxOccurs="1" minOccurs="0" name="materialRef" type="publish:materialRefType">
                     <xs:annotation>
                         <xs:documentation>A reference to an external media file. This can
-                        be an ID, a URI a URL or any other String value.. Depends on the
-                        context.
-                    </xs:documentation>
+                            be an ID, a URI a URL or any other String value.. Depends on the
+                            context.
+                        </xs:documentation>
                     </xs:annotation>
                 </xs:element>
                 <xs:element maxOccurs="1" minOccurs="0" name="liveSource" type="publish:LiveSourceType">
                     <xs:annotation>
-                        <xs:documentation>If the source is a live channel a live source should be used instead of a materialRef.
+                        <xs:documentation>If the source is a live channel a live source should be used instead of a
+                            materialRef.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:element>
                 <xs:element maxOccurs="1" minOccurs="0" name="externalEncoding" type="publish:ExternalEncodingType">
                     <xs:annotation>
-                        <xs:documentation>If the source is a live channel a live source should be used instead of a materialRef.
+                        <xs:documentation>If the source is a live channel a live source should be used instead of a
+                            materialRef.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:element>
@@ -379,6 +541,16 @@
                     <xs:documentation>List of available subtitles</xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element minOccurs="0" name="dubList" type="publish:dubListType">
+                <xs:annotation>
+                    <xs:documentation>List of available audio languages</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="commentaryList" type="publish:commentaryListType">
+                <xs:annotation>
+                    <xs:documentation>List of available audio commentaries</xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:element maxOccurs="1" minOccurs="0" name="expiryDate" type="xs:dateTime">
                 <xs:annotation>
                     <xs:documentation>Expiry date for licensing in ISO 8601 fornat
@@ -420,14 +592,16 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element maxOccurs="1" minOccurs="0" name="externalMediaLocatorList" type="publish:externalMediaLocatorListType"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="externalMediaLocatorList"
+                        type="publish:externalMediaLocatorListType"/>
             <xs:element maxOccurs="1" minOccurs="0" name="liveConfig" type="publish:liveConfigType"/>
             <xs:element maxOccurs="1" minOccurs="0" name="ingestDirective" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="externalMediaLocatorListType">
         <xs:sequence>
-            <xs:element maxOccurs="unbounded" minOccurs="1" name="externalMediaLocator" type="publish:externalMediaLocatorType"/>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="externalMediaLocator"
+                        type="publish:externalMediaLocatorType"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="liveConfigType">
@@ -627,7 +801,7 @@
             <xs:element maxOccurs="1" minOccurs="0" name="post" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
- 	<xs:complexType name="midAdBreakType">
+    <xs:complexType name="midAdBreakType">
         <xs:simpleContent>
             <xs:extension base="xs:string">
                 <xs:attribute name="offset" type="xs:time" use="required">
@@ -680,7 +854,8 @@
     </xs:simpleType>
     <xs:complexType name="externalReferenceListType">
         <xs:sequence>
-            <xs:element maxOccurs="unbounded" minOccurs="1" name="externalReference" type="publish:externalReferenceType">
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="externalReference"
+                        type="publish:externalReferenceType">
                 <xs:annotation>
                     <xs:documentation>List of external resources that can used to
                         connect/boost the content data with.
@@ -753,7 +928,9 @@
     </xs:complexType>
     <xs:complexType name="tagRefType">
         <xs:annotation>
-            <xs:documentation>Optional reference to an existing tag with CU or BU level defined. For CU level entities this value will be ignored.</xs:documentation>
+            <xs:documentation>Optional reference to an existing tag with CU or BU level defined. For CU level entities
+                this value will be ignored.
+            </xs:documentation>
         </xs:annotation>
         <xs:simpleContent>
             <xs:extension base="publish:idType">
@@ -1000,7 +1177,8 @@
                             </xs:documentation>
                         </xs:annotation>
                     </xs:element>
-                    <xs:element maxOccurs="1" minOccurs="0" name="drmRestrictions" type="publish:drmIncludeCountriesType">
+                    <xs:element maxOccurs="1" minOccurs="0" name="drmRestrictions"
+                                type="publish:drmIncludeCountriesType">
                         <xs:annotation>
                             <xs:documentation>Used to set geo restrictions for the asset (asset level and not
                                 publication level)

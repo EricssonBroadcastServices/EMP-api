@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<publish-metadata xmlns="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1
+				  					  ../xsd/publish-metadata.xsd">
+    <data>
+        <asset>
+            <id>000001</id>
+            <titleList>
+                <title language="en">My title</title>
+            </titleList>
+            <assetType>movie</assetType>
+        </asset>
+        <material>
+            <materialRef>
+                <audioList>
+                    <audio language="en" displayName="English" channels="2-6" channelDisplayNames="-5.1"
+                           order="LR-LRCLFELsRs"/>
+                </audioList>
+                video_and_english.mxf
+            </materialRef>
+            <dubList>
+                <dub language="de" displayName="Deutsch" channels="2-6" order="LR-LRCLFELsRs">
+                    <filename>german_and_swedish.mxf</filename>
+                </dub>
+                <dub language="sv" displayName="Svenska" channels="2s-6s-2-6" order="LR-LRCLFELsRs">
+                    <filename>
+                        german_and_swedish.mxf
+                    </filename>
+                </dub>
+            </dubList>
+            <commentaryList>
+                <commentary type="actor" language="en" displayName="John Doe" channels="2" order="LR">
+                    <filename>actor1.mxf</filename>
+                </commentary>
+            </commentaryList>
+        </material>
+    </data>
+</publish-metadata>
