@@ -445,16 +445,23 @@
             <xs:element maxOccurs="unbounded" name="commentary" type="publish:commentaryType"/>
         </xs:sequence>
     </xs:complexType>
+    <xs:simpleType name="materialProviderTypeType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SF"/>
+            <xs:enumeration value="Scanbox"/>
+        </xs:restriction>
+    </xs:simpleType>
     <!-- -->
     <xs:complexType name="materialType">
         <xs:sequence>
-            <xs:element maxOccurs="1" minOccurs="0" name="id" type="publish:idType">
+            <xs:element minOccurs="0" name="id" type="publish:idType">
                 <xs:annotation>
                     <xs:documentation>This is used to couple material with an event. If
                         not provided, an id will be generated based on the asset id.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element minOccurs="0" name="provider" type="publish:materialProviderTypeType"/>
             <xs:element maxOccurs="1" minOccurs="0" name="ingestType" type="publish:ingestTypeType">
                 <xs:annotation>
                     <xs:documentation>What sort of ingest flow should be used
@@ -1062,6 +1069,12 @@
             </xs:element>
         </xs:sequence>
     </xs:complexType>
+    <xs:simpleType name="metadataProviderTypeType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SF"/>
+            <xs:enumeration value="CD"/>
+        </xs:restriction>
+    </xs:simpleType>
     <xs:complexType abstract="true" name="abstractAssetType">
         <xs:annotation>
             <xs:documentation>Abstract type that holds attributes common to
@@ -1075,6 +1088,7 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element minOccurs="0" name="provider" type="publish:metadataProviderTypeType"/>
             <xs:element minOccurs="0" name="studio" type="xs:string">
                 <xs:annotation>
                     <xs:documentation>Name of production studio.</xs:documentation>
