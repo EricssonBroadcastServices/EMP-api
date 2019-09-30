@@ -445,7 +445,7 @@
             <xs:element maxOccurs="unbounded" name="commentary" type="publish:commentaryType"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:simpleType name="materialProviderTypeType">
+    <xs:simpleType name="materialProviderType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="SF"/>
             <xs:enumeration value="Scanbox"/>
@@ -491,6 +491,10 @@
                         </xs:documentation>
                     </xs:annotation>
                 </xs:element>
+                <xs:sequence>
+                    <xs:element name="provider" type="publish:materialProviderType"/>
+                    <xs:element name="providerId" type="xs:string"/>
+                </xs:sequence>
             </xs:choice>
             <xs:element maxOccurs="1" minOccurs="0" name="assetIdRef" type="publish:idType">
                 <xs:annotation>
@@ -1069,10 +1073,10 @@
             </xs:element>
         </xs:sequence>
     </xs:complexType>
-    <xs:simpleType name="metadataProviderTypeType">
+    <xs:simpleType name="metadataProviderType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="SF"/>
-            <xs:enumeration value="CD"/>
+            <xs:enumeration value="Content Discovery"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:complexType abstract="true" name="abstractAssetType">
@@ -1088,7 +1092,10 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element minOccurs="0" name="provider" type="publish:metadataProviderTypeType"/>
+            <xs:sequence minOccurs="0">
+                <xs:element name="provider" type="publish:metadataProviderType"/>
+                <xs:element name="providerId" type="xs:string"/>
+            </xs:sequence>
             <xs:element minOccurs="0" name="studio" type="xs:string">
                 <xs:annotation>
                     <xs:documentation>Name of production studio.</xs:documentation>
