@@ -471,6 +471,7 @@
                             context.
                         </xs:documentation>
                     </xs:annotation>
+		    <xs:element minOccurs="0" name="provider" type="publish:materialProviderType"/>
                 </xs:element>
                 <xs:element name="liveSource" type="publish:LiveSourceType">
                     <xs:annotation>
