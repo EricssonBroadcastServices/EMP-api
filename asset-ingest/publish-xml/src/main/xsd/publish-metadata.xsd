@@ -442,6 +442,7 @@
     <xs:simpleType name="materialProviderType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="SF"/>
+  	    <xs:enumeration value="Stingray"/>
             <xs:enumeration value="Scanbox"/>
         </xs:restriction>
     </xs:simpleType>
@@ -487,7 +488,7 @@
                 </xs:element>
                 <xs:sequence>
                     <xs:element name="provider" type="publish:materialProviderType"/>
-                    <xs:element name="providerId" type="xs:string"/>
+                    <xs:element minOccurs="0" name="providerId" type="xs:string"/>
                 </xs:sequence>
             </xs:choice>
             <xs:element minOccurs="0" name="assetIdRef" type="publish:idType">
@@ -1070,6 +1071,8 @@
         <xs:restriction base="xs:string">
             <xs:enumeration value="SF"/>
             <xs:enumeration value="Content Discovery"/>
+	    <xs:enumeration value="Stingray"/>
+            <xs:enumeration value="Scanbox"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:complexType abstract="true" name="abstractAssetType">
@@ -1087,7 +1090,7 @@
             </xs:element>
             <xs:sequence minOccurs="0">
                 <xs:element name="provider" type="publish:metadataProviderType"/>
-                <xs:element name="providerId" type="xs:string"/>
+                <xs:element minOccurs="0" name="providerId" type="xs:string"/>
             </xs:sequence>
             <xs:element minOccurs="0" name="studio" type="xs:string">
                 <xs:annotation>
