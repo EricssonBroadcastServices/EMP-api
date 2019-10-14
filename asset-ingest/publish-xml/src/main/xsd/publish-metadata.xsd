@@ -440,11 +440,7 @@
         </xs:sequence>
     </xs:complexType>
     <xs:simpleType name="materialProviderType">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="SF"/>
-  	    <xs:enumeration value="Stingray"/>
-            <xs:enumeration value="Scanbox"/>
-        </xs:restriction>
+        <xs:restriction base="xs:string"/>
     </xs:simpleType>
     <!-- -->
     <xs:complexType name="materialType">
@@ -1065,12 +1061,7 @@
         </xs:sequence>
     </xs:complexType>
     <xs:simpleType name="metadataProviderType">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="SF"/>
-            <xs:enumeration value="Content Discovery"/>
-	    <xs:enumeration value="Stingray"/>
-            <xs:enumeration value="Scanbox"/>
-        </xs:restriction>
+        <xs:restriction base="xs:string"/>
     </xs:simpleType>
     <xs:complexType abstract="true" name="abstractAssetType">
         <xs:annotation>
