@@ -483,6 +483,7 @@
                         </xs:documentation>
                     </xs:annotation>
                 </xs:element>
+                <xs:element minOccurs="0" name="externalMediaLocatorList" type="publish:externalMediaLocatorListType"/>
             </xs:choice>
             <xs:element minOccurs="0" name="assetIdRef" type="publish:idType">
                 <xs:annotation>
@@ -590,8 +591,6 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element minOccurs="0" name="externalMediaLocatorList"
-                        type="publish:externalMediaLocatorListType"/>
             <xs:element minOccurs="0" name="liveConfig" type="publish:liveConfigType"/>
             <xs:element minOccurs="0" name="ingestDirective" type="xs:string"/>
         </xs:sequence>
