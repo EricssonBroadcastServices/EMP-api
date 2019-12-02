@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 sp1 (http://www.altova.com) by Peter Nyström (EvitecUnify AB); additional editing with Oxygen XML Developer by Joakim Philipson (Kungl. biblioteket) -->
+<!-- Version 1.0. 2023-05-03 -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:media="http://search.yahoo.com/mrss/" targetNamespace="http://search.yahoo.com/mrss/" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!-- Import the Qualified Dublin Core module namespace schema for dcterms:valid -->
+<!--	<xs:import namespace="http://purl.org/dc/terms/" schemaLocation="dcterms_kbse.xsd"/>-->
+	<xs:element name="group" type="media:mrssGroupType"/>
+	<xs:element name="content" type="media:mrssContentType"/>
+	<xs:element name="description" type="media:mrssDescriptionType"/>
+	<xs:element name="keywords" type="xs:string"/>
+	<xs:element name="license" type="media:mrssLicenseType"/>
+	<xs:element name="category" type="media:mrssCategoryType"/>
+	<xs:element name="hash" type="media:mrssHashType"/>
+	<xs:element name="credit" type="media:mrssCreditType"/>
+	<xs:element name="copyright" type="media:mrssCopyrightType"/>
+	<xs:complexType name="mrssGroupType">
+		<xs:choice>
+			<xs:element ref="media:content" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="mrssContentType">
+		<xs:choice maxOccurs="unbounded">
+			<xs:element ref="media:description" minOccurs="0"/>
+			<xs:element ref="media:keywords" minOccurs="0"/>
+			<xs:element ref="media:category" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="media:license" minOccurs="0"/>
+			<xs:element ref="media:hash" minOccurs="0"/>
+			<xs:element ref="media:credit" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="media:copyright" minOccurs="0"/>
+<!--			<xs:element ref="dcterms:isFormatOf" minOccurs="0"/>-->
+		</xs:choice>
+		<xs:attribute name="url" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:anyURI">
+					<xs:minLength value="10"/>
+					<!-- Added <simpleType name="Link"> with restriction <xs:minLength value="10"/> to get valid URLs as values. 20130430-joakim.philipson@kb.se-->
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="fileSize" type="xs:integer" use="optional"/>
+		<xs:attribute name="type" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:pattern value="[a-z0-9+-]+/[a-z0-9.:_+-]+"/>
+					<!--Added restriction <xs:pattern/> to get valid MIME-types as values. 20130430-joakim.philipson@kb.se -->
+					<xs:minLength value="7"/>
+					<!--Added restriction <xs:minLength/> to get valid MIME-types as values. 20130430-joakim.philipson@kb.se-->
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="medium" use="optional">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="image"/>
+					<xs:enumeration value="audio"/>
+					<xs:enumeration value="video"/>
+					<xs:enumeration value="document"/>
+					<xs:enumeration value="executable"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="isDefault" type="xs:boolean" use="optional"/>
+		<xs:attribute name="expression" use="optional" default="full">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="sample"/>
+					<xs:enumeration value="full"/>
+					<xs:enumeration value="nonstop"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="bitrate" type="xs:integer" use="optional"/>
+		<xs:attribute name="framerate" type="xs:integer" use="optional"/>
+		<xs:attribute name="samplingrate" type="xs:decimal" use="optional"/>
+		<xs:attribute name="channels" type="xs:integer" use="optional"/>
+		<xs:attribute name="duration" type="xs:integer" use="optional"/>
+		<xs:attribute name="height" type="xs:integer" use="optional"/>
+		<xs:attribute name="width" type="xs:integer" use="optional"/>
+		<xs:attribute name="lang" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="mrssDescriptionType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="type">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="plain"/>
+							<xs:enumeration value="html"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="mrssCategoryType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="scheme" type="xs:string" default="http://search.yahoo.com/mrss/category_schema"/>
+				<xs:attribute name="label" type="xs:string" use="optional"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="mrssLicenseType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="type" type="xs:string" default="http://search.yahoo.com/mrss/category_schema"/>
+				<xs:attribute name="href" type="xs:anyURI" use="optional"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="mrssHashType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="algo" default="md5">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="md5"/>
+							<xs:enumeration value="sha-1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="mrssCreditType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="role" type="xs:string" use="optional"/>
+				<xs:attribute name="scheme" type="xs:string" use="optional" default="urn:ebu"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="mrssCopyrightType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="url" type="xs:anyURI"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+</xs:schema>
