@@ -1,0 +1,25 @@
+<xs:schema elementFormDefault="qualified"
+           targetNamespace="http://vod.serverside.ai/mrss/"
+           xmlns:ad="http://vod.serverside.ai/mrss/"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="cuepoints" type="ad:cuepointTypes"/>
+
+    <xs:complexType name="cuepointTypes">
+        <xs:sequence>
+            <xs:element ref="ad:cuepoint"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="cuepoint" type="ad:cuepointType"/>
+
+    <xs:complexType name="cuepointType">
+        <xs:sequence>
+            <xs:element type="xs:int" name="splicetime"/>
+            <xs:element type="xs:int" name="maxcount"/>
+            <xs:element type="xs:int" name="duration"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="id"/>
+    </xs:complexType>
+
+</xs:schema>

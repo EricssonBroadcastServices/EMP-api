@@ -1,0 +1,15 @@
+<xs:schema elementFormDefault="qualified"
+           targetNamespace="http://search.yahoo.com/mrss/"
+           xmlns:media="http://search.yahoo.com/mrss/"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="category" type="xs:string"/>
+
+    <xs:element name="content" type="media:contentType"/>
+
+    <xs:complexType name="contentType">
+        <xs:attribute type="xs:string" name="type"/>
+        <xs:attribute type="xs:string" name="url"/>
+    </xs:complexType>
+
+</xs:schema>
