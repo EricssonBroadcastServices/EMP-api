@@ -7,7 +7,7 @@
 
     <xs:complexType name="cuepointTypes">
         <xs:sequence>
-            <xs:element ref="ad:cuepoint"/>
+            <xs:element minOccurs="1" maxOccurs="unbounded" ref="ad:cuepoint"/>
         </xs:sequence>
     </xs:complexType>
 
