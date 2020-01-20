@@ -9,7 +9,7 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>nowtilus-xml</artifactId>
   <packaging>jar</packaging>
-  <version>1.0.10</version>
+  <version>1.0.11</version>
   <name>NowtilusXML</name>
   <description>XML used for integration with nowtilus.</description>
 

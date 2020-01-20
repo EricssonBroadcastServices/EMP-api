@@ -25,7 +25,7 @@
         <xs:sequence>
             <xs:element type="xs:string" name="title"/>
             <xs:element ref="media:category"/>
-            <xs:element ref="media:content"/>
+            <xs:element maxOccurs="unbounded" ref="media:content"/>
             <xs:element ref="ad:cuepoints"/>
         </xs:sequence>
     </xs:complexType>
