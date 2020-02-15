@@ -13,6 +13,154 @@
 					"name": "Standard Ingest",
 					"item": [
 						{
+							"name": "Advanced Audio",
+							"item": [
+								{
+									"name": "Mov file - Audio Single Stereo",
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "password",
+													"value": "{{mgmtapipwd}}",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "{{mgmtapiuser}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/xml"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\">\n    <data>\n    \t <asset>\n            <id>{{assetId}}</id>\n            <titleList>\n                <title language=\"en\">Title for {{assetId}} in English</title>\n            </titleList>\n            <assetType>movie</assetType>\n        </asset>\n        <material>\n        \t<materialRef>\n\t\t\t\t<audioList>\n    \t\t\t\t<audio channels=\"1\" language=\"en\" order=\"S\"/><!-- track 1 is danish, stereo -->\n\t\t\t\t</audioList>\n\t\t\t\thttp://movietrailers.apple.com/movies/lucasfilm/star-wars-the-rise-of-skywalker/star-wars-the-rise-of-skywalker-trailer-1_h1080p.mov\n\t\t\t</materialRef>\n\t\t</material>\n    </data>\n</publish-metadata>"
+										},
+										"url": {
+											"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
+											"host": [
+												"{{mgmtapihost}}"
+											],
+											"path": [
+												"v1",
+												"customer",
+												"{{customer}}",
+												"businessunit",
+												"{{businessUnit}}",
+												"asset"
+											]
+										},
+										"description": "Use this when you want to perform a basic ingest without having any real meta-data available. You have one media file.\n\nIt is assumed that the there is a storage location defined inside RedBee platform. This is why providing only relative paths are good enough. A storage can be defined either for a whole organization unit or for an organization when a specific provider is defined for the material.\n\nAsset will not be published."
+									},
+									"response": []
+								},
+								{
+									"name": "Mxf file - Audio LR Stereo",
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "password",
+													"value": "{{mgmtapipwd}}",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "{{mgmtapiuser}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/xml"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\">\n    <data>\n    \t <asset>\n            <id>{{assetId}}</id>\n            <titleList>\n                <title language=\"en\">Title for {{assetId}} in English</title>\n            </titleList>\n            <assetType>movie</assetType>\n        </asset>\n        <material>\n        \t<materialRef>\n\t\t\t\t<audioList>\n    \t\t\t\t<audio channels=\"2\" language=\"da\" order=\"LR\"/><!-- track 1-2 is danish, left/right stereo -->\n\t\t\t\t</audioList>\n\t\t\t\thttps://emptestdata.blob.core.windows.net/sources/au8trks/test_au8trks.mxf\n\t\t\t</materialRef>\n\t\t</material>\n    </data>\n</publish-metadata>"
+										},
+										"url": {
+											"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
+											"host": [
+												"{{mgmtapihost}}"
+											],
+											"path": [
+												"v1",
+												"customer",
+												"{{customer}}",
+												"businessunit",
+												"{{businessUnit}}",
+												"asset"
+											]
+										},
+										"description": "Use this when you want to perform a basic ingest without having any real meta-data available. You have one media file.\n\nIt is assumed that the there is a storage location defined inside RedBee platform. This is why providing only relative paths are good enough. A storage can be defined either for a whole organization unit or for an organization when a specific provider is defined for the material.\n\nAsset will not be published."
+									},
+									"response": []
+								},
+								{
+									"name": "Mxf file - Audio LR Stereo Multiple Languages",
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "password",
+													"value": "{{mgmtapipwd}}",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "{{mgmtapiuser}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/xml"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\">\n    <data>\n    \t <asset>\n            <id>{{assetId}}</id>\n            <titleList>\n                <title language=\"en\">Title for {{assetId}} in English</title>\n            </titleList>\n            <assetType>movie</assetType>\n        </asset>\n        <material>\n        \t<materialRef>\n\t\t\t\t<audioList>\n    \t\t\t\t<audio channels=\"2\" language=\"da\" order=\"LR\"/>\n    \t\t\t\t<audio channels=\"2s-2\" language=\"fi\" order=\"LR\"/>\n    \t\t\t\t<audio channels=\"4s-2\" language=\"no\" order=\"LR\"/>\n    \t\t\t\t<audio channels=\"6s-2\" language=\"sv\" order=\"LR\"/>\n\t\t\t\t</audioList>\n\t\t\t\thttps://emptestdata.blob.core.windows.net/sources/au8trks/test_au8trks.mxf\n\t\t\t</materialRef>\n\t\t</material>\n    </data>\n</publish-metadata>"
+										},
+										"url": {
+											"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
+											"host": [
+												"{{mgmtapihost}}"
+											],
+											"path": [
+												"v1",
+												"customer",
+												"{{customer}}",
+												"businessunit",
+												"{{businessUnit}}",
+												"asset"
+											]
+										},
+										"description": "Use this when you want to perform a basic ingest without having any real meta-data available. You have one media file.\n\nIt is assumed that the there is a storage location defined inside RedBee platform. This is why providing only relative paths are good enough. A storage can be defined either for a whole organization unit or for an organization when a specific provider is defined for the material.\n\nAsset will not be published."
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
 							"name": "Simple Asset - Source  Full Path - Multiple Subtiltes - Not Published",
 							"request": {
 								"auth": {
