@@ -948,6 +948,153 @@
 			],
 			"description": "You can at any point add or change your publications. If a publication with your provided ID already exist for an asset it will be replaced, otherwise it will be added.",
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Get Products",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{mgmtapipwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{mgmtapiuser}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							}
+						],
+						"url": {
+							"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/product",
+							"host": [
+								"{{mgmtapihost}}"
+							],
+							"path": [
+								"v1",
+								"customer",
+								"{{customer}}",
+								"businessunit",
+								"{{businessUnit}}",
+								"product"
+							]
+						},
+						"description": "Use this when you want to add or update a publication for an asset."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{mgmtapipwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{mgmtapiuser}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							}
+						],
+						"url": {
+							"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/product/{{productId}}",
+							"host": [
+								"{{mgmtapihost}}"
+							],
+							"path": [
+								"v1",
+								"customer",
+								"{{customer}}",
+								"businessunit",
+								"{{businessUnit}}",
+								"product",
+								"{{productId}}"
+							]
+						},
+						"description": "Use this when you want to add or update a publication for an asset."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Product",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{mgmtapipwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{mgmtapiuser}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"test_product\",\n  \"externalId\": \"test_product\",\n  \"description\": \"A test product that is free\",\n  \"ads\": false,\n  \"anonymousAllowed\": false,\n  \"entitlementRequired\": false,\n  \"blocked\": false,\n  \"priority\": 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/product",
+							"host": [
+								"{{mgmtapihost}}"
+							],
+							"path": [
+								"v1",
+								"customer",
+								"{{customer}}",
+								"businessunit",
+								"{{businessUnit}}",
+								"product"
+							]
+						},
+						"description": "Use this when you want to add or update a publication for an asset."
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"auth": {
