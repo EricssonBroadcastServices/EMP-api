@@ -1131,6 +1131,7 @@
             </xs:element>
             <xs:element minOccurs="0" name="parentalRatingList" type="publish:parentalRatingListType"/>
             <xs:element minOccurs="0" name="externalReferenceList" type="publish:externalReferenceListType"/>
+            <xs:element minOccurs="0" name="collectionList" type="publish:collectionReferenceListType"/>
             <xs:element minOccurs="0" name="customData" type="publish:customDataType"/>
         </xs:sequence>
     </xs:complexType>
@@ -1227,6 +1228,7 @@
             <xs:enumeration value="trailer"/>
             <xs:enumeration value="ad"/>
             <xs:enumeration value="clip"/>
+            <xs:enumeration value="collection"/>
             <xs:enumeration value="other"/>
         </xs:restriction>
     </xs:simpleType>
@@ -2931,4 +2933,26 @@
             <xs:enumeration value="UNKNOWN"/>
         </xs:restriction>
     </xs:simpleType>
+    <xs:complexType name="collectionReferenceListType">
+        <xs:annotation>
+            <xs:documentation>References to the collections that this asset belongs to.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="collection" type="publish:collectionReferenceType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="collectionReferenceType">
+        <xs:annotation>
+            <xs:documentation>Reference to the collection that this asset belongs to.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="id" type="publish:idType">
+                <xs:annotation>
+                    <xs:documentation/>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
 </xs:schema>
