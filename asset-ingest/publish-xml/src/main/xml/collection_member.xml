@@ -14,14 +14,14 @@
       <descriptionList>
         <description language="en" length="short">Bunnies.</description>
       </descriptionList>
-      <collections>
+      <collectionList>
         <collection>
           <id>easter2020</id>
         </collection>
         <collection>
           <id>everythingbunnies</id>
         </collection>
-      </collections>
+      </collectionList>
       <assetType>movie</assetType>
     </asset>
   </data>

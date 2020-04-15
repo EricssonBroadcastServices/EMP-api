@@ -2934,13 +2934,17 @@
         </xs:restriction>
     </xs:simpleType>
     <xs:complexType name="collectionReferenceListType">
+        <xs:annotation>
+            <xs:documentation>References to the collections that this asset belongs to.
+            </xs:documentation>
+        </xs:annotation>
         <xs:sequence>
             <xs:element maxOccurs="unbounded" minOccurs="0" name="collection" type="publish:collectionReferenceType"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="collectionReferenceType">
         <xs:annotation>
-            <xs:documentation>
+            <xs:documentation>Reference to the collection that this asset belongs to.
             </xs:documentation>
         </xs:annotation>
         <xs:sequence>
