@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<publish-metadata
+  xmlns="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1
+                      ../xsd/publish-metadata.xsd ">
+  <data>
+    <asset>
+      <id>easter2020</id>
+      <titleList>
+        <title language="en">Easter 2020 special</title>
+        <sortingTitle language="en">001</sortingTitle>
+      </titleList>
+      <descriptionList>
+        <description language="en" length="short">Just a collection.</description>
+      </descriptionList>
+      <imageList>
+        <image language="en" priority="0">
+          <id>easter_special</id>
+          <url>http://tempuri.org/easter_special/2020.jpg</url>
+          <width>1600</width>
+          <height>900</height>
+          <purpose>banner</purpose>
+          <orientation>landscape</orientation>
+          <copyright>MIT</copyright>
+        </image>
+      </imageList>
+      <assetType>collection</assetType>
+    </asset>
+  </data>
+</publish-metadata>
