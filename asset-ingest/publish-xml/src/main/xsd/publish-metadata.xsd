@@ -1131,7 +1131,16 @@
             </xs:element>
             <xs:element minOccurs="0" name="parentalRatingList" type="publish:parentalRatingListType"/>
             <xs:element minOccurs="0" name="externalReferenceList" type="publish:externalReferenceListType"/>
-            <xs:element minOccurs="0" name="collectionList" type="publish:collectionReferenceListType"/>
+            <xs:element minOccurs="0" name="collectionList" type="publish:collectionReferenceListType">
+                <xs:annotation>
+                    <xs:documentation>list of collection ids that this asset should belong to.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="adminLabelList" type="publish:adminLabelListType">
+                <xs:annotation>
+                    <xs:documentation>list of labels that can be used for finding the asset by backend clients. This field is not mapped to end user facing models.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:element minOccurs="0" name="customData" type="publish:customDataType"/>
         </xs:sequence>
     </xs:complexType>
@@ -2953,6 +2962,11 @@
                     <xs:documentation/>
                 </xs:annotation>
             </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="adminLabelListType">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="label" type="publish:notNullString"/>
         </xs:sequence>
     </xs:complexType>
 </xs:schema>

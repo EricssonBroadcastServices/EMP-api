@@ -81,6 +81,10 @@
           <uri>https://en.wikipedia.org/?curid=</uri>
         </externalReference>
       </externalReferenceList>
+      <adminLabelList>
+        <label>label1</label>
+        <label>label2</label>
+      </adminLabelList>
       <customData>
         <object>
           <mapEntry name="stringEntry">
