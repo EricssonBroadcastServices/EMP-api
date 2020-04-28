@@ -503,53 +503,6 @@
 							"response": []
 						},
 						{
-							"name": "Episode Asset - Predefined Series Season - No Material - Not Published",
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{mgmtapipwd}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{mgmtapiuser}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/xml"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n\t<data>\n\t\t<asset>\n    \t\t<id>{{assetId}}</id>\n    \t\t<titleList>\n    \t\t\t<title language=\"en\">Title for {{assetId}} in English</title>\n    \t\t</titleList>\n    \t\t<assetType>episode</assetType>\n    \t\t<seriesId>{{seriesId}}</seriesId>\n    \t\t<seasonId>{{seasonId}}</seasonId>\n    \t\t<episodeNumber>{{episodeNumber}}</episodeNumber>\n        </asset>\n\t</data>\n</publish-metadata>"
-								},
-								"url": {
-									"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
-									"host": [
-										"{{mgmtapihost}}"
-									],
-									"path": [
-										"v1",
-										"customer",
-										"{{customer}}",
-										"businessunit",
-										"{{businessUnit}}",
-										"asset"
-									]
-								},
-								"description": "Use this when you want to perform a basic ingest without having any real meta-data available. You have one media file.\n\nIt is assumed that the there is a storage location defined inside RedBee platform. This is why providing only relative paths are good enough. A storage can be defined either for a whole organization unit or for an organization when a specific provider is defined for the material.\n\nAsset will not be published."
-							},
-							"response": []
-						},
-						{
 							"name": "Episode Asset - Predefined Series Season - Material - Not Published",
 							"request": {
 								"auth": {
@@ -829,6 +782,53 @@
 							]
 						},
 						"description": "Use this when you want to create or update meta-data for an asset."
+					},
+					"response": []
+				},
+				{
+					"name": "Episode Asset - Predefined Series Season",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{mgmtapipwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{mgmtapiuser}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n\t<data>\n\t\t<asset>\n    \t\t<id>{{assetId}}</id>\n    \t\t<titleList>\n    \t\t\t<title language=\"en\">Title for {{assetId}} in English</title>\n    \t\t</titleList>\n    \t\t<assetType>episode</assetType>\n    \t\t<seriesId>{{seriesId}}</seriesId>\n    \t\t<seasonId>{{seasonId}}</seasonId>\n    \t\t<episodeNumber>{{episodeNumber}}</episodeNumber>\n        </asset>\n\t</data>\n</publish-metadata>"
+						},
+						"url": {
+							"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
+							"host": [
+								"{{mgmtapihost}}"
+							],
+							"path": [
+								"v1",
+								"customer",
+								"{{customer}}",
+								"businessunit",
+								"{{businessUnit}}",
+								"asset"
+							]
+						},
+						"description": "Use this when you want to perform a basic ingest without having any real meta-data available. You have one media file.\n\nIt is assumed that the there is a storage location defined inside RedBee platform. This is why providing only relative paths are good enough. A storage can be defined either for a whole organization unit or for an organization when a specific provider is defined for the material.\n\nAsset will not be published."
 					},
 					"response": []
 				},
