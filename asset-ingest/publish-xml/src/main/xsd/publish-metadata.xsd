@@ -999,6 +999,7 @@
         </xs:annotation>
         <xs:sequence>
             <xs:element minOccurs="0" name="includeCountries" type="publish:countryListType"/>
+            <xs:element minOccurs="0" name="downloadAllowed" type="xs:boolean" default="false"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="countryListType">
