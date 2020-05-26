@@ -5,7 +5,7 @@
                   xsi:schemaLocation="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1
 				  					  ../xsd/publish-metadata.xsd">
     <data>
-        <material update="true">
+        <material>
             <materialRef>
                 materialIdOfExistingMaterial
             </materialRef>
