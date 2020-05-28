@@ -7,7 +7,6 @@
     <data>
         <material>
             <vodSource>
-                <type>COPY</type>
                 <segments>
                     <segment>
                         <sourceAssetId>assetId_suffix</sourceAssetId>

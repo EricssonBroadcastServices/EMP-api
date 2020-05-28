@@ -138,42 +138,6 @@
             <xs:element maxOccurs="unbounded" name="segment" type="publish:LiveSegmentType"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:simpleType name="ClippingTypeType">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="COPY">
-                <xs:annotation>
-                    <xs:documentation>
-                        This will copy the existing material and then just modify the media locator to only return the
-                        selected parts.
-                        Only one segment allowed since the only operations supported by this mode is to make the new
-                        material shorter by starting later and/or ending earlier.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="CUT">
-                <xs:annotation>
-                    <xs:documentation>
-                        NB! Not supported yet. May have undefined behaviours
-                        A completely new material will be produced from the specified segments.
-                        If multiple segments from one or more source materials are specified they will be spliced
-                        together.
-                        The cutting won't be frame accurate.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="CUT_FRAME_ACCURATE">
-                <xs:annotation>
-                    <xs:documentation>
-                        NB! Not supported yet. May have undefined behaviours
-                        A completely new material will be produced from the specified segments.
-                        If multiple segments from one or more source materials are specified they will be spliced
-                        together.
-                        The cutting will be frame accurate.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-        </xs:restriction>
-    </xs:simpleType>
     <xs:simpleType name="LiveSourceTypeType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="EPG"/>
@@ -345,7 +309,6 @@
     </xs:complexType>
     <xs:complexType name="VodSourceType">
         <xs:sequence>
-            <xs:element name="type" type="publish:ClippingTypeType"/>
             <xs:element name="segments" type="publish:VodSegmentListType"/>
         </xs:sequence>
     </xs:complexType>
