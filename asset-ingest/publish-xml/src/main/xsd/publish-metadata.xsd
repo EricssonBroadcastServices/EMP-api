@@ -94,7 +94,7 @@
     <xs:complexType name="VodSegmentType">
         <xs:sequence>
             <xs:element name="sourceAssetId" type="publish:idType"/>
-            <xs:element name="sourceMaterialId" type="publish:idType"/>
+            <xs:element name="sourceMaterialId" minOccurs="0" type="publish:idType"/>
             <xs:element name="start" type="xs:duration">
                 <xs:annotation>
                     <xs:documentation>
