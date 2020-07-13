@@ -966,7 +966,7 @@
     <xs:complexType name="tagNameType">
         <xs:simpleContent>
             <xs:restriction base="publish:localizedTextType">
-                <xs:minLength value="3"/>
+                <xs:minLength value="2"/>
                 <xs:maxLength value="300"/>
             </xs:restriction>
         </xs:simpleContent>
