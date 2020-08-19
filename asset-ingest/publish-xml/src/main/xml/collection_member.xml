@@ -20,6 +20,7 @@
         </collection>
         <collection>
           <id>everythingbunnies</id>
+          <sortOrder>1</sortOrder>
         </collection>
       </collectionList>
       <assetType>movie</assetType>
