@@ -704,6 +704,8 @@
             <xs:enumeration value="HLS"/>
             <xs:enumeration value="DASH"/>
             <xs:enumeration value="SMOOTHSTREAMING"/>
+            <xs:enumeration value="MP3"/>
+            <xs:enumeration value="AAC"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="videoQuality">
