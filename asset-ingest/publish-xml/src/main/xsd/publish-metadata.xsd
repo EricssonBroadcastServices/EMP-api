@@ -2159,6 +2159,8 @@
             <!-- SENEGAL -->
             <xs:enumeration value="CS"/>
             <!-- SERBIA AND MONTENEGRO -->
+            <xs:enumeration value="RS"/>
+            <!-- SERBIA  -->
             <xs:enumeration value="SC"/>
             <!-- SEYCHELLES -->
             <xs:enumeration value="SL"/>
@@ -2830,8 +2832,6 @@
             <!-- SANGO -->
             <xs:enumeration value="sr"/>
             <!-- SERBIAN -->
-            <xs:enumeration value="rs"/>
-            <!-- SERBIAN New value -->
             <xs:enumeration value="srp"/>
             <!-- SERBIAN -->
             <xs:enumeration value="gd"/>
