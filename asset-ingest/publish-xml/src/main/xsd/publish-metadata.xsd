@@ -2830,6 +2830,8 @@
             <!-- SANGO -->
             <xs:enumeration value="sr"/>
             <!-- SERBIAN -->
+            <xs:enumeration value="rs"/>
+            <!-- SERBIAN New value -->
             <xs:enumeration value="srp"/>
             <!-- SERBIAN -->
             <xs:enumeration value="gd"/>
