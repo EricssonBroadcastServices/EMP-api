@@ -2261,6 +2261,20 @@
             <!-- ZAMBIA -->
             <xs:enumeration value="ZW"/>
             <!-- ZIMBABWE -->
+            <xs:enumeration value="BL"/>
+            <!-- Saint Barthelemy -->
+            <xs:enumeration value="BQ"/>
+            <!-- Bonaire, Sint Eustatius and Saba -->
+            <xs:enumeration value="SS"/>
+            <!-- South Sudan -->
+            <xs:enumeration value="SX"/>
+            <!-- Sint Maarten. Sint Maarten -->
+            <xs:enumeration value="CW"/>
+            <!-- Curacao -->
+            <xs:enumeration value="ME"/>
+            <!-- Montenegro -->
+            <xs:enumeration value="MF"/>
+            <!-- Saint Martin (French part) -->
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="language">
