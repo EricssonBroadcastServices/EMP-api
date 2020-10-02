@@ -334,6 +334,36 @@
         <xs:attribute name="syndicated" type="xs:boolean"/>
         <xs:attribute name="syndicatedProvider" type="publish:notNullString"/>
     </xs:complexType>
+    <xs:complexType name="variantType">
+        <xs:sequence>
+            <xs:element type="publish:variantAudioType" name="audio" minOccurs="0"/>
+            <xs:element type="publish:variantVideoType" name="video" minOccurs="0"/>
+            <xs:element type="publish:variantSubtitlesType" name="subtitles" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="variantAudioType">
+        <xs:sequence>
+            <xs:element type="publish:languageListType" name="languageList" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="all" type="xs:boolean"/>
+    </xs:complexType>
+    <xs:complexType name="variantVideoType">
+        <xs:sequence>
+            <xs:element type="xs:long" name="maxBitRate" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="all" type="xs:boolean"/>
+    </xs:complexType>
+    <xs:complexType name="variantSubtitlesType">
+        <xs:sequence>
+            <xs:element type="publish:languageListType" name="languageList" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="all" type="xs:boolean"/>
+    </xs:complexType>
+    <xs:complexType name="languageListType">
+        <xs:sequence>
+            <xs:element type="publish:language" name="language" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
     <xs:complexType name="audioSpecificationType" abstract="true">
         <xs:annotation>
             <xs:documentation>
@@ -535,6 +565,20 @@
                 </xs:element>
                 <xs:element minOccurs="0" name="externalMediaLocatorList" type="publish:externalMediaLocatorListType"/>
             </xs:choice>
+            <xs:element name="variant" type="publish:variantType">
+                <xs:annotation>
+                    <xs:documentation>
+                        If you want to create a variant of a existing ingested material then you can give the
+                        material as the materialRef
+                        and then here specify here which audio, video and subtitle tracks you want to include in
+                        your variant.
+                        The variant won't incur any storage or transcoding overhead but will instead resuse the
+                        tracks from the source.
+                        Combined with a material selector this is a easy way to e.g. show different subs in
+                        different regions but keep everything else the same.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:element minOccurs="0" name="assetIdRef" type="publish:idType">
                 <xs:annotation>
                     <xs:documentation>Used when no asset is provided in this message.
