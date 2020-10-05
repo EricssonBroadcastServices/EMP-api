@@ -60,6 +60,7 @@
         <jailbrokenBlocked>true</jailbrokenBlocked>
         <downloadMaxSecondsAfterDownload>0</downloadMaxSecondsAfterDownload>
         <downloadMaxSecondsAfterPlay>0</downloadMaxSecondsAfterPlay>
+        <maxDownloadCount>1</maxDownloadCount>
       </assetRights>
       <deviceRightsList>
         <deviceRights>
