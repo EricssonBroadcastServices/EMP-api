@@ -361,7 +361,7 @@
     </xs:complexType>
     <xs:complexType name="languageListType">
         <xs:sequence>
-            <xs:element type="publish:language" name="language" minOccurs="0"/>
+            <xs:element type="publish:language" name="language" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="audioSpecificationType" abstract="true">

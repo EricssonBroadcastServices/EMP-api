@@ -13,6 +13,7 @@
                 <audio all="false">
                     <languageList>
                         <language>en</language>
+                        <language>sv</language>
                     </languageList>
                 </audio>
                 <video all="false">
@@ -21,6 +22,7 @@
                 <subtitles>
                     <languageList>
                         <language>sv</language>
+                        <language>de</language>
                     </languageList>
                 </subtitles>
             </variant>
