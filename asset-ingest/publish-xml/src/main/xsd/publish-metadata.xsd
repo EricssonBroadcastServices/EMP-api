@@ -565,7 +565,7 @@
                 </xs:element>
                 <xs:element minOccurs="0" name="externalMediaLocatorList" type="publish:externalMediaLocatorListType"/>
             </xs:choice>
-            <xs:element name="variant" type="publish:variantType">
+            <xs:element minOccurs="0" name="variant" type="publish:variantType">
                 <xs:annotation>
                     <xs:documentation>
                         If you want to create a variant of a existing ingested material then you can give the

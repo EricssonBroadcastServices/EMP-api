@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<publish-metadata xmlns="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1">
+    <data>
+        <material>
+            <materialRef>
+                https://customerimages.blob.core.windows.net/customerportal/c0f91d596ffb454284afec5a9108c9d2.mp4?sig=3o7j3UvoHzF0pBxckfBoL2rSBrIigw7d87Jl29anGXI%3D&amp;st=2020-10-07T13%3A41%3A50Z&amp;se=2020-10-07T21%3A56%3A50Z&amp;sv=2017-04-17&amp;si=WritePolicy&amp;sr=c
+            </materialRef>
+            <assetIdRef>4511b502-38e8-4142-bed5-9d19c82e2673_441948b</assetIdRef>
+            <DRMEnabled>false</DRMEnabled>
+        </material>
+    </data>
+</publish-metadata>
