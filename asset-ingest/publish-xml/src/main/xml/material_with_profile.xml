@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<publish-metadata
+  xmlns="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1
+                      ../xsd/publish-metadata.xsd ">
+  <data>
+    <material>
+      <id>BB0105_MTRL</id>
+      <materialRef>bb105.mp4 </materialRef>
+      <assetIdRef>BB0105</assetIdRef>
+      <profile>custom_profile</profile>
+      <duration>PT50M30S</duration>
+      <framerate>25</framerate>
+      <DRMEnabled>true</DRMEnabled>
+      <subtitleList>
+        <subtitle language="sv" format="other" name="Swedish">uri_sv</subtitle>
+        <subtitle language="en" format="other" name="English">uri_en</subtitle>
+      </subtitleList>
+      <expiryDate>2017-10-17T00:00:00+01:00</expiryDate>
+      <purgeDate>2017-12-17T00:00:00+01:00</purgeDate>
+      <videoQuality>SD</videoQuality>
+      <aspectRatio>16:9</aspectRatio>
+      <priority>50</priority>
+    </material>
+  </data>
+</publish-metadata>

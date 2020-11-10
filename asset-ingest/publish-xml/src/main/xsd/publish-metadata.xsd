@@ -586,6 +586,12 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element minOccurs="0" name="profile" type="publish:idType">
+                <xs:annotation>
+                    <xs:documentation>Used to classify materials when multiple active materials are used
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:element minOccurs="0" name="duration" type="xs:duration">
                 <xs:annotation>
                     <xs:documentation>An ISO 8601 duration in format PnYnMnDTnHnMn.NNNS.
