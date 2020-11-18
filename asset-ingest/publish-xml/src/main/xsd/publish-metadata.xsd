@@ -586,7 +586,7 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element minOccurs="0" name="profile" type="publish:idType">
+            <xs:element minOccurs="0" maxOccurs="1" name="profiles" type="publish:profileListType">
                 <xs:annotation>
                     <xs:documentation>Used to classify materials when multiple active materials are used
                     </xs:documentation>
@@ -793,6 +793,16 @@
                 <xs:annotation>
                     <xs:documentation>reference to a subtitle item, for example a
                         teletext page or a subtitle file
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="profileListType">
+        <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="unbounded" name="profile" type="publish:idType">
+                <xs:annotation>
+                    <xs:documentation>Used to classify materials when multiple active materials are used
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
