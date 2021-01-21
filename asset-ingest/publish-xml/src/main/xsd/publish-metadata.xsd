@@ -1264,6 +1264,11 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element minOccurs="0" name="linkedAssetList" type="publish:linkedAssetListType">
+                <xs:annotation>
+                    <xs:documentation>list of links to other entities.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:element minOccurs="0" name="customData" type="publish:customDataType"/>
         </xs:sequence>
     </xs:complexType>
@@ -3115,4 +3120,38 @@
             <xs:element maxOccurs="unbounded" minOccurs="0" name="label" type="publish:notNullString"/>
         </xs:sequence>
     </xs:complexType>
+    <xs:complexType name="linkedAssetListType">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="linkedAsset" type="publish:linkedAssetType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="linkedAssetType">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="id" type="publish:idType">
+                <xs:annotation>
+                    <xs:documentation>Optional link id. If omitted, one will be generated.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="type" type="publish:linkType"/>
+            <xs:element name="assetId" type="publish:ouAwareRefType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="linkType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="trailer"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="ouAwareRefType">
+        <xs:annotation>
+            <xs:documentation>Optional reference to an existing entity with CU or BU level defined. For CU level entities
+                this value will be ignored.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:extension base="publish:idType">
+                <xs:attribute name="ownedByCustomer" default="false" type="xs:boolean"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
 </xs:schema>

@@ -85,6 +85,13 @@
         <label>label1</label>
         <label>label2</label>
       </adminLabelList>
+      <linkedAssetList>
+        <linkedAsset>
+          <id>optionalLinkId</id>
+          <type>trailer</type>
+          <assetId ownedByCustomer="false">trailerAssetId</assetId>
+        </linkedAsset>
+      </linkedAssetList>
       <customData>
         <object>
           <mapEntry name="stringEntry">
