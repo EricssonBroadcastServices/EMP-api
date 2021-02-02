@@ -812,7 +812,7 @@
     </xs:complexType>
     <xs:complexType name="subtitleType">
         <xs:simpleContent>
-            <xs:extension base="publish:notNullString">
+            <xs:extension base="xs:string">
                 <xs:attribute name="language" type="publish:language">
                     <xs:annotation>
                         <xs:documentation>code in ISO 639-1</xs:documentation>
