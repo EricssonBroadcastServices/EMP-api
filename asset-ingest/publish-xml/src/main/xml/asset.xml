@@ -52,7 +52,7 @@
         <tagIdRef>THRILLER</tagIdRef>
       </tagList>
       <imageList>
-        <image language="en" priority="0">
+        <image language="en" priority="0" forceReload="true">
           <id>breaking_bad_epsisode_s01e05</id>
           <url>http://tempuri.org/breaking_bad_season1/05.jpg</url>
           <width>1600</width>

@@ -1580,6 +1580,11 @@
             </xs:element>
             <xs:element minOccurs="0" name="copyright" type="publish:notNullString"/>
         </xs:sequence>
+        <xs:attribute name="forceReload" default="false" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>Ignore service caches and reload image from source.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
         <xs:attribute name="priority">
             <xs:annotation>
                 <xs:documentation>lower priority number means higher importance
