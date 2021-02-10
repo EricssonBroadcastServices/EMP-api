@@ -341,8 +341,8 @@
     </xs:complexType>
     <xs:complexType name="variantType">
         <xs:sequence>
-            <xs:element type="publish:variantAudioType" name="audio" minOccurs="0"/>
-            <xs:element type="publish:variantVideoType" name="video" minOccurs="0"/>
+            <!-- <xs:element type="publish:variantAudioType" name="audio" minOccurs="0"/>-->
+            <!-- <xs:element type="publish:variantVideoType" name="video" minOccurs="0"/>-->
             <xs:element type="publish:variantSubtitlesType" name="subtitles" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
