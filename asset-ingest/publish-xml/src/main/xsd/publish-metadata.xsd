@@ -334,6 +334,11 @@
         <xs:attribute name="syndicated" type="xs:boolean"/>
         <xs:attribute name="syndicatedProvider" type="publish:notNullString"/>
     </xs:complexType>
+    <xs:complexType name="variantsType">
+        <xs:sequence>
+            <xs:element type="publish:variantType" name="variant" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
     <xs:complexType name="variantType">
         <xs:sequence>
             <xs:element type="publish:variantAudioType" name="audio" minOccurs="0"/>
@@ -567,6 +572,9 @@
                 </xs:element>
                 <xs:element minOccurs="0" name="externalMediaLocatorList" type="publish:externalMediaLocatorListType"/>
             </xs:choice>
+            <xs:element minOccurs="0" maxOccurs="1" name="variants" type="publish:variantsType">
+            </xs:element>
+            <!--
             <xs:element minOccurs="0" name="variant" type="publish:variantType">
                 <xs:annotation>
                     <xs:documentation>
@@ -581,6 +589,7 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
+            -->
             <xs:element minOccurs="0" name="assetIdRef" type="publish:idType">
                 <xs:annotation>
                     <xs:documentation>Used when no asset is provided in this message.
