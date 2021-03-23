@@ -347,6 +347,7 @@
             <xs:element type="publish:profileListType" name="profiles" minOccurs="1" maxOccurs="1"/>
             <xs:element type="publish:variantSubtitlesType" name="subtitles" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
+        <xs:attribute name="delete" default="false" type="xs:boolean"/>
     </xs:complexType>
     <xs:complexType name="variantAudioType">
         <xs:sequence>
@@ -545,10 +546,12 @@
                 <xs:element name="materialRef" type="publish:materialRefType">
                     <xs:annotation>
                         <xs:documentation>A reference to an external media file. This can
-                            be an ID, a URI, a URL or any other String value. Depends on how ingest is configured in the backend. 
-                                   For the simplest case of providing a URL we support ftp, HTTP and HTTPS. 
-                                   The URLs can be password protected but the username and password have to match [a-zA-Z0-9]*
-                                   If your files are already in a S3 bucket keys can be configured and then only a relative path provided here. No need to create presigned URLs. 
+                            be an ID, a URI, a URL or any other String value. Depends on how ingest is configured in the
+                            backend.
+                            For the simplest case of providing a URL we support ftp, HTTP and HTTPS.
+                            The URLs can be password protected but the username and password have to match [a-zA-Z0-9]*
+                            If your files are already in a S3 bucket keys can be configured and then only a relative
+                            path provided here. No need to create presigned URLs.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:element>
@@ -3163,7 +3166,8 @@
     </xs:simpleType>
     <xs:complexType name="ouAwareRefType">
         <xs:annotation>
-            <xs:documentation>Optional reference to an existing entity with CU or BU level defined. For CU level entities
+            <xs:documentation>Optional reference to an existing entity with CU or BU level defined. For CU level
+                entities
                 this value will be ignored.
             </xs:documentation>
         </xs:annotation>
