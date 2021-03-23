@@ -341,11 +341,12 @@
     </xs:complexType>
     <xs:complexType name="variantType">
         <xs:sequence>
-            <xs:element minOccurs="0" name="id" type="publish:idType"></xs:element>
-            <!-- <xs:element type="publish:variantAudioType" name="audio" minOccurs="0"/> NOT YET SUPPORTED -->
-            <!-- <xs:element type="publish:variantVideoType" name="video" minOccurs="0"/> NOT YET SUPPORTED -->
+            <xs:element minOccurs="0" maxOccurs="1" name="id" type="publish:idType"/>
             <xs:element type="publish:profileListType" name="profiles" minOccurs="1" maxOccurs="1"/>
-            <xs:element type="publish:variantSubtitlesType" name="subtitles" minOccurs="0" maxOccurs="1"/>
+            <xs:element type="publish:variantTrackType" name="subtitles" minOccurs="0" maxOccurs="1"/>
+            <xs:element type="publish:variantTrackType" name="audios" minOccurs="0" maxOccurs="1"/>
+            <xs:element type="publish:variantTrackType" name="videos" minOccurs="0" maxOccurs="1"/>
+            <xs:element type="xs:int" name="maxBitrate" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
         <xs:attribute name="delete" default="false" type="xs:boolean"/>
     </xs:complexType>
@@ -361,7 +362,7 @@
         </xs:sequence>
         <xs:attribute name="all" type="xs:boolean"/>
     </xs:complexType>
-    <xs:complexType name="variantSubtitlesType">
+    <xs:complexType name="variantTrackType">
         <xs:sequence>
             <xs:element type="xs:string" name="subtitle" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
