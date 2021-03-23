@@ -341,8 +341,9 @@
     </xs:complexType>
     <xs:complexType name="variantType">
         <xs:sequence>
-            <!-- <xs:element type="publish:variantAudioType" name="audio" minOccurs="0"/>-->
-            <!-- <xs:element type="publish:variantVideoType" name="video" minOccurs="0"/>-->
+            <xs:element minOccurs="0" name="id" type="publish:idType"></xs:element>
+            <!-- <xs:element type="publish:variantAudioType" name="audio" minOccurs="0"/> NOT YET SUPPORTED -->
+            <!-- <xs:element type="publish:variantVideoType" name="video" minOccurs="0"/> NOT YET SUPPORTED -->
             <xs:element type="publish:profileListType" name="profiles" minOccurs="1" maxOccurs="1"/>
             <xs:element type="publish:variantSubtitlesType" name="subtitles" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
@@ -361,10 +362,12 @@
     </xs:complexType>
     <xs:complexType name="variantSubtitlesType">
         <xs:sequence>
-            <xs:element type="publish:languageListType" name="languageList" minOccurs="0"/>
+            <xs:element type="xs:string" name="subtitle" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attribute name="all" type="xs:boolean"/>
+        <xs:attribute name="included" type="xs:boolean" default="true"/>
     </xs:complexType>
+
     <xs:complexType name="languageListType">
         <xs:sequence>
             <xs:element type="publish:language" name="language" minOccurs="0" maxOccurs="unbounded"/>
