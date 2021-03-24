@@ -364,7 +364,7 @@
     </xs:complexType>
     <xs:complexType name="variantTrackType">
         <xs:sequence>
-            <xs:element type="xs:string" name="subtitle" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element type="xs:string" name="track" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attribute name="all" type="xs:boolean"/>
         <xs:attribute name="included" type="xs:boolean" default="true"/>
