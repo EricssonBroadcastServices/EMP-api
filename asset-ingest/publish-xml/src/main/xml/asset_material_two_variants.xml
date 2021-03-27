@@ -32,7 +32,10 @@
                     </subtitles>
                 </variant>
             </variants>
-            <DRMEnabled>false</DRMEnabled>
+           <profiles>
+                <profile>default</profile>
+            </profiles>
+             <DRMEnabled>false</DRMEnabled>
             <subtitleList>
                 <subtitle language="en">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_eng_short.vtt</subtitle>
                 <subtitle language="fr">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_fre_short.vtt</subtitle>
@@ -40,6 +43,7 @@
                 <subtitle language="es">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_spa_short.vtt</subtitle>
                 <subtitle language="sv">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_sve_short.vtt</subtitle>
             </subtitleList>
+ 
         </material>
     </data>
 </publish-metadata>
