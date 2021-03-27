@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <publish-metadata xmlns="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd">
-    <data>
-        <asset>
-            <id>{{assetId}}</id>
-            <titleList>
-                <title language="en">Title for {{assetId}} in English</title>
-                <title language="sv">Titel för {{assetId}} på Svenska</title>
-            </titleList>
-            <assetType>movie</assetType>
+	<data>
+		<asset>
+        	<id>{{assetId}}</id>
+        	<titleList>
+            	<title language="en">Title for {{assetId}} in English</title>
+            	<title language="sv">Titel för {{assetId}} på Svenska</title>
+        	</titleList>
+        	<assetType>movie</assetType>
         </asset>
         <material>
             <materialRef>https://emptestdata.blob.core.windows.net/sources/Sintel/sintel.mp4</materialRef>
             <variants>
-                <variant>
-                	<id>america</id>
-                    <profiles>
+            	<variant>
+					<id>america</id>
+					<profiles>
                         <profile>america</profile>
                     </profiles>
                     <subtitles>
@@ -31,8 +31,8 @@
                         <track>es</track>
                     </subtitles>
                 </variant>
-            </variants>
-           <profiles>
+			</variants>
+           	<profiles>
                 <profile>default</profile>
             </profiles>
              <DRMEnabled>false</DRMEnabled>
@@ -43,7 +43,6 @@
                 <subtitle language="es">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_spa_short.vtt</subtitle>
                 <subtitle language="sv">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_sve_short.vtt</subtitle>
             </subtitleList>
- 
         </material>
     </data>
 </publish-metadata>
