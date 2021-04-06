@@ -1824,49 +1824,6 @@
 			"name": "Products",
 			"item": [
 				{
-					"name": "Get Product Offerings",
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{mgmtapipwd}}",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "{{mgmtapiuser}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/xml"
-							}
-						],
-						"url": {
-							"raw": "{{mgmtapihost}}/v2/customer/{{customer}}/businessunit/{{businessUnit}}/productoffering",
-							"host": [
-								"{{mgmtapihost}}"
-							],
-							"path": [
-								"v2",
-								"customer",
-								"{{customer}}",
-								"businessunit",
-								"{{businessUnit}}",
-								"productoffering"
-							]
-						},
-						"description": "Use this when you want to add or update a publication for an asset."
-					},
-					"response": []
-				},
-				{
 					"name": "Get Products",
 					"request": {
 						"auth": {
@@ -2033,17 +1990,17 @@
 							}
 						],
 						"url": {
-							"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/product",
+							"raw": "{{mgmtapihost}}/v2/customer/{{customer}}/businessunit/{{businessUnit}}/productoffering",
 							"host": [
 								"{{mgmtapihost}}"
 							],
 							"path": [
-								"v1",
+								"v2",
 								"customer",
 								"{{customer}}",
 								"businessunit",
 								"{{businessUnit}}",
-								"product"
+								"productoffering"
 							]
 						},
 						"description": "Use this when you want to add or update a publication for an asset."
