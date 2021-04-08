@@ -1,0 +1,40 @@
+<tv source-info-url='https://www.muxip.com'>
+    <channel id='94'>
+        <display-name>Title for Channel 1</display-name>
+    </channel>
+    <programme start='20201020202035 +0000' stop='20201020211547 +0000' channel='94'>
+        <title lang='en'>Title program 1</title>
+        <desc lang='en'>Description for program 1</desc>
+        <category lang='en'>action</category>
+        <icon src='https://example.com/be45d380-b97b-49a8-ad7f-ae8ac2a59f15' width='1920' height='1080' />
+        <rating system='MPAA'>
+            <value>TV14</value>
+        </rating>
+        <credits>
+            <director>The director</director>
+            <actor>Actor 1</actor>
+            <actor>Actor 2</actor>
+            <writer>The writer</writer>
+            <adapter>The adapter</adapter>
+            <producer>The producer</producer>
+            <composer>The composer</composer>
+            <editor>The editor</editor>
+            <presenter>The presenter</presenter>
+            <commentator>The commentator</commentator>
+            <guest>Guest 1</guest>
+            <guest>Guest 2</guest>
+        </credits>
+    </programme>
+    <programme start='20201020211547 +0000' stop='20201020221159 +0000' channel='94'>
+        <title lang='en'>Title program 2</title>
+        <desc lang='en'>Description for program 2</desc>
+        <category lang='en'>sports</category>
+        <icon src='https://example.com/17c8f564-a14f-4acf-b018-f328df9b1afd' width='1920' height='1080' />
+        <rating system='MPAA'>
+            <value>TV14</value>
+        </rating>
+        <credits>
+            <commentator>The commentator</commentator>
+        </credits>
+    </programme>
+</tv>
