@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<publish-metadata xmlns="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd">
+    <data>
+        <material>
+            <materialRef>https://emptestdata.blob.core.windows.net/sources/Sintel/sintel.mp4</materialRef>
+            <variants>
+                <variant>
+                    <id>america</id>
+                    <profiles>
+                        <profile>america</profile>
+                    </profiles>
+                    <subtitles>
+                        <track>en</track>
+                    </subtitles>
+                </variant>
+                <variant>
+                    <id>europe</id>
+                    <profiles>
+                        <profile>europe</profile>
+                    </profiles>
+                    <subtitles>
+                        <track>en</track>
+                        <track>es</track>
+                    </subtitles>
+                </variant>
+            </variants>
+            <assetIdRef>{{assetId}}</assetIdRef>
+            <DRMEnabled>false</DRMEnabled>
+            <subtitleList>
+                <subtitle language="en">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_eng_short.vtt</subtitle>
+                <subtitle language="fr">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_fre_short.vtt</subtitle>
+        	    <subtitle language="de">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_ger_short.vtt</subtitle>
+                <subtitle language="es">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_spa_short.vtt</subtitle>
+                <subtitle language="sv">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_sve_short.vtt</subtitle>
+            </subtitleList>
+        </material>
+    </data>
+</publish-metadata>
