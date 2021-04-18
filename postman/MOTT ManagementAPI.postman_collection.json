@@ -13,10 +13,391 @@
 					"name": "Standard Ingest",
 					"item": [
 						{
-							"name": "Advanced Audio",
+							"name": "Asset - Basic",
 							"item": [
 								{
-									"name": "Mov file - Audio Single Stereo",
+									"name": "Asset - Most Basic",
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "password",
+													"value": "{{mgmtapipwd}}",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "{{mgmtapiuser}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/xml"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n    <data>\n        <asset>\n            <id>{{assetId}}</id>\n            <titleList>\n                <title language=\"en\">Title for {{assetId}} in English</title>\n            </titleList>\n            <assetType>movie</assetType>\n        </asset>\n        <material>\n            <materialRef>https://emptestdata.blob.core.windows.net/sources/Sintel/sintel.mp4</materialRef>\n        </material>\n    </data>\n</publish-metadata>"
+										},
+										"url": {
+											"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
+											"host": [
+												"{{mgmtapihost}}"
+											],
+											"path": [
+												"v1",
+												"customer",
+												"{{customer}}",
+												"businessunit",
+												"{{businessUnit}}",
+												"asset"
+											]
+										},
+										"description": "Use this when you want to perform a basic ingest without having any real meta-data available. You have one media file and multiple subtitle files.\n\nIt is assume that both the media source file and the subtitle files are available directly on internet.\n\nAsset will not be published."
+									},
+									"response": []
+								},
+								{
+									"name": "Asset - Source  Full Path",
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "password",
+													"value": "{{mgmtapipwd}}",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "{{mgmtapiuser}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/xml"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n    <data>\n        <asset>\n            <id>{{assetId}}</id>\n            <titleList>\n                <title language=\"en\">Title for {{assetId}} in English</title>\n                <title language=\"sv\">Titel för {{assetId}} på Svenska</title>\n            </titleList>\n            <assetType>movie</assetType>\n        </asset>\n        <material>\n            <materialRef>https://emptestdata.blob.core.windows.net/sources/Sintel/sintel.mp4</materialRef>\n            <DRMEnabled>true</DRMEnabled>\n            <subtitleList>\n                <subtitle language=\"en\">https://emptestdata.blob.core.windows.net/sources/Sintel/sintel_en.vtt</subtitle>\n                <subtitle language=\"sv\">https://emptestdata.blob.core.windows.net/sources/Sintel/sintel_se.vtt</subtitle>\n                <subtitle language=\"ar\">https://emptestdata.blob.core.windows.net/sources/Sintel/sintel_ar.vtt</subtitle>\n                <subtitle language=\"no\">https://emptestdata.blob.core.windows.net/sources/Sintel/sintel_no.vtt</subtitle>\n            </subtitleList>\n        </material>\n    </data>\n</publish-metadata>"
+										},
+										"url": {
+											"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
+											"host": [
+												"{{mgmtapihost}}"
+											],
+											"path": [
+												"v1",
+												"customer",
+												"{{customer}}",
+												"businessunit",
+												"{{businessUnit}}",
+												"asset"
+											]
+										},
+										"description": "Use this when you want to perform a basic ingest without having any real meta-data available. You have one media file and multiple subtitle files.\n\nIt is assume that both the media source file and the subtitle files are available directly on internet.\n\nAsset will not be published."
+									},
+									"response": []
+								},
+								{
+									"name": "Asset - Source Full Path - Published",
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "password",
+													"value": "{{mgmtapipwd}}",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "{{mgmtapiuser}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/xml"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n    <data>\n        <asset>\n            <id>{{assetId}}</id>\n            <titleList>\n                <title language=\"en\">Title for {{assetId}} in English</title>\n                <title language=\"sv\">Titel för {{assetId}} på Svenska</title>\n            </titleList>\n            <assetType>movie</assetType>\n        </asset>\n        <material>\n            <materialRef>https://emptestdata.blob.core.windows.net/sources/Sintel/sintel.mp4</materialRef>\n            <DRMEnabled>true</DRMEnabled>\n            <subtitleList>\n                <subtitle language=\"en\">https://emptestdata.blob.core.windows.net/sources/Sintel/sintel_en.vtt</subtitle>\n                <subtitle language=\"sv\">https://emptestdata.blob.core.windows.net/sources/Sintel/sintel_se.vtt</subtitle>\n                <subtitle language=\"ar\">https://emptestdata.blob.core.windows.net/sources/Sintel/sintel_ar.vtt</subtitle>\n                <subtitle language=\"no\">https://emptestdata.blob.core.windows.net/sources/Sintel/sintel_no.vtt</subtitle>\n            </subtitleList>\n        </material>\n        <publicationList>\n    \t    <publication>\n        \t    <id>SintelPubl</id>\n        \t    <startTime>2020-01-01T00:00:00.000Z</startTime>\n        \t    <endTime>2025-12-31T00:00:00.000Z</endTime>\n        \t    <publishTime>2021-01-01T00:00:00.000Z</publishTime>\n        \t    <publicationRights>\n            \t    <productList>\n                \t    <product>free_product</product>\n            \t    </productList>\n        \t    </publicationRights>\n    \t    </publication>\n\t    </publicationList>\n    </data>\n</publish-metadata>"
+										},
+										"url": {
+											"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
+											"host": [
+												"{{mgmtapihost}}"
+											],
+											"path": [
+												"v1",
+												"customer",
+												"{{customer}}",
+												"businessunit",
+												"{{businessUnit}}",
+												"asset"
+											]
+										},
+										"description": "Use this when you want to perform a basic ingest without having any real meta-data available. You have one media file.\n\nIt is assumed that the media source file is available directly on internet.\n\nAsset will be published. Note that this means that the asset might be available before it is actually ingested and playable so please consider the publication dates carefully. "
+									},
+									"response": []
+								},
+								{
+									"name": "Asset - Relative Path",
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "password",
+													"value": "{{mgmtapipwd}}",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "{{mgmtapiuser}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/xml"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n\t<data>\n\t\t<asset>\n    \t\t<id>{{assetId}}</id>\n    \t\t<titleList>\n    \t\t\t<title language=\"en\">Title for {{assetId}} in English</title>\n    \t\t</titleList>\n    \t\t<assetType>movie</assetType>\n        </asset>\n\t\t<material>\n            <!-- This assumes that we there is a predefined path configured in the system.-->\n\t\t\t<materialRef>Sintel/sintel.mp4</materialRef>\n\t\t\t<DRMEnabled>true</DRMEnabled>\n\t\t</material>\n\t</data>\n</publish-metadata>"
+										},
+										"url": {
+											"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
+											"host": [
+												"{{mgmtapihost}}"
+											],
+											"path": [
+												"v1",
+												"customer",
+												"{{customer}}",
+												"businessunit",
+												"{{businessUnit}}",
+												"asset"
+											]
+										},
+										"description": "Use this when you want to perform a basic ingest without having any real meta-data available. You have one media file.\n\nIt is assumed that the there is a storage location defined inside RedBee platform. This is why providing only relative paths are good enough. A storage can be defined either for a whole organization unit or for an organization when a specific provider is defined for the material.\n\nAsset will not be published."
+									},
+									"response": []
+								},
+								{
+									"name": "Asset - Relative Path For Provider",
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "password",
+													"value": "{{mgmtapipwd}}",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "{{mgmtapiuser}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/xml"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n\t<data>\n\t\t<asset>\n    \t\t<id>{{assetId}}</id>\n    \t\t<titleList>\n    \t\t\t<title language=\"en\">Title for {{assetId}} in English</title>\n    \t\t</titleList>\n    \t\t<assetType>movie</assetType>\n        </asset>\n\t\t<material>\n\t\t\t<provider>PreDefinedProvider</provider>\n\t\t\t<materialRef>Sintel/sintel.mp4</materialRef>\n            <DRMEnabled>false</DRMEnabled>\n\t\t</material>\n\t</data>\n</publish-metadata>"
+										},
+										"url": {
+											"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
+											"host": [
+												"{{mgmtapihost}}"
+											],
+											"path": [
+												"v1",
+												"customer",
+												"{{customer}}",
+												"businessunit",
+												"{{businessUnit}}",
+												"asset"
+											]
+										},
+										"description": "Use this when you want to perform a basic ingest without having any real meta-data available. You have one media file.\n\nIt is assumed that the there is a storage location defined inside RedBee platform. This is why providing only relative paths are good enough. A storage can be defined either for a whole organization unit or for an organization when a specific provider is defined for the material.\n\nAsset will not be published."
+									},
+									"response": []
+								},
+								{
+									"name": "Asset - Material Profiles",
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "password",
+													"value": "{{mgmtapipwd}}",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "{{mgmtapiuser}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/xml"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n\t<data>\n\t\t<asset>\n    \t\t<id>{{assetId}}</id>\n    \t\t<titleList>\n    \t\t\t<title language=\"en\">Title for {{assetId}} in English</title>\n    \t\t</titleList>\n    \t\t<assetType>movie</assetType>\n        </asset>\n\t\t<material>\n            <materialRef>https://emptestdata.blob.core.windows.net/sources/Sintel/sintel.mp4</materialRef>      \n            <profiles>\n                <profile>profile1</profile>\n                <profile>profile2</profile>\n            </profiles>\n\t\t\t<DRMEnabled>false</DRMEnabled>\n\t\t</material>\n\t</data>\n</publish-metadata>"
+										},
+										"url": {
+											"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
+											"host": [
+												"{{mgmtapihost}}"
+											],
+											"path": [
+												"v1",
+												"customer",
+												"{{customer}}",
+												"businessunit",
+												"{{businessUnit}}",
+												"asset"
+											]
+										},
+										"description": "Use this this base a new material on a already existing one to avoid incurring extra transcoding and storage costs"
+									},
+									"response": []
+								},
+								{
+									"name": "Asset - Localised Etc",
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "password",
+													"value": "{{mgmtapipwd}}",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "{{mgmtapiuser}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/xml"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n    <data>\n        <asset>\n            <id>{{assetId}}</id>\n            <!-- The provider must be configured in the system -->\n            <provider>provider1</provider>\n            <productionYear>2017</productionYear>\n            <titleList>\n                <title language=\"en\">Title for {{assetId}} in Englisth</title>\n                <title language=\"sv\">Title for {{assetId}} in Swedish</title>\n            </titleList>\n            <descriptionList>\n                <description language=\"en\" length=\"short\">A short description in English</description>\n                <description language=\"sv\" length=\"short\">A short description in Swedish</description>\n                <description language=\"en\" length=\"medium\">A medium description in English</description>\n                <description language=\"sv\" length=\"medium\">A medium description in Swedish</description>\n                <description language=\"en\" length=\"long\">A long description in English</description>\n                <description language=\"sv\" length=\"long\">A long description in Swedish</description>\n            </descriptionList>\n            <!-- The tags must exist -->\n            <tagList>\n                <tagIdRef>genre_drama</tagIdRef>\n                <tagIdRef>genre_thriller</tagIdRef>\n            </tagList>\n            <imageList>\n            \t <image language=\"sv\">\n                    <id>image1</id>\n                    <url>http://myhost.se/myPath/MyImageInSv.jpg</url>\n                    <width>1280</width>\n                    <height>720</height>\n                    <purpose>banner</purpose>\n                    <orientation>landscape</orientation>\n                </image>\n                <image language=\"en\">\n                    <id>image2</id>\n                    <url>http://myhost.se/myPath/MyImageInEn.jpg</url>\n                    <width>1280</width>\n                    <height>720</height>\n                    <purpose>banner</purpose>\n                    <orientation>landscape</orientation>\n                </image>\n            </imageList>\n            <!-- The parantal ratings must be pre-configured in the system -->\n            <parentalRatingList>\n                <parentalRating>\n                    <rating>15</rating>\n                    <scheme>age</scheme>\n                    <country>GB</country>\n                </parentalRating>\n                <parentalRating>\n                    <rating>15</rating>\n                    <scheme>age</scheme>\n                    <country>SE</country>\n                </parentalRating>\n            </parentalRatingList>\n            <assetType>movie</assetType>\n        </asset>\n        <material>\n            <materialRef>https://emptestdata.blob.core.windows.net/sources/Sintel/sintel.mp4</materialRef>\n            <DRMEnabled>true</DRMEnabled>\n        </material>\n    </data>\n</publish-metadata>"
+										},
+										"url": {
+											"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
+											"host": [
+												"{{mgmtapihost}}"
+											],
+											"path": [
+												"v1",
+												"customer",
+												"{{customer}}",
+												"businessunit",
+												"{{businessUnit}}",
+												"asset"
+											]
+										},
+										"description": "Use this when you want to perform an ingest when localised data is available. You have one media file.\n\nIt is assumed that the media source file is available directly on internet.\n\nAsset will not be published."
+									},
+									"response": []
+								},
+								{
+									"name": "Asset - Variants",
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "password",
+													"value": "{{mgmtapipwd}}",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "{{mgmtapiuser}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/xml"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n    <data>\n        <asset>\n            <id>{{assetId}}</id>\n            <titleList>\n                <title language=\"en\">Title for {{assetId}} in English</title>\n                <title language=\"sv\">Titel för {{assetId}} på Svenska</title>\n            </titleList>\n            <assetType>movie</assetType>\n        </asset>\n        <material>\n            <materialRef>https://emptestdata.blob.core.windows.net/sources/Sintel/sintel.mp4</materialRef>\n            <variants>\n                <variant>\n                \t<id>america</id>\n                    <profiles>\n                        <profile>america</profile>\n                    </profiles>\n                    <subtitles>\n                        <track>en</track>\n                    </subtitles>\n                </variant>\n                 <variant>\n                 \t<id>europe</id>\n                    <profiles>\n                        <profile>europe</profile>\n                    </profiles>\n                    <subtitles>\n                        <track>en</track>\n                        <track>es</track>\n                    </subtitles>\n                </variant>\n            </variants>\n            <DRMEnabled>false</DRMEnabled>\n            <subtitleList>\n                <subtitle language=\"en\">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_eng_short.vtt</subtitle>\n                <subtitle language=\"fr\">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_fre_short.vtt</subtitle>\n        \t    <subtitle language=\"de\">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_ger_short.vtt</subtitle>\n                <subtitle language=\"es\">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_spa_short.vtt</subtitle>\n                <subtitle language=\"sv\">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_sve_short.vtt</subtitle>\n            </subtitleList>\n        </material>\n    </data>\n</publish-metadata>\n"
+										},
+										"url": {
+											"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
+											"host": [
+												"{{mgmtapihost}}"
+											],
+											"path": [
+												"v1",
+												"customer",
+												"{{customer}}",
+												"businessunit",
+												"{{businessUnit}}",
+												"asset"
+											]
+										},
+										"description": "Use this this base a new material on a already existing one to avoid incurring extra transcoding and storage costs"
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Asset - Advanced Audio",
+							"item": [
+								{
+									"name": "Asset - Mov file - Audio Single Stereo",
 									"request": {
 										"auth": {
 											"type": "basic",
@@ -63,7 +444,7 @@
 									"response": []
 								},
 								{
-									"name": "Mxf file - Audio LR Stereo",
+									"name": "Asset - Mxf file - Audio LR Stereo",
 									"request": {
 										"auth": {
 											"type": "basic",
@@ -110,7 +491,7 @@
 									"response": []
 								},
 								{
-									"name": "Mxf file - Audio LR Stereo Multiple Languages",
+									"name": "Asset - Mxf file - Audio LR Stereo Multiple Languages",
 									"request": {
 										"auth": {
 											"type": "basic",
@@ -159,10 +540,10 @@
 							]
 						},
 						{
-							"name": "Advanced Encoding",
+							"name": "Asset - Advanced Encoding",
 							"item": [
 								{
-									"name": "Custom ingest profile",
+									"name": "Asset - Custom ingest profile",
 									"request": {
 										"auth": {
 											"type": "basic",
@@ -211,16 +592,16 @@
 							]
 						},
 						{
-							"name": "Create New Material Based on Existing",
+							"name": "Material - New",
 							"item": [
 								{
-									"name": "Add Subtitle",
+									"name": "Material - New Material",
 									"request": {
 										"method": "POST",
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n  <data>\n    <material>\n    \t<materialRef>HNltuC9lot_enigma</materialRef>\n    \t<assetIdRef>anders3001_enigma</assetIdRef>\n    \t<subtitleList>\n    \t    <subtitle language=\"de\">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_ger_short.vtt</subtitle>\n            <subtitle language=\"sv\"/>\n            <subtitle language=\"en\"/>\n    \t</subtitleList>\n    </material>\n  </data>\n</publish-metadata>",
+											"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n  <data>\n\t<material>\n  \t\t<materialRef>https://emptestdata.blob.core.windows.net/sources/Sintel/sintel.mp4</materialRef>\n    \t<assetIdRef>{{assetId}}</assetIdRef>\n  \t\t<DRMEnabled>false</DRMEnabled>\n\t</material>\n  </data>\n</publish-metadata>",
 											"options": {
 												"raw": {
 													"language": "xml"
@@ -245,141 +626,7 @@
 									"response": []
 								},
 								{
-									"name": "Add Audio Language",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n  <data>\n    <material update=\"true\">\n    \t<materialRef>W8RsxAMyiC_enigma</materialRef>\n    \t<assetIdRef>jtest004_enigma</assetIdRef>\n    \t<dubList>\n    \t\t<dub language=\"fr\" displayName=\"French\" channels=\"1s-1\" order=\"S\">\n\t\t\t\t<filename>https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_short.mp4</filename>\n\t\t\t</dub>\n\t\t\t<dub language=\"de\" displayName=\"Deutsch\" channels=\"2s-1\" order=\"S\">\n\t\t\t\t<filename>https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_short.mp4</filename>\n\t\t\t</dub>\n\t\t</dubList>\n    </material>\n  </data>\n</publish-metadata>",
-											"options": {
-												"raw": {
-													"language": "xml"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/material",
-											"host": [
-												"{{mgmtapihost}}"
-											],
-											"path": [
-												"v1",
-												"customer",
-												"{{customer}}",
-												"businessunit",
-												"{{businessUnit}}",
-												"material"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "Add DRM",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n  <data>\n    <material>\n    \t<materialRef>mnF5PD6vmx_enigma</materialRef>\n    \t<assetIdRef>MultiAudioSubs_enigma</assetIdRef>\n\t\t<DRMEnabled>false</DRMEnabled>\n    </material>\n  </data>\n</publish-metadata>",
-											"options": {
-												"raw": {
-													"language": "xml"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/material",
-											"host": [
-												"{{mgmtapihost}}"
-											],
-											"path": [
-												"v1",
-												"customer",
-												"{{customer}}",
-												"businessunit",
-												"{{businessUnit}}",
-												"material"
-											]
-										}
-									},
-									"response": []
-								}
-							]
-						},
-						{
-							"name": "Add Material To Existing Asset",
-							"item": [
-								{
-									"name": "Add New Material To Existing Asset",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n  <data>\n\t<material>\n  \t\t<materialRef>671540_1500K.mp4</materialRef>\n    \t<assetIdRef>671540</assetIdRef>\n  \t\t<DRMEnabled>false</DRMEnabled>\n\t</material>\n  </data>\n</publish-metadata>",
-											"options": {
-												"raw": {
-													"language": "xml"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/material",
-											"host": [
-												"{{mgmtapihost}}"
-											],
-											"path": [
-												"v1",
-												"customer",
-												"{{customer}}",
-												"businessunit",
-												"{{businessUnit}}",
-												"material"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "Add New Material Variant",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\">\n    <data>\n       <material>\n            <materialRef>fOA1m0Hz5a_2D25B4</materialRef>\n            <variant>\n                <audio all=\"true\"/>\n                <video all=\"true\"/>\n                <subtitles all=\"false\">\n                    <languageList>\n                        <language>en</language>\n                        <language>sv</language>\n                    </languageList>\n                </subtitles>        \n            </variant>\n            <assetIdRef>varianttest1007</assetIdRef>\n            <profiles>\n                <profile>profile1</profile>\n                <profile>profile2</profile>\n            </profiles>\n            <DRMEnabled>false</DRMEnabled>\n        </material>\n    </data>\n</publish-metadata>",
-											"options": {
-												"raw": {
-													"language": "xml"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/material",
-											"host": [
-												"{{mgmtapihost}}"
-											],
-											"path": [
-												"v1",
-												"customer",
-												"{{customer}}",
-												"businessunit",
-												"{{businessUnit}}",
-												"material"
-											]
-										}
-									},
-									"response": []
-								}
-							]
-						},
-						{
-							"name": "Variants",
-							"item": [
-								{
-									"name": "Variant Ingest As Asset",
+									"name": "Material - New Material With Variants",
 									"request": {
 										"auth": {
 											"type": "basic",
@@ -405,7 +652,157 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n    <data>\n        <asset>\n            <id>{{assetId}}</id>\n            <titleList>\n                <title language=\"en\">Title for {{assetId}} in English</title>\n                <title language=\"sv\">Titel för {{assetId}} på Svenska</title>\n            </titleList>\n            <assetType>movie</assetType>\n        </asset>\n        <material>\n            <materialRef>https://emptestdata.blob.core.windows.net/sources/Sintel/sintel.mp4</materialRef>\n                       <variants>\n                <variant>\n                \t<id>america</id>\n                    <profiles>\n                        <profile>america</profile>\n                    </profiles>\n                    <subtitles>\n                        <track>en</track>\n                    </subtitles>\n                </variant>\n                 <variant>\n                 \t<id>europe</id>\n                    <profiles>\n                        <profile>europe</profile>\n                    </profiles>\n                    <subtitles>\n                        <track>en</track>\n                        <track>es</track>\n                    </subtitles>\n                </variant>\n            </variants>\n            <DRMEnabled>false</DRMEnabled>\n            <subtitleList>\n                <subtitle language=\"en\">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_eng_short.vtt</subtitle>\n                <subtitle language=\"fr\">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_fre_short.vtt</subtitle>\n        \t    <subtitle language=\"de\">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_ger_short.vtt</subtitle>\n                <subtitle language=\"es\">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_spa_short.vtt</subtitle>\n                <subtitle language=\"sv\">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_sve_short.vtt</subtitle>\n            </subtitleList>\n \n        </material>\n    </data>\n</publish-metadata>\n"
+											"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n    <data>\n        <material>\n            <materialRef>https://emptestdata.blob.core.windows.net/sources/Sintel/sintel.mp4</materialRef>\n            <variants>\n                <variant>\n                \t<id>america</id>\n                    <profiles>\n                        <profile>america</profile>\n                    </profiles>\n                    <subtitles>\n                        <track>en</track>\n                    </subtitles>\n                    <audios all=\"true\"/>\n                    <videos all=\"true\"/>\n                </variant>\n                 <variant>\n                 \t<id>europe</id>\n                    <profiles>\n                        <profile>europe</profile>\n                    </profiles>\n                    <subtitles>\n                        <track>en</track>\n                        <track>es</track>\n                    </subtitles>\n                    <audios all=\"true\"/>\n                    <videos all=\"true\"/>\n                </variant>\n            </variants>\n            <assetIdRef>{{assetId}}</assetIdRef>\n            <DRMEnabled>false</DRMEnabled>\n            <subtitleList>\n                <subtitle language=\"en\">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_eng_short.vtt</subtitle>\n                <subtitle language=\"fr\">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_fre_short.vtt</subtitle>\n        \t    <subtitle language=\"de\">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_ger_short.vtt</subtitle>\n                <subtitle language=\"es\">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_spa_short.vtt</subtitle>\n                <subtitle language=\"sv\">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_sve_short.vtt</subtitle>\n            </subtitleList>\n        </material>\n    </data>\n</publish-metadata>\n"
+										},
+										"url": {
+											"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/material",
+											"host": [
+												"{{mgmtapihost}}"
+											],
+											"path": [
+												"v1",
+												"customer",
+												"{{customer}}",
+												"businessunit",
+												"{{businessUnit}}",
+												"material"
+											]
+										},
+										"description": "Use this this base a new material on a already existing one to avoid incurring extra transcoding and storage costs"
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Material - Based On Existing",
+							"item": [
+								{
+									"name": "Material - Based On - Add Subtitle",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n  <data>\n    <material>\n    \t<materialRef>{{materialId}}</materialRef>\n    \t<assetIdRef>{{assetId}}</assetIdRef>\n    \t<subtitleList>\n            <subtitle language=\"de\">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_ger_short.vtt</subtitle>\n    \t</subtitleList>\n    </material>\n  </data>\n</publish-metadata>",
+											"options": {
+												"raw": {
+													"language": "xml"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/material",
+											"host": [
+												"{{mgmtapihost}}"
+											],
+											"path": [
+												"v1",
+												"customer",
+												"{{customer}}",
+												"businessunit",
+												"{{businessUnit}}",
+												"material"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Material - Based On - Add Subtitle And Variant",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n  <data>\n    <material>\n    \t<materialRef>{{materialId}}</materialRef>\n         <variants>\n            <variant>\n                <id>america</id>\n                <profiles>\n                    <profile>sv</profile>\n                </profiles>\n                <subtitles>\n                    <track>en</track>\n                </subtitles>\n            </variant>\n        </variants>\n    \t<assetIdRef>{{assetId}}</assetIdRef>\n    \t<subtitleList>\n    \t    <subtitle language=\"de\">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_ger_short.vtt</subtitle>\n             <!-- No body means that they will be removed if they exist. -->\n            <subtitle language=\"sv\"/>\n            <subtitle language=\"en\"/>\n    \t</subtitleList>\n    </material>\n  </data>\n</publish-metadata>",
+											"options": {
+												"raw": {
+													"language": "xml"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/material",
+											"host": [
+												"{{mgmtapihost}}"
+											],
+											"path": [
+												"v1",
+												"customer",
+												"{{customer}}",
+												"businessunit",
+												"{{businessUnit}}",
+												"material"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Material - Based On - Add DRM",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n  <data>\n    <material>\n    \t<materialRef>{{materialId}}</materialRef>\n    \t<assetIdRef>{{assetId}}</assetIdRef>\n\t\t<DRMEnabled>false</DRMEnabled>\n    </material>\n  </data>\n</publish-metadata>",
+											"options": {
+												"raw": {
+													"language": "xml"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/material",
+											"host": [
+												"{{mgmtapihost}}"
+											],
+											"path": [
+												"v1",
+												"customer",
+												"{{customer}}",
+												"businessunit",
+												"{{businessUnit}}",
+												"material"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Series",
+							"item": [
+								{
+									"name": "Asset - Episode",
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "password",
+													"value": "{{mgmtapipwd}}",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "{{mgmtapiuser}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/xml"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n\t<data>\n\t\t<asset>\n    \t\t<id>{{assetId}}</id>\n    \t\t<titleList>\n    \t\t\t<title language=\"en\">Title for {{assetId}} in English</title>\n    \t\t</titleList>\n    \t\t<assetType>episode</assetType>\n    \t\t<seriesId>{{seriesId}}</seriesId>\n    \t\t<seasonId>{{seasonId}}</seasonId>\n    \t\t<episodeNumber>{{episodeNumber}}</episodeNumber>\n        </asset>\n        <material>\n\t\t\t<materialRef>https://emptestdata.blob.core.windows.net/sources/Sintel/sintel.mp4</materialRef>\n\t\t\t<DRMEnabled>true</DRMEnabled>\n\t\t</material>\n\t</data>\n</publish-metadata>"
 										},
 										"url": {
 											"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
@@ -421,434 +818,11 @@
 												"asset"
 											]
 										},
-										"description": "Use this this base a new material on a already existing one to avoid incurring extra transcoding and storage costs"
-									},
-									"response": []
-								},
-								{
-									"name": "Variant Ingest As Material",
-									"request": {
-										"auth": {
-											"type": "basic",
-											"basic": [
-												{
-													"key": "password",
-													"value": "{{mgmtapipwd}}",
-													"type": "string"
-												},
-												{
-													"key": "username",
-													"value": "{{mgmtapiuser}}",
-													"type": "string"
-												}
-											]
-										},
-										"method": "POST",
-										"header": [
-											{
-												"key": "Content-Type",
-												"value": "application/xml"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\">\n    <data>\n         <material>\n            <materialRef>fOA1m0Hz5a_2D25B4</materialRef>\n            <variant>\n                <audio all=\"true\"/>\n                <video all=\"true\"/>\n                <subtitles all=\"true\"/>        \n            </variant>\n            <assetIdRef>varianttest1007</assetIdRef>\n            <profiles>\n                <profile>profile1</profile>\n                <profile>profile2</profile>\n            </profiles>\n            <DRMEnabled>false</DRMEnabled>\n        </material>\n    </data>\n</publish-metadata>"
-										},
-										"url": {
-											"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/material",
-											"host": [
-												"{{mgmtapihost}}"
-											],
-											"path": [
-												"v1",
-												"customer",
-												"{{customer}}",
-												"businessunit",
-												"{{businessUnit}}",
-												"material"
-											]
-										},
-										"description": "Use this this base a new material on a already existing one to avoid incurring extra transcoding and storage costs"
+										"description": "Use this when you want to perform a basic ingest without having any real meta-data available. You have one media file.\n\nIt is assumed that the there is a storage location defined inside RedBee platform. This is why providing only relative paths are good enough. A storage can be defined either for a whole organization unit or for an organization when a specific provider is defined for the material.\n\nAsset will not be published."
 									},
 									"response": []
 								}
 							]
-						},
-						{
-							"name": "Simple Asset - Source  Full Path - Multiple Subtiltes - Not Published",
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{mgmtapipwd}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{mgmtapiuser}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/xml"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n    <data>\n        <asset>\n            <id>{{assetId}}</id>\n            <titleList>\n                <title language=\"en\">Title for {{assetId}} in English</title>\n                <title language=\"sv\">Titel för {{assetId}} på Svenska</title>\n            </titleList>\n            <assetType>movie</assetType>\n        </asset>\n        <material>\n            <materialRef>https://emptestdata.blob.core.windows.net/sources/Sintel/sintel.mp4</materialRef>\n            <DRMEnabled>true</DRMEnabled>\n            <subtitleList>\n                <subtitle language=\"en\">https://emptestdata.blob.core.windows.net/sources/Sintel/sintel_en.vtt</subtitle>\n                <subtitle language=\"sv\">https://emptestdata.blob.core.windows.net/sources/Sintel/sintel_se.vtt</subtitle>\n            </subtitleList>\n        </material>\n    </data>\n</publish-metadata>"
-								},
-								"url": {
-									"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
-									"host": [
-										"{{mgmtapihost}}"
-									],
-									"path": [
-										"v1",
-										"customer",
-										"{{customer}}",
-										"businessunit",
-										"{{businessUnit}}",
-										"asset"
-									]
-								},
-								"description": "Use this when you want to perform a basic ingest without having any real meta-data available. You have one media file and multiple subtitle files.\n\nIt is assume that both the media source file and the subtitle files are available directly on internet.\n\nAsset will not be published."
-							},
-							"response": []
-						},
-						{
-							"name": "Simple Asset - Source Full Path - Not Published",
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{mgmtapipwd}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{mgmtapiuser}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/xml"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n\t<data>\n\t\t<asset>\n    \t\t<id>{{assetId}}</id>\n    \t\t<titleList>\n    \t\t\t<title language=\"en\">Title for {{assetId}} in English</title>\n    \t\t</titleList>\n    \t\t<assetType>movie</assetType>\n        </asset>\n\t\t<material>\n\t\t\t<materialRef>https://emptestdata.blob.core.windows.net/sources/Sintel/sintel.mp4</materialRef>\n\t\t\t<DRMEnabled>false</DRMEnabled>\n             <subtitleList>\n                <subtitle language=\"en\">https://emptestdata.blob.core.windows.net/sources/Sintel/sintel_en.vtt</subtitle>\n                <subtitle language=\"sv\">https://emptestdata.blob.core.windows.net/sources/Sintel/sintel_se.vtt</subtitle>\n                <subtitle language=\"ar\">https://emptestdata.blob.core.windows.net/sources/Sintel/sintel_ar.vtt</subtitle>\n                <subtitle language=\"no\">https://emptestdata.blob.core.windows.net/sources/Sintel/sintel_no.vtt</subtitle>\n            </subtitleList>\n\t\t</material>\n\t</data>\n</publish-metadata>"
-								},
-								"url": {
-									"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
-									"host": [
-										"{{mgmtapihost}}"
-									],
-									"path": [
-										"v1",
-										"customer",
-										"{{customer}}",
-										"businessunit",
-										"{{businessUnit}}",
-										"asset"
-									]
-								},
-								"description": "Use this when you want to perform a basic ingest without having any real meta-data available. You have one media file.\n\nIt is assumed that the media source file is available directly on internet.\n\nAsset will not be published."
-							},
-							"response": []
-						},
-						{
-							"name": "Simple Asset - Relative Path For Provider - Not Published",
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{mgmtapipwd}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{mgmtapiuser}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/xml"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n\t<data>\n\t\t<asset>\n    \t\t<id>{{assetId}}</id>\n    \t\t<titleList>\n    \t\t\t<title language=\"en\">Title for {{assetId}} in English</title>\n    \t\t</titleList>\n    \t\t<assetType>movie</assetType>\n        </asset>\n\t\t<material>\n\t\t\t<provider>PreDefinedProvider</provider>\n\t\t\t<materialRef>Sintel/sintel.mp4</materialRef>\n\t\t\t<DRMEnabled>true</DRMEnabled>\n\t\t</material>\n\t</data>\n</publish-metadata>"
-								},
-								"url": {
-									"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
-									"host": [
-										"{{mgmtapihost}}"
-									],
-									"path": [
-										"v1",
-										"customer",
-										"{{customer}}",
-										"businessunit",
-										"{{businessUnit}}",
-										"asset"
-									]
-								},
-								"description": "Use this when you want to perform a basic ingest without having any real meta-data available. You have one media file.\n\nIt is assumed that the there is a storage location defined inside RedBee platform. This is why providing only relative paths are good enough. A storage can be defined either for a whole organization unit or for an organization when a specific provider is defined for the material.\n\nAsset will not be published."
-							},
-							"response": []
-						},
-						{
-							"name": "Simple Asset - Relative Path - Not Published",
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{mgmtapipwd}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{mgmtapiuser}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/xml"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n\t<data>\n\t\t<asset>\n    \t\t<id>{{assetId}}</id>\n    \t\t<titleList>\n    \t\t\t<title language=\"en\">Title for {{assetId}} in English</title>\n    \t\t</titleList>\n    \t\t<assetType>movie</assetType>\n        </asset>\n\t\t<material>\n\t\t\t<materialRef>Sintel/sintel.mp4</materialRef>\n\t\t\t<DRMEnabled>true</DRMEnabled>\n\t\t</material>\n\t</data>\n</publish-metadata>"
-								},
-								"url": {
-									"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
-									"host": [
-										"{{mgmtapihost}}"
-									],
-									"path": [
-										"v1",
-										"customer",
-										"{{customer}}",
-										"businessunit",
-										"{{businessUnit}}",
-										"asset"
-									]
-								},
-								"description": "Use this when you want to perform a basic ingest without having any real meta-data available. You have one media file.\n\nIt is assumed that the there is a storage location defined inside RedBee platform. This is why providing only relative paths are good enough. A storage can be defined either for a whole organization unit or for an organization when a specific provider is defined for the material.\n\nAsset will not be published."
-							},
-							"response": []
-						},
-						{
-							"name": "Simple Asset - Source Full Path - Published",
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{mgmtapipwd}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{mgmtapiuser}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/xml"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n    <data>\n        <asset>\n            <id>{{assetId}}</id>\n            <titleList>\n                <title language=\"en\">Title for {{assetId}} in English</title>\n            </titleList>\n            <assetType>movie</assetType>\n        </asset>\n        <material>\n            <materialRef>https://emptestdata.blob.core.windows.net/sources/Sintel/sintel.mp4</materialRef>\n            <DRMEnabled>true</DRMEnabled>\n        </material>\n    </data>\n</publish-metadata>"
-								},
-								"url": {
-									"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
-									"host": [
-										"{{mgmtapihost}}"
-									],
-									"path": [
-										"v1",
-										"customer",
-										"{{customer}}",
-										"businessunit",
-										"{{businessUnit}}",
-										"asset"
-									]
-								},
-								"description": "Use this when you want to perform a basic ingest without having any real meta-data available. You have one media file.\n\nIt is assumed that the media source file is available directly on internet.\n\nAsset will be published. Note that this means that the asset might be available before it is actually ingested and playable so please consider the publication dates carefully. "
-							},
-							"response": []
-						},
-						{
-							"name": "Localised Asset - Source Full Path - Not Published",
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{mgmtapipwd}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{mgmtapiuser}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/xml"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n    <data>\n        <asset>\n            <id>{{assetId}}</id>\n            <provider>provider1</provider>\n            <productionYear>2017</productionYear>\n            <titleList>\n                <title language=\"en\">Title for {{assetId}} in Englisth</title>\n                <title language=\"sv\">Title for {{assetId}} in Swedish</title>\n            </titleList>\n            <descriptionList>\n                <description language=\"en\" length=\"short\">A short description in English</description>\n                <description language=\"sv\" length=\"short\">A short description in Swedish</description>\n                <description language=\"en\" length=\"medium\">A medium description in English</description>\n                <description language=\"sv\" length=\"medium\">A medium description in Swedish</description>\n                <description language=\"en\" length=\"long\">A long description in English</description>\n                <description language=\"sv\" length=\"long\">A long description in Swedish</description>\n            </descriptionList>\n            <tagList>\n                <tagIdRef>genre_drama</tagIdRef>\n                <tagIdRef>genre_thriller</tagIdRef>\n            </tagList>\n            <imageList>\n            \t <image language=\"sv\">\n                    <id></id>\n                    <url>http://myhost.se/myPath/MyImageInSv.jpg</url>\n                    <width>1280</width>\n                    <height>720</height>\n                    <purpose>banner</purpose>\n                    <orientation>landscape</orientation>\n                </image>\n                <image language=\"en\">\n                    <id>image2</id>\n                    <url>http://myhost.se/myPath/MyImageInEn.jpg</url>\n                    <width>1280</width>\n                    <height>720</height>\n                    <purpose>banner</purpose>\n                    <orientation>landscape</orientation>\n                </image>\n            </imageList>\n            <parentalRatingList>\n                <parentalRating>\n                    <rating>15</rating>\n                    <scheme>age</scheme>\n                    <country>EN</country>\n                </parentalRating>\n                <parentalRating>\n                    <rating>15</rating>\n                    <scheme>age</scheme>\n                    <country>SE</country>\n                </parentalRating>\n            </parentalRatingList>\n            <assetType>movie</assetType>\n        </asset>\n        <material>\n            <materialRef>https://emptestdata.blob.core.windows.net/sources/Sintel/sintel.mp4</materialRef>\n            <DRMEnabled>true</DRMEnabled>\n        </material>\n    </data>\n</publish-metadata>"
-								},
-								"url": {
-									"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
-									"host": [
-										"{{mgmtapihost}}"
-									],
-									"path": [
-										"v1",
-										"customer",
-										"{{customer}}",
-										"businessunit",
-										"{{businessUnit}}",
-										"asset"
-									]
-								},
-								"description": "Use this when you want to perform an ingest when localised data is available. You have one media file.\n\nIt is assumed that the media source file is available directly on internet.\n\nAsset will not be published."
-							},
-							"response": []
-						},
-						{
-							"name": "Episode Asset - Predefined Series Season - Material - Not Published",
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{mgmtapipwd}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{mgmtapiuser}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/xml"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n\t<data>\n\t\t<asset>\n    \t\t<id>{{assetId}}</id>\n    \t\t<titleList>\n    \t\t\t<title language=\"en\">Title for {{assetId}} in English</title>\n    \t\t</titleList>\n    \t\t<assetType>episode</assetType>\n    \t\t<seriesId>{{seriesId}}</seriesId>\n    \t\t<seasonId>{{seasonId}}</seasonId>\n    \t\t<episodeNumber>{{episodeNumber}}</episodeNumber>\n        </asset>\n        <material>\n\t\t\t<materialRef>https://emptestdata.blob.core.windows.net/sources/Sintel/sintel.mp4</materialRef>\n\t\t\t<DRMEnabled>true</DRMEnabled>\n\t\t</material>\n\t</data>\n</publish-metadata>"
-								},
-								"url": {
-									"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
-									"host": [
-										"{{mgmtapihost}}"
-									],
-									"path": [
-										"v1",
-										"customer",
-										"{{customer}}",
-										"businessunit",
-										"{{businessUnit}}",
-										"asset"
-									]
-								},
-								"description": "Use this when you want to perform a basic ingest without having any real meta-data available. You have one media file.\n\nIt is assumed that the there is a storage location defined inside RedBee platform. This is why providing only relative paths are good enough. A storage can be defined either for a whole organization unit or for an organization when a specific provider is defined for the material.\n\nAsset will not be published."
-							},
-							"response": []
-						},
-						{
-							"name": "Specifying Material Profile",
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{mgmtapipwd}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{mgmtapiuser}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/xml"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n\t<data>\n\t\t<asset>\n    \t\t<id>{{assetId}}</id>\n    \t\t<titleList>\n    \t\t\t<title language=\"en\">Title for {{assetId}} in English</title>\n    \t\t</titleList>\n    \t\t<assetType>movie</assetType>\n        </asset>\n\t\t<material>\n           <materialRef>https://emptestdata.blob.core.windows.net/sources/Movies/BBB/bbb.mp4</materialRef>        \n            <profiles>\n                <profile>profile1</profile>\n            </profiles>\n\t\t\t<DRMEnabled>false</DRMEnabled>\n\t\t</material>\n\t</data>\n</publish-metadata>"
-								},
-								"url": {
-									"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
-									"host": [
-										"{{mgmtapihost}}"
-									],
-									"path": [
-										"v1",
-										"customer",
-										"{{customer}}",
-										"businessunit",
-										"{{businessUnit}}",
-										"asset"
-									]
-								},
-								"description": "Use this this base a new material on a already existing one to avoid incurring extra transcoding and storage costs"
-							},
-							"response": []
 						}
 					],
 					"description": "The purpose of requests in the ingest folder is to describe different variants of ingest.",
@@ -1026,7 +1000,7 @@
 					"name": "Vod2Vod",
 					"item": [
 						{
-							"name": "New asset - material source",
+							"name": "Asset - Vod2Vod",
 							"event": [
 								{
 									"listen": "prerequest",
@@ -1067,7 +1041,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata.xsd\">\n    <data>\n        <asset>\n            <id>{{externalAssetId}}</id>\n            <titleList>\n                <title language=\"en\">Vod2Vod with material source</title>\n            </titleList>\n\t\t\t<descriptionList>\n\t\t\t\t<description language=\"en\" length=\"short\">\n\t\t\t\t\tThe material has to be on of the materials of the asset\n\t\t\t\t</description>\n\t\t\t</descriptionList>\n            <assetType>movie</assetType>\n        </asset>\n        <material>\n            <vodSource>\n                <segments>\n                    <segment>\n                    \t<sourceAssetId>{{sourceAssetId}}</sourceAssetId>\n                    \t<sourceMaterialId>{{sourceMaterialId}}</sourceMaterialId>\n                        <start>PT1M10S</start>\n                        <end>PT10M43S</end>\n                    </segment>\n                </segments>\n            </vodSource>\n            <DRMEnabled>false</DRMEnabled>\n        </material>\n    </data>\n</publish-metadata>"
+									"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata.xsd\">\n    <data>\n        <asset>\n            <id>{{assetId}}</id>\n            <titleList>\n                <title language=\"en\">Vod2Vod</title>\n            </titleList>\n\t       <assetType>movie</assetType>\n        </asset>\n        <material>\n            <vodSource>\n                <segments>\n                    <segment>\n                        <sourceAssetId>{{assetId}}</sourceAssetId>\n                    \t<sourceMaterialId>{{materialId}}</sourceMaterialId>\n                        <start>PT1M10S</start>\n                        <end>PT10M43S</end>\n                    </segment>\n                </segments>\n            </vodSource>\n            <DRMEnabled>false</DRMEnabled>\n        </material>\n    </data>\n</publish-metadata>"
 								},
 								"url": {
 									"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
@@ -1088,7 +1062,7 @@
 							"response": []
 						},
 						{
-							"name": "New asset - asset source",
+							"name": "Material - Vod2Vod",
 							"event": [
 								{
 									"listen": "prerequest",
@@ -1129,131 +1103,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata.xsd\">\n    <data>\n        <asset>\n            <id>{{externalAssetId}}</id>\n            <titleList>\n                <title language=\"en\">Vod2Vod with asset source</title>\n            </titleList>\n\t\t\t<descriptionList>\n\t\t\t\t<description language=\"en\" length=\"short\">\n\t\t\t\t\tWe will default to the latest active material of the source asset\n\t\t\t\t</description>\n\t\t\t</descriptionList>\n            <assetType>movie</assetType>\n        </asset>\n        <material>\n            <vodSource>\n                <segments>\n                    <segment>\n                    \t<sourceAssetId>{{sourceAssetId}}</sourceAssetId>\n                        <start>PT10S</start>\n                        <end>PT10M43S</end>\n                    </segment>\n                </segments>\n            </vodSource>\n            <DRMEnabled>false</DRMEnabled>\n        </material>\n    </data>\n</publish-metadata>"
-								},
-								"url": {
-									"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
-									"host": [
-										"{{mgmtapihost}}"
-									],
-									"path": [
-										"v1",
-										"customer",
-										"{{customer}}",
-										"businessunit",
-										"{{businessUnit}}",
-										"asset"
-									]
-								},
-								"description": "Use this when you want to create a VOD asset from a live source using an edit list.\n\nAsset will be published. Note that this means that the asset might be available before it is actually ingested and playable so please consider the publication dates carefully. "
-							},
-							"response": []
-						},
-						{
-							"name": "New asset - material source Copy",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"var moment = require('moment')",
-											"pm.globals.set(\"now_id\", moment().format(\"YYYY_MM_DD_hh_mm_ss\"))",
-											"pm.globals.set(\"now\", moment().format())",
-											"pm.globals.set(\"inAWeek\", moment().add(7, 'days').format())",
-											"pm.globals.set(\"inAMonth\", moment().add(30, 'days').format())"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{mgmtapipwd}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{mgmtapiuser}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/xml"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata.xsd\">\n    <data>\n        <asset>\n            <id>{{externalAssetId}}</id>\n            <titleList>\n                <title language=\"en\">Vod2Vod with material source</title>\n            </titleList>\n\t\t\t<descriptionList>\n\t\t\t\t<description language=\"en\" length=\"short\">\n\t\t\t\t\tThe material has to be on of the materials of the asset\n\t\t\t\t</description>\n\t\t\t</descriptionList>\n            <assetType>movie</assetType>\n        </asset>\n        <material>\n            <vodSource>\n                <segments>\n                    <segment>\n                    \t<sourceAssetId>{{sourceAssetId}}</sourceAssetId>\n                    \t<sourceMaterialId>{{sourceMaterialId}}</sourceMaterialId>\n                        <start>PT1M10S</start>\n                        <end>PT10M43S</end>\n                    </segment>\n                </segments>\n            </vodSource>\n            <DRMEnabled>false</DRMEnabled>\n        </material>\n    </data>\n</publish-metadata>"
-								},
-								"url": {
-									"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
-									"host": [
-										"{{mgmtapihost}}"
-									],
-									"path": [
-										"v1",
-										"customer",
-										"{{customer}}",
-										"businessunit",
-										"{{businessUnit}}",
-										"asset"
-									]
-								},
-								"description": "Use this when you want to create a VOD asset from a live source using an edit list.\n\nAsset will be published. Note that this means that the asset might be available before it is actually ingested and playable so please consider the publication dates carefully. "
-							},
-							"response": []
-						},
-						{
-							"name": "New material only - asset source",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"var moment = require('moment')",
-											"pm.globals.set(\"now_id\", moment().format(\"YYYY_MM_DD_hh_mm_ss\"))",
-											"pm.globals.set(\"now\", moment().format())",
-											"pm.globals.set(\"inAWeek\", moment().add(7, 'days').format())",
-											"pm.globals.set(\"inAMonth\", moment().add(30, 'days').format())"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{mgmtapipwd}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{mgmtapiuser}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/xml"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\">\n\t<data>\n\t\t<material>\n\t\t\t<vodSource>\n\t\t\t\t<segments>\n\t\t\t\t\t<segment>\n\t\t\t\t\t\t<sourceAssetId>1279240e-e843-4836-9086-f0c7f4f8d51f_876E87</sourceAssetId>\n\t\t\t\t\t\t<start>P0Y0M0DT0H0M10.000S</start>\n\t\t\t\t\t\t<end>P0Y0M0DT0H0M20.000S</end>\n\t\t\t\t\t</segment>\n\t\t\t\t</segments>\n\t\t\t</vodSource>\n\t\t\t<assetIdRef>{{assetId}}</assetIdRef>\n\t\t\t<DRMEnabled>false</DRMEnabled>\n\t\t</material>\n\t</data>\n</publish-metadata>"
+									"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\">\n\t<data>\n\t\t<material>\n\t\t\t<vodSource>\n\t\t\t\t<segments>\n\t\t\t\t\t<segment>\n\t\t\t\t\t\t<sourceAssetId>{{assetId}}</sourceAssetId>\n                        <sourceMaterialId>{{materialId}}</sourceMaterialId>\n\t\t\t\t\t\t<start>P0Y0M0DT0H0M10.000S</start>\n\t\t\t\t\t\t<end>P0Y0M0DT0H0M20.000S</end>\n\t\t\t\t\t</segment>\n\t\t\t\t</segments>\n\t\t\t</vodSource>\n\t\t\t<assetIdRef>{{assetId}}</assetIdRef>\n\t\t\t<DRMEnabled>false</DRMEnabled>\n\t\t</material>\n\t</data>\n</publish-metadata>"
 								},
 								"url": {
 									"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/material",
@@ -1279,7 +1129,7 @@
 					"name": "External ingest",
 					"item": [
 						{
-							"name": "External ingest",
+							"name": "Asset - External ingest",
 							"request": {
 								"auth": {
 									"type": "basic",
@@ -1305,7 +1155,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n\t<data>\n\t\t<asset>\n\t\t\t<id>ArchiveTest</id>\n\t\t\t<titleList>\n\t\t\t\t<title language=\"en\">ArchiveTest</title>\n\t\t\t</titleList>\n\t\t\t<assetType>movie</assetType>\n\t\t</asset>\n\t\t<material>\n\t\t\t<externalMediaLocatorList>\n\t\t\t\t<externalMediaLocator drm=\"UNENCRYPTED\" manifestFormat=\"HLS\"><![CDATA[https://vemuporigin.blob.core.windows.net/bbc/storyworks/archive/bbb_30.mp4?sv=2019-02-02&st=2020-08-26T17%3A47%3A40Z&se=2020-08-27T17%3A47%3A40Z&sr=b&sp=r&sig=PzqKDTSIJpiI%2BmUVvM5c2o4L3ZSFO9c1SgvrHtM%2FsOM%3D]]></externalMediaLocator>\n\t\t\t</externalMediaLocatorList>\n\t\t\t<DRMEnabled>false</DRMEnabled>\n\t\t</material>\n\t</data>\n</publish-metadata>"
+									"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n\t<data>\n\t\t<asset>\n\t\t\t<id>{{assetId}}</id>\n\t\t\t<titleList>\n\t\t\t\t<title language=\"en\">Titler for {{assetId}}</title>\n\t\t\t</titleList>\n\t\t\t<assetType>movie</assetType>\n\t\t</asset>\n\t\t<material>\n\t\t\t<externalMediaLocatorList>\n\t\t\t\t<externalMediaLocator drm=\"UNENCRYPTED\" manifestFormat=\"HLS\">https://ps.vemup.ctl.cdn.ebsd.ericsson.net/stream/streambu/assets/APITest0002_2D25B4/materials/zejiu2JKLX_2D25B4/vod-idx-5.ism/.m3u8</externalMediaLocator>\n\t\t\t\t<externalMediaLocator drm=\"UNENCRYPTED\" manifestFormat=\"DASH\">https://ps.vemup.ctl.cdn.ebsd.ericsson.net/stream/streambu/assets/APITest0002_2D25B4/materials/zejiu2JKLX_2D25B4/vod-idx-5.ism/.mpd</externalMediaLocator>\n\t\t\t</externalMediaLocatorList>\n\t\t\t<DRMEnabled>false</DRMEnabled>\n\t\t</material>\n\t</data>\n</publish-metadata>"
 								},
 								"url": {
 									"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
@@ -1331,7 +1181,7 @@
 					"name": "Material Update",
 					"item": [
 						{
-							"name": "Material Update",
+							"name": "Material - Update",
 							"request": {
 								"auth": {
 									"type": "basic",
@@ -1357,7 +1207,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\">\n    <data>\n         <material>\n            <id>OAy8ku8a3R_2D25B4</id>\n            <assetIdRef>varianttest1007_2D25B4</assetIdRef>\n            <profiles>\n                <profile>profile6</profile>\n                <profile>profile7</profile>\n            </profiles>\n        </material>\n    </data>\n</publish-metadata>"
+									"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\">\n    <data>\n         <material>\n            <id>{{assetId}}</id>\n            <assetIdRef>{{materialId}}</assetIdRef>\n            <profiles>\n                <profile>profile6</profile>\n                <profile>profile7</profile>\n            </profiles>\n        </material>\n    </data>\n</publish-metadata>"
 								},
 								"url": {
 									"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/material",
@@ -1376,14 +1226,9 @@
 								"description": "Use this this base a new material on a already existing one to avoid incurring extra transcoding and storage costs"
 							},
 							"response": []
-						}
-					]
-				},
-				{
-					"name": "Subtitle Update",
-					"item": [
+						},
 						{
-							"name": "Add/Update Subtitle",
+							"name": "Material - Variant Update",
 							"request": {
 								"auth": {
 									"type": "basic",
@@ -1409,7 +1254,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\">\n    <data>\n         <material>\n            <id>OAy8ku8a3R_2D25B4</id>\n            <assetIdRef>varianttest1007_2D25B4</assetIdRef>\n            <profiles>\n                <profile>profile6</profile>\n                <profile>profile7</profile>\n            </profiles>\n        </material>\n    </data>\n</publish-metadata>"
+									"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n    <data>\n        <material>\n            <id>{{materialId}}</id>\n            <variants>\n                <variant>\n                    <id>america</id>\n                    <profiles>\n                        <profile>america</profile>\n                    </profiles>\n                    <subtitles>\n                        <track>en</track>\n                    </subtitles>\n                </variant>\n                <variant>\n                    <id>europe</id>\n                    <profiles>\n                        <profile>europe</profile>\n                    </profiles>\n                    <subtitles>\n                        <track>en</track>\n                        <track>es</track>\n                        <track>sv</track>\n                    </subtitles>\n                </variant>\n            </variants>\n            <assetIdRef>{{assetId}}</assetIdRef>\n        </material>\n    </data>\n</publish-metadata>\n"
 								},
 								"url": {
 									"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/material",
@@ -1438,192 +1283,197 @@
 			"name": "Meta-Data Updates",
 			"item": [
 				{
-					"name": "Localised Asset - No Material",
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{mgmtapipwd}}",
-									"type": "string"
+					"name": "Upserts",
+					"item": [
+						{
+							"name": "Asset - Localised Etc",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{mgmtapipwd}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{mgmtapiuser}}",
+											"type": "string"
+										}
+									]
 								},
-								{
-									"key": "username",
-									"value": "{{mgmtapiuser}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/xml"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n    <data>\n        <asset>\n            <id>demo01</id>\n            <titleList>\n                <title language=\"en\">Demo01</title>\n            </titleList>\n            <descriptionList>\n                <description language=\"en\" length=\"short\">Demo01 description</description>\n             </descriptionList>\n            <assetType>movie</assetType>\n        </asset>\n    </data>\n</publish-metadata>"
-						},
-						"url": {
-							"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
-							"host": [
-								"{{mgmtapihost}}"
-							],
-							"path": [
-								"v1",
-								"customer",
-								"{{customer}}",
-								"businessunit",
-								"{{businessUnit}}",
-								"asset"
-							]
-						},
-						"description": "Use this when you want to create or update meta-data for an asset."
-					},
-					"response": []
-				},
-				{
-					"name": "Episode Asset - Predefined Series Season",
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{mgmtapipwd}}",
-									"type": "string"
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/xml"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n    <data>\n        <asset>\n            <id>{{assetId}}</id>\n            <!-- The provider must be configured in the system -->\n            <provider>provider1</provider>\n            <productionYear>2017</productionYear>\n            <titleList>\n                <title language=\"en\">Title for {{assetId}} in Englisth</title>\n                <title language=\"sv\">Title for {{assetId}} in Swedish</title>\n            </titleList>\n            <descriptionList>\n                <description language=\"en\" length=\"short\">A short description in English</description>\n                <description language=\"sv\" length=\"short\">A short description in Swedish</description>\n                <description language=\"en\" length=\"medium\">A medium description in English</description>\n                <description language=\"sv\" length=\"medium\">A medium description in Swedish</description>\n                <description language=\"en\" length=\"long\">A long description in English</description>\n                <description language=\"sv\" length=\"long\">A long description in Swedish</description>\n            </descriptionList>\n            <!-- The tags must exist -->\n            <tagList>\n                <tagIdRef>genre_drama</tagIdRef>\n                <tagIdRef>genre_thriller</tagIdRef>\n            </tagList>\n            <imageList>\n            \t <image language=\"sv\">\n                    <id>image1</id>\n                    <url>http://myhost.se/myPath/MyImageInSv.jpg</url>\n                    <width>1280</width>\n                    <height>720</height>\n                    <purpose>banner</purpose>\n                    <orientation>landscape</orientation>\n                </image>\n                <image language=\"en\">\n                    <id>image2</id>\n                    <url>http://myhost.se/myPath/MyImageInEn.jpg</url>\n                    <width>1280</width>\n                    <height>720</height>\n                    <purpose>banner</purpose>\n                    <orientation>landscape</orientation>\n                </image>\n            </imageList>\n            <!-- The parantal ratings must be pre-configured in the system -->\n            <parentalRatingList>\n                <parentalRating>\n                    <rating>15</rating>\n                    <scheme>age</scheme>\n                    <country>GB</country>\n                </parentalRating>\n                <parentalRating>\n                    <rating>15</rating>\n                    <scheme>age</scheme>\n                    <country>SE</country>\n                </parentalRating>\n            </parentalRatingList>\n            <assetType>movie</assetType>\n        </asset>\n    </data>\n</publish-metadata>"
 								},
-								{
-									"key": "username",
-									"value": "{{mgmtapiuser}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/xml"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n\t<data>\n\t\t<asset>\n    \t\t<id>{{assetId}}</id>\n    \t\t<titleList>\n    \t\t\t<title language=\"en\">Title for {{assetId}} in English</title>\n    \t\t</titleList>\n    \t\t<assetType>episode</assetType>\n    \t\t<seriesId>{{seriesId}}</seriesId>\n    \t\t<seasonId>{{seasonId}}</seasonId>\n    \t\t<episodeNumber>{{episodeNumber}}</episodeNumber>\n        </asset>\n\t</data>\n</publish-metadata>"
-						},
-						"url": {
-							"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
-							"host": [
-								"{{mgmtapihost}}"
-							],
-							"path": [
-								"v1",
-								"customer",
-								"{{customer}}",
-								"businessunit",
-								"{{businessUnit}}",
-								"asset"
-							]
-						},
-						"description": "Use this when you want to perform a basic ingest without having any real meta-data available. You have one media file.\n\nIt is assumed that the there is a storage location defined inside RedBee platform. This is why providing only relative paths are good enough. A storage can be defined either for a whole organization unit or for an organization when a specific provider is defined for the material.\n\nAsset will not be published."
-					},
-					"response": []
-				},
-				{
-					"name": "Localised Series",
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{mgmtapipwd}}",
-									"type": "string"
+								"url": {
+									"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
+									"host": [
+										"{{mgmtapihost}}"
+									],
+									"path": [
+										"v1",
+										"customer",
+										"{{customer}}",
+										"businessunit",
+										"{{businessUnit}}",
+										"asset"
+									]
 								},
-								{
-									"key": "username",
-									"value": "{{mgmtapiuser}}",
-									"type": "string"
-								}
-							]
+								"description": "Use this when you want to create or update meta-data for an asset."
+							},
+							"response": []
 						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/xml"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\">\n    <data>\n        <series>\n            <id>{{seriesId}}</id>\n            <titleList>\n                <title language=\"en\">Series title for {{seriesId}} in English</title>\n                <title language=\"sv\">Series titel för {{seriesId}} på Svenska</title>\n            </titleList>\n            <descriptionList>\n                <description language=\"en\" length=\"short\">A short series description in English</description>\n                <description language=\"sv\" length=\"short\">A short series description in Swedish</description>\n                <description language=\"en\" length=\"medium\">A medium series description in English</description>\n                <description language=\"sv\" length=\"medium\">A medium series description in Swedish</description>\n                <description language=\"en\" length=\"long\">A long series description in English</description>\n                <description language=\"sv\" length=\"long\">A long series description in Swedish</description>\n            </descriptionList>\n            <tagList/>\n            <imageList>\n                <image language=\"sv\">\n                    <id>image1</id>\n                    <url>http://myhost.se/myPath/MyImageInSv.jpg</url>\n                    <purpose>banner</purpose>\n                    <orientation>landscape</orientation>\n                </image>\n                <image language=\"en\">\n                    <id>image2</id>\n                    <url>http://myhost.se/myPath/MyImageInEn.jpg</url>\n                    <purpose>banner</purpose>\n                    <orientation>landscape</orientation>\n                </image>\n            </imageList>\n        </series>\n    </data>\n</publish-metadata>\n"
-						},
-						"url": {
-							"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/series",
-							"host": [
-								"{{mgmtapihost}}"
-							],
-							"path": [
-								"v1",
-								"customer",
-								"{{customer}}",
-								"businessunit",
-								"{{businessUnit}}",
-								"series"
-							]
-						},
-						"description": "Use this when you want to create or update meta-data for an asset."
-					},
-					"response": []
-				},
-				{
-					"name": "Localised Season",
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{mgmtapipwd}}",
-									"type": "string"
+						{
+							"name": "Season - Localised Etc",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{mgmtapipwd}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{mgmtapiuser}}",
+											"type": "string"
+										}
+									]
 								},
-								{
-									"key": "username",
-									"value": "{{mgmtapiuser}}",
-									"type": "string"
-								}
-							]
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/xml"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\">\n    <data>\n        <season>\n            <id>{{seasonId}}</id>\n            <titleList>\n                <title language=\"en\">Season title for {{seasonId}} in English</title>\n                <title language=\"sv\">Season titel för {{seasonId}} på Svenska</title>\n            </titleList>\n            <descriptionList>\n                <description language=\"en\" length=\"short\">A short season description in English</description>\n                <description language=\"sv\" length=\"short\">A short season description in Swedish</description>\n                <description language=\"en\" length=\"medium\">A medium season description in English</description>\n                <description language=\"sv\" length=\"medium\">A medium season description in Swedish</description>\n                <description language=\"en\" length=\"long\">A long season description in English</description>\n                <description language=\"sv\" length=\"long\">A long season description in Swedish</description>\n            </descriptionList>\n            <tagList/>\n            <imageList>\n                <image language=\"sv\">\n                    <id>image1</id>\n                    <url>http://myhost.se/myPath/MyImageInSv.jpg</url>\n                    <purpose>banner</purpose>\n                    <orientation>landscape</orientation>\n                </image>\n                <image language=\"en\">\n                    <id>image2</id>\n                    <url>http://myhost.se/myPath/MyImageInEn.jpg</url>\n                    <purpose>banner</purpose>\n                    <orientation>landscape</orientation>\n                </image>\n            </imageList>\n            <seriesId>{{seasonId}}</seriesId>\n            <seasonNumber>1</seasonNumber>\n            <numberOfEpisodes>26</numberOfEpisodes>\n        </season>\n    </data>\n</publish-metadata>"
+								},
+								"url": {
+									"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/season",
+									"host": [
+										"{{mgmtapihost}}"
+									],
+									"path": [
+										"v1",
+										"customer",
+										"{{customer}}",
+										"businessunit",
+										"{{businessUnit}}",
+										"season"
+									]
+								},
+								"description": "Use this when you want to create or update meta-data for an asset."
+							},
+							"response": []
 						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/xml"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\">\n    <data>\n        <season>\n            <id>{{seasonId}}</id>\n            <titleList>\n                <title language=\"en\">Season title for {{seasonId}} in English</title>\n                <title language=\"sv\">Season titel för {{seasonId}} på Svenska</title>\n            </titleList>\n            <descriptionList>\n                <description language=\"en\" length=\"short\">A short season description in English</description>\n                <description language=\"sv\" length=\"short\">A short season description in Swedish</description>\n                <description language=\"en\" length=\"medium\">A medium season description in English</description>\n                <description language=\"sv\" length=\"medium\">A medium season description in Swedish</description>\n                <description language=\"en\" length=\"long\">A long season description in English</description>\n                <description language=\"sv\" length=\"long\">A long season description in Swedish</description>\n            </descriptionList>\n            <tagList/>\n            <imageList>\n                <image language=\"sv\">\n                    <id>image1</id>\n                    <url>http://myhost.se/myPath/MyImageInSv.jpg</url>\n                    <purpose>banner</purpose>\n                    <orientation>landscape</orientation>\n                </image>\n                <image language=\"en\">\n                    <id>image2</id>\n                    <url>http://myhost.se/myPath/MyImageInEn.jpg</url>\n                    <purpose>banner</purpose>\n                    <orientation>landscape</orientation>\n                </image>\n            </imageList>\n            <seriesId>{{seasonId}}</seriesId>\n            <seasonNumber>1</seasonNumber>\n            <numberOfEpisodes>26</numberOfEpisodes>\n        </season>\n    </data>\n</publish-metadata>"
+						{
+							"name": "Asset - Episode",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{mgmtapipwd}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{mgmtapiuser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/xml"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n\t<data>\n\t\t<asset>\n    \t\t<id>{{assetId}}</id>\n    \t\t<titleList>\n    \t\t\t<title language=\"en\">Title for {{assetId}} in English</title>\n    \t\t</titleList>\n    \t\t<assetType>episode</assetType>\n    \t\t<seriesId>{{seriesId}}</seriesId>\n    \t\t<seasonId>{{seasonId}}</seasonId>\n    \t\t<episodeNumber>{{episodeNumber}}</episodeNumber>\n        </asset>\n\t</data>\n</publish-metadata>"
+								},
+								"url": {
+									"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
+									"host": [
+										"{{mgmtapihost}}"
+									],
+									"path": [
+										"v1",
+										"customer",
+										"{{customer}}",
+										"businessunit",
+										"{{businessUnit}}",
+										"asset"
+									]
+								},
+								"description": "Use this when you want to perform a basic ingest without having any real meta-data available. You have one media file.\n\nIt is assumed that the there is a storage location defined inside RedBee platform. This is why providing only relative paths are good enough. A storage can be defined either for a whole organization unit or for an organization when a specific provider is defined for the material.\n\nAsset will not be published."
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/season",
-							"host": [
-								"{{mgmtapihost}}"
-							],
-							"path": [
-								"v1",
-								"customer",
-								"{{customer}}",
-								"businessunit",
-								"{{businessUnit}}",
-								"season"
-							]
-						},
-						"description": "Use this when you want to create or update meta-data for an asset."
-					},
-					"response": []
+						{
+							"name": "Series - Localised Etc",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{mgmtapipwd}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{mgmtapiuser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/xml"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\">\n    <data>\n        <series>\n            <id>{{seriesId}}</id>\n            <titleList>\n                <title language=\"en\">Series title for {{seriesId}} in English</title>\n                <title language=\"sv\">Series titel för {{seriesId}} på Svenska</title>\n            </titleList>\n            <descriptionList>\n                <description language=\"en\" length=\"short\">A short series description in English</description>\n                <description language=\"sv\" length=\"short\">A short series description in Swedish</description>\n                <description language=\"en\" length=\"medium\">A medium series description in English</description>\n                <description language=\"sv\" length=\"medium\">A medium series description in Swedish</description>\n                <description language=\"en\" length=\"long\">A long series description in English</description>\n                <description language=\"sv\" length=\"long\">A long series description in Swedish</description>\n            </descriptionList>\n            <tagList/>\n            <imageList>\n                <image language=\"sv\">\n                    <id>image1</id>\n                    <url>http://myhost.se/myPath/MyImageInSv.jpg</url>\n                    <purpose>banner</purpose>\n                    <orientation>landscape</orientation>\n                </image>\n                <image language=\"en\">\n                    <id>image2</id>\n                    <url>http://myhost.se/myPath/MyImageInEn.jpg</url>\n                    <purpose>banner</purpose>\n                    <orientation>landscape</orientation>\n                </image>\n            </imageList>\n        </series>\n    </data>\n</publish-metadata>\n"
+								},
+								"url": {
+									"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/series",
+									"host": [
+										"{{mgmtapihost}}"
+									],
+									"path": [
+										"v1",
+										"customer",
+										"{{customer}}",
+										"businessunit",
+										"{{businessUnit}}",
+										"series"
+									]
+								},
+								"description": "Use this when you want to create or update meta-data for an asset."
+							},
+							"response": []
+						}
+					]
 				},
 				{
 					"name": "List Assets",
@@ -1674,7 +1524,7 @@
 			"name": "Publications",
 			"item": [
 				{
-					"name": "Add Or Update Publication For Asset",
+					"name": "Publication - Upsert",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -1721,54 +1571,7 @@
 					"response": []
 				},
 				{
-					"name": "Add Or Update Publication Asset Rights For Asset",
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{mgmtapipwd}}",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "{{mgmtapiuser}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/xml"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n    <data>\n        <publicationList>\n            <publication>\n                <id>{{assetId}}</id>\n                <assetIdRef>{{assetId}}</assetIdRef>\n                <startTime>2020-01-24T00:00:00.000Z</startTime>\n                <endTime>2025-01-24T00:00:00.000Z</endTime>\n                <publishTime>2019-12-01T00:00:00.000Z</publishTime>\n                <publicationRights>\n                    <productList>\n                        <product>{{productId}}</product>\n                    </productList>\n                </publicationRights>\n            </publication>\n        </publicationList>\n    </data>\n</publish-metadata>"
-						},
-						"url": {
-							"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/publication",
-							"host": [
-								"{{mgmtapihost}}"
-							],
-							"path": [
-								"v1",
-								"customer",
-								"{{customer}}",
-								"businessunit",
-								"{{businessUnit}}",
-								"publication"
-							]
-						},
-						"description": "Use this when you want to add or update a publication for an asset."
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Publication For Asset",
+					"name": "Publication - Delete",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -1794,7 +1597,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n    <data>\n        <publicationList>\n            <publication>\n                <id>{{assetId}}</id>\n                <assetIdRef>{{assetId}}</assetIdRef>\n                <startTime>2020-01-24T00:00:00.000Z</startTime>\n                <endTime>2025-01-24T00:00:00.000Z</endTime>\n                <publishTime>2019-12-01T00:00:00.000Z</publishTime>\n                <publicationRights>\n                    <productList>\n                        <product>{{productId}}</product>\n                    </productList>\n                </publicationRights>\n            </publication>\n        </publicationList>\n    </data>\n</publish-metadata>"
+							"raw": ""
 						},
 						"url": {
 							"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset/{{assetId}}/publication/{{publicationId}}",
@@ -1849,12 +1652,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{mgmtapihost}}/v2/customer/{{customer}}/businessunit/{{businessUnit}}/product",
+							"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/product",
 							"host": [
 								"{{mgmtapihost}}"
 							],
 							"path": [
-								"v2",
+								"v1",
 								"customer",
 								"{{customer}}",
 								"businessunit",
