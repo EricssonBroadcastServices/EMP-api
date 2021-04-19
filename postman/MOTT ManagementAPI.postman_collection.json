@@ -1474,28 +1474,6 @@
 							"response": []
 						}
 					]
-				},
-				{
-					"name": "List Assets",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
-							"host": [
-								"{{mgmtapihost}}"
-							],
-							"path": [
-								"v1",
-								"customer",
-								"{{customer}}",
-								"businessunit",
-								"{{businessUnit}}",
-								"asset"
-							]
-						}
-					},
-					"response": []
 				}
 			],
 			"description": "If you don't have the media files available yet you can still create the asset and start to work on the meta-data. You can also update the update later, before or after the media files are actually ingested. The message to send in is the same as for a ingest resulting in a transcoding, the difference is that you do not provide a material.",
