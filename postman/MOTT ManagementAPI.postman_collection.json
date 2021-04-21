@@ -345,7 +345,7 @@
 									"response": []
 								},
 								{
-									"name": "Asset - Variants",
+									"name": "Asset - Variants For Subtitles",
 									"request": {
 										"auth": {
 											"type": "basic",
@@ -372,6 +372,100 @@
 										"body": {
 											"mode": "raw",
 											"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n    <data>\n        <asset>\n            <id>{{assetId}}</id>\n            <titleList>\n                <title language=\"en\">Title for {{assetId}} in English</title>\n                <title language=\"sv\">Titel för {{assetId}} på Svenska</title>\n            </titleList>\n            <assetType>movie</assetType>\n        </asset>\n        <material>\n            <materialRef>https://emptestdata.blob.core.windows.net/sources/Sintel/sintel.mp4</materialRef>\n            <variants>\n                <variant>\n                \t<id>america</id>\n                    <profiles>\n                        <profile>america</profile>\n                    </profiles>\n                    <subtitles>\n                        <track>en</track>\n                    </subtitles>\n                </variant>\n                 <variant>\n                 \t<id>europe</id>\n                    <profiles>\n                        <profile>europe</profile>\n                    </profiles>\n                    <subtitles>\n                        <track>en</track>\n                        <track>es</track>\n                    </subtitles>\n                </variant>\n            </variants>\n            <DRMEnabled>false</DRMEnabled>\n            <subtitleList>\n                <subtitle language=\"en\">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_eng_short.vtt</subtitle>\n                <subtitle language=\"fr\">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_fre_short.vtt</subtitle>\n        \t    <subtitle language=\"de\">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_ger_short.vtt</subtitle>\n                <subtitle language=\"es\">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_spa_short.vtt</subtitle>\n                <subtitle language=\"sv\">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_sve_short.vtt</subtitle>\n            </subtitleList>\n        </material>\n    </data>\n</publish-metadata>\n"
+										},
+										"url": {
+											"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
+											"host": [
+												"{{mgmtapihost}}"
+											],
+											"path": [
+												"v1",
+												"customer",
+												"{{customer}}",
+												"businessunit",
+												"{{businessUnit}}",
+												"asset"
+											]
+										},
+										"description": "Use this this base a new material on a already existing one to avoid incurring extra transcoding and storage costs"
+									},
+									"response": []
+								},
+								{
+									"name": "Asset - Variants For All Tracks",
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "password",
+													"value": "{{mgmtapipwd}}",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "{{mgmtapiuser}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/xml"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n    <data>\n        <asset>\n            <id>{{assetId}}</id>\n            <titleList>\n                <title language=\"en\">Title for {{assetId}} in English</title>\n                <title language=\"sv\">Titel för {{assetId}} på Svenska</title>\n            </titleList>\n            <assetType>movie</assetType>\n        </asset>\n        <material>\n            <materialRef>https://emptestdata.blob.core.windows.net/sources/Sintel/sintel.mp4</materialRef>\n            <variant>\n                \t<id>america</id>\n                    <profiles>\n                        <profile>america</profile>\n                    </profiles>\n                    <subtitles included=\"false\">\n                        <track>en</track>\n                        <track>fr</track>\n                    </subtitles>\n                    <audios included=\"true\">\n                        <track>en</track>\n                    </audios>\n                    <videos included=\"true\">\n                        <track>5000000</track>\n                        <track>6800000</track>\n                    </videos>\n                </variant>\n            <DRMEnabled>false</DRMEnabled>\n            <subtitleList>\n                <subtitle language=\"en\">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_eng_short.vtt</subtitle>\n                <subtitle language=\"fr\">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_fre_short.vtt</subtitle>\n        \t    <subtitle language=\"de\">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_ger_short.vtt</subtitle>\n                <subtitle language=\"es\">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_spa_short.vtt</subtitle>\n                <subtitle language=\"sv\">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_sve_short.vtt</subtitle>\n            </subtitleList>\n        </material>\n    </data>\n</publish-metadata>\n"
+										},
+										"url": {
+											"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
+											"host": [
+												"{{mgmtapihost}}"
+											],
+											"path": [
+												"v1",
+												"customer",
+												"{{customer}}",
+												"businessunit",
+												"{{businessUnit}}",
+												"asset"
+											]
+										},
+										"description": "Use this this base a new material on a already existing one to avoid incurring extra transcoding and storage costs"
+									},
+									"response": []
+								},
+								{
+									"name": "Asset - Variants For Video Max Bitrate",
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "password",
+													"value": "{{mgmtapipwd}}",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "{{mgmtapiuser}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/xml"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n    <data>\n        <asset>\n            <id>{{assetId}}</id>\n            <titleList>\n                <title language=\"en\">Title for {{assetId}} in English</title>\n                <title language=\"sv\">Titel för {{assetId}} på Svenska</title>\n            </titleList>\n            <assetType>movie</assetType>\n        </asset>\n        <material>\n            <materialRef>https://emptestdata.blob.core.windows.net/sources/Sintel/sintel.mp4</materialRef>\n            <variants>\n                <variant>\n                \t<id>america</id>\n                    <profiles>\n                        <profile>america</profile>\n                    </profiles>\n                    <maxBitrate>500000</maxBitrate>\n                </variant>\n            </variants>\n            <DRMEnabled>false</DRMEnabled>\n            <subtitleList>\n                <subtitle language=\"en\">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_eng_short.vtt</subtitle>\n                <subtitle language=\"fr\">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_fre_short.vtt</subtitle>\n        \t    <subtitle language=\"de\">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_ger_short.vtt</subtitle>\n                <subtitle language=\"es\">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_spa_short.vtt</subtitle>\n                <subtitle language=\"sv\">https://emptestdata.blob.core.windows.net/sources/shortbbb/bbb_sve_short.vtt</subtitle>\n            </subtitleList>\n        </material>\n    </data>\n</publish-metadata>\n"
 										},
 										"url": {
 											"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
@@ -601,7 +695,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n  <data>\n\t<material>\n  \t\t<materialRef>https://emptestdata.blob.core.windows.net/sources/Sintel/sintel.mp4</materialRef>\n    \t<assetIdRef>{{assetId}}</assetIdRef>\n  \t\t<DRMEnabled>false</DRMEnabled>\n\t</material>\n  </data>\n</publish-metadata>",
+											"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n  <data>\n\t<material>\n  \t\t<materialRef>https://emptestdata.blob.core.windows.net/sources/Sintel/sintel.mp4</materialRef>\n    \t<assetIdRef>{{assetId}}</assetIdRef>\n  \t\t<DRMEnabled>false</DRMEnabled>\n        <purgeDate>2022-01-01T10:00:00.000</purgeDate>\n\t</material>\n  </data>\n</publish-metadata>",
 											"options": {
 												"raw": {
 													"language": "xml"
@@ -1207,7 +1301,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\">\n    <data>\n         <material>\n            <id>{{assetId}}</id>\n            <assetIdRef>{{materialId}}</assetIdRef>\n            <profiles>\n                <profile>profile6</profile>\n                <profile>profile7</profile>\n            </profiles>\n        </material>\n    </data>\n</publish-metadata>"
+									"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\">\n    <data>\n         <material>\n            <id>{{materialId}}</id>\n            <assetIdRef>{{assetId}}</assetIdRef>\n            <profiles>\n                <profile>profile6</profile>\n                <profile>profile7</profile>\n            </profiles>\n            <purgeDate>2023-08-21T00:00:00.00</purgeDate>\n        </material>\n    </data>\n</publish-metadata>"
 								},
 								"url": {
 									"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/material",
