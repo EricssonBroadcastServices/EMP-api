@@ -1382,6 +1382,7 @@
                             </xs:element>
                         </xs:sequence>
                     </xs:sequence>
+                    <xs:element minOccurs="0" name="airingStartTime" type="xs:dateTime"/>
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>
