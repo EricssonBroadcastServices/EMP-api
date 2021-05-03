@@ -1225,6 +1225,13 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element minOccurs="0" name="assetName" type="publish:shortStringType">
+                <xs:annotation>
+                    <xs:documentation>A human readable name of the asset used to display it in various
+                        administrative views.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:sequence minOccurs="0">
                 <xs:element name="provider" type="publish:metadataProviderType"/>
                 <xs:element minOccurs="0" name="providerId" type="xs:string"/>
@@ -3189,5 +3196,10 @@
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
-
+    <xs:simpleType name="shortStringType">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="50"/>
+        </xs:restriction>
+    </xs:simpleType>
 </xs:schema>
