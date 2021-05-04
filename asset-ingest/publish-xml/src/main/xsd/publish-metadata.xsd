@@ -244,6 +244,7 @@
                 </xs:annotation>
             </xs:enumeration>
             <xs:enumeration value="LOCAL_FOLDER"/>
+            <xs:enumeration value="STORAGE"/>
             <xs:enumeration value="ARCHIVE">
                 <xs:annotation>
                     <xs:documentation>
