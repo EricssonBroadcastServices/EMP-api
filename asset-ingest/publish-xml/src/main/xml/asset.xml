@@ -26,6 +26,7 @@
       <titleList>
         <title language="en">Grey Matter</title>
         <sortingTitle language="en">Grey Matter</sortingTitle>
+        <removeTitles language="sv"/>
       </titleList>
       <descriptionList>
         <description language="en" length="short">Walt rejects
@@ -40,6 +41,7 @@
           everyone who tries to help him with the cancer. Jesse tries
           his best to create Walt's meth, with the help of an old
           friend........</description>
+        <removeDescriptions language="sv"/>
       </descriptionList>
       <creditList>
         <credit>
@@ -62,6 +64,7 @@
           <orientation>landscape</orientation>
           <copyright>MIT</copyright>
         </image>
+        <removeImages language="sv"/>
       </imageList>
       <parentalRatingList>
         <parentalRating>

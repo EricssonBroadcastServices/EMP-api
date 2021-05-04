@@ -1417,8 +1417,13 @@
     <xs:complexType name="titleListType">
         <xs:sequence>
             <xs:sequence maxOccurs="unbounded">
-                <xs:element name="title" type="publish:titleType"/>
-                <xs:element minOccurs="0" name="sortingTitle" type="publish:titleType"/>
+                <xs:choice>
+                    <xs:sequence>
+                        <xs:element name="title" type="publish:titleType"/>
+                        <xs:element minOccurs="0" name="sortingTitle" type="publish:titleType"/>
+                    </xs:sequence>
+                    <xs:element name="removeTitles" type="publish:removeLocalizedType"/>
+                </xs:choice>
             </xs:sequence>
         </xs:sequence>
     </xs:complexType>
@@ -1429,7 +1434,8 @@
             </xs:documentation>
         </xs:annotation>
         <xs:sequence>
-            <xs:element maxOccurs="unbounded" name="description" type="publish:descriptionType"/>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="description" type="publish:descriptionType"/>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="removeDescriptions" type="publish:removeLocalizedType"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="commentListType">
@@ -1539,6 +1545,15 @@
             </xs:restriction>
         </xs:simpleContent>
     </xs:complexType>
+    <xs:complexType name="removeLocalizedType">
+        <xs:annotation>
+            <xs:documentation>Mark fields of type for removal.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:extension base="publish:localizedTextType"/>
+        </xs:simpleContent>
+    </xs:complexType>
     <xs:complexType name="localizedTextType">
         <xs:annotation>
             <xs:documentation>Localized text element with language attribute.
@@ -1645,7 +1660,8 @@
             </xs:documentation>
         </xs:annotation>
         <xs:sequence>
-            <xs:element maxOccurs="unbounded" name="image" type="publish:imageType"/>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="image" type="publish:imageType"/>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="removeImages" type="publish:removeLocalizedType"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="simpleTextType">
