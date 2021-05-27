@@ -1455,7 +1455,7 @@
     </xs:complexType>
     <xs:complexType name="parentalRatingListType">
         <xs:sequence>
-            <xs:element maxOccurs="unbounded" name="parentalRating" type="publish:parentalRatingType"/>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="parentalRating" type="publish:parentalRatingType"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="parentalRatingType">
@@ -1572,7 +1572,7 @@
     </xs:complexType>
     <xs:complexType name="creditListType">
         <xs:sequence>
-            <xs:element maxOccurs="unbounded" name="credit" type="publish:creditType"/>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="credit" type="publish:creditType"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="creditType">
