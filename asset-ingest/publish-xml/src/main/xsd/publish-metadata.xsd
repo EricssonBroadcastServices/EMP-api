@@ -791,6 +791,7 @@
             <xs:enumeration value="SD"/>
             <xs:enumeration value="HD"/>
             <xs:enumeration value="UHD"/>
+            <xs:enumeration value="NONE"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="preProcessingDirectiveType">
@@ -1344,7 +1345,7 @@
         <xs:complexContent>
             <xs:extension base="publish:abstractAssetType">
                 <xs:sequence>
-                    <xs:element minOccurs="0" name="assetType" type="publish:assetTypeType">
+                    <xs:element minOccurs="1" name="assetType" type="publish:assetTypeType">
                         <xs:annotation>
                             <xs:documentation>Type of the asset</xs:documentation>
                         </xs:annotation>
