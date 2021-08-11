@@ -120,6 +120,10 @@
         </object>
       </customData>
       <assetType>episode</assetType>
+      <slugs>
+        <slug>bb105</slug>
+        <slug>grey-matter</slug>
+      </slugs>
       <assetIdRef>BBS01-Trailer</assetIdRef>
       <drmRestrictions>
         <includeCountries>
