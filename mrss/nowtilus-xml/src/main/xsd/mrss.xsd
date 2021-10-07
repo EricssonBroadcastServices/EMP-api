@@ -17,7 +17,7 @@
             <xs:element type="xs:string" name="title"/>
             <xs:element type="xs:string" name="link"/>
             <xs:element type="xs:string" name="description"/>
-            <xs:element type="itemType" name="item"/>
+            <xs:element maxOccurs="unbounded" type="itemType" name="item"/>
         </xs:sequence>
     </xs:complexType>
 
