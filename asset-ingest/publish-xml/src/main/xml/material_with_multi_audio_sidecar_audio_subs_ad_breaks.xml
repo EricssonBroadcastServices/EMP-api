@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<publish-metadata xmlns="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1">
+    <data>
+        <asset>
+            <id>{{assetId}}</id>
+            <titleList>
+                <title language="en">Title for {{assetId}} in English</title>
+            </titleList>
+            <assetType>movie</assetType>
+        </asset>
+        <material>
+            <materialRef>
+                <audioList>
+                    <audio channels="2" language="en" order="LR"/>
+                    <audio channels="2s-2" language="fr" order="LR"/>
+                </audioList>https://example.com/path/to/movie_with_english_and_french_audio.mxf</materialRef>
+            <DRMEnabled>true</DRMEnabled>
+            <adBreaks>
+                <pre>true</pre>
+                <mid offset="00:03:00.000"/>
+                <mid offset="00:05:00.000"/>
+                <post>true</post>
+            </adBreaks>
+            <subtitleList>
+                <subtitle language="en">https://example.com/path/to/english_subs.srt</subtitle>
+                <subtitle language="sv">https://example.com/path/to/swedish_subs.vtt</subtitle>
+            </subtitleList>
+            <dubList>
+                <dub channels="2-6" displayName="Deutsch" language="de" order="LR-LRCLFELsRs">
+                    <filename>https://example.com/path/to/german_and_swedish_audio.mxf</filename>
+                </dub>
+                <dub channels="2s-6s-2-6" displayName="Svenska" language="sv" order="LR-LRCLFELsRs">
+                    <filename>https://example.com/path/to/german_and_swedish_audio.mxf</filename>
+                </dub>
+                <dub channels="2" displayName="Soumi" language="fi" order="LR">
+                    <filename>https://example.com/path/to/finnish_audio.mxf</filename>
+                </dub>
+            </dubList>
+        </material>
+    </data>
+</publish-metadata>
