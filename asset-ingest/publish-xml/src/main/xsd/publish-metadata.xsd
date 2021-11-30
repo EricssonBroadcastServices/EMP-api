@@ -431,6 +431,13 @@
                 </xs:documentation>
             </xs:annotation>
         </xs:attribute>
+        <xs:attribute name="audioDescription" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>
+                    Indicates if this track is a audio description track or not
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
     <xs:complexType name="audioType">
         <xs:annotation>
