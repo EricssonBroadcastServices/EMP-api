@@ -1066,6 +1066,7 @@
         </xs:annotation>
         <xs:sequence>
             <xs:element name="tagNames" type="publish:tagNameListType"/>
+            <xs:element minOccurs="0" name="imageList" type="publish:imageListType"/>
             <xs:element minOccurs="0" name="tagParents" type="publish:tagParentListType"/>
         </xs:sequence>
         <xs:attribute name="id" type="publish:idType" use="required"/>

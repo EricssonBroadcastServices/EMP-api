@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<publish-metadata
+  xmlns="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1
+                      ../xsd/publish-metadata.xsd ">
+  <data>
+    <tag id="cat1" type="category">
+      <tagNames>
+        <tagName language="en">Drama</tagName>
+      </tagNames>
+      <imageList>
+        <image language="en">
+          <id>en_image</id>
+          <url>https://i.redd.it/6xvh1f7btgl31.jpg</url>
+          <purpose>poster</purpose>
+        </image>
+      </imageList>
+    </tag>
+  </data>
+</publish-metadata>
