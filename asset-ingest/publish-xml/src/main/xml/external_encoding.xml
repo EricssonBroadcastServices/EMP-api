@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<publish-metadata
+        xmlns="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1
+                      ../xsd/publish-metadata.xsd ">
+    <data>
+        <material>
+            <id>BB0105_MTRL</id>
+            <externalEncoding>
+                <source removeAfterIngest="false" type="STORAGE">uploadStorageName</source>
+                <videoTracks>
+                    <videoTrack>
+                        <filename>filename.mp4</filename>
+                        <targetBitrate>1</targetBitrate>
+                        <codec>H264</codec>
+                    </videoTrack>
+                </videoTracks>
+                <audioTracks>
+                    <audioTrack>
+                        <filename>filename.mp4</filename>
+                        <targetBitrate>1</targetBitrate>
+                        <displayName>English</displayName>
+                        <language>en</language>
+                        <codec>AAC</codec>
+                        <channels>2</channels>
+                    </audioTrack>
+                </audioTracks>
+            </externalEncoding>
+            <DRMEnabled>true</DRMEnabled>
+            <subtitleList>
+                <subtitle language="sv" format="other" name="Swedish">uri_sv</subtitle>
+                <subtitle language="en" format="other" name="English">uri_en</subtitle>
+            </subtitleList>
+        </material>
+    </data>
+</publish-metadata>
