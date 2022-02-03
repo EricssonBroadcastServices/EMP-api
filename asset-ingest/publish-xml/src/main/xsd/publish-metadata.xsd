@@ -146,6 +146,12 @@
             <xs:enumeration value="EDIT_LIST"/>
         </xs:restriction>
     </xs:simpleType>
+    <xs:simpleType name="VideoCodecType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="H264"/>
+            <xs:enumeration value="H265"/>
+        </xs:restriction>
+    </xs:simpleType>
     <xs:complexType name="VideoTrackType">
         <xs:sequence>
             <xs:element name="filename" type="publish:notNullString">
@@ -155,13 +161,16 @@
             </xs:element>
             <xs:element name="outputFilename" minOccurs="0" type="publish:notNullString">
                 <xs:annotation>
-                    <xs:documentation>The filename of this track at the destination</xs:documentation>
+                    <xs:documentation>The filename of this track at the destination.
+                        If nothing is specified we'll re-use tha name of the source</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="targetBitrate" type="xs:long">
                 <xs:annotation>
                     <xs:documentation>The "conceptual" bitrate of this track</xs:documentation>
                 </xs:annotation>
+            </xs:element>
+            <xs:element name="codec" type="publish:VideoCodecType" default="H264">
             </xs:element>
         </xs:sequence>
     </xs:complexType>
@@ -170,6 +179,12 @@
             <xs:element maxOccurs="unbounded" name="videoTrack" type="publish:VideoTrackType"/>
         </xs:sequence>
     </xs:complexType>
+    <xs:simpleType name="AudioCodecType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="AAC"/>
+            <xs:enumeration value="AC3"/>
+        </xs:restriction>
+    </xs:simpleType>
     <xs:complexType name="AudioTrackType">
         <xs:sequence>
             <xs:element name="filename" type="publish:notNullString">
@@ -179,7 +194,8 @@
             </xs:element>
             <xs:element name="outputFilename" minOccurs="0" type="publish:notNullString">
                 <xs:annotation>
-                    <xs:documentation>The filename of this track at the destination</xs:documentation>
+                    <xs:documentation>The filename of this track at the destination.
+                        If nothing is specified we'll re-use tha name of the source</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="targetBitrate" type="xs:long">
@@ -195,6 +211,12 @@
                 </xs:annotation>
             </xs:element>
             <xs:element name="language" type="xs:language"/>
+            <xs:element name="codec" type="publish:AudioCodecType" default="AAC"/>
+            <xs:element name="channels" type="xs:int" default="2">
+                <xs:annotation>
+                    <xs:documentation>At this point only the integers 2 and 6 are supported and they will be interpreted as stereo or 5.1</xs:documentation>
+                </xs:annotation>
+            </xs:element>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="AudioTrackListType">
@@ -265,7 +287,7 @@
                         valid URL).
                     </xs:documentation>
                 </xs:annotation>
-                <xs:attribute name="type" type="publish:ExternalEncodingSourceTypeType" default="URL">
+                <xs:attribute name="type" type="publish:ExternalEncodingSourceTypeType" default="STORAGE">
                     <xs:annotation>
                         <xs:documentation>What type of source is this</xs:documentation>
                     </xs:annotation>
