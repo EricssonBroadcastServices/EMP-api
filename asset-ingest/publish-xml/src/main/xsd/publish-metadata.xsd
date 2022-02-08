@@ -1348,7 +1348,18 @@
     </xs:complexType>
     <xs:complexType name="seriesType">
         <xs:complexContent>
-            <xs:extension base="publish:abstractAssetType"/>
+            <xs:extension base="publish:abstractAssetType">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="slugs" type="publish:slugsListType">
+                        <xs:annotation>
+                            <xs:documentation>Ordered list of slugs for this asset.
+                                Default slug is the first entry in the list. Note that this slug currently can't
+                                be used to fetch the seasons/episodes of the series.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
         </xs:complexContent>
     </xs:complexType>
     <xs:complexType name="seasonType">
