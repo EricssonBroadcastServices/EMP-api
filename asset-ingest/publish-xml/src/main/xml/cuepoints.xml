@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<publish-metadata
+  xmlns="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1
+                      ../xsd/publish-metadata.xsd ">
+  <data>
+    <material>
+      <id>BB0105_MTRL</id>
+      <assetIdRef>BB0105</assetIdRef>
+      <cuePoints>
+        <cuePoint type="INTRO" start="PT30S" end="PT45S">
+          <descriptions defaultImageUri="http://tempuri.org/breaking_bad_season1/intro.jpg"/>
+        </cuePoint>
+        <cuePoint type="CHAPTER" start="PT10M30S" end="PT17M30S">
+          <descriptions generateThumbnailUrl="true">
+            <description language="sv" title="Kapitel 1"/>
+            <description language="en" title="Chapter 1"/>
+          </descriptions>
+        </cuePoint>
+        <cuePoint type="POINT" start="PT25M30S">
+          <descriptions generateThumbnailUrl="true">
+            <description language="sv" title="Punkt 1"/>
+            <description language="en" title="Point 1"/>
+          </descriptions>
+        </cuePoint>
+        <cuePoint type="CREDITS" start="PT35M15S"/>
+      </cuePoints>
+    </material>
+  </data>
+</publish-metadata>
