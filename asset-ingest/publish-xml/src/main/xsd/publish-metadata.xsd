@@ -3309,7 +3309,12 @@
             <xs:element name="description" maxOccurs="unbounded" type="publish:cuePointDescriptionType"/>
         </xs:sequence>
         <xs:attribute name="defaultImageUri" type="xs:anyURI"/>
-        <xs:attribute name="generateThumbnailUrl" type="xs:boolean" default="false"/>
+        <xs:attribute name="generateThumbnailUrl" type="xs:boolean" default="false">
+            <xs:annotation>
+                <xs:documentation>Nb! Thumbnails are supported for non-encrypted materials only. Urls might be generated
+                    for encrypted materials in the presentation layer but they will not produce a working image.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
     <xs:complexType name="cuePointDescriptionType">
         <xs:simpleContent>
