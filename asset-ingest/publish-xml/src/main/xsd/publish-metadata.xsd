@@ -220,34 +220,6 @@
             <xs:element maxOccurs="unbounded" name="audioTrack" type="publish:AudioTrackType"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:simpleType name="SubtitleTrackTypeType">
-        <xs:annotation>
-            <xs:documentation>Supported types of subtitles</xs:documentation>
-        </xs:annotation>
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="SUBTITLE">
-                <xs:annotation>
-                    <xs:documentation>
-                        Standard subtitle
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="CAPTION">
-                <xs:annotation>
-                    <xs:documentation>
-                        Hard of hearing subtitle
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="PARTIAL">
-                <xs:annotation>
-                    <xs:documentation>
-                        Foreign languages are translated but the dialogue in the local language is not transcribed
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-        </xs:restriction>
-    </xs:simpleType>
     <xs:complexType name="SubtitleTrackType">
         <xs:sequence>
             <xs:element name="filename" type="publish:notNullString">
@@ -255,7 +227,6 @@
                     <xs:documentation>The filename of this track in the source</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="type" minOccurs="0" type="publish:SubtitleTrackTypeType"/>
             <xs:element name="outputFilename" minOccurs="0" type="publish:notNullString">
                 <xs:annotation>
                     <xs:documentation>The filename of this track at the destination</xs:documentation>
@@ -888,6 +859,34 @@
             </xs:element>
         </xs:sequence>
     </xs:complexType>
+    <xs:simpleType name="SubtitleTypeType">
+        <xs:annotation>
+            <xs:documentation>Supported types of subtitles</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SUBTITLE">
+                <xs:annotation>
+                    <xs:documentation>
+                        Standard subtitle
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="CAPTION">
+                <xs:annotation>
+                    <xs:documentation>
+                        Hard of hearing subtitle
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="PARTIAL">
+                <xs:annotation>
+                    <xs:documentation>
+                        Foreign languages are translated but the dialogue in the local language is not transcribed
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
     <xs:complexType name="subtitleType">
         <xs:simpleContent>
             <xs:extension base="xs:string">
@@ -908,6 +907,7 @@
                         <xs:documentation>The format of the subtitles</xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
+                <xs:attribute name="type" type="publish:SubtitleTypeType"/>
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
