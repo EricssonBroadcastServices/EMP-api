@@ -1335,6 +1335,11 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element minOccurs="0" name="originalTitle" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>What is the title of the asset in the original language</xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:element minOccurs="0" name="descriptionList" type="publish:descriptionListType">
                 <xs:annotation>
                     <xs:documentation>List of descriptions</xs:documentation>
