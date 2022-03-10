@@ -1,140 +1,146 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <publish-metadata
-  xmlns="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1
+        xmlns="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1
                       ../xsd/publish-metadata.xsd ">
-  <data>
-    <tag id="DRAMA" type="genre">
-      <tagNames>
-        <tagName language="en">Drama</tagName>
-      </tagNames>
-    </tag>
-    <tag id="THRILLER" type="genre">
-      <tagNames>
-        <tagName language="en">Thriller</tagName>
-      </tagNames>
-    </tag>
-    <asset>
-      <id>BB0105</id>
-      <assetName>Breaking Bad s01e05</assetName>
-      <studio>Sony Pictures Television</studio>
-      <productionYear>2008</productionYear>
-      <countryOfOriginList>
-        <country>US</country>
-      </countryOfOriginList>
-      <titleList>
-        <title language="en">Grey Matter</title>
-        <sortingTitle language="en">Grey Matter</sortingTitle>
-        <removeTitles language="sv"/>
-      </titleList>
-      <originalTitle>Grey Matter</originalTitle>
-      <descriptionList>
-        <description language="en" length="short">Walt rejects
-          everyone who tries to help him with the cancer. Jesse tries
-          his best to create Walt's meth, with the help of an old
-          friend.</description>
-        <description language="en" length="medium">Walt rejects
-          everyone who tries to help him with the cancer. Jesse tries
-          his best to create Walt's meth, with the help of an old
-          friend....</description>
-        <description language="en" length="long">Walt rejects
-          everyone who tries to help him with the cancer. Jesse tries
-          his best to create Walt's meth, with the help of an old
-          friend........</description>
-        <removeDescriptions language="sv"/>
-      </descriptionList>
-      <creditList>
-        <credit>
-          <name>Bryan Cranston</name>
-          <rolename>Walter White</rolename>
-          <function>Actor</function>
-        </credit>
-      </creditList>
-      <tagList>
-        <tagIdRef>DRAMA</tagIdRef>
-        <tagIdRef>THRILLER</tagIdRef>
-      </tagList>
-      <imageList>
-        <image language="en" priority="0" forceReload="true">
-          <id>breaking_bad_epsisode_s01e05</id>
-          <url>http://tempuri.org/breaking_bad_season1/05.jpg</url>
-          <width>1600</width>
-          <height>900</height>
-          <purpose>banner</purpose>
-          <orientation>landscape</orientation>
-          <copyright>MIT</copyright>
-        </image>
-        <removeImages language="sv"/>
-      </imageList>
-      <parentalRatingList>
-        <parentalRating>
-          <rating>R</rating>
-          <scheme>MPAA</scheme>
-          <country>US</country>
-        </parentalRating>
-        <parentalRating>
-          <rating>15</rating>
-          <scheme>Statens medieråd</scheme>
-          <country>SE</country>
-        </parentalRating>
-      </parentalRatingList>
-      <externalReferenceList>
-        <externalReference>
-          <provider>Wikipedia</provider>
-          <id>15465618</id>
-          <uri>https://en.wikipedia.org/?curid=</uri>
-        </externalReference>
-      </externalReferenceList>
-      <adminLabelList>
-        <label>label1</label>
-        <label>label2</label>
-      </adminLabelList>
-      <linkedAssetList>
-        <linkedAsset>
-          <id>optionalLinkId</id>
-          <type>trailer</type>
-          <assetId ownedByCustomer="false">trailerAssetId</assetId>
-        </linkedAsset>
-      </linkedAssetList>
-      <customData>
-        <object>
-          <mapEntry name="stringEntry">
-            <string>seriesString</string>
-          </mapEntry>
-          <mapEntry name="numberEntry">
-            <number>1</number>
-          </mapEntry>
-          <mapEntry name="booleanEntry">
-            <false/>
-          </mapEntry>
-          <mapEntry name="objectEntry">
-            <object>
-              <mapEntry name="struíngArrayEntry">
-                <stringArray>
-                  <string>entry1</string>
-                  <string>entry2</string>
-                </stringArray>
-              </mapEntry>
-            </object>
-          </mapEntry>
-        </object>
-      </customData>
-      <assetType>episode</assetType>
-      <slugs>
-        <slug>bb105</slug>
-        <slug>grey-matter</slug>
-      </slugs>
-      <displayDuration>PT4S</displayDuration>
-      <assetIdRef>BBS01-Trailer</assetIdRef>
-      <drmRestrictions>
-        <includeCountries>
-          <country>SE</country>
-        </includeCountries>
-      </drmRestrictions>
-      <seriesId>BreakingBad</seriesId>
-      <seasonId>BBS01</seasonId>
-      <episodeNumber>5</episodeNumber>
-    </asset>
-  </data>
+    <data>
+        <tag id="DRAMA" type="genre">
+            <tagNames>
+                <tagName language="en">Drama</tagName>
+            </tagNames>
+        </tag>
+        <tag id="THRILLER" type="genre">
+            <tagNames>
+                <tagName language="en">Thriller</tagName>
+            </tagNames>
+        </tag>
+        <asset>
+            <id>BB0105</id>
+            <assetName>Breaking Bad s01e05</assetName>
+            <studio>Sony Pictures Television</studio>
+            <productionYear>2008</productionYear>
+            <countryOfOriginList>
+                <country>US</country>
+            </countryOfOriginList>
+            <titleList>
+                <title language="en">Grey Matter</title>
+                <sortingTitle language="en">Grey Matter</sortingTitle>
+                <removeTitles language="sv"/>
+            </titleList>
+            <originalTitle>Grey Matter</originalTitle>
+            <descriptionList>
+                <description language="en" length="short">Walt rejects
+                    everyone who tries to help him with the cancer. Jesse tries
+                    his best to create Walt's meth, with the help of an old
+                    friend.
+                </description>
+                <description language="en" length="medium">Walt rejects
+                    everyone who tries to help him with the cancer. Jesse tries
+                    his best to create Walt's meth, with the help of an old
+                    friend....
+                </description>
+                <description language="en" length="long">Walt rejects
+                    everyone who tries to help him with the cancer. Jesse tries
+                    his best to create Walt's meth, with the help of an old
+                    friend........
+                </description>
+                <removeDescriptions language="sv"/>
+            </descriptionList>
+            <creditList>
+                <credit>
+                    <name>Bryan Cranston</name>
+                    <rolename>Walter White</rolename>
+                    <function>Actor</function>
+                </credit>
+            </creditList>
+            <tagList>
+                <tagIdRef>DRAMA</tagIdRef>
+                <tagIdRef>THRILLER</tagIdRef>
+            </tagList>
+            <imageList>
+                <image language="en" priority="0" forceReload="true">
+                    <id>breaking_bad_epsisode_s01e05</id>
+                    <url>http://tempuri.org/breaking_bad_season1/05.jpg</url>
+                    <width>1600</width>
+                    <height>900</height>
+                    <purpose>banner</purpose>
+                    <orientation>landscape</orientation>
+                    <copyright>MIT</copyright>
+                </image>
+                <removeImages language="sv"/>
+            </imageList>
+            <parentalRatingList>
+                <parentalRating>
+                    <rating>R</rating>
+                    <scheme>MPAA</scheme>
+                    <country>US</country>
+                </parentalRating>
+                <parentalRating>
+                    <rating>15</rating>
+                    <scheme>Statens medieråd</scheme>
+                    <country>SE</country>
+                </parentalRating>
+            </parentalRatingList>
+            <externalReferenceList>
+                <externalReference>
+                    <provider>Wikipedia</provider>
+                    <id>15465618</id>
+                    <uri>https://en.wikipedia.org/?curid=</uri>
+                </externalReference>
+            </externalReferenceList>
+            <adminLabelList>
+                <label>label1</label>
+                <label>label2</label>
+            </adminLabelList>
+            <linkedAssetList>
+                <linkedAsset>
+                    <id>optionalLinkId</id>
+                    <type>trailer</type>
+                    <assetId ownedByCustomer="false">trailerAssetId</assetId>
+                </linkedAsset>
+            </linkedAssetList>
+            <customData>
+                <object>
+                    <mapEntry name="stringEntry">
+                        <string>seriesString</string>
+                    </mapEntry>
+                    <mapEntry name="numberEntry">
+                        <number>1</number>
+                    </mapEntry>
+                    <mapEntry name="booleanEntry">
+                        <false/>
+                    </mapEntry>
+                    <mapEntry name="objectEntry">
+                        <object>
+                            <mapEntry name="struíngArrayEntry">
+                                <stringArray>
+                                    <string>entry1</string>
+                                    <string>entry2</string>
+                                </stringArray>
+                            </mapEntry>
+                        </object>
+                    </mapEntry>
+                </object>
+            </customData>
+            <assetType>episode</assetType>
+            <slugs>
+                <slug>bb105</slug>
+                <slug>grey-matter</slug>
+            </slugs>
+            <assetIdRef>BBS01-Trailer</assetIdRef>
+            <drmRestrictions>
+                <includeCountries>
+                    <country>SE</country>
+                </includeCountries>
+            </drmRestrictions>
+            <seriesId>BreakingBad</seriesId>
+            <seasonId>BBS01</seasonId>
+            <episodeNumber>5</episodeNumber>
+            <runtime>PT4S</runtime>
+            <spokenLanguages>
+                <language>da</language>
+            </spokenLanguages>
+        </asset>
+    </data>
 </publish-metadata>

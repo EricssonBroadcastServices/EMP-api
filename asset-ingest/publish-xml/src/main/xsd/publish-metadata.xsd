@@ -1455,12 +1455,6 @@
                             </xs:documentation>
                         </xs:annotation>
                     </xs:element>
-                    <xs:element minOccurs="0" name="runtime" type="xs:duration">
-                        <xs:annotation>
-                            <xs:documentation>A end user friendly duration of the asset
-                            </xs:documentation>
-                        </xs:annotation>                    </xs:element>
-                    <xs:element minOccurs="0" name="spokenLanguages" type="publish:languageListType"/>
                     <xs:element minOccurs="0" name="assetIdRef" type="publish:idType">
                         <xs:annotation>
                             <xs:documentation>Reference to other asset entity that is
@@ -1503,6 +1497,12 @@
                         </xs:sequence>
                     </xs:sequence>
                     <xs:element minOccurs="0" name="airingStartTime" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="runtime" type="xs:duration">
+                        <xs:annotation>
+                            <xs:documentation>A end user friendly duration of the asset
+                            </xs:documentation>
+                        </xs:annotation>                    </xs:element>
+                    <xs:element minOccurs="0" name="spokenLanguages" type="publish:languageListType"/>
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>
