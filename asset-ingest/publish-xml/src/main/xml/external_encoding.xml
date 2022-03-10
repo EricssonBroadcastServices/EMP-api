@@ -17,7 +17,7 @@
                     </videoTrack>
                 </videoTracks>
                 <audioTracks>
-                    <audioTrack>
+                    <audioTrack audioDescription="false">
                         <filename>filename.mp4</filename>
                         <targetBitrate>1</targetBitrate>
                         <displayName>English</displayName>

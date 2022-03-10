@@ -156,7 +156,8 @@
             <xs:element name="outputFilename" minOccurs="0" type="publish:notNullString">
                 <xs:annotation>
                     <xs:documentation>The filename of this track at the destination.
-                        If nothing is specified we'll re-use tha name of the source</xs:documentation>
+                        If nothing is specified we'll re-use tha name of the source
+                    </xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="targetBitrate" type="xs:long">
@@ -186,7 +187,8 @@
             <xs:element name="outputFilename" minOccurs="0" type="publish:notNullString">
                 <xs:annotation>
                     <xs:documentation>The filename of this track at the destination.
-                        If nothing is specified we'll re-use tha name of the source</xs:documentation>
+                        If nothing is specified we'll re-use tha name of the source
+                    </xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="targetBitrate" type="xs:long">
@@ -210,10 +212,19 @@
             </xs:element>
             <xs:element name="channels" type="xs:int" default="2">
                 <xs:annotation>
-                    <xs:documentation>At this point only the integers 2 and 6 are supported and they will be interpreted as stereo or 5.1</xs:documentation>
+                    <xs:documentation>At this point only the integers 2 and 6 are supported and they will be interpreted
+                        as stereo or 5.1
+                    </xs:documentation>
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
+        <xs:attribute name="audioDescription" type="xs:boolean" default="false">
+            <xs:annotation>
+                <xs:documentation>
+                    Indicates if this track is a audio description track or not
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
     <xs:complexType name="AudioTrackListType">
         <xs:sequence>
@@ -449,7 +460,7 @@
                 </xs:documentation>
             </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="audioDescription" type="xs:boolean">
+        <xs:attribute name="audioDescription" type="xs:boolean" default="false">
             <xs:annotation>
                 <xs:documentation>
                     Indicates if this track is a audio description track or not
@@ -1027,7 +1038,7 @@
             <xs:maxLength value="128"/>
         </xs:restriction>
     </xs:simpleType>
-     <xs:simpleType name="idTypeShort">
+    <xs:simpleType name="idTypeShort">
         <xs:annotation>
             <xs:documentation>A short ID that can be only 2 characters instead of normal 3</xs:documentation>
         </xs:annotation>
@@ -1444,6 +1455,7 @@
                             </xs:documentation>
                         </xs:annotation>
                     </xs:element>
+                    <xs:element minOccurs="0" name="spokenLanguages" type="publish:languageListType"/>
                     <xs:element minOccurs="0" name="assetIdRef" type="publish:idType">
                         <xs:annotation>
                             <xs:documentation>Reference to other asset entity that is
@@ -1531,7 +1543,8 @@
         </xs:annotation>
         <xs:sequence>
             <xs:element minOccurs="0" maxOccurs="unbounded" name="description" type="publish:descriptionType"/>
-            <xs:element minOccurs="0" maxOccurs="unbounded" name="removeDescriptions" type="publish:removeLocalizedType"/>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="removeDescriptions"
+                        type="publish:removeLocalizedType"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="commentListType">
@@ -3346,7 +3359,8 @@
         <xs:attribute name="generateThumbnailUrl" type="xs:boolean" default="false">
             <xs:annotation>
                 <xs:documentation>Nb! Thumbnails are supported for non-encrypted materials only. Urls might be generated
-                    for encrypted materials in the presentation layer but they will not produce a working image.</xs:documentation>
+                    for encrypted materials in the presentation layer but they will not produce a working image.
+                </xs:documentation>
             </xs:annotation>
         </xs:attribute>
     </xs:complexType>
