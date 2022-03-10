@@ -1455,6 +1455,11 @@
                             </xs:documentation>
                         </xs:annotation>
                     </xs:element>
+                    <xs:element minOccurs="0" name="runtime" type="xs:duration">
+                        <xs:annotation>
+                            <xs:documentation>A end user friendly duration of the asset
+                            </xs:documentation>
+                        </xs:annotation>                    </xs:element>
                     <xs:element minOccurs="0" name="spokenLanguages" type="publish:languageListType"/>
                     <xs:element minOccurs="0" name="assetIdRef" type="publish:idType">
                         <xs:annotation>

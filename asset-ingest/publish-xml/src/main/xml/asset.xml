@@ -125,6 +125,7 @@
         <slug>bb105</slug>
         <slug>grey-matter</slug>
       </slugs>
+      <displayDuration>PT4S</displayDuration>
       <assetIdRef>BBS01-Trailer</assetIdRef>
       <drmRestrictions>
         <includeCountries>
