@@ -1129,6 +1129,13 @@
         </xs:annotation>
         <xs:sequence>
             <xs:element name="tagNames" type="publish:tagNameListType"/>
+            <xs:element minOccurs="0" name="adminName" type="publish:shortStringType">
+                <xs:annotation>
+                    <xs:documentation>A human readable name of the tag used to display it in various
+                        administrative views.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:element minOccurs="0" name="imageList" type="publish:imageListType"/>
             <xs:element minOccurs="0" name="tagParents" type="publish:tagParentListType"/>
         </xs:sequence>
