@@ -3414,12 +3414,17 @@
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
-        <xs:attribute name="resolution" type="xs:string">
+        <xs:attribute name="width" type="xs:int" use="required">
             <xs:annotation>
-                <xs:documentation>Resolution of sprite, eg. 1920x1080</xs:documentation>
+                <xs:documentation>Width of sprite in pixels</xs:documentation>
             </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="vttFileName" type="xs:string">
+        <xs:attribute name="height" type="xs:int" use="required">
+            <xs:annotation>
+                <xs:documentation>Height of sprite in pixels</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="vttFileName" type="xs:string" use="required">
             <xs:annotation>
                 <xs:documentation>VTT file specifying sprite</xs:documentation>
             </xs:annotation>
