@@ -337,6 +337,7 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element name="sprites" minOccurs="0" type="publish:SpriteListType"></xs:element>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="VodSourceType">
@@ -3400,4 +3401,28 @@
             <xs:enumeration value="CREDITS"/>
         </xs:restriction>
     </xs:simpleType>
+    <xs:complexType name="SpriteListType">
+        <xs:sequence maxOccurs="unbounded">
+            <xs:element name="sprite" type="publish:SpriteType"></xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="SpriteType">
+        <xs:sequence maxOccurs="unbounded">
+            <xs:element name="imageFileName" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>JPG file containing sprite image</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="resolution" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Resolution of sprite, eg. 1920x1080</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="vttFileName" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>VTT file specifying sprite</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
 </xs:schema>
