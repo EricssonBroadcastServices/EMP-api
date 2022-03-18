@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<publish-metadata xmlns="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1">
+    <data>
+        <tag id="45c48cce2e2d7fbdea1afc51c7c6ad26" type="genre">
+            <tagNames>
+                <tagName language="da">Drama</tagName>
+            </tagNames>
+            <adminName>Drama</adminName>
+        </tag>
+    </data>
+</publish-metadata>

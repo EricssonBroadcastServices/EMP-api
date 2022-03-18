@@ -890,10 +890,10 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
-            <xs:enumeration value="PARTIAL">
+            <xs:enumeration value="FORCED">
                 <xs:annotation>
                     <xs:documentation>
-                        Foreign languages are translated but the dialogue in the local language is not transcribed
+                        Eg. foreign languages are translated but the dialogue in the local language is not transcribed
                     </xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
