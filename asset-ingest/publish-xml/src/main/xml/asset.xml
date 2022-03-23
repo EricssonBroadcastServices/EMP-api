@@ -53,6 +53,16 @@
                     <rolename>Walter White</rolename>
                     <function>Actor</function>
                 </credit>
+                <credit>
+                    <id>4711</id>
+                    <name>Person Personson</name>
+                    <function>Director</function>
+                    <dateOfBirth>1900-01-01</dateOfBirth>
+                    <dateOfDeath>2000-01-01</dateOfDeath>
+                    <bioList>
+                        <bio language="en">He lived for a very long time</bio>
+                    </bioList>
+                </credit>
             </creditList>
             <tagList>
                 <tagIdRef>DRAMA</tagIdRef>

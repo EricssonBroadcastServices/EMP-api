@@ -1696,11 +1696,35 @@
             <xs:element minOccurs="0" maxOccurs="unbounded" name="credit" type="publish:creditType"/>
         </xs:sequence>
     </xs:complexType>
+    <xs:complexType name="creditItemBioType">
+        <xs:annotation>
+            <xs:documentation>Localized bio for a person appearing in the credits
+            </xs:documentation>
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="language" type="publish:language">
+                    <xs:annotation>
+                        <xs:documentation>code in ISO 639-1</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="creditItemBioListType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="bio" type="publish:creditItemBioType"/>
+        </xs:sequence>
+    </xs:complexType>
     <xs:complexType name="creditType">
         <xs:sequence>
+            <xs:element minOccurs="0" name="id" type="publish:idType"/>
             <xs:element name="name" type="publish:notNullString"/>
             <xs:element minOccurs="0" name="rolename" type="publish:notNullString"/>
             <xs:element minOccurs="0" name="function" type="publish:notNullString"/>
+            <xs:element minOccurs="0" name="dateOfBirth" type="xs:date"/>
+            <xs:element minOccurs="0" name="dateOfDeath" type="xs:date"/>
+            <xs:element minOccurs="0" name="bioList" type="publish:creditItemBioListType"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="imageType">
