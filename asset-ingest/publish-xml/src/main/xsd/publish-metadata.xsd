@@ -1316,7 +1316,7 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element minOccurs="0" name="assetName" type="publish:shortStringType">
+            <xs:element minOccurs="0" name="assetName" type="xs:string">
                 <xs:annotation>
                     <xs:documentation>A human readable name of the asset used to display it in various
                         administrative views.
