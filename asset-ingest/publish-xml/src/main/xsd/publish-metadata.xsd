@@ -863,7 +863,7 @@
     </xs:complexType>
     <xs:complexType name="profileListType">
         <xs:sequence>
-            <xs:element minOccurs="1" maxOccurs="unbounded" name="profile" type="publish:idTypeShort">
+            <xs:element minOccurs="1" maxOccurs="unbounded" name="profile" type="publish:idType">
                 <xs:annotation>
                     <xs:documentation>Used to classify materials when multiple active materials are used
                     </xs:documentation>
@@ -1035,17 +1035,7 @@
         </xs:annotation>
         <xs:restriction base="xs:string">
             <xs:pattern value="[0-9A-Za-z\-_]+"/>
-            <xs:minLength value="3"/>
-            <xs:maxLength value="128"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="idTypeShort">
-        <xs:annotation>
-            <xs:documentation>A short ID that can be only 2 characters instead of normal 3</xs:documentation>
-        </xs:annotation>
-        <xs:restriction base="xs:string">
-            <xs:pattern value="[0-9A-Za-z\-_]+"/>
-            <xs:minLength value="2"/>
+            <xs:minLength value="1"/>
             <xs:maxLength value="128"/>
         </xs:restriction>
     </xs:simpleType>
