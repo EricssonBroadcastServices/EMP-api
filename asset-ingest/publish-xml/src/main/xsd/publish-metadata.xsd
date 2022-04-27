@@ -1720,7 +1720,7 @@
     </xs:complexType>
     <xs:complexType name="imageType">
         <xs:sequence>
-            <xs:element name="id" type="publish:idType">
+            <xs:element minOccurs="0" name="id" type="publish:idType">
                 <xs:annotation>
                     <xs:documentation>The id of the image from the origin system. For
                         example it might be img_123.
@@ -1745,14 +1745,6 @@
                             image from source system.
                         </xs:documentation>
                     </xs:annotation>
-                    <xs:restriction base="xs:string">
-                        <xs:enumeration value="banner"/>
-                        <xs:enumeration value="poster"/>
-                        <xs:enumeration value="logo"/>
-                        <xs:enumeration value="thumbnail"/>
-                        <xs:enumeration value="cover"/>
-                        <xs:enumeration value="other"/>
-                    </xs:restriction>
                 </xs:simpleType>
             </xs:element>
             <xs:element minOccurs="0" name="orientation">
