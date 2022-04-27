@@ -1738,14 +1738,12 @@
                     <xs:documentation>In unit px.</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="purpose">
-                <xs:simpleType>
-                    <xs:annotation>
-                        <xs:documentation>Purpose of image, initial intended usage for the
-                            image from source system.
-                        </xs:documentation>
-                    </xs:annotation>
-                </xs:simpleType>
+            <xs:element name="purpose" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Purpose of image, initial intended usage for the
+                        image from source system.
+                    </xs:documentation>
+                </xs:annotation>
             </xs:element>
             <xs:element minOccurs="0" name="orientation">
                 <xs:simpleType>
