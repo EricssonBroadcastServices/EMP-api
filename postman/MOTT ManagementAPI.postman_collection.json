@@ -611,7 +611,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\">\n    <data>\n    \t <asset>\n            <id>{{assetId}}</id>\n            <titleList>\n                <title language=\"en\">Title for {{assetId}} in English</title>\n            </titleList>\n            <assetType>movie</assetType>\n        </asset>\n        <material>\n        \t<materialRef>\n\t\t\t\t<audioList>\n    \t\t\t\t<audio channels=\"2\" language=\"da\" order=\"LR\"/>\n    \t\t\t\t<audio channels=\"2s-2\" language=\"fi\" order=\"LR\"/>\n    \t\t\t\t<audio channels=\"4s-2\" language=\"no\" order=\"LR\"/>\n    \t\t\t\t<audio channels=\"6s-2\" language=\"sv\" order=\"LR\"/>\n\t\t\t\t</audioList>\n\t\t\t\thttps://emptestdata.blob.core.windows.net/sources/au8trks/test_au8trks.mxf\n\t\t\t</materialRef>\n\t\t</material>\n    </data>\n</publish-metadata>"
+											"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\">\n    <data>\n    \t <asset>\n            <id>{{assetId}}</id>\n            <titleList>\n                <title language=\"en\">Title for {{assetId}} in English</title>\n            </titleList>\n            <assetType>movie</assetType>\n        </asset>\n        <material>\n        \t<materialRef>\n\t\t\t\t<audioList>\n    \t\t\t\t<audio channels=\"2\" language=\"da\" order=\"LR\"/>\n    \t\t\t\t<audio channels=\"2s-2\" language=\"fi\" order=\"LR\"/>\n    \t\t\t\t<audio channels=\"4s-2\" language=\"no\" order=\"LR\"/>\n    \t\t\t\t<audio channels=\"6s-2\" language=\"sv\" order=\"LR\"/>\n\t\t\t\t</audioList>\n                https://emptestdata.blob.core.windows.net/sources/au8trks/test_au8trks.mxf\n\t\t\t</materialRef>\n\t\t</material>\n    </data>\n</publish-metadata>"
 										},
 										"url": {
 											"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
@@ -840,7 +840,38 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n  <data>\n    <material>\n    \t<materialRef>{{materialId}}</materialRef>\n    \t<assetIdRef>{{assetId}}</assetIdRef>\n\t\t<DRMEnabled>false</DRMEnabled>\n    </material>\n  </data>\n</publish-metadata>",
+											"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1 publish-metadata-1.0.xsd\">\n  <data>\n    <material>\n    \t<materialRef>{{materialId}}</materialRef>\n    \t<assetIdRef>{{assetId}}</assetIdRef>\n\t\t<DRMEnabled>true</DRMEnabled>\n    </material>\n  </data>\n</publish-metadata>",
+											"options": {
+												"raw": {
+													"language": "xml"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/material",
+											"host": [
+												"{{mgmtapihost}}"
+											],
+											"path": [
+												"v1",
+												"customer",
+												"{{customer}}",
+												"businessunit",
+												"{{businessUnit}}",
+												"material"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Material - Based On - Add Audio",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\">\n    <data>\n        <material>\n            <materialRef>{{materialId}}</materialRef>\n            <assetIdRef>{{assetId}}</assetIdRef>\n            <dubList>\n                <dub language=\"it\" displayName=\"Italiano\">\n                    <filename>http://example.com/path/to/auido.mxf</filename>\n                </dub>\n            </dubList>\n        </material>\n    </data>\n</publish-metadata>",
 											"options": {
 												"raw": {
 													"language": "xml"
@@ -1369,6 +1400,290 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Get Status",
+					"item": [
+						{
+							"name": "Get Asset Status for BU asset",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{mgmtapipwd}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{mgmtapiuser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/xml"
+									}
+								],
+								"url": {
+									"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset/{{assetId}}?includeMaterial=true",
+									"host": [
+										"{{mgmtapihost}}"
+									],
+									"path": [
+										"v1",
+										"customer",
+										"{{customer}}",
+										"businessunit",
+										"{{businessUnit}}",
+										"asset",
+										"{{assetId}}"
+									],
+									"query": [
+										{
+											"key": "includeMaterial",
+											"value": "true"
+										}
+									]
+								},
+								"description": "Use this this base a new material on a already existing one to avoid incurring extra transcoding and storage costs"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Assets BU",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{mgmtapipwd}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{mgmtapiuser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/xml"
+									}
+								],
+								"url": {
+									"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset?newFormat=true",
+									"host": [
+										"{{mgmtapihost}}"
+									],
+									"path": [
+										"v1",
+										"customer",
+										"{{customer}}",
+										"businessunit",
+										"{{businessUnit}}",
+										"asset"
+									],
+									"query": [
+										{
+											"key": "newFormat",
+											"value": "true"
+										}
+									]
+								},
+								"description": "Use this this base a new material on a already existing one to avoid incurring extra transcoding and storage costs"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Asset BU",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{mgmtapipwd}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{mgmtapiuser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/xml"
+									}
+								],
+								"url": {
+									"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset?newFormat=true",
+									"host": [
+										"{{mgmtapihost}}"
+									],
+									"path": [
+										"v1",
+										"customer",
+										"{{customer}}",
+										"businessunit",
+										"{{businessUnit}}",
+										"asset"
+									],
+									"query": [
+										{
+											"key": "newFormat",
+											"value": "true"
+										}
+									]
+								},
+								"description": "Use this this base a new material on a already existing one to avoid incurring extra transcoding and storage costs"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Assets CU",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{mgmtapipwd}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{mgmtapiuser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/xml"
+									}
+								],
+								"url": {
+									"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/asset?newFormat=new",
+									"host": [
+										"{{mgmtapihost}}"
+									],
+									"path": [
+										"v1",
+										"customer",
+										"{{customer}}",
+										"asset"
+									],
+									"query": [
+										{
+											"key": "newFormat",
+											"value": "new"
+										}
+									]
+								},
+								"description": "Use this this base a new material on a already existing one to avoid incurring extra transcoding and storage costs"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Asset Status For CU asset",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{mgmtapipwd}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{mgmtapiuser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/xml"
+									}
+								],
+								"url": {
+									"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/asset/{{assetId}}?includeMaterial=true",
+									"host": [
+										"{{mgmtapihost}}"
+									],
+									"path": [
+										"v1",
+										"customer",
+										"{{customer}}",
+										"asset",
+										"{{assetId}}"
+									],
+									"query": [
+										{
+											"key": "includeMaterial",
+											"value": "true"
+										}
+									]
+								},
+								"description": "Use this this base a new material on a already existing one to avoid incurring extra transcoding and storage costs"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Pretranscoded Ingest",
+					"item": [
+						{
+							"name": "Ingest pretranscoded material",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<publish-metadata xmlns=\"http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1\">\n    <data>\n        <asset>\n            <id>{{assetId}}</id>\n            <assetName>Special Asset name</assetName>\n            <assetType>movie</assetType>\n        </asset>\n        <material>\n            <provider>RTBF</provider>\n            <externalEncoding>\n                <source type=\"STORAGE\" removeAfterIngest=\"false\">pre-define</source>\n                <videoTracks>\n                    <videoTrack>\n                        <filename>2143828/2dCIeQjn5O-234p.mp4</filename>\n                        <outputFilename>H264_video_234p_200000.mp4</outputFilename>\n                        <targetBitrate>200000</targetBitrate>\n                        <codec>H264</codec>\n                    </videoTrack>\n                    <videoTrack>\n                        <filename>2143828/2dCIeQjn5O-480p.mp4</filename>\n                        <outputFilename>H264_video_480p_1150000.mp4</outputFilename>\n                        <targetBitrate>1150000</targetBitrate>\n                        <codec>H264</codec>\n                    </videoTrack>\n                    <videoTrack>\n                        <filename>2143828/2dCIeQjn5O-576p.mp4</filename>\n                        <outputFilename>H264_video_576p_1600000.mp4</outputFilename>\n                        <targetBitrate>1600000</targetBitrate>\n                        <codec>H264</codec>\n                    </videoTrack>\n                    <videoTrack>\n                        <filename>2143828/2dCIeQjn5O-720p.mp4</filename>\n                        <outputFilename>H264_video_720p_200000.mp4</outputFilename>\n                        <targetBitrate>2000000</targetBitrate>\n                        <codec>H264</codec>\n                    </videoTrack>\n                    <videoTrack>\n                        <filename>2143828/2dCIeQjn5O-1080p.mp4</filename>\n                        <outputFilename>H264_video_1080p_4000000.mp4</outputFilename>\n                        <targetBitrate>4000000</targetBitrate>\n                        <codec>H264</codec>\n                    </videoTrack>\n                </videoTracks>\n                <audioTracks>\n                    <audioTrack>\n                        <filename>2143828/2dCIeQjn5O-234p.mp4</filename>\n                        <outputFilename>aac_audio_fre_96000.mp4</outputFilename>\n                        <targetBitrate>96000</targetBitrate>\n                        <displayName>Français</displayName>\n                        <language>fr</language>\n                        <codec>AAC</codec>\n                        <channels>2</channels>\n                    </audioTrack>\n                    <audioTrack>\n                        <filename>2143828/2dCIeQjn5O-480p.mp4</filename>\n                        <outputFilename>aac_audio_fre_128000.mp4</outputFilename>\n                        <targetBitrate>128000</targetBitrate>\n                        <displayName>Français</displayName>\n                        <language>fr</language>\n                        <codec>AAC</codec>\n                        <channels>2</channels>\n                    </audioTrack>\n                    <audioTrack>\n                        <filename>2143828/2dCIeQjn5O-720p.mp4</filename>\n                        <outputFilename>aac_audio_fre_192000.mp4</outputFilename>\n                        <targetBitrate>192000</targetBitrate>\n                        <displayName>Français</displayName>\n                        <language>fr</language>\n                        <codec>AAC</codec>\n                        <channels>2</channels>\n                    </audioTrack>\n                </audioTracks>\n            </externalEncoding>\n            <DRMEnabled>false</DRMEnabled>\n            <subtitleList>\n                <subtitle language=\"fr\" name=\"Français\">2143828/fra.vtt</subtitle>\n                <subtitle language=\"en\" name=\"English\">2143828/eng.vtt</subtitle>\n            </subtitleList>\n            <purgeDate>2030-12-17T00:00:00+01:00</purgeDate>\n        </material>\n    </data>\n</publish-metadata>",
+									"options": {
+										"raw": {
+											"language": "xml"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/asset",
+									"host": [
+										"{{mgmtapihost}}"
+									],
+									"path": [
+										"v1",
+										"customer",
+										"{{customer}}",
+										"businessunit",
+										"{{businessUnit}}",
+										"asset"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			],
 			"description": "Example of different ingests. Different type of ingests can be done into the RedBee platform. \n\nStandard Ingest - This is a standard VOD ingest, having source files available on internet or on a storage available to RedBee.\n\nLive2VOF Ingst - This will create a VOD based on a live channel program."
@@ -1879,6 +2194,636 @@
 							]
 						},
 						"description": "Use this when you want to add or update a publication for an asset."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Events",
+			"item": [
+				{
+					"name": "Inputs",
+					"item": [
+						{
+							"name": "Events",
+							"item": [
+								{
+									"name": "Create Event Channel For Input",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"inputId\":\"{{inputId}}}\",\n    \"start\":\"2022-06-22T20:00:00.000Z\",\n    \"end\":\"2022-06-22T21:00:00.000Z\",\n    \"encrypted\":false,\n    \"metadata\":{\n        \"name\":\"Future channel\"\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/events/input/{{inputId}}/eventchannel",
+											"host": [
+												"{{mgmtapihost}}"
+											],
+											"path": [
+												"v1",
+												"customer",
+												"{{customer}}",
+												"businessunit",
+												"{{businessUnit}}",
+												"events",
+												"input",
+												"{{inputId}}",
+												"eventchannel"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Event And Event Channel For Input",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"inputId\":\"{{inputId}}}\",\n    \"start\":\"2022-05-01T18:00:00.000Z\",\n    \"end\":\"2022-05-01T22:00:00.000Z\",\n    \"encrypted\":true,\n    \"metadata\":{\n        \"name\":\"Future channel\"\n    },\n    \"events\": [\n        {\n            \"start\":\"2022-05-01T18:00:00.000Z\",\n            \"end\":\"2022-05-01T20:00:00.000Z\",\n             \"metadata\":{\n                \"name\":\"Event 1\"\n            }\n        },\n        {\n            \"start\":\"2022-05-01T20:00:00.000Z\",\n            \"end\":\"2022-05-01T22:00:00.000Z\",\n             \"metadata\":{\n                \"name\":\"Event 2\"\n            }\n        }\n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/events/input/{{inputId}}/eventchannel",
+											"host": [
+												"{{mgmtapihost}}"
+											],
+											"path": [
+												"v1",
+												"customer",
+												"{{customer}}",
+												"businessunit",
+												"{{businessUnit}}",
+												"events",
+												"input",
+												"{{inputId}}",
+												"eventchannel"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Event And Event Channel Same Time For Input",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"inputId\":\"{{inputId}}\",\n    \"start\":\"2022-04-28T21:35:00.000Z\",\n    \"end\":\"2022-04-28T21:40:00.000Z\",\n    \"encrypted\":false,\n    \"metadata\":{\n        \"name\":\"The perfect test channel 2\"\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/events/input/{{inputId}}/event",
+											"host": [
+												"{{mgmtapihost}}"
+											],
+											"path": [
+												"v1",
+												"customer",
+												"{{customer}}",
+												"businessunit",
+												"{{businessUnit}}",
+												"events",
+												"input",
+												"{{inputId}}",
+												"event"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Event Channels For Input",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"AndersTestMgmtApi1\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/events/input/{{inputId}}/eventchannel",
+											"host": [
+												"{{mgmtapihost}}"
+											],
+											"path": [
+												"v1",
+												"customer",
+												"{{customer}}",
+												"businessunit",
+												"{{businessUnit}}",
+												"events",
+												"input",
+												"{{inputId}}",
+												"eventchannel"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Event Channel For Input",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"AndersTestMgmtApi1\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/events/input/{{inputId}}/eventchannel/{{eventChannelId}}",
+											"host": [
+												"{{mgmtapihost}}"
+											],
+											"path": [
+												"v1",
+												"customer",
+												"{{customer}}",
+												"businessunit",
+												"{{businessUnit}}",
+												"events",
+												"input",
+												"{{inputId}}",
+												"eventchannel",
+												"{{eventChannelId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update Event Channel And Event For Input",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"start\": \"2022-04-28T21:25:00Z\",\n    \"end\": \"2022-04-28T21:50:00Z\",\n    \"events\": [\n        {\n            \"id\": \"f7b90ca9\",\n            \"start\": \"2022-04-28T21:34:00Z\",\n            \"end\": \"2022-04-28T21:46:00Z\"\n        }\n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/events/input/{{inputId}}/eventchannel/{{eventChannelId}}",
+											"host": [
+												"{{mgmtapihost}}"
+											],
+											"path": [
+												"v1",
+												"customer",
+												"{{customer}}",
+												"businessunit",
+												"{{businessUnit}}",
+												"events",
+												"input",
+												"{{inputId}}",
+												"eventchannel",
+												"{{eventChannelId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete Event Channel For Input",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"inputId\":\"d191eef2\",\n    \"start\":\"2022-06-22T20:00:00.000Z\",\n    \"end\":\"2022-06-22T21:00:00.000Z\",\n    \"encrypted\":false,\n    \"metadata\":{\n        \"name\":\"testChannel001\"\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/events/input/{{inputId}}/eventchannel/{{eventChannelId}}",
+											"host": [
+												"{{mgmtapihost}}"
+											],
+											"path": [
+												"v1",
+												"customer",
+												"{{customer}}",
+												"businessunit",
+												"{{businessUnit}}",
+												"events",
+												"input",
+												"{{inputId}}",
+												"eventchannel",
+												"{{eventChannelId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete Event Channel For Input Force",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"inputId\":\"d191eef2\",\n    \"start\":\"2022-06-22T20:00:00.000Z\",\n    \"end\":\"2022-06-22T21:00:00.000Z\",\n    \"encrypted\":false,\n    \"metadata\":{\n        \"name\":\"testChannel001\"\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/events/input/{{inputId}}/eventchannel/{{eventChannelId}}?force=true",
+											"host": [
+												"{{mgmtapihost}}"
+											],
+											"path": [
+												"v1",
+												"customer",
+												"{{customer}}",
+												"businessunit",
+												"{{businessUnit}}",
+												"events",
+												"input",
+												"{{inputId}}",
+												"eventchannel",
+												"{{eventChannelId}}"
+											],
+											"query": [
+												{
+													"key": "force",
+													"value": "true"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Create Event Input",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Testing New Input\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/events/input",
+									"host": [
+										"{{mgmtapihost}}"
+									],
+									"path": [
+										"v1",
+										"customer",
+										"{{customer}}",
+										"businessunit",
+										"{{businessUnit}}",
+										"events",
+										"input"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Event Inputs",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\":\"testEventChannel001\",\n    \"inputs\":[\"cam1\"],\n    \"start\":\"2021-05-30T20:00:00.000Z\",\n    \"end\":\"2021-05-30T21:00:00.000Z\",\n    \"encrypted\":false,\n    \"metadata\":{\n        \"name\":\"testChannel\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/events/input",
+									"host": [
+										"{{mgmtapihost}}"
+									],
+									"path": [
+										"v1",
+										"customer",
+										"{{customer}}",
+										"businessunit",
+										"{{businessUnit}}",
+										"events",
+										"input"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Event Input",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\":\"testEventChannel001\",\n    \"inputs\":[\"cam1\"],\n    \"start\":\"2021-05-30T20:00:00.000Z\",\n    \"end\":\"2021-05-30T21:00:00.000Z\",\n    \"encrypted\":false,\n    \"metadata\":{\n        \"name\":\"testChannel\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/events/input/{{inputId}}",
+									"host": [
+										"{{mgmtapihost}}"
+									],
+									"path": [
+										"v1",
+										"customer",
+										"{{customer}}",
+										"businessunit",
+										"{{businessUnit}}",
+										"events",
+										"input",
+										"{{inputId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Event Input",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/events/input/{{inputId}}",
+									"host": [
+										"{{mgmtapihost}}"
+									],
+									"path": [
+										"v1",
+										"customer",
+										"{{customer}}",
+										"businessunit",
+										"{{businessUnit}}",
+										"events",
+										"input",
+										"{{inputId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Clip",
+			"item": [
+				{
+					"name": "Order clip",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":\"Test001\",\n    \"startTime\":\"2021-06-22T08:20:00.000Z\",\n    \"endTime\":\"2021-06-22T08:25:00.000Z\",\n    \"callback\":\"https://webhook.site/1a59a128-455a-4d4d-945f-da4c083d1e11\",\n    \"errorCallback\":\"https://webhook.site/7752d6b8-c9a9-4876-866b-7dfe1a8fe7b5\",\n    \"fileName\":\"example.mp41\",\n    \"audioOnly\":false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/clip/{{assetId}}",
+							"host": [
+								"{{mgmtapihost}}"
+							],
+							"path": [
+								"v1",
+								"customer",
+								"{{customer}}",
+								"businessunit",
+								"{{businessUnit}}",
+								"clip",
+								"{{assetId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete clip order",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/clip/order/{{orderId}}",
+							"host": [
+								"{{mgmtapihost}}"
+							],
+							"path": [
+								"v1",
+								"customer",
+								"{{customer}}",
+								"businessunit",
+								"{{businessUnit}}",
+								"clip",
+								"order",
+								"{{orderId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retry clip order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/clip/order/{{orderId}}/retry",
+							"host": [
+								"{{mgmtapihost}}"
+							],
+							"path": [
+								"v1",
+								"customer",
+								"{{customer}}",
+								"businessunit",
+								"{{businessUnit}}",
+								"clip",
+								"order",
+								"{{orderId}}",
+								"retry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update clip order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"startTime\":\"2020-02-12T12:00:10.000Z\",\n    \"endTime\":\"2020-02-12T12:00:20.000Z\",\n    \"callback\":\"http://www.example.com/callback2\",\n    \"audioOnly\":true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/clip/order/{{orderId}}",
+							"host": [
+								"{{mgmtapihost}}"
+							],
+							"path": [
+								"v1",
+								"customer",
+								"{{customer}}",
+								"businessunit",
+								"{{businessUnit}}",
+								"clip",
+								"order",
+								"{{orderId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get clipping order",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/clip/order/{{orderId}}",
+							"host": [
+								"{{mgmtapihost}}"
+							],
+							"path": [
+								"v1",
+								"customer",
+								"{{customer}}",
+								"businessunit",
+								"{{businessUnit}}",
+								"clip",
+								"order",
+								"{{orderId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List clipping orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/businessunit/{{businessUnit}}/clip/order",
+							"host": [
+								"{{mgmtapihost}}"
+							],
+							"path": [
+								"v1",
+								"customer",
+								"{{customer}}",
+								"businessunit",
+								"{{businessUnit}}",
+								"clip",
+								"order"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tag",
+			"item": [
+				{
+					"name": "Get tags For CU",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{mgmtapihost}}/v1/customer/{{customer}}/tag",
+							"host": [
+								"{{mgmtapihost}}"
+							],
+							"path": [
+								"v1",
+								"customer",
+								"{{customer}}",
+								"tag"
+							]
+						}
 					},
 					"response": []
 				}
