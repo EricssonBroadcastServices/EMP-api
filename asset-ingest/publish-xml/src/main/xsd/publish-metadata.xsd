@@ -1046,7 +1046,7 @@
         <xs:restriction base="xs:string">
             <xs:pattern value="[0-9a-z\-]+"/>
             <xs:minLength value="3"/>
-            <xs:maxLength value="50"/>
+            <xs:maxLength value="256"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="priority">
