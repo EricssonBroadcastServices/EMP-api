@@ -2215,7 +2215,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"inputId\":\"{{inputId}}}\",\n    \"start\":\"2022-06-22T20:00:00.000Z\",\n    \"end\":\"2022-06-22T21:00:00.000Z\",\n    \"encrypted\":false,\n    \"metadata\":{\n        \"name\":\"Future channel\"\n    }\n}",
+											"raw": "{\n    \"start\":\"2022-06-22T20:00:00.000Z\",\n    \"end\":\"2022-06-22T21:00:00.000Z\",\n    \"encrypted\":false,\n    \"metadata\":{\n        \"name\":\"Future channel\"\n    }\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -2249,7 +2249,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"inputId\":\"{{inputId}}}\",\n    \"start\":\"2022-05-01T18:00:00.000Z\",\n    \"end\":\"2022-05-01T22:00:00.000Z\",\n    \"encrypted\":true,\n    \"metadata\":{\n        \"name\":\"Future channel\"\n    },\n    \"events\": [\n        {\n            \"start\":\"2022-05-01T18:00:00.000Z\",\n            \"end\":\"2022-05-01T20:00:00.000Z\",\n             \"metadata\":{\n                \"name\":\"Event 1\"\n            }\n        },\n        {\n            \"start\":\"2022-05-01T20:00:00.000Z\",\n            \"end\":\"2022-05-01T22:00:00.000Z\",\n             \"metadata\":{\n                \"name\":\"Event 2\"\n            }\n        }\n    ]\n}",
+											"raw": "{\n    \"start\":\"2022-05-12T20:59:00.000Z\",\n    \"end\":\"2022-05-12T21:04:00.000Z\",\n    \"encrypted\":true,\n    \"metadata\":{\n        \"name\":\"Example0001 Channel Name\"\n    },\n    \"live2vod\":false,\n    \"events\": [\n        {\n             \"start\":\"2022-05-12T20:59:00.000Z\",\n             \"end\":\"2022-05-12T21:04:00.000Z\",\n            \"externalAssetId\":\"Example0001\", \n             \"live2vod\":true,\n             \"metadata\":{\n                \"name\":\"Example0001 Name\"\n            }\n        }\n    ]\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -2283,7 +2283,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"inputId\":\"{{inputId}}\",\n    \"start\":\"2022-04-28T21:35:00.000Z\",\n    \"end\":\"2022-04-28T21:40:00.000Z\",\n    \"encrypted\":false,\n    \"metadata\":{\n        \"name\":\"The perfect test channel 2\"\n    }\n}",
+											"raw": "{\n    \"start\":\"2022-05-12T20:50:00.000Z\",\n    \"end\":\"2022-05-12T20:55:00.000Z\",\n    \"externalAssetId\":\"Example0002\", \n    \"encrypted\":false,\n    \"live2vod\":true,\n    \"metadata\":{\n        \"name\":\"Example0002 Title\"\n    }\n}",
 											"options": {
 												"raw": {
 													"language": "json"
