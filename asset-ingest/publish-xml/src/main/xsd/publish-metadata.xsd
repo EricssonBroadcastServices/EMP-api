@@ -860,6 +860,13 @@
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
+        <xs:attribute name="replace" default="false" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>If true the list of subtitles sent in will replace the
+                    current list of subtitles
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
     <xs:complexType name="profileListType">
         <xs:sequence>
