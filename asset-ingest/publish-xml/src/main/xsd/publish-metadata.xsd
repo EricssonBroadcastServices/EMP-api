@@ -1992,6 +1992,7 @@
             <xs:element minOccurs="0" name="downloadMaxSecondsAfterDownload" type="xs:unsignedInt"/>
             <xs:element minOccurs="0" name="downloadMaxSecondsAfterPlay" type="xs:unsignedInt"/>
             <xs:element minOccurs="0" name="anonymousIpBlocked" type="xs:boolean"/>
+            <xs:element minOccurs="0" name="vpnDetectionRequired" type="xs:boolean"/>
             <xs:element minOccurs="0" name="maxDownloadCount" type="xs:unsignedInt"/>
         </xs:sequence>
     </xs:complexType>
