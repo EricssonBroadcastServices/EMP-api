@@ -217,6 +217,12 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element name="trackId" type="xs:int" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>If the source contains multiple tracks you need to specify which track to use
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
         </xs:sequence>
         <xs:attribute name="audioDescription" type="xs:boolean" default="false">
             <xs:annotation>
