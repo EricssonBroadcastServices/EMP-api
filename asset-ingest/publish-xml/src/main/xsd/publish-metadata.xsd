@@ -1671,6 +1671,7 @@
             <xs:enumeration value="short"/>
             <xs:enumeration value="medium"/>
             <xs:enumeration value="long"/>
+            <xs:enumeration value="extended"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:complexType name="untypedDescriptionType">
