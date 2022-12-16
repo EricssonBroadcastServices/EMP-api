@@ -1414,6 +1414,11 @@
                     <xs:documentation>list of links to other entities.</xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element minOccurs="0" name="materialPropertiesOverride" type="publish:materialPropertiesOverrideType">
+                <xs:annotation>
+                    <xs:documentation>Material properties used in exposure on aggregated level instead of properties otherwise calculated from materials.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:element minOccurs="0" name="customData" type="publish:customDataType"/>
         </xs:sequence>
     </xs:complexType>
@@ -1426,6 +1431,12 @@
                             <xs:documentation>Ordered list of slugs for this asset.
                                 Default slug is the first entry in the list. Note that this slug currently can't
                                 be used to fetch the seasons/episodes of the series.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="runtime" type="xs:duration">
+                        <xs:annotation>
+                            <xs:documentation>An end user-friendly duration of the asset
                             </xs:documentation>
                         </xs:annotation>
                     </xs:element>
@@ -1520,9 +1531,10 @@
                     <xs:element minOccurs="0" name="airingStartTime" type="xs:dateTime"/>
                     <xs:element minOccurs="0" name="runtime" type="xs:duration">
                         <xs:annotation>
-                            <xs:documentation>A end user friendly duration of the asset
+                            <xs:documentation>An end user-friendly duration of the asset
                             </xs:documentation>
-                        </xs:annotation>                    </xs:element>
+                        </xs:annotation>
+                    </xs:element>
                     <xs:element minOccurs="0" name="spokenLanguages" type="publish:languageListType"/>
                 </xs:sequence>
             </xs:extension>
@@ -1899,6 +1911,13 @@
             <xs:maxLength value="3000"/>
         </xs:restriction>
     </xs:simpleType>
+    <xs:complexType name="materialPropertiesOverrideType">
+        <xs:sequence>
+            <xs:element name="subtitleTrackLanguages" minOccurs="0" type="publish:languageListType"/>
+            <xs:element name="audioTrackLanguages" minOccurs="0" type="publish:languageListType"/>
+            <xs:element name="duration" minOccurs="0" type="xs:duration"/>
+        </xs:sequence>
+    </xs:complexType>
     <!-- Begin Contract -->
     <xs:complexType name="contractType">
         <xs:sequence>
