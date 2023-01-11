@@ -9,7 +9,7 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>xmltv</artifactId>
   <packaging>jar</packaging>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
 
   <name>XML-TV</name>
   <description>XML-TV is supported by EMP but not the recomended format for EPG ingest.</description>

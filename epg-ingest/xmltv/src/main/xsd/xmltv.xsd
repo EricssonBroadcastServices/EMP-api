@@ -266,6 +266,8 @@
       </xs:sequence>
       <xs:attribute name="start" use="required"/>
       <xs:attribute name="stop"/>
+      <xs:attribute name="actual-start"/>
+      <xs:attribute name="actual-stop"/>
       <xs:attribute name="pdc-start"/>
       <xs:attribute name="vps-start"/>
       <xs:attribute name="showview"/>
@@ -274,6 +276,17 @@
       <xs:attribute name="clumpidx" default="0/1"/>
     </xs:complexType>
   </xs:element>
+
+  <!-- Publication -->
+  <xs:element name="publication">
+    <xs:complexType>
+      <xs:attribute name="start"/>
+      <xs:attribute name="stop"/>
+      <xs:attribute name="actual-start"/>
+      <xs:attribute name="actual-stop"/>
+    </xs:complexType>
+  </xs:element>
+
   <!-- Programme title, eg 'The Simpsons'. -->
   <xs:element name="title">
     <xs:complexType mixed="true">
