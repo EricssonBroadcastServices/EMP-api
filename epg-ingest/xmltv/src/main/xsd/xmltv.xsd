@@ -125,6 +125,7 @@
       <xs:sequence>
         <xs:element minOccurs="0" maxOccurs="unbounded" ref="channel"/>
         <xs:element minOccurs="0" maxOccurs="unbounded" ref="programme"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="publication"/>
       </xs:sequence>
       <xs:attribute name="date"/>
       <xs:attribute name="source-info-url"/>
