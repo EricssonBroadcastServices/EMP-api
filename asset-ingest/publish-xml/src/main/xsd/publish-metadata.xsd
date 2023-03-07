@@ -203,7 +203,7 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="language" type="xs:language"/>
+            <xs:element name="language" type="publish:language"/>
             <xs:element name="codec" type="xs:string" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>AAC or AC3
@@ -256,7 +256,7 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="language" type="xs:language"/>
+            <xs:element name="language" type="publish:language"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="SubtitleTrackListType">
@@ -925,11 +925,7 @@
                         <xs:documentation>Should this subtitle be deleted</xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
-                <xs:attribute name="language" type="publish:language">
-                    <xs:annotation>
-                        <xs:documentation>code in ISO 639-1</xs:documentation>
-                    </xs:annotation>
-                </xs:attribute>
+                <xs:attribute name="language" type="publish:language"/>
                 <xs:attribute name="name" type="xs:string">
                     <xs:annotation>
                         <xs:documentation>name of the subtitle. If not provided, the name will be equal to the
@@ -1196,8 +1192,7 @@
             <xs:extension base="xs:string">
                 <xs:attribute name="language" type="publish:language">
                     <xs:annotation>
-                        <xs:documentation>code in ISO 639-1 Note that the language here
-                            refers to the language on which the description is made.
+                        <xs:documentation>The language here refers to the language on which the description is made.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
@@ -1710,11 +1705,7 @@
         </xs:annotation>
         <xs:simpleContent>
             <xs:extension base="xs:string">
-                <xs:attribute name="language" type="publish:language">
-                    <xs:annotation>
-                        <xs:documentation>code in ISO 639-1</xs:documentation>
-                    </xs:annotation>
-                </xs:attribute>
+                <xs:attribute name="language" type="publish:language"/>
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
@@ -1730,11 +1721,7 @@
         </xs:annotation>
         <xs:simpleContent>
             <xs:extension base="xs:string">
-                <xs:attribute name="language" type="publish:language">
-                    <xs:annotation>
-                        <xs:documentation>code in ISO 639-1</xs:documentation>
-                    </xs:annotation>
-                </xs:attribute>
+                <xs:attribute name="language" type="publish:language"/>
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
@@ -1809,12 +1796,7 @@
                 </xs:restriction>
             </xs:simpleType>
         </xs:attribute>
-        <xs:attribute name="language" type="publish:language">
-            <xs:annotation>
-                <xs:documentation>Language of the image if applicable
-                </xs:documentation>
-            </xs:annotation>
-        </xs:attribute>
+        <xs:attribute name="language" type="publish:language"/>
     </xs:complexType>
     <xs:complexType name="imageListType">
         <xs:annotation>
@@ -1830,11 +1812,7 @@
     <xs:complexType name="simpleTextType">
         <xs:simpleContent>
             <xs:extension base="xs:string">
-                <xs:attribute name="language" type="publish:language">
-                    <xs:annotation>
-                        <xs:documentation>code in ISO 639-1</xs:documentation>
-                    </xs:annotation>
-                </xs:attribute>
+                <xs:attribute name="language" type="publish:language"/>
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
@@ -2575,745 +2553,1033 @@
     <xs:simpleType name="language">
         <xs:annotation>
             <xs:documentation>
-                A valid ISO 639-1 Code or the string UNKNOWN.
+                A valid ISO 639-1, 639-2/B or 639-2/T code (except the reserved range qaa-qtz) or the string UNKNOWN.
             </xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string">
-            <xs:enumeration value="ab"/>
-            <!-- ABKHAZ -->
-            <xs:enumeration value="abk"/>
-            <!-- ABKHAZ -->
+            <!-- AFAR -->
             <xs:enumeration value="aa"/>
-            <!-- AFAR -->
             <xs:enumeration value="aar"/>
-            <!-- AFAR -->
+            <!-- ABKHAZIAN -->
+            <xs:enumeration value="ab"/>
+            <xs:enumeration value="abk"/>
+            <!-- ACHINESE -->
+            <xs:enumeration value="ace"/>
+            <!-- ACOLI -->
+            <xs:enumeration value="ach"/>
+            <!-- ADANGME -->
+            <xs:enumeration value="ada"/>
+            <!-- ADYGHE -->
+            <xs:enumeration value="ady"/>
+            <!-- AFRIHILI -->
+            <xs:enumeration value="afh"/>
+            <!-- AFRIKAANS -->
             <xs:enumeration value="af"/>
-            <!-- AFRIKAANS -->
             <xs:enumeration value="afr"/>
-            <!-- AFRIKAANS -->
+            <!-- AINU -->
+            <xs:enumeration value="ain"/>
+            <!-- AKAN -->
             <xs:enumeration value="ak"/>
-            <!-- AKAN -->
             <xs:enumeration value="aka"/>
-            <!-- AKAN -->
-            <xs:enumeration value="sq"/>
-            <!-- ALBANIAN -->
-            <xs:enumeration value="sqi"/>
-            <!-- ALBANIAN -->
+            <!-- AKKADIAN -->
+            <xs:enumeration value="akk"/>
+            <!-- ALEUT -->
+            <xs:enumeration value="ale"/>
+            <!-- SOUTHERN_ALTAI -->
+            <xs:enumeration value="alt"/>
+            <!-- AMHARIC -->
             <xs:enumeration value="am"/>
-            <!-- AMHARIC -->
             <xs:enumeration value="amh"/>
-            <!-- AMHARIC -->
+            <!-- ENGLISH_OLD -->
+            <xs:enumeration value="ang"/>
+            <!-- ANGIKA -->
+            <xs:enumeration value="anp"/>
+            <!-- ARABIC -->
             <xs:enumeration value="ar"/>
-            <!-- ARABIC -->
             <xs:enumeration value="ara"/>
-            <!-- ARABIC -->
+            <!-- OFFICIAL_ARAMAIC -->
+            <xs:enumeration value="arc"/>
+            <!-- ARAGONESE -->
             <xs:enumeration value="an"/>
-            <!-- ARAGONESE -->
             <xs:enumeration value="arg"/>
-            <!-- ARAGONESE -->
-            <xs:enumeration value="hy"/>
-            <!-- ARMENIAN -->
-            <xs:enumeration value="hye"/>
-            <!-- ARMENIAN -->
+            <!-- MAPUDUNGUN -->
+            <xs:enumeration value="arn"/>
+            <!-- ARAPAHO -->
+            <xs:enumeration value="arp"/>
+            <!-- ARAWAK -->
+            <xs:enumeration value="arw"/>
+            <!-- ASSAMESE -->
             <xs:enumeration value="as"/>
-            <!-- ASSAMESE -->
             <xs:enumeration value="asm"/>
-            <!-- ASSAMESE -->
+            <!-- ASTURIAN -->
+            <xs:enumeration value="ast"/>
+            <!-- AVARIC -->
             <xs:enumeration value="av"/>
-            <!-- AVARIC -->
             <xs:enumeration value="ava"/>
-            <!-- AVARIC -->
+            <!-- AVESTAN -->
             <xs:enumeration value="ae"/>
-            <!-- AVESTAN -->
             <xs:enumeration value="ave"/>
-            <!-- AVESTAN -->
+            <!-- AWADHI -->
+            <xs:enumeration value="awa"/>
+            <!-- AYMARA -->
             <xs:enumeration value="ay"/>
-            <!-- AYMARA -->
             <xs:enumeration value="aym"/>
-            <!-- AYMARA -->
+            <!-- AZERBAIJANI -->
             <xs:enumeration value="az"/>
-            <!-- AZERBAIJANI -->
             <xs:enumeration value="aze"/>
-            <!-- AZERBAIJANI -->
-            <xs:enumeration value="bm"/>
-            <!-- BAMBARA -->
-            <xs:enumeration value="bam"/>
-            <!-- BAMBARA -->
+            <!-- BASHKIR -->
             <xs:enumeration value="ba"/>
-            <!-- BASHKIR -->
             <xs:enumeration value="bak"/>
-            <!-- BASHKIR -->
-            <xs:enumeration value="eu"/>
-            <!-- BASQUE -->
-            <xs:enumeration value="eus"/>
-            <!-- BASQUE -->
+            <!-- BALUCHI -->
+            <xs:enumeration value="bal"/>
+            <!-- BAMBARA -->
+            <xs:enumeration value="bm"/>
+            <xs:enumeration value="bam"/>
+            <!-- BALINESE -->
+            <xs:enumeration value="ban"/>
+            <!-- BASA -->
+            <xs:enumeration value="bas"/>
+            <!-- BEJA -->
+            <xs:enumeration value="bej"/>
+            <!-- BELARUSIAN -->
             <xs:enumeration value="be"/>
-            <!-- BELARUSIAN -->
             <xs:enumeration value="bel"/>
-            <!-- BELARUSIAN -->
+            <!-- BEMBA -->
+            <xs:enumeration value="bem"/>
+            <!-- BENGALI -->
             <xs:enumeration value="bn"/>
-            <!-- BENGALI -->
             <xs:enumeration value="ben"/>
-            <!-- BENGALI -->
-            <xs:enumeration value="bh"/>
-            <!-- BIHARI -->
-            <xs:enumeration value="bih"/>
-            <!-- BIHARI -->
+            <!-- BHOJPURI -->
+            <xs:enumeration value="bho"/>
+            <!-- BIKOL -->
+            <xs:enumeration value="bik"/>
+            <!-- BINI -->
+            <xs:enumeration value="bin"/>
+            <!-- BISLAMA -->
             <xs:enumeration value="bi"/>
-            <!-- BISLAMA -->
             <xs:enumeration value="bis"/>
-            <!-- BISLAMA -->
-            <xs:enumeration value="bs"/>
-            <!-- BOSNIAN -->
-            <xs:enumeration value="bos"/>
-            <!-- BOSNIAN -->
-            <xs:enumeration value="br"/>
-            <!-- BRETON -->
-            <xs:enumeration value="bre"/>
-            <!-- BRETON -->
-            <xs:enumeration value="bg"/>
-            <!-- BULGARIAN -->
-            <xs:enumeration value="bul"/>
-            <!-- BULGARIAN -->
-            <xs:enumeration value="my"/>
-            <!-- BURMESE -->
-            <xs:enumeration value="mya"/>
-            <!-- BURMESE -->
-            <xs:enumeration value="ca"/>
-            <!-- CATALAN -->
-            <xs:enumeration value="cat"/>
-            <!-- CATALAN -->
-            <xs:enumeration value="ch"/>
-            <!-- CHAMORRO -->
-            <xs:enumeration value="cha"/>
-            <!-- CHAMORRO -->
-            <xs:enumeration value="ce"/>
-            <!-- CHECHEN -->
-            <xs:enumeration value="che"/>
-            <!-- CHECHEN -->
-            <xs:enumeration value="ny"/>
-            <!-- CHICHEWA -->
-            <xs:enumeration value="nya"/>
-            <!-- CHICHEWA -->
-            <xs:enumeration value="zh"/>
-            <!-- CHINESE -->
-            <xs:enumeration value="zho"/>
-            <!-- CHINESE -->
-            <xs:enumeration value="cv"/>
-            <!-- CHUVASH -->
-            <xs:enumeration value="chv"/>
-            <!-- CHUVASH -->
-            <xs:enumeration value="kw"/>
-            <!-- CORNISH -->
-            <xs:enumeration value="cor"/>
-            <!-- CORNISH -->
-            <xs:enumeration value="co"/>
-            <!-- CORSICAN -->
-            <xs:enumeration value="cos"/>
-            <!-- CORSICAN -->
-            <xs:enumeration value="cr"/>
-            <!-- CREE -->
-            <xs:enumeration value="cre"/>
-            <!-- CREE -->
-            <xs:enumeration value="hr"/>
-            <!-- CROATIAN -->
-            <xs:enumeration value="hrv"/>
-            <!-- CROATIAN -->
-            <xs:enumeration value="cs"/>
-            <!-- CZECH -->
-            <xs:enumeration value="ces"/>
-            <!-- CZECH -->
-            <xs:enumeration value="da"/>
-            <!-- DANISH -->
-            <xs:enumeration value="dan"/>
-            <!-- DANISH -->
-            <xs:enumeration value="dv"/>
-            <!-- DIVEHI -->
-            <xs:enumeration value="div"/>
-            <!-- DIVEHI -->
-            <xs:enumeration value="nl"/>
-            <!-- DUTCH -->
-            <xs:enumeration value="nld"/>
-            <!-- DUTCH -->
-            <xs:enumeration value="dz"/>
-            <!-- DZONGKHA -->
-            <xs:enumeration value="dzo"/>
-            <!-- DZONGKHA -->
-            <xs:enumeration value="en"/>
-            <!-- ENGLISH -->
-            <xs:enumeration value="eng"/>
-            <!-- ENGLISH -->
-            <xs:enumeration value="eo"/>
-            <!-- ESPERANTO -->
-            <xs:enumeration value="epo"/>
-            <!-- ESPERANTO -->
-            <xs:enumeration value="et"/>
-            <!-- ESTONIAN -->
-            <xs:enumeration value="est"/>
-            <!-- ESTONIAN -->
-            <xs:enumeration value="ee"/>
-            <!-- EWE -->
-            <xs:enumeration value="ewe"/>
-            <!-- EWE -->
-            <xs:enumeration value="fo"/>
-            <!-- FAROESE -->
-            <xs:enumeration value="fao"/>
-            <!-- FAROESE -->
-            <xs:enumeration value="fj"/>
-            <!-- FIJIAN -->
-            <xs:enumeration value="fij"/>
-            <!-- FIJIAN -->
-            <xs:enumeration value="fi"/>
-            <!-- FINNISH -->
-            <xs:enumeration value="fin"/>
-            <!-- FINNISH -->
-            <xs:enumeration value="fr"/>
-            <!-- FRENCH -->
-            <xs:enumeration value="fra"/>
-            <!-- FRENCH -->
-            <xs:enumeration value="ff"/>
-            <!-- FULA -->
-            <xs:enumeration value="ful"/>
-            <!-- FULA -->
-            <xs:enumeration value="gl"/>
-            <!-- GALICIAN -->
-            <xs:enumeration value="glg"/>
-            <!-- GALICIAN -->
-            <xs:enumeration value="ka"/>
-            <!-- GEORGIAN -->
-            <xs:enumeration value="kat"/>
-            <!-- GEORGIAN -->
-            <xs:enumeration value="de"/>
-            <!-- GERMAN -->
-            <xs:enumeration value="deu"/>
-            <!-- GERMAN -->
-            <xs:enumeration value="el"/>
-            <!-- GREEK -->
-            <xs:enumeration value="ell"/>
-            <!-- GREEK -->
-            <xs:enumeration value="gn"/>
-            <!-- GUARAN -->
-            <xs:enumeration value="grn"/>
-            <!-- GUARAN -->
-            <xs:enumeration value="gu"/>
-            <!-- GUJARATI -->
-            <xs:enumeration value="guj"/>
-            <!-- GUJARATI -->
-            <xs:enumeration value="ht"/>
-            <!-- HAITIAN -->
-            <xs:enumeration value="hat"/>
-            <!-- HAITIAN -->
-            <xs:enumeration value="ha"/>
-            <!-- HAUSA -->
-            <xs:enumeration value="hau"/>
-            <!-- HAUSA -->
-            <xs:enumeration value="he"/>
-            <!-- HEBREW -->
-            <xs:enumeration value="heb"/>
-            <!-- HEBREW -->
-            <xs:enumeration value="hz"/>
-            <!-- HERERO -->
-            <xs:enumeration value="her"/>
-            <!-- HERERO -->
-            <xs:enumeration value="hi"/>
-            <!-- HINDI -->
-            <xs:enumeration value="hin"/>
-            <!-- HINDI -->
-            <xs:enumeration value="ho"/>
-            <!-- HIRI -->
-            <xs:enumeration value="hmo"/>
-            <!-- HIRI -->
-            <xs:enumeration value="hu"/>
-            <!-- HUNGARIAN -->
-            <xs:enumeration value="hun"/>
-            <!-- HUNGARIAN -->
-            <xs:enumeration value="ia"/>
-            <!-- INTERLINGUA -->
-            <xs:enumeration value="ina"/>
-            <!-- INTERLINGUA -->
-            <xs:enumeration value="id"/>
-            <!-- INDONESIAN -->
-            <xs:enumeration value="ind"/>
-            <!-- INDONESIAN -->
-            <xs:enumeration value="ie"/>
-            <!-- INTERLINGUE -->
-            <xs:enumeration value="ile"/>
-            <!-- INTERLINGUE -->
-            <xs:enumeration value="ga"/>
-            <!-- IRISH -->
-            <xs:enumeration value="gle"/>
-            <!-- IRISH -->
-            <xs:enumeration value="ig"/>
-            <!-- IGBO -->
-            <xs:enumeration value="ibo"/>
-            <!-- IGBO -->
-            <xs:enumeration value="ik"/>
-            <!-- INUPIAQ -->
-            <xs:enumeration value="ipk"/>
-            <!-- INUPIAQ -->
-            <xs:enumeration value="io"/>
-            <!-- IDO -->
-            <xs:enumeration value="ido"/>
-            <!-- IDO -->
-            <xs:enumeration value="is"/>
-            <!-- ICELANDIC -->
-            <xs:enumeration value="isl"/>
-            <!-- ICELANDIC -->
-            <xs:enumeration value="it"/>
-            <!-- ITALIAN -->
-            <xs:enumeration value="ita"/>
-            <!-- ITALIAN -->
-            <xs:enumeration value="iu"/>
-            <!-- INUKTITUT -->
-            <xs:enumeration value="iku"/>
-            <!-- INUKTITUT -->
-            <xs:enumeration value="ja"/>
-            <!-- JAPANESE -->
-            <xs:enumeration value="jpn"/>
-            <!-- JAPANESE -->
-            <xs:enumeration value="jv"/>
-            <!-- JAVANESE -->
-            <xs:enumeration value="jav"/>
-            <!-- JAVANESE -->
-            <xs:enumeration value="kl"/>
-            <!-- KALAALLISUT -->
-            <xs:enumeration value="kal"/>
-            <!-- KALAALLISUT -->
-            <xs:enumeration value="kn"/>
-            <!-- KANNADA -->
-            <xs:enumeration value="kan"/>
-            <!-- KANNADA -->
-            <xs:enumeration value="kr"/>
-            <!-- KANURI -->
-            <xs:enumeration value="kau"/>
-            <!-- KANURI -->
-            <xs:enumeration value="ks"/>
-            <!-- KASHMIRI -->
-            <xs:enumeration value="kas"/>
-            <!-- KASHMIRI -->
-            <xs:enumeration value="kk"/>
-            <!-- KAZAKH -->
-            <xs:enumeration value="kaz"/>
-            <!-- KAZAKH -->
-            <xs:enumeration value="km"/>
-            <!-- KHMER -->
-            <xs:enumeration value="khm"/>
-            <!-- KHMER -->
-            <xs:enumeration value="ki"/>
-            <!-- KIKUYU -->
-            <xs:enumeration value="kik"/>
-            <!-- KIKUYU -->
-            <xs:enumeration value="rw"/>
-            <!-- KINYARWANDA -->
-            <xs:enumeration value="kin"/>
-            <!-- KINYARWANDA -->
-            <xs:enumeration value="ky"/>
-            <!-- KYRGYZ -->
-            <xs:enumeration value="kir"/>
-            <!-- KYRGYZ -->
-            <xs:enumeration value="kv"/>
-            <!-- KOMI -->
-            <xs:enumeration value="kom"/>
-            <!-- KOMI -->
-            <xs:enumeration value="kg"/>
-            <!-- KONGO -->
-            <xs:enumeration value="kon"/>
-            <!-- KONGO -->
-            <xs:enumeration value="ko"/>
-            <!-- KOREAN -->
-            <xs:enumeration value="kor"/>
-            <!-- KOREAN -->
-            <xs:enumeration value="ku"/>
-            <!-- KURDISH -->
-            <xs:enumeration value="kur"/>
-            <!-- KURDISH -->
-            <xs:enumeration value="kj"/>
-            <!-- KWANYAMA -->
-            <xs:enumeration value="kua"/>
-            <!-- KWANYAMA -->
-            <xs:enumeration value="la"/>
-            <!-- LATIN -->
-            <xs:enumeration value="lat"/>
-            <!-- LATIN -->
-            <xs:enumeration value="lb"/>
-            <!-- LUXEMBOURGISH -->
-            <xs:enumeration value="ltz"/>
-            <!-- LUXEMBOURGISH -->
-            <xs:enumeration value="lg"/>
-            <!-- GANDA -->
-            <xs:enumeration value="lug"/>
-            <!-- GANDA -->
-            <xs:enumeration value="li"/>
-            <!-- LIMBURGISH -->
-            <xs:enumeration value="lim"/>
-            <!-- LIMBURGISH -->
-            <xs:enumeration value="ln"/>
-            <!-- LINGALA -->
-            <xs:enumeration value="lin"/>
-            <!-- LINGALA -->
-            <xs:enumeration value="lo"/>
-            <!-- LAO -->
-            <xs:enumeration value="lao"/>
-            <!-- LAO -->
-            <xs:enumeration value="lt"/>
-            <!-- LITHUANIAN -->
-            <xs:enumeration value="lit"/>
-            <!-- LITHUANIAN -->
-            <xs:enumeration value="lu"/>
-            <!-- LUBA -->
-            <xs:enumeration value="lub"/>
-            <!-- LUBA -->
-            <xs:enumeration value="lv"/>
-            <!-- LATVIAN -->
-            <xs:enumeration value="lav"/>
-            <!-- LATVIAN -->
-            <xs:enumeration value="gv"/>
-            <!-- MANX -->
-            <xs:enumeration value="glv"/>
-            <!-- MANX -->
-            <xs:enumeration value="mk"/>
-            <!-- MACEDONIAN -->
-            <xs:enumeration value="mkd"/>
-            <!-- MACEDONIAN -->
-            <xs:enumeration value="mg"/>
-            <!-- MALAGASY -->
-            <xs:enumeration value="mlg"/>
-            <!-- MALAGASY -->
-            <xs:enumeration value="ms"/>
-            <!-- MALAY -->
-            <xs:enumeration value="msa"/>
-            <!-- MALAY -->
-            <xs:enumeration value="ml"/>
-            <!-- MALAYALAM -->
-            <xs:enumeration value="mal"/>
-            <!-- MALAYALAM -->
-            <xs:enumeration value="mt"/>
-            <!-- MALTESE -->
-            <xs:enumeration value="mlt"/>
-            <!-- MALTESE -->
-            <xs:enumeration value="mi"/>
-            <!-- MAORI -->
-            <xs:enumeration value="mri"/>
-            <!-- MAORI -->
-            <xs:enumeration value="mr"/>
-            <!-- MARATHI -->
-            <xs:enumeration value="mar"/>
-            <!-- MARATHI -->
-            <xs:enumeration value="mh"/>
-            <!-- MARSHALLESE -->
-            <xs:enumeration value="mah"/>
-            <!-- MARSHALLESE -->
-            <xs:enumeration value="mn"/>
-            <!-- MONGOLIAN -->
-            <xs:enumeration value="mon"/>
-            <!-- MONGOLIAN -->
-            <xs:enumeration value="na"/>
-            <!-- NAURU -->
-            <xs:enumeration value="nau"/>
-            <!-- NAURU -->
-            <xs:enumeration value="nv"/>
-            <!-- NAVAJO -->
-            <xs:enumeration value="nav"/>
-            <!-- NAVAJO -->
-            <xs:enumeration value="nd"/>
-            <!-- NORTHERN_NDEBELE -->
-            <xs:enumeration value="nde"/>
-            <!-- NORTHERN_NDEBELE -->
-            <xs:enumeration value="ne"/>
-            <!-- NEPALI -->
-            <xs:enumeration value="nep"/>
-            <!-- NEPALI -->
-            <xs:enumeration value="ng"/>
-            <!-- NDONGA -->
-            <xs:enumeration value="ndo"/>
-            <!-- NDONGA -->
-            <xs:enumeration value="nb"/>
-            <!-- NORWEGIAN_BOKMAL -->
-            <xs:enumeration value="nob"/>
-            <!-- NORWEGIAN_BOKMAL -->
-            <xs:enumeration value="nn"/>
-            <!-- NORWEGIAN_NYNORSK -->
-            <xs:enumeration value="nno"/>
-            <!-- NORWEGIAN_NYNORSK -->
-            <xs:enumeration value="no"/>
-            <!-- NORWEGIAN -->
-            <xs:enumeration value="nor"/>
-            <!-- NORWEGIAN -->
-            <xs:enumeration value="ii"/>
-            <!-- NUOSU -->
-            <xs:enumeration value="iii"/>
-            <!-- NUOSU -->
-            <xs:enumeration value="nr"/>
-            <!-- SOUTHERN_NDEBELE -->
-            <xs:enumeration value="nbl"/>
-            <!-- SOUTHERN_NDEBELE -->
-            <xs:enumeration value="oc"/>
-            <!-- OCCITAN -->
-            <xs:enumeration value="oci"/>
-            <!-- OCCITAN -->
-            <xs:enumeration value="oj"/>
-            <!-- OJIBWE -->
-            <xs:enumeration value="oji"/>
-            <!-- OJIBWE -->
-            <xs:enumeration value="cu"/>
-            <!-- CHURCH_SLAVIC -->
-            <xs:enumeration value="chu"/>
-            <!-- CHURCH_SLAVIC -->
-            <xs:enumeration value="om"/>
-            <!-- OROMO -->
-            <xs:enumeration value="orm"/>
-            <!-- OROMO -->
-            <xs:enumeration value="or"/>
-            <!-- ORIYA -->
-            <xs:enumeration value="ori"/>
-            <!-- ORIYA -->
-            <xs:enumeration value="os"/>
-            <!-- OSSETIAN -->
-            <xs:enumeration value="oss"/>
-            <!-- OSSETIAN -->
-            <xs:enumeration value="pa"/>
-            <!-- PANJABI -->
-            <xs:enumeration value="pan"/>
-            <!-- PANJABI -->
-            <xs:enumeration value="pi"/>
-            <!-- PALI -->
-            <xs:enumeration value="pli"/>
-            <!-- PALI -->
-            <xs:enumeration value="fa"/>
-            <!-- PERSIAN -->
-            <xs:enumeration value="fas"/>
-            <!-- PERSIAN -->
-            <xs:enumeration value="pl"/>
-            <!-- POLISH -->
-            <xs:enumeration value="pol"/>
-            <!-- POLISH -->
-            <xs:enumeration value="ps"/>
-            <!-- PASHTO -->
-            <xs:enumeration value="pus"/>
-            <!-- PASHTO -->
-            <xs:enumeration value="pt"/>
-            <!-- PORTUGUESE -->
-            <xs:enumeration value="por"/>
-            <!-- PORTUGUESE -->
-            <xs:enumeration value="qu"/>
-            <!-- QUECHUA -->
-            <xs:enumeration value="que"/>
-            <!-- QUECHUA -->
-            <xs:enumeration value="rm"/>
-            <!-- ROMANSH -->
-            <xs:enumeration value="roh"/>
-            <!-- ROMANSH -->
-            <xs:enumeration value="rn"/>
-            <!-- KIRUNDI -->
-            <xs:enumeration value="run"/>
-            <!-- KIRUNDI -->
-            <xs:enumeration value="ro"/>
-            <!-- ROMANIAN -->
-            <xs:enumeration value="ron"/>
-            <!-- ROMANIAN -->
-            <xs:enumeration value="ru"/>
-            <!-- RUSSIAN -->
-            <xs:enumeration value="rus"/>
-            <!-- RUSSIAN -->
-            <xs:enumeration value="sa"/>
-            <!-- SANSKRIT -->
-            <xs:enumeration value="san"/>
-            <!-- SANSKRIT -->
-            <xs:enumeration value="sc"/>
-            <!-- SARDINIAN -->
-            <xs:enumeration value="srd"/>
-            <!-- SARDINIAN -->
-            <xs:enumeration value="sd"/>
-            <!-- SINDHI -->
-            <xs:enumeration value="snd"/>
-            <!-- SINDHI -->
-            <xs:enumeration value="se"/>
-            <!-- NORTHERN -->
-            <xs:enumeration value="sme"/>
-            <!-- NORTHERN -->
-            <xs:enumeration value="sm"/>
-            <!-- SAMOAN -->
-            <xs:enumeration value="smo"/>
-            <!-- SAMOAN -->
-            <xs:enumeration value="sg"/>
-            <!-- SANGO -->
-            <xs:enumeration value="sag"/>
-            <!-- SANGO -->
-            <xs:enumeration value="sr"/>
-            <!-- SERBIAN -->
-            <xs:enumeration value="srp"/>
-            <!-- SERBIAN -->
-            <xs:enumeration value="gd"/>
-            <!-- SCOTTISH -->
-            <xs:enumeration value="gla"/>
-            <!-- SCOTTISH -->
-            <xs:enumeration value="sn"/>
-            <!-- SHONA -->
-            <xs:enumeration value="sna"/>
-            <!-- SHONA -->
-            <xs:enumeration value="si"/>
-            <!-- SINHALA -->
-            <xs:enumeration value="sin"/>
-            <!-- SINHALA -->
-            <xs:enumeration value="sk"/>
-            <!-- SLOVAK -->
-            <xs:enumeration value="slk"/>
-            <!-- SLOVAK -->
-            <xs:enumeration value="sl"/>
-            <!-- SLOVENE -->
-            <xs:enumeration value="slv"/>
-            <!-- SLOVENE -->
-            <xs:enumeration value="so"/>
-            <!-- SOMALI -->
-            <xs:enumeration value="som"/>
-            <!-- SOMALI -->
-            <xs:enumeration value="st"/>
-            <!-- SOUTHERN -->
-            <xs:enumeration value="sot"/>
-            <!-- SOUTHERN -->
-            <xs:enumeration value="es"/>
-            <!-- SPANISH -->
-            <xs:enumeration value="spa"/>
-            <!-- SPANISH -->
-            <xs:enumeration value="su"/>
-            <!-- SUNDANESE -->
-            <xs:enumeration value="sun"/>
-            <!-- SUNDANESE -->
-            <xs:enumeration value="sw"/>
-            <!-- SWAHILI -->
-            <xs:enumeration value="swa"/>
-            <!-- SWAHILI -->
-            <xs:enumeration value="ss"/>
-            <!-- SWATI -->
-            <xs:enumeration value="ssw"/>
-            <!-- SWATI -->
-            <xs:enumeration value="sv"/>
-            <!-- SWEDISH -->
-            <xs:enumeration value="swe"/>
-            <!-- SWEDISH -->
-            <xs:enumeration value="ta"/>
-            <!-- TAMIL -->
-            <xs:enumeration value="tam"/>
-            <!-- TAMIL -->
-            <xs:enumeration value="te"/>
-            <!-- TELUGU -->
-            <xs:enumeration value="tel"/>
-            <!-- TELUGU -->
-            <xs:enumeration value="tg"/>
-            <!-- TAJIK -->
-            <xs:enumeration value="tgk"/>
-            <!-- TAJIK -->
-            <xs:enumeration value="th"/>
-            <!-- THAI -->
-            <xs:enumeration value="tha"/>
-            <!-- THAI -->
-            <xs:enumeration value="ti"/>
-            <!-- TIGRINYA -->
-            <xs:enumeration value="tir"/>
-            <!-- TIGRINYA -->
+            <!-- SIKSIKA -->
+            <xs:enumeration value="bla"/>
+            <!-- TIBETAN -->
             <xs:enumeration value="bo"/>
-            <!-- TIBETAN -->
             <xs:enumeration value="bod"/>
-            <!-- TIBETAN -->
-            <xs:enumeration value="tk"/>
-            <!-- TURKMEN -->
-            <xs:enumeration value="tuk"/>
-            <!-- TURKMEN -->
-            <xs:enumeration value="tl"/>
-            <!-- TAGALOG -->
-            <xs:enumeration value="tgl"/>
-            <!-- TAGALOG -->
-            <xs:enumeration value="tn"/>
-            <!-- TSWANA -->
-            <xs:enumeration value="tsn"/>
-            <!-- TSWANA -->
-            <xs:enumeration value="to"/>
-            <!-- TONGA -->
-            <xs:enumeration value="ton"/>
-            <!-- TONGA -->
-            <xs:enumeration value="tr"/>
-            <!-- TURKISH -->
-            <xs:enumeration value="tur"/>
-            <!-- TURKISH -->
-            <xs:enumeration value="ts"/>
-            <!-- TSONGA -->
-            <xs:enumeration value="tso"/>
-            <!-- TSONGA -->
-            <xs:enumeration value="tt"/>
-            <!-- TATAR -->
-            <xs:enumeration value="tat"/>
-            <!-- TATAR -->
-            <xs:enumeration value="tw"/>
-            <!-- TWI -->
-            <xs:enumeration value="twi"/>
-            <!-- TWI -->
-            <xs:enumeration value="ty"/>
-            <!-- TAHITIAN -->
-            <xs:enumeration value="tah"/>
-            <!-- TAHITIAN -->
-            <xs:enumeration value="ug"/>
-            <!-- UYGHUR -->
-            <xs:enumeration value="uig"/>
-            <!-- UYGHUR -->
-            <xs:enumeration value="uk"/>
-            <!-- UKRAINIAN -->
-            <xs:enumeration value="ukr"/>
-            <!-- UKRAINIAN -->
-            <xs:enumeration value="ur"/>
-            <!-- URDU -->
-            <xs:enumeration value="urd"/>
-            <!-- URDU -->
-            <xs:enumeration value="uz"/>
-            <!-- UZBEK -->
-            <xs:enumeration value="uzb"/>
-            <!-- UZBEK -->
-            <xs:enumeration value="ve"/>
-            <!-- VENDA -->
-            <xs:enumeration value="ven"/>
-            <!-- VENDA -->
-            <xs:enumeration value="vi"/>
-            <!-- VIETNAMESE -->
-            <xs:enumeration value="vie"/>
-            <!-- VIETNAMESE -->
-            <xs:enumeration value="vo"/>
-            <!-- VOLAP -->
-            <xs:enumeration value="vol"/>
-            <!-- VOLAP -->
-            <xs:enumeration value="wa"/>
-            <!-- WALLOON -->
-            <xs:enumeration value="wln"/>
-            <!-- WALLOON -->
+            <!-- BOSNIAN -->
+            <xs:enumeration value="bs"/>
+            <xs:enumeration value="bos"/>
+            <!-- BRAJ -->
+            <xs:enumeration value="bra"/>
+            <!-- BRETON -->
+            <xs:enumeration value="br"/>
+            <xs:enumeration value="bre"/>
+            <!-- BURIAT -->
+            <xs:enumeration value="bua"/>
+            <!-- BUGINESE -->
+            <xs:enumeration value="bug"/>
+            <!-- BULGARIAN -->
+            <xs:enumeration value="bg"/>
+            <xs:enumeration value="bul"/>
+            <!-- BLIN -->
+            <xs:enumeration value="byn"/>
+            <!-- CADDO -->
+            <xs:enumeration value="cad"/>
+            <!-- GALIBI_CARIB -->
+            <xs:enumeration value="car"/>
+            <!-- CATALAN -->
+            <xs:enumeration value="ca"/>
+            <xs:enumeration value="cat"/>
+            <!-- CEBUANO -->
+            <xs:enumeration value="ceb"/>
+            <!-- CZECH -->
+            <xs:enumeration value="cs"/>
+            <xs:enumeration value="ces"/>
+            <!-- CHAMORRO -->
+            <xs:enumeration value="ch"/>
+            <xs:enumeration value="cha"/>
+            <!-- CHIBCHA -->
+            <xs:enumeration value="chb"/>
+            <!-- CHECHEN -->
+            <xs:enumeration value="ce"/>
+            <xs:enumeration value="che"/>
+            <!-- CHAGATAI -->
+            <xs:enumeration value="chg"/>
+            <!-- CHUUKESE -->
+            <xs:enumeration value="chk"/>
+            <!-- MARI -->
+            <xs:enumeration value="chm"/>
+            <!-- CHINOOK_JARGON -->
+            <xs:enumeration value="chn"/>
+            <!-- CHOCTAW -->
+            <xs:enumeration value="cho"/>
+            <!-- CHIPEWYAN -->
+            <xs:enumeration value="chp"/>
+            <!-- CHEROKEE -->
+            <xs:enumeration value="chr"/>
+            <!-- CHURCH_SLAVIC -->
+            <xs:enumeration value="cu"/>
+            <xs:enumeration value="chu"/>
+            <!-- CHUVASH -->
+            <xs:enumeration value="cv"/>
+            <xs:enumeration value="chv"/>
+            <!-- CHEYENNE -->
+            <xs:enumeration value="chy"/>
+            <!-- MONTENEGRIN -->
+            <xs:enumeration value="cnr"/>
+            <!-- COPTIC -->
+            <xs:enumeration value="cop"/>
+            <!-- CORNISH -->
+            <xs:enumeration value="kw"/>
+            <xs:enumeration value="cor"/>
+            <!-- CORSICAN -->
+            <xs:enumeration value="co"/>
+            <xs:enumeration value="cos"/>
+            <!-- CREE -->
+            <xs:enumeration value="cr"/>
+            <xs:enumeration value="cre"/>
+            <!-- CRIMEAN_TATAR -->
+            <xs:enumeration value="crh"/>
+            <!-- KASHUBIAN -->
+            <xs:enumeration value="csb"/>
+            <!-- WELSH -->
             <xs:enumeration value="cy"/>
-            <!-- WELSH -->
             <xs:enumeration value="cym"/>
-            <!-- WELSH -->
-            <xs:enumeration value="wo"/>
-            <!-- WOLOF -->
-            <xs:enumeration value="wol"/>
-            <!-- WOLOF -->
+            <!-- DAKOTA -->
+            <xs:enumeration value="dak"/>
+            <!-- DANISH -->
+            <xs:enumeration value="da"/>
+            <xs:enumeration value="dan"/>
+            <!-- DARGWA -->
+            <xs:enumeration value="dar"/>
+            <!-- DELAWARE -->
+            <xs:enumeration value="del"/>
+            <!-- SLAVE -->
+            <xs:enumeration value="den"/>
+            <!-- GERMAN -->
+            <xs:enumeration value="de"/>
+            <xs:enumeration value="deu"/>
+            <!-- DOGRIB -->
+            <xs:enumeration value="dgr"/>
+            <!-- DINKA -->
+            <xs:enumeration value="din"/>
+            <!-- DIVEHI -->
+            <xs:enumeration value="dv"/>
+            <xs:enumeration value="div"/>
+            <!-- DOGRI -->
+            <xs:enumeration value="doi"/>
+            <!-- LOWER_SORBIAN -->
+            <xs:enumeration value="dsb"/>
+            <!-- DUALA -->
+            <xs:enumeration value="dua"/>
+            <!-- DUTCH_MIDDLE -->
+            <xs:enumeration value="dum"/>
+            <!-- DYULA -->
+            <xs:enumeration value="dyu"/>
+            <!-- DZONGKHA -->
+            <xs:enumeration value="dz"/>
+            <xs:enumeration value="dzo"/>
+            <!-- EFIK -->
+            <xs:enumeration value="efi"/>
+            <!-- EGYPTIAN_ANCIENT -->
+            <xs:enumeration value="egy"/>
+            <!-- EKAJUK -->
+            <xs:enumeration value="eka"/>
+            <!-- GREEK -->
+            <xs:enumeration value="el"/>
+            <xs:enumeration value="ell"/>
+            <!-- ELAMITE -->
+            <xs:enumeration value="elx"/>
+            <!-- ENGLISH -->
+            <xs:enumeration value="en"/>
+            <xs:enumeration value="eng"/>
+            <!-- ENGLISH_MIDDLE -->
+            <xs:enumeration value="enm"/>
+            <!-- ESPERANTO -->
+            <xs:enumeration value="eo"/>
+            <xs:enumeration value="epo"/>
+            <!-- ESTONIAN -->
+            <xs:enumeration value="et"/>
+            <xs:enumeration value="est"/>
+            <!-- BASQUE -->
+            <xs:enumeration value="eu"/>
+            <xs:enumeration value="eus"/>
+            <!-- EWE -->
+            <xs:enumeration value="ee"/>
+            <xs:enumeration value="ewe"/>
+            <!-- EWONDO -->
+            <xs:enumeration value="ewo"/>
+            <!-- FANG -->
+            <xs:enumeration value="fan"/>
+            <!-- FAROESE -->
+            <xs:enumeration value="fo"/>
+            <xs:enumeration value="fao"/>
+            <!-- PERSIAN -->
+            <xs:enumeration value="fa"/>
+            <xs:enumeration value="fas"/>
+            <!-- FANTI -->
+            <xs:enumeration value="fat"/>
+            <!-- FIJIAN -->
+            <xs:enumeration value="fj"/>
+            <xs:enumeration value="fij"/>
+            <!-- FILIPINO -->
+            <xs:enumeration value="fil"/>
+            <!-- FINNISH -->
+            <xs:enumeration value="fi"/>
+            <xs:enumeration value="fin"/>
+            <!-- FON -->
+            <xs:enumeration value="fon"/>
+            <!-- FRENCH -->
+            <xs:enumeration value="fr"/>
+            <xs:enumeration value="fra"/>
+            <!-- FRENCH_MIDDLE -->
+            <xs:enumeration value="frm"/>
+            <!-- FRENCH_OLD -->
+            <xs:enumeration value="fro"/>
+            <!-- NORTHERN_FRISIAN -->
+            <xs:enumeration value="frr"/>
+            <!-- EAST_FRISIAN_LOW_SAXON -->
+            <xs:enumeration value="frs"/>
+            <!-- WESTERN_FRISIAN -->
             <xs:enumeration value="fy"/>
-            <!-- WESTERN -->
             <xs:enumeration value="fry"/>
-            <!-- WESTERN -->
+            <!-- FULAH -->
+            <xs:enumeration value="ff"/>
+            <xs:enumeration value="ful"/>
+            <!-- FRIULIAN -->
+            <xs:enumeration value="fur"/>
+            <!-- GA -->
+            <xs:enumeration value="gaa"/>
+            <!-- GAYO -->
+            <xs:enumeration value="gay"/>
+            <!-- GBAYA -->
+            <xs:enumeration value="gba"/>
+            <!-- GEEZ -->
+            <xs:enumeration value="gez"/>
+            <!-- GILBERTESE -->
+            <xs:enumeration value="gil"/>
+            <!-- SCOTTISH -->
+            <xs:enumeration value="gd"/>
+            <xs:enumeration value="gla"/>
+            <!-- IRISH -->
+            <xs:enumeration value="ga"/>
+            <xs:enumeration value="gle"/>
+            <!-- GALICIAN -->
+            <xs:enumeration value="gl"/>
+            <xs:enumeration value="glg"/>
+            <!-- MANX -->
+            <xs:enumeration value="gv"/>
+            <xs:enumeration value="glv"/>
+            <!-- GERMAN_MIDDLE_HIGH -->
+            <xs:enumeration value="gmh"/>
+            <!-- GERMAN_OLD_HIGH -->
+            <xs:enumeration value="goh"/>
+            <!-- GONDI -->
+            <xs:enumeration value="gon"/>
+            <!-- GORONTALO -->
+            <xs:enumeration value="gor"/>
+            <!-- GOTHIC -->
+            <xs:enumeration value="got"/>
+            <!-- GREBO -->
+            <xs:enumeration value="grb"/>
+            <!-- GREEK_ANCIENT -->
+            <xs:enumeration value="grc"/>
+            <!-- GUARANI -->
+            <xs:enumeration value="gn"/>
+            <xs:enumeration value="grn"/>
+            <!-- SWISS_GERMAN -->
+            <xs:enumeration value="gsw"/>
+            <!-- GUJARATI -->
+            <xs:enumeration value="gu"/>
+            <xs:enumeration value="guj"/>
+            <!-- GWICH'IN -->
+            <xs:enumeration value="gwi"/>
+            <!-- HAIDA -->
+            <xs:enumeration value="hai"/>
+            <!-- HAITIAN -->
+            <xs:enumeration value="ht"/>
+            <xs:enumeration value="hat"/>
+            <!-- HAUSA -->
+            <xs:enumeration value="ha"/>
+            <xs:enumeration value="hau"/>
+            <!-- HAWAIIAN -->
+            <xs:enumeration value="haw"/>
+            <!-- HEBREW -->
+            <xs:enumeration value="he"/>
+            <xs:enumeration value="heb"/>
+            <!-- HERERO -->
+            <xs:enumeration value="hz"/>
+            <xs:enumeration value="her"/>
+            <!-- HILIGAYNON -->
+            <xs:enumeration value="hil"/>
+            <!-- HINDI -->
+            <xs:enumeration value="hi"/>
+            <xs:enumeration value="hin"/>
+            <!-- HITTITE -->
+            <xs:enumeration value="hit"/>
+            <!-- HMONG -->
+            <xs:enumeration value="hmn"/>
+            <!-- HIRI_MOTU -->
+            <xs:enumeration value="ho"/>
+            <xs:enumeration value="hmo"/>
+            <!-- CROATIAN -->
+            <xs:enumeration value="hr"/>
+            <xs:enumeration value="hrv"/>
+            <!-- UPPER_SORBIAN -->
+            <xs:enumeration value="hsb"/>
+            <!-- HUNGARIAN -->
+            <xs:enumeration value="hu"/>
+            <xs:enumeration value="hun"/>
+            <!-- HUPA -->
+            <xs:enumeration value="hup"/>
+            <!-- ARMENIAN -->
+            <xs:enumeration value="hy"/>
+            <xs:enumeration value="hye"/>
+            <!-- IBAN -->
+            <xs:enumeration value="iba"/>
+            <!-- IGBO -->
+            <xs:enumeration value="ig"/>
+            <xs:enumeration value="ibo"/>
+            <!-- IDO -->
+            <xs:enumeration value="io"/>
+            <xs:enumeration value="ido"/>
+            <!-- NUOSU -->
+            <xs:enumeration value="ii"/>
+            <xs:enumeration value="iii"/>
+            <!-- INUKTITUT -->
+            <xs:enumeration value="iu"/>
+            <xs:enumeration value="iku"/>
+            <!-- INTERLINGUE -->
+            <xs:enumeration value="ie"/>
+            <xs:enumeration value="ile"/>
+            <!-- ILOKO -->
+            <xs:enumeration value="ilo"/>
+            <!-- INTERLINGUA -->
+            <xs:enumeration value="ia"/>
+            <xs:enumeration value="ina"/>
+            <!-- INDONESIAN -->
+            <xs:enumeration value="id"/>
+            <xs:enumeration value="ind"/>
+            <!-- INGUSH -->
+            <xs:enumeration value="inh"/>
+            <!-- INUPIAQ -->
+            <xs:enumeration value="ik"/>
+            <xs:enumeration value="ipk"/>
+            <!-- ICELANDIC -->
+            <xs:enumeration value="is"/>
+            <xs:enumeration value="isl"/>
+            <!-- ITALIAN -->
+            <xs:enumeration value="it"/>
+            <xs:enumeration value="ita"/>
+            <!-- JAVANESE -->
+            <xs:enumeration value="jv"/>
+            <xs:enumeration value="jav"/>
+            <!-- LOJBAN -->
+            <xs:enumeration value="jbo"/>
+            <!-- JAPANESE -->
+            <xs:enumeration value="ja"/>
+            <xs:enumeration value="jpn"/>
+            <!-- JUDEO-PERSIAN -->
+            <xs:enumeration value="jpr"/>
+            <!-- JUDEO-ARABIC -->
+            <xs:enumeration value="jrb"/>
+            <!-- KARA-KALPAK -->
+            <xs:enumeration value="kaa"/>
+            <!-- KABYLE -->
+            <xs:enumeration value="kab"/>
+            <!-- KACHIN -->
+            <xs:enumeration value="kac"/>
+            <!-- KALAALLISUT -->
+            <xs:enumeration value="kl"/>
+            <xs:enumeration value="kal"/>
+            <!-- KAMBA -->
+            <xs:enumeration value="kam"/>
+            <!-- KANNADA -->
+            <xs:enumeration value="kn"/>
+            <xs:enumeration value="kan"/>
+            <!-- KASHMIRI -->
+            <xs:enumeration value="ks"/>
+            <xs:enumeration value="kas"/>
+            <!-- GEORGIAN -->
+            <xs:enumeration value="ka"/>
+            <xs:enumeration value="kat"/>
+            <!-- KANURI -->
+            <xs:enumeration value="kr"/>
+            <xs:enumeration value="kau"/>
+            <!-- KAWI -->
+            <xs:enumeration value="kaw"/>
+            <!-- KAZAKH -->
+            <xs:enumeration value="kk"/>
+            <xs:enumeration value="kaz"/>
+            <!-- KABARDIAN -->
+            <xs:enumeration value="kbd"/>
+            <!-- KHASI -->
+            <xs:enumeration value="kha"/>
+            <!-- CENTRAL_KHMER -->
+            <xs:enumeration value="km"/>
+            <xs:enumeration value="khm"/>
+            <!-- KHOTANESE -->
+            <xs:enumeration value="kho"/>
+            <!-- KIKUYU -->
+            <xs:enumeration value="ki"/>
+            <xs:enumeration value="kik"/>
+            <!-- KINYARWANDA -->
+            <xs:enumeration value="rw"/>
+            <xs:enumeration value="kin"/>
+            <!-- KYRGYZ -->
+            <xs:enumeration value="ky"/>
+            <xs:enumeration value="kir"/>
+            <!-- KIMBUNDU -->
+            <xs:enumeration value="kmb"/>
+            <!-- KONKANI -->
+            <xs:enumeration value="kok"/>
+            <!-- KOMI -->
+            <xs:enumeration value="kv"/>
+            <xs:enumeration value="kom"/>
+            <!-- KONGO -->
+            <xs:enumeration value="kg"/>
+            <xs:enumeration value="kon"/>
+            <!-- KOREAN -->
+            <xs:enumeration value="ko"/>
+            <xs:enumeration value="kor"/>
+            <!-- KOSRAEAN -->
+            <xs:enumeration value="kos"/>
+            <!-- KPELLE -->
+            <xs:enumeration value="kpe"/>
+            <!-- KARACHAY-BALKAR -->
+            <xs:enumeration value="krc"/>
+            <!-- KARELIAN -->
+            <xs:enumeration value="krl"/>
+            <!-- KURUKH -->
+            <xs:enumeration value="kru"/>
+            <!-- KWANYAMA -->
+            <xs:enumeration value="kj"/>
+            <xs:enumeration value="kua"/>
+            <!-- KUMYK -->
+            <xs:enumeration value="kum"/>
+            <!-- KURDISH -->
+            <xs:enumeration value="ku"/>
+            <xs:enumeration value="kur"/>
+            <!-- KUTENAI -->
+            <xs:enumeration value="kut"/>
+            <!-- LADINO -->
+            <xs:enumeration value="lad"/>
+            <!-- LAHNDA -->
+            <xs:enumeration value="lah"/>
+            <!-- LAMBA -->
+            <xs:enumeration value="lam"/>
+            <!-- LAO -->
+            <xs:enumeration value="lo"/>
+            <xs:enumeration value="lao"/>
+            <!-- LATIN -->
+            <xs:enumeration value="la"/>
+            <xs:enumeration value="lat"/>
+            <!-- LATVIAN -->
+            <xs:enumeration value="lv"/>
+            <xs:enumeration value="lav"/>
+            <!-- LEZGHIAN -->
+            <xs:enumeration value="lez"/>
+            <!-- LIMBURGISH -->
+            <xs:enumeration value="li"/>
+            <xs:enumeration value="lim"/>
+            <!-- LINGALA -->
+            <xs:enumeration value="ln"/>
+            <xs:enumeration value="lin"/>
+            <!-- LITHUANIAN -->
+            <xs:enumeration value="lt"/>
+            <xs:enumeration value="lit"/>
+            <!-- MONGO -->
+            <xs:enumeration value="lol"/>
+            <!-- LOZI -->
+            <xs:enumeration value="loz"/>
+            <!-- LUXEMBOURGISH -->
+            <xs:enumeration value="lb"/>
+            <xs:enumeration value="ltz"/>
+            <!-- LUBA-LULUA -->
+            <xs:enumeration value="lua"/>
+            <!-- LUBA-KATANGA -->
+            <xs:enumeration value="lu"/>
+            <xs:enumeration value="lub"/>
+            <!-- GANDA -->
+            <xs:enumeration value="lg"/>
+            <xs:enumeration value="lug"/>
+            <!-- LUISENO -->
+            <xs:enumeration value="lui"/>
+            <!-- LUNDA -->
+            <xs:enumeration value="lun"/>
+            <!-- LUO -->
+            <xs:enumeration value="luo"/>
+            <!-- LUSHAI -->
+            <xs:enumeration value="lus"/>
+            <!-- MADURESE -->
+            <xs:enumeration value="mad"/>
+            <!-- MAGAHI -->
+            <xs:enumeration value="mag"/>
+            <!-- MARSHALLESE -->
+            <xs:enumeration value="mh"/>
+            <xs:enumeration value="mah"/>
+            <!-- MAITHILI -->
+            <xs:enumeration value="mai"/>
+            <!-- MAKASAR -->
+            <xs:enumeration value="mak"/>
+            <!-- MALAYALAM -->
+            <xs:enumeration value="ml"/>
+            <xs:enumeration value="mal"/>
+            <!-- MANDINGO -->
+            <xs:enumeration value="man"/>
+            <!-- MARATHI -->
+            <xs:enumeration value="mr"/>
+            <xs:enumeration value="mar"/>
+            <!-- MASAI -->
+            <xs:enumeration value="mas"/>
+            <!-- MOKSHA -->
+            <xs:enumeration value="mdf"/>
+            <!-- MANDAR -->
+            <xs:enumeration value="mdr"/>
+            <!-- MENDE -->
+            <xs:enumeration value="men"/>
+            <!-- IRISH_MIDDLE -->
+            <xs:enumeration value="mga"/>
+            <!-- MICMAC -->
+            <xs:enumeration value="mic"/>
+            <!-- MINANGKABAU -->
+            <xs:enumeration value="min"/>
+            <!-- UNCODED_LANGUAGES -->
+            <xs:enumeration value="mis"/>
+            <!-- MACEDONIAN -->
+            <xs:enumeration value="mk"/>
+            <xs:enumeration value="mkd"/>
+            <!-- MALAGASY -->
+            <xs:enumeration value="mg"/>
+            <xs:enumeration value="mlg"/>
+            <!-- MALTESE -->
+            <xs:enumeration value="mt"/>
+            <xs:enumeration value="mlt"/>
+            <!-- MANCHU -->
+            <xs:enumeration value="mnc"/>
+            <!-- MANIPURI -->
+            <xs:enumeration value="mni"/>
+            <!-- MOHAWK -->
+            <xs:enumeration value="moh"/>
+            <!-- MONGOLIAN -->
+            <xs:enumeration value="mn"/>
+            <xs:enumeration value="mon"/>
+            <!-- MOSSI -->
+            <xs:enumeration value="mos"/>
+            <!-- MĀORI -->
+            <xs:enumeration value="mi"/>
+            <xs:enumeration value="mri"/>
+            <!-- MALAY -->
+            <xs:enumeration value="ms"/>
+            <xs:enumeration value="msa"/>
+            <!-- MULTIPLE_LANGUAGES -->
+            <xs:enumeration value="mul"/>
+            <!-- CREEK -->
+            <xs:enumeration value="mus"/>
+            <!-- MIRANDESE -->
+            <xs:enumeration value="mwl"/>
+            <!-- MARWARI -->
+            <xs:enumeration value="mwr"/>
+            <!-- BURMESE -->
+            <xs:enumeration value="my"/>
+            <xs:enumeration value="mya"/>
+            <!-- ERZYA -->
+            <xs:enumeration value="myv"/>
+            <!-- NEAPOLITAN -->
+            <xs:enumeration value="nap"/>
+            <!-- NAURU -->
+            <xs:enumeration value="na"/>
+            <xs:enumeration value="nau"/>
+            <!-- NAVAJO -->
+            <xs:enumeration value="nv"/>
+            <xs:enumeration value="nav"/>
+            <!-- SOUTHERN_NDEBELE -->
+            <xs:enumeration value="nr"/>
+            <xs:enumeration value="nbl"/>
+            <!-- NORTHERN_NDEBELE -->
+            <xs:enumeration value="nd"/>
+            <xs:enumeration value="nde"/>
+            <!-- NDONGA -->
+            <xs:enumeration value="ng"/>
+            <xs:enumeration value="ndo"/>
+            <!-- LOW_GERMAN -->
+            <xs:enumeration value="nds"/>
+            <!-- NEPALI -->
+            <xs:enumeration value="ne"/>
+            <xs:enumeration value="nep"/>
+            <!-- NEPAL_BHASA,_NEWARI -->
+            <xs:enumeration value="new"/>
+            <!-- NIAS -->
+            <xs:enumeration value="nia"/>
+            <!-- NIUEAN -->
+            <xs:enumeration value="niu"/>
+            <!-- DUTCH -->
+            <xs:enumeration value="nl"/>
+            <xs:enumeration value="nld"/>
+            <!-- NORWEGIAN_NYNORSK -->
+            <xs:enumeration value="nn"/>
+            <xs:enumeration value="nno"/>
+            <!-- NORWEGIAN_BOKMÅL -->
+            <xs:enumeration value="nb"/>
+            <xs:enumeration value="nob"/>
+            <!-- NOGAI -->
+            <xs:enumeration value="nog"/>
+            <!-- NORSE_OLD -->
+            <xs:enumeration value="non"/>
+            <!-- NORWEGIAN -->
+            <xs:enumeration value="no"/>
+            <xs:enumeration value="nor"/>
+            <!-- N'KO -->
+            <xs:enumeration value="nqo"/>
+            <!-- PEDI -->
+            <xs:enumeration value="nso"/>
+            <!-- CLASSICAL NEWARI -->
+            <xs:enumeration value="nwc"/>
+            <!-- CHICHEWA -->
+            <xs:enumeration value="ny"/>
+            <xs:enumeration value="nya"/>
+            <!-- NYAMWEZI -->
+            <xs:enumeration value="nym"/>
+            <!-- NYANKOLE -->
+            <xs:enumeration value="nyn"/>
+            <!-- NYORO -->
+            <xs:enumeration value="nyo"/>
+            <!-- NZIMA -->
+            <xs:enumeration value="nzi"/>
+            <!-- OCCITAN -->
+            <xs:enumeration value="oc"/>
+            <xs:enumeration value="oci"/>
+            <!-- OJIBWA -->
+            <xs:enumeration value="oj"/>
+            <xs:enumeration value="oji"/>
+            <!-- ORIYA -->
+            <xs:enumeration value="or"/>
+            <xs:enumeration value="ori"/>
+            <!-- OROMO -->
+            <xs:enumeration value="om"/>
+            <xs:enumeration value="orm"/>
+            <!-- OSAGE -->
+            <xs:enumeration value="osa"/>
+            <!-- OSSETIAN -->
+            <xs:enumeration value="os"/>
+            <xs:enumeration value="oss"/>
+            <!-- TURKISH_OTTOMAN -->
+            <xs:enumeration value="ota"/>
+            <!-- PANGASINAN -->
+            <xs:enumeration value="pag"/>
+            <!-- PAHLAVI -->
+            <xs:enumeration value="pal"/>
+            <!-- PAMPANGA -->
+            <xs:enumeration value="pam"/>
+            <!-- PANJABI -->
+            <xs:enumeration value="pa"/>
+            <xs:enumeration value="pan"/>
+            <!-- PAPIAMENTO -->
+            <xs:enumeration value="pap"/>
+            <!-- PALAUAN -->
+            <xs:enumeration value="pau"/>
+            <!-- PERSIAN_OLD -->
+            <xs:enumeration value="peo"/>
+            <!-- PHOENICIAN -->
+            <xs:enumeration value="phn"/>
+            <!-- PALI -->
+            <xs:enumeration value="pi"/>
+            <xs:enumeration value="pli"/>
+            <!-- POLISH -->
+            <xs:enumeration value="pl"/>
+            <xs:enumeration value="pol"/>
+            <!-- POHNPEIAN -->
+            <xs:enumeration value="pon"/>
+            <!-- PORTUGUESE -->
+            <xs:enumeration value="pt"/>
+            <xs:enumeration value="por"/>
+            <!-- PROVENÇAL_OLD -->
+            <xs:enumeration value="pro"/>
+            <!-- PASHTO -->
+            <xs:enumeration value="ps"/>
+            <xs:enumeration value="pus"/>
+            <!-- QUECHUA -->
+            <xs:enumeration value="qu"/>
+            <xs:enumeration value="que"/>
+            <!-- RAJASTHANI -->
+            <xs:enumeration value="raj"/>
+            <!-- RAPANUI -->
+            <xs:enumeration value="rap"/>
+            <!-- RAROTONGAN -->
+            <xs:enumeration value="rar"/>
+            <!-- ROMANSH -->
+            <xs:enumeration value="rm"/>
+            <xs:enumeration value="roh"/>
+            <!-- ROMANY -->
+            <xs:enumeration value="rom"/>
+            <!-- ROMANIAN -->
+            <xs:enumeration value="ro"/>
+            <xs:enumeration value="ron"/>
+            <!-- RUNDI -->
+            <xs:enumeration value="rn"/>
+            <xs:enumeration value="run"/>
+            <!-- AROMANIAN -->
+            <xs:enumeration value="rup"/>
+            <!-- RUSSIAN -->
+            <xs:enumeration value="ru"/>
+            <xs:enumeration value="rus"/>
+            <!-- SANDAWE -->
+            <xs:enumeration value="sad"/>
+            <!-- SANGO -->
+            <xs:enumeration value="sg"/>
+            <xs:enumeration value="sag"/>
+            <!-- YAKUT -->
+            <xs:enumeration value="sah"/>
+            <!-- SAMARITAN_ARAMAIC -->
+            <xs:enumeration value="sam"/>
+            <!-- SANSKRIT -->
+            <xs:enumeration value="sa"/>
+            <xs:enumeration value="san"/>
+            <!-- SASAK -->
+            <xs:enumeration value="sas"/>
+            <!-- SANTALI -->
+            <xs:enumeration value="sat"/>
+            <!-- SICILIAN -->
+            <xs:enumeration value="scn"/>
+            <!-- SCOTS -->
+            <xs:enumeration value="sco"/>
+            <!-- SELKUP -->
+            <xs:enumeration value="sel"/>
+            <!-- IRISH_OLD -->
+            <xs:enumeration value="sga"/>
+            <!-- SHAN -->
+            <xs:enumeration value="shn"/>
+            <!-- SIDAMO -->
+            <xs:enumeration value="sid"/>
+            <!-- SINHALA -->
+            <xs:enumeration value="si"/>
+            <xs:enumeration value="sin"/>
+            <!-- SLOVAK -->
+            <xs:enumeration value="sk"/>
+            <xs:enumeration value="slk"/>
+            <!-- SLOVENIAN -->
+            <xs:enumeration value="sl"/>
+            <xs:enumeration value="slv"/>
+            <!-- SOUTHERN_SAMI -->
+            <xs:enumeration value="sma"/>
+            <!-- NORTHERN_SAMI -->
+            <xs:enumeration value="se"/>
+            <xs:enumeration value="sme"/>
+            <!-- LULE_SAMI -->
+            <xs:enumeration value="smj"/>
+            <!-- INARI_SAMI -->
+            <xs:enumeration value="smn"/>
+            <!-- SAMOAN -->
+            <xs:enumeration value="sm"/>
+            <xs:enumeration value="smo"/>
+            <!-- SKOLT_SAMI -->
+            <xs:enumeration value="sms"/>
+            <!-- SHONA -->
+            <xs:enumeration value="sn"/>
+            <xs:enumeration value="sna"/>
+            <!-- SINDHI -->
+            <xs:enumeration value="sd"/>
+            <xs:enumeration value="snd"/>
+            <!-- SONINKE -->
+            <xs:enumeration value="snk"/>
+            <!-- SOGDIAN -->
+            <xs:enumeration value="sog"/>
+            <!-- SOMALI -->
+            <xs:enumeration value="so"/>
+            <xs:enumeration value="som"/>
+            <!-- SOUTHERN_SOTHO -->
+            <xs:enumeration value="st"/>
+            <xs:enumeration value="sot"/>
+            <!-- SPANISH -->
+            <xs:enumeration value="es"/>
+            <xs:enumeration value="spa"/>
+            <!-- ALBANIAN -->
+            <xs:enumeration value="sq"/>
+            <xs:enumeration value="sqi"/>
+            <!-- SARDINIAN -->
+            <xs:enumeration value="sc"/>
+            <xs:enumeration value="srd"/>
+            <!-- SRANAN_TONGO -->
+            <xs:enumeration value="srn"/>
+            <!-- SERBIAN -->
+            <xs:enumeration value="sr"/>
+            <xs:enumeration value="srp"/>
+            <!-- SERER -->
+            <xs:enumeration value="srr"/>
+            <!-- SWATI -->
+            <xs:enumeration value="ss"/>
+            <xs:enumeration value="ssw"/>
+            <!-- SUKUMA -->
+            <xs:enumeration value="suk"/>
+            <!-- SUNDANESE -->
+            <xs:enumeration value="su"/>
+            <xs:enumeration value="sun"/>
+            <!-- SUSU -->
+            <xs:enumeration value="sus"/>
+            <!-- SUMERIAN -->
+            <xs:enumeration value="sux"/>
+            <!-- SWAHILI -->
+            <xs:enumeration value="sw"/>
+            <xs:enumeration value="swa"/>
+            <!-- SWEDISH -->
+            <xs:enumeration value="sv"/>
+            <xs:enumeration value="swe"/>
+            <!-- CLASSICAL_SYRIAC -->
+            <xs:enumeration value="syc"/>
+            <!-- SYRIAC -->
+            <xs:enumeration value="syr"/>
+            <!-- TAHITIAN -->
+            <xs:enumeration value="ty"/>
+            <xs:enumeration value="tah"/>
+            <!-- TAMIL -->
+            <xs:enumeration value="ta"/>
+            <xs:enumeration value="tam"/>
+            <!-- TATAR -->
+            <xs:enumeration value="tt"/>
+            <xs:enumeration value="tat"/>
+            <!-- TELUGU -->
+            <xs:enumeration value="te"/>
+            <xs:enumeration value="tel"/>
+            <!-- TIMNE -->
+            <xs:enumeration value="tem"/>
+            <!-- TERENO -->
+            <xs:enumeration value="ter"/>
+            <!-- TETUM -->
+            <xs:enumeration value="tet"/>
+            <!-- TAJIK -->
+            <xs:enumeration value="tg"/>
+            <xs:enumeration value="tgk"/>
+            <!-- TAGALOG -->
+            <xs:enumeration value="tl"/>
+            <xs:enumeration value="tgl"/>
+            <!-- THAI -->
+            <xs:enumeration value="th"/>
+            <xs:enumeration value="tha"/>
+            <!-- TIGRE -->
+            <xs:enumeration value="tig"/>
+            <!-- TIGRINYA -->
+            <xs:enumeration value="ti"/>
+            <xs:enumeration value="tir"/>
+            <!-- TIV -->
+            <xs:enumeration value="tiv"/>
+            <!-- TOKELAU -->
+            <xs:enumeration value="tkl"/>
+            <!-- KLINGON -->
+            <xs:enumeration value="tlh"/>
+            <!-- TLINGIT -->
+            <xs:enumeration value="tli"/>
+            <!-- TAMASHEK -->
+            <xs:enumeration value="tmh"/>
+            <!-- TONGA_NYASA -->
+            <xs:enumeration value="tog"/>
+            <!-- TONGA_TONGA_ISLANDS -->
+            <xs:enumeration value="to"/>
+            <xs:enumeration value="ton"/>
+            <!-- TOK_PISIN -->
+            <xs:enumeration value="tpi"/>
+            <!-- TSIMSHIAN -->
+            <xs:enumeration value="tsi"/>
+            <!-- TSWANA -->
+            <xs:enumeration value="tn"/>
+            <xs:enumeration value="tsn"/>
+            <!-- TSONGA -->
+            <xs:enumeration value="ts"/>
+            <xs:enumeration value="tso"/>
+            <!-- TURKMEN -->
+            <xs:enumeration value="tk"/>
+            <xs:enumeration value="tuk"/>
+            <!-- TUMBUKA -->
+            <xs:enumeration value="tum"/>
+            <!-- TURKISH -->
+            <xs:enumeration value="tr"/>
+            <xs:enumeration value="tur"/>
+            <!-- TUVALU -->
+            <xs:enumeration value="tvl"/>
+            <!-- TWI -->
+            <xs:enumeration value="tw"/>
+            <xs:enumeration value="twi"/>
+            <!-- TUVINIAN -->
+            <xs:enumeration value="tyv"/>
+            <!-- UDMURT -->
+            <xs:enumeration value="udm"/>
+            <!-- UGARITIC -->
+            <xs:enumeration value="uga"/>
+            <!-- UYGHUR -->
+            <xs:enumeration value="ug"/>
+            <xs:enumeration value="uig"/>
+            <!-- UKRAINIAN -->
+            <xs:enumeration value="uk"/>
+            <xs:enumeration value="ukr"/>
+            <!-- UMBUNDU -->
+            <xs:enumeration value="umb"/>
+            <!-- UNDETERMINED -->
+            <xs:enumeration value="und"/>
+            <!-- URDU -->
+            <xs:enumeration value="ur"/>
+            <xs:enumeration value="urd"/>
+            <!-- UZBEK -->
+            <xs:enumeration value="uz"/>
+            <xs:enumeration value="uzb"/>
+            <!-- VAI -->
+            <xs:enumeration value="vai"/>
+            <!-- VENDA -->
+            <xs:enumeration value="ve"/>
+            <xs:enumeration value="ven"/>
+            <!-- VIETNAMESE -->
+            <xs:enumeration value="vi"/>
+            <xs:enumeration value="vie"/>
+            <!-- VOLAPÜK -->
+            <xs:enumeration value="vo"/>
+            <xs:enumeration value="vol"/>
+            <!-- VOTIC -->
+            <xs:enumeration value="vot"/>
+            <!-- WOLAITTA -->
+            <xs:enumeration value="wal"/>
+            <!-- WARAY -->
+            <xs:enumeration value="war"/>
+            <!-- WASHO -->
+            <xs:enumeration value="was"/>
+            <!-- WALLOON -->
+            <xs:enumeration value="wa"/>
+            <xs:enumeration value="wln"/>
+            <!-- WOLOF -->
+            <xs:enumeration value="wo"/>
+            <xs:enumeration value="wol"/>
+            <!-- KALMYK -->
+            <xs:enumeration value="xal"/>
+            <!-- XHOSA -->
             <xs:enumeration value="xh"/>
-            <!-- XHOSA -->
             <xs:enumeration value="xho"/>
-            <!-- XHOSA -->
+            <!-- YAO -->
+            <xs:enumeration value="yao"/>
+            <!-- YAPESE -->
+            <xs:enumeration value="yap"/>
+            <!-- YIDDISH -->
             <xs:enumeration value="yi"/>
-            <!-- YIDDISH -->
             <xs:enumeration value="yid"/>
-            <!-- YIDDISH -->
+            <!-- YORUBA -->
             <xs:enumeration value="yo"/>
-            <!-- YORUBA -->
             <xs:enumeration value="yor"/>
-            <!-- YORUBA -->
+            <!-- ZAPOTEC -->
+            <xs:enumeration value="zap"/>
+            <!-- BLISSYMBOLS -->
+            <xs:enumeration value="zbl"/>
+            <!-- ZENAGA -->
+            <xs:enumeration value="zen"/>
+            <!-- STANDARD_MOROCCAN_TAMAZIGHT -->
+            <xs:enumeration value="zgh"/>
+            <!-- ZHUANG -->
             <xs:enumeration value="za"/>
-            <!-- ZHUANG -->
             <xs:enumeration value="zha"/>
-            <!-- ZHUANG -->
-            <xs:enumeration value="zu"/>
+            <!-- CHINESE -->
+            <xs:enumeration value="zh"/>
+            <xs:enumeration value="zho"/>
             <!-- ZULU -->
+            <xs:enumeration value="zu"/>
             <xs:enumeration value="zul"/>
+            <!-- ZUNI -->
+            <xs:enumeration value="zun"/>
+            <!-- NO_LINGUISTIC_CONTENT -->
+            <xs:enumeration value="zxx"/>
+            <!-- ZAZA -->
+            <xs:enumeration value="zza"/>
             <!-- UNKNOWN -->
             <xs:enumeration value="UNKNOWN"/>
         </xs:restriction>
@@ -3429,11 +3695,7 @@
     <xs:complexType name="cuePointDescriptionType">
         <xs:simpleContent>
             <xs:extension base="xs:string">
-                <xs:attribute name="language" type="publish:language" use="required">
-                    <xs:annotation>
-                        <xs:documentation>code in ISO 639-1</xs:documentation>
-                    </xs:annotation>
-                </xs:attribute>
+                <xs:attribute name="language" type="publish:language" use="required"/>
                 <xs:attribute name="title" type="xs:string"/>
                 <xs:attribute name="imageUri" type="xs:anyURI"/>
             </xs:extension>
