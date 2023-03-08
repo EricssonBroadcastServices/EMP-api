@@ -2663,6 +2663,7 @@
             <!-- TIBETAN -->
             <xs:enumeration value="bo"/>
             <xs:enumeration value="bod"/>
+            <xs:enumeration value="tib"/>
             <!-- BOSNIAN -->
             <xs:enumeration value="bs"/>
             <xs:enumeration value="bos"/>
@@ -2692,6 +2693,7 @@
             <!-- CZECH -->
             <xs:enumeration value="cs"/>
             <xs:enumeration value="ces"/>
+            <xs:enumeration value="cze"/>
             <!-- CHAMORRO -->
             <xs:enumeration value="ch"/>
             <xs:enumeration value="cha"/>
@@ -2742,6 +2744,7 @@
             <!-- WELSH -->
             <xs:enumeration value="cy"/>
             <xs:enumeration value="cym"/>
+            <xs:enumeration value="wel"/>
             <!-- DAKOTA -->
             <xs:enumeration value="dak"/>
             <!-- DANISH -->
@@ -2756,6 +2759,7 @@
             <!-- GERMAN -->
             <xs:enumeration value="de"/>
             <xs:enumeration value="deu"/>
+            <xs:enumeration value="ger"/>
             <!-- DOGRIB -->
             <xs:enumeration value="dgr"/>
             <!-- DINKA -->
@@ -2785,6 +2789,7 @@
             <!-- GREEK -->
             <xs:enumeration value="el"/>
             <xs:enumeration value="ell"/>
+            <xs:enumeration value="gre"/>
             <!-- ELAMITE -->
             <xs:enumeration value="elx"/>
             <!-- ENGLISH -->
@@ -2801,6 +2806,7 @@
             <!-- BASQUE -->
             <xs:enumeration value="eu"/>
             <xs:enumeration value="eus"/>
+            <xs:enumeration value="baq"/>
             <!-- EWE -->
             <xs:enumeration value="ee"/>
             <xs:enumeration value="ewe"/>
@@ -2814,6 +2820,7 @@
             <!-- PERSIAN -->
             <xs:enumeration value="fa"/>
             <xs:enumeration value="fas"/>
+            <xs:enumeration value="per"/>
             <!-- FANTI -->
             <xs:enumeration value="fat"/>
             <!-- FIJIAN -->
@@ -2829,6 +2836,7 @@
             <!-- FRENCH -->
             <xs:enumeration value="fr"/>
             <xs:enumeration value="fra"/>
+            <xs:enumeration value="fre"/>
             <!-- FRENCH_MIDDLE -->
             <xs:enumeration value="frm"/>
             <!-- FRENCH_OLD -->
@@ -2932,6 +2940,7 @@
             <!-- ARMENIAN -->
             <xs:enumeration value="hy"/>
             <xs:enumeration value="hye"/>
+            <xs:enumeration value="arm"/>
             <!-- IBAN -->
             <xs:enumeration value="iba"/>
             <!-- IGBO -->
@@ -2965,6 +2974,7 @@
             <!-- ICELANDIC -->
             <xs:enumeration value="is"/>
             <xs:enumeration value="isl"/>
+            <xs:enumeration value="ice"/>
             <!-- ITALIAN -->
             <xs:enumeration value="it"/>
             <xs:enumeration value="ita"/>
@@ -3000,6 +3010,7 @@
             <!-- GEORGIAN -->
             <xs:enumeration value="ka"/>
             <xs:enumeration value="kat"/>
+            <xs:enumeration value="geo"/>
             <!-- KANURI -->
             <xs:enumeration value="kr"/>
             <xs:enumeration value="kau"/>
@@ -3146,6 +3157,7 @@
             <!-- MACEDONIAN -->
             <xs:enumeration value="mk"/>
             <xs:enumeration value="mkd"/>
+            <xs:enumeration value="mac"/>
             <!-- MALAGASY -->
             <xs:enumeration value="mg"/>
             <xs:enumeration value="mlg"/>
@@ -3166,9 +3178,11 @@
             <!-- MĀORI -->
             <xs:enumeration value="mi"/>
             <xs:enumeration value="mri"/>
+            <xs:enumeration value="mao"/>
             <!-- MALAY -->
             <xs:enumeration value="ms"/>
             <xs:enumeration value="msa"/>
+            <xs:enumeration value="may"/>
             <!-- MULTIPLE_LANGUAGES -->
             <xs:enumeration value="mul"/>
             <!-- CREEK -->
@@ -3180,6 +3194,7 @@
             <!-- BURMESE -->
             <xs:enumeration value="my"/>
             <xs:enumeration value="mya"/>
+            <xs:enumeration value="bur"/>
             <!-- ERZYA -->
             <xs:enumeration value="myv"/>
             <!-- NEAPOLITAN -->
@@ -3204,7 +3219,7 @@
             <!-- NEPALI -->
             <xs:enumeration value="ne"/>
             <xs:enumeration value="nep"/>
-            <!-- NEPAL_BHASA,_NEWARI -->
+            <!-- NEPAL_BHASA_NEWARI -->
             <xs:enumeration value="new"/>
             <!-- NIAS -->
             <xs:enumeration value="nia"/>
@@ -3213,6 +3228,7 @@
             <!-- DUTCH -->
             <xs:enumeration value="nl"/>
             <xs:enumeration value="nld"/>
+            <xs:enumeration value="dut"/>
             <!-- NORWEGIAN_NYNORSK -->
             <xs:enumeration value="nn"/>
             <xs:enumeration value="nno"/>
@@ -3230,7 +3246,7 @@
             <xs:enumeration value="nqo"/>
             <!-- PEDI -->
             <xs:enumeration value="nso"/>
-            <!-- CLASSICAL NEWARI -->
+            <!-- CLASSICAL_NEWARI -->
             <xs:enumeration value="nwc"/>
             <!-- CHICHEWA -->
             <xs:enumeration value="ny"/>
@@ -3312,6 +3328,7 @@
             <!-- ROMANIAN -->
             <xs:enumeration value="ro"/>
             <xs:enumeration value="ron"/>
+            <xs:enumeration value="rum"/>
             <!-- RUNDI -->
             <xs:enumeration value="rn"/>
             <xs:enumeration value="run"/>
@@ -3354,6 +3371,7 @@
             <!-- SLOVAK -->
             <xs:enumeration value="sk"/>
             <xs:enumeration value="slk"/>
+            <xs:enumeration value="slo"/>
             <!-- SLOVENIAN -->
             <xs:enumeration value="sl"/>
             <xs:enumeration value="slv"/>
@@ -3393,6 +3411,7 @@
             <!-- ALBANIAN -->
             <xs:enumeration value="sq"/>
             <xs:enumeration value="sqi"/>
+            <xs:enumeration value="alb"/>
             <!-- SARDINIAN -->
             <xs:enumeration value="sc"/>
             <xs:enumeration value="srd"/>
@@ -3571,6 +3590,7 @@
             <!-- CHINESE -->
             <xs:enumeration value="zh"/>
             <xs:enumeration value="zho"/>
+            <xs:enumeration value="chi"/>
             <!-- ZULU -->
             <xs:enumeration value="zu"/>
             <xs:enumeration value="zul"/>
