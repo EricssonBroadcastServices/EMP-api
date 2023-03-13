@@ -917,7 +917,9 @@
             <xs:extension base="xs:string">
                 <xs:attribute name="id" type="publish:idType">
                     <xs:annotation>
-                        <xs:documentation>Unique id for this subtitle. If not given language and type will be used as identifier</xs:documentation>
+                        <xs:documentation>Unique id for this subtitle. If not given language and type will be used as
+                            identifier
+                        </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
                 <xs:attribute name="delete" type="xs:boolean">
@@ -1022,21 +1024,49 @@
     </xs:complexType>
     <xs:complexType name="adBreakListType">
         <xs:sequence>
-            <xs:element minOccurs="0" name="pre" type="xs:string"/>
+            <xs:element minOccurs="0" name="pre" type="publish:adMarkerType"/>
             <xs:element maxOccurs="unbounded" minOccurs="0" name="mid" type="publish:midAdBreakType"/>
-            <xs:element minOccurs="0" name="post" type="xs:string"/>
+            <xs:element minOccurs="0" name="post" type="publish:adMarkerType"/>
         </xs:sequence>
     </xs:complexType>
+    <xs:complexType name="emptyObjectType"/>
+    <xs:complexType name="adMarkerType">
+        <xs:sequence>
+            <xs:element name="maxCount" type="xs:integer"/>
+            <xs:element name="customParameters" type="publish:adBreakCustomParameterListType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="adBreakCustomParameterListType">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="param" type="publish:adBreakCustomParameterType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="adBreakCustomParameterType">
+        <xs:complexContent>
+            <xs:extension base="publish:emptyObjectType">
+                <xs:attribute name="key" type="xs:string" use="required">
+                    <xs:annotation>
+                        <xs:documentation/>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="value" type="xs:string" use="required">
+                    <xs:annotation>
+                        <xs:documentation/>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
     <xs:complexType name="midAdBreakType">
-        <xs:simpleContent>
-            <xs:extension base="xs:string">
+        <xs:complexContent>
+            <xs:extension base="publish:adMarkerType">
                 <xs:attribute name="offset" type="xs:time" use="required">
                     <xs:annotation>
                         <xs:documentation/>
                     </xs:annotation>
                 </xs:attribute>
             </xs:extension>
-        </xs:simpleContent>
+        </xs:complexContent>
     </xs:complexType>
     <xs:complexType name="shortcutsListType">
         <xs:sequence>
@@ -1411,7 +1441,9 @@
             </xs:element>
             <xs:element minOccurs="0" name="materialPropertiesOverride" type="publish:materialPropertiesOverrideType">
                 <xs:annotation>
-                    <xs:documentation>Material properties used in exposure on aggregated level instead of properties otherwise calculated from materials.</xs:documentation>
+                    <xs:documentation>Material properties used in exposure on aggregated level instead of properties
+                        otherwise calculated from materials.
+                    </xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element minOccurs="0" name="customData" type="publish:customDataType"/>
