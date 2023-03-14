@@ -1032,9 +1032,9 @@
     <xs:complexType name="emptyObjectType"/>
     <xs:complexType name="adMarkerType">
         <xs:sequence>
-            <xs:element name="maxCount" type="xs:integer"/>
-            <xs:element name="customParameters" type="publish:adBreakCustomParameterListType"/>
+            <xs:element name="customParameters" minOccurs="0" type="publish:adBreakCustomParameterListType"/>
         </xs:sequence>
+        <xs:attribute name="maxCount" type="xs:integer"/>
     </xs:complexType>
     <xs:complexType name="adBreakCustomParameterListType">
         <xs:sequence>
