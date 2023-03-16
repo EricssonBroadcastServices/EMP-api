@@ -20,6 +20,7 @@
             <xs:element type="xs:int" name="duration"/>
             <xs:any minOccurs="0" maxOccurs="unbounded" processContents="skip"/>
         </xs:sequence>
+        <xs:attribute type="xs:string" name="id"/>
     </xs:complexType>
 
 </xs:schema>
