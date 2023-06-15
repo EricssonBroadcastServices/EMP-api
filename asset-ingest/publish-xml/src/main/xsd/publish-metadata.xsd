@@ -305,11 +305,6 @@
                         <xs:documentation>What type of source is this</xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
-                <xs:attribute name="removeAfterIngest" type="xs:boolean" default="false">
-                    <xs:annotation>
-                        <xs:documentation>This will only work for some storage solutions</xs:documentation>
-                    </xs:annotation>
-                </xs:attribute>
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
@@ -726,6 +721,11 @@
                     <xs:documentation>Media would be purged, if no date then default
                         used
                     </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="removeAfterIngest" type="xs:boolean" default="false">
+                <xs:annotation>
+                    <xs:documentation>This will only work for some storage solutions</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element minOccurs="0" name="videoQuality" type="publish:videoQuality">
