@@ -9,7 +9,7 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>publish-xml</artifactId>
   <packaging>jar</packaging>
-  <version>3.3.78</version>
+  <version>3.3.79</version>
   <name>PublishXML</name>
   <description>PublishXML is the recommended format for VOD ingest into EMP.</description>
 

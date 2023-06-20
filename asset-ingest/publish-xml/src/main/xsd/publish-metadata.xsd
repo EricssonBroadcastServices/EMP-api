@@ -305,6 +305,14 @@
                         <xs:documentation>What type of source is this</xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
+                <xs:attribute name="removeAfterIngest" type="xs:boolean" default="false">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Deprecated: this attribute will have no effect.
+                            Use removeAfterIngest attribute on materialType instead.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
