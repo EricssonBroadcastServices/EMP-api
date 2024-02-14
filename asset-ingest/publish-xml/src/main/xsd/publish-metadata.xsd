@@ -1595,6 +1595,7 @@
                     <xs:sequence>
                         <xs:element name="title" type="publish:titleType"/>
                         <xs:element minOccurs="0" name="sortingTitle" type="publish:titleType"/>
+                        <xs:element minOccurs="0" name="seoTitle" type="publish:titleType"/>
                     </xs:sequence>
                     <xs:element name="removeTitles" type="publish:removeLocalizedType"/>
                 </xs:choice>
@@ -1712,6 +1713,7 @@
             <xs:enumeration value="medium"/>
             <xs:enumeration value="long"/>
             <xs:enumeration value="extended"/>
+            <xs:enumeration value="seo"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:complexType name="untypedDescriptionType">
