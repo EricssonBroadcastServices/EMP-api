@@ -51,6 +51,12 @@
                     his best to create Walt's meth, with the help of an old
                     friend. keywords: Stream, watch, breaking bad ... </description>
                 <removeDescriptions language="sv"/>
+                <longFormDescription language="en">
+                    Long form content up to 10000 characters
+                </longFormDescription>
+                <longFormDescription language="se">
+                    Long form content up to 10000 characters
+                </longFormDescription>
             </descriptionList>
             <creditList>
                 <credit>

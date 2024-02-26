@@ -1612,6 +1612,7 @@
             <xs:element minOccurs="0" maxOccurs="unbounded" name="description" type="publish:descriptionType"/>
             <xs:element minOccurs="0" maxOccurs="unbounded" name="removeDescriptions"
                         type="publish:removeLocalizedType"/>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="longFormDescription" type="publish:longFormDescriptionType"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="commentListType">
@@ -1698,6 +1699,18 @@
                     </xs:annotation>
                 </xs:attribute>
             </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="longFormDescriptionType">
+        <xs:simpleContent>
+            <xs:annotation>
+                <xs:documentation>Non indexed description use for long form content that does not fit in other description fields. maxlength 20.000 characters
+                </xs:documentation>
+            </xs:annotation>
+            <xs:restriction base="publish:localizedTextType">
+                <xs:minLength value="1"/>
+                <xs:maxLength value="20000"/>
+            </xs:restriction>
         </xs:simpleContent>
     </xs:complexType>
     <xs:simpleType name="descriptionLengthType">
