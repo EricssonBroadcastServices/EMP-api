@@ -1,0 +1,41 @@
+{	
+  "type":"EPG"
+  "format": "RedBee10",
+  "channel": {		
+    "id": "Channel id. Purpose is to make the message more readable. The channel ID to be used will be taken from the url endpoint path.",		
+    "name": "Channel name. Purpose is to make the message more readable."	
+  },	
+  "schedule": {		
+    "start": "Mandatory time for when this schedule is starting. Format: 2024-01-01T00:00:00.000Z",		
+    "end": "Mandatory time for when this schedule is ending. Format: 2024-01-01T00:00:00.000Z",		
+    "programs" : [			
+      {				
+        "programId": "Optional unique program id. If not provided one will be generated based on either program start time or asset id.",				
+        "assetId": "Mandatory asset id. Can be with or withut suffix. The asset id's can be unique or not unique but if thy are not unique RedBee must be aware of this since it affect other internal settings of the EPG flow",             
+        "assetPurgeDate": "Optional asset purge date. Format: 2024-01-01T00:00:00.000Z. Can be used to set purge date for assets when RedBee system is configured to not automatically delete assets when a program is no longer available.",         
+        "publicStart": "Mandatory public start time. Format: 2024-01-01T00:00:00.000Z. Public times cannot overlap but gaps are allowed.",				
+        "publicEnd": "Mandatory public end time. Format: 2024-01-01T00:00:00.000Z. Public times cannot overlap but gaps are allowed.",				
+        "actualStart": "Optional actual start time. Format: 2024-01-01T00:00:00.000Z. Actual times can overlap with each others. Public start will be used if not provided.",		
+        "actualEnd": "Optional actual end time. Format: 2024-01-01T00:00:00.000Z. Actual times can overlap with each others. Public start will be used if not provided.",		
+        "title": "Mandatory program title that is not localised. Optional localised titles and descriptions both for programs and assets will be added later to the format.",	
+        "publications": [					
+          {	
+            "id": "Optional publication id",					
+            "visibleFrom": "Optional visible from time. Format 2024-01-01T00:00:00.000Z. If not provided it will be start time -7 days (or configurable)",					
+            "start": "Optional playable start time. Format 2024-01-01T00:00:00.000Z. If not provided it will be equal to start time.",						
+            "end": "Optional playable end time. Format 2024-01-01T00:00:00.000Z. If not provided it will be end time + 7 days (or configurable)",						
+            "products": [							
+              "Mandatory list of product IDs. Must be at least 1."						
+            ],						
+            "contractId":"Optional contract id",
+            "geoBlocking" : {							
+              "blockVpn": "Optional true/false. Default is false.",							
+              "allowedCountries": ["Optional list of countries to allow. Should be 2-digits ISO country codes. One of allowed countries or blocked countries must be provided with a size of at least 1 if geo blocking element is provided."],							
+              "blockedCountries" : ["Optional list of countries to block. Should be 2-digits ISO country codes. One of allowed countries or blocked countries must be provided with a size of at least 1 if geo blocking element is provided."]						
+            }					
+          }				
+        ]			
+      }		
+    ]	
+  }
+}
