@@ -3702,6 +3702,8 @@
     <xs:simpleType name="linkType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="trailer"/>
+            <xs:enumeration value="extra"/>
+            <xs:enumeration value="related"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:complexType name="slugsListType">

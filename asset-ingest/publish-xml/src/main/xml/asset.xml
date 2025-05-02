@@ -120,6 +120,16 @@
                     <type>trailer</type>
                     <assetId ownedByCustomer="false">trailerAssetId</assetId>
                 </linkedAsset>
+                <linkedAsset>
+                    <id>optionalLinkId</id>
+                    <type>extra</type>
+                    <assetId ownedByCustomer="false">extraAssetId</assetId>
+                </linkedAsset>
+                <linkedAsset>
+                    <id>optionalLinkId</id>
+                    <type>related</type>
+                    <assetId ownedByCustomer="false">relatedAssetId</assetId>
+                </linkedAsset>
             </linkedAssetList>
             <customData>
                 <object>
