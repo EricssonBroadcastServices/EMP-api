@@ -915,7 +915,7 @@
     <xs:complexType name="subtitleType">
         <xs:simpleContent>
             <xs:extension base="xs:string">
-                <xs:attribute name="id" type="publish:subtitleType">
+                <xs:attribute name="id" type="publish:shortIdType">
                     <xs:annotation>
                         <xs:documentation>Unique id for this subtitle. If not given language and type will be used as
                             identifier
