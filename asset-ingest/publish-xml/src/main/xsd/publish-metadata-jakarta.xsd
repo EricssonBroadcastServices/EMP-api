@@ -373,7 +373,7 @@
     </xs:complexType>
     <xs:complexType name="variantType">
         <xs:sequence>
-            <xs:element minOccurs="0" maxOccurs="1" name="id" type="publish:idType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="id" type="publish:shortIdType"/>
             <xs:element type="publish:profileListType" name="profiles" minOccurs="1" maxOccurs="1"/>
             <xs:element type="publish:variantTrackType" name="subtitles" minOccurs="0" maxOccurs="1"/>
             <xs:element type="publish:variantTrackType" name="audios" minOccurs="0" maxOccurs="1"/>
