@@ -373,7 +373,7 @@
     </xs:complexType>
     <xs:complexType name="variantType">
         <xs:sequence>
-            <xs:element minOccurs="0" maxOccurs="1" name="id" type="publish:idType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="id" type="publish:shortIdType"/>
             <xs:element type="publish:profileListType" name="profiles" minOccurs="1" maxOccurs="1"/>
             <xs:element type="publish:variantTrackType" name="subtitles" minOccurs="0" maxOccurs="1"/>
             <xs:element type="publish:variantTrackType" name="audios" minOccurs="0" maxOccurs="1"/>
@@ -876,7 +876,7 @@
     </xs:complexType>
     <xs:complexType name="profileListType">
         <xs:sequence>
-            <xs:element minOccurs="1" maxOccurs="unbounded" name="profile" type="publish:idType">
+            <xs:element minOccurs="1" maxOccurs="unbounded" name="profile" type="publish:shortIdType">
                 <xs:annotation>
                     <xs:documentation>Used to classify materials when multiple active materials are used
                     </xs:documentation>
@@ -915,7 +915,7 @@
     <xs:complexType name="subtitleType">
         <xs:simpleContent>
             <xs:extension base="xs:string">
-                <xs:attribute name="id" type="publish:idType">
+                <xs:attribute name="id" type="publish:subtitleType">
                     <xs:annotation>
                         <xs:documentation>Unique id for this subtitle. If not given language and type will be used as
                             identifier
@@ -1086,6 +1086,18 @@
         <xs:restriction base="xs:string">
             <xs:pattern value="[0-9A-Za-z][0-9A-Za-z\-_]+"/>
             <xs:minLength value="3"/>
+            <xs:maxLength value="128"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="shortIdType">
+        <xs:annotation>
+            <xs:documentation>An ID type for entities where the range of values is small.
+                Needed for backwards compatibility after the idType got minLength changed to 3.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9A-Za-z][0-9A-Za-z\-_]+"/>
+            <xs:minLength value="1"/>
             <xs:maxLength value="128"/>
         </xs:restriction>
     </xs:simpleType>
@@ -3690,7 +3702,7 @@
     </xs:complexType>
     <xs:complexType name="linkedAssetType">
         <xs:sequence>
-            <xs:element minOccurs="0" name="id" type="publish:idType">
+            <xs:element minOccurs="0" name="id" type="publish:shortIdType">
                 <xs:annotation>
                     <xs:documentation>Optional link id. If omitted, one will be generated.</xs:documentation>
                 </xs:annotation>
