@@ -760,7 +760,8 @@
                     <xs:documentation>List of cue points (intro, chapters, credits,...) for the media</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element minOccurs="0" name="contentPolicy" type="xs:string"/>
+            <xs:element minOccurs="0" name="contentPolicycontentPolicy" type="xs:string"/>
+            <xs:element minOccurs="0" name="encryptionPolicyId" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="externalMediaLocatorListType">
