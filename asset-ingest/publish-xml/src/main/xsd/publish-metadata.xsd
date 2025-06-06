@@ -1930,6 +1930,7 @@
                     </xs:annotation>
                 </xs:element>
             </xs:choice>
+            <xs:element minOccurs="0" name="restrictedHoursPolicy" type="publish:idType"/>
             <xs:element minOccurs="0" name="publicationRights" type="publish:publicationRightsType"/>
             <xs:element minOccurs="0" name="drmRestrictions" type="publish:drmRestrictionsType"/>
             <xs:element minOccurs="0" name="customData" type="publish:customDataType"/>
