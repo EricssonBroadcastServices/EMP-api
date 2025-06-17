@@ -19,7 +19,6 @@
       <plugin>
 	<groupId>org.codehaus.mojo</groupId>
 	<artifactId>jaxb2-maven-plugin</artifactId>
-	<version>${jaxb2MavenPluginVersion}</version>
 	<executions>
 	  <execution>
 	    <id>generate-xmltv</id>
@@ -30,8 +29,7 @@
 	    <configuration>
 	      <packageName>net.ericsson.ebsd.emp.generated.epg.xmltv</packageName>
 	      <outputDirectory>${basedir}/target/generated/</outputDirectory>
-	      <schemaDirectory>${basedir}/src/main/xsd/</schemaDirectory>
-	      <bindingDirectory>${basedir}/src/main/xsd/</bindingDirectory>
+		  <sources><source>src/main/xsd/xmltv.xsd</source></sources>
 	    </configuration>
 	  </execution>
 	</executions>

@@ -18,7 +18,6 @@
       <plugin>
 	<groupId>org.codehaus.mojo</groupId>
 	<artifactId>jaxb2-maven-plugin</artifactId>
-	<version>${jaxb2MavenPluginVersion}</version>
 	<executions>
 	  <execution>
 	    <id>generate-nowtilusxml</id>
@@ -29,8 +28,12 @@
 	    <configuration>
 	      <packageName>net.ericsson.ebsd.emp.generated.mrss.nowtilusxml</packageName>
 	      <outputDirectory>${basedir}/target/generated/</outputDirectory>
-	      <schemaDirectory>${basedir}/src/main/xsd/</schemaDirectory>
-	      <bindingDirectory>${basedir}/src/main/xsd/</bindingDirectory>
+		  <sources>
+			  <source>src/main/xsd/media.xsd</source>
+			  <source>src/main/xsd/mrss.xsd</source>
+			  <source>src/main/xsd/ad.xsd</source>
+		  </sources>
+		  <xjbSources><xjbSource>src/main/xsd/bindings.xjb</xjbSource></xjbSources>
 	    </configuration>
 	  </execution>
 	</executions>

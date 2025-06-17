@@ -15,10 +15,33 @@
   </modules>
 
   <properties>
-    <jaxb2MavenPluginVersion>1.6</jaxb2MavenPluginVersion>
+    <jaxb2MavenPluginVersion>3.3.0</jaxb2MavenPluginVersion>
   </properties>
 
+	<dependencies>
+		<dependency>
+			<groupId>jakarta.xml.bind</groupId>
+			<artifactId>jakarta.xml.bind-api</artifactId>
+			<version>4.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>4.0.2</version>
+			<scope>runtime</scope>
+		</dependency>
+	</dependencies>
+
   <build>
+	  <pluginManagement>
+		  <plugins>
+			  <plugin>
+				  <groupId>org.codehaus.mojo</groupId>
+				  <artifactId>jaxb2-maven-plugin</artifactId>
+				  <version>${jaxb2MavenPluginVersion}</version>
+			  </plugin>
+		  </plugins>
+	  </pluginManagement>
     <resources>
       <resource>
 	<directory>${basedir}/src/main/xsd</directory>
