@@ -2,8 +2,6 @@
 <xs:schema elementFormDefault="qualified"
            targetNamespace="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1" version="@@version@@"
            xmlns:publish="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1"
-           xmlns:jxb="https://jakarta.ee/xml/ns/jaxb"
-           jxb:version="3.0"
            xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <!-- Message definitions -->
     <xs:element name="publish-metadata">
@@ -825,13 +823,7 @@
             <xs:enumeration value="HLS"/>
             <xs:enumeration value="DASH"/>
             <xs:enumeration value="SMOOTHSTREAMING"/>
-            <xs:enumeration value="MP3">
-                <xs:annotation>
-                    <xs:appinfo>
-                        <jxb:typesafeEnumMember name="MP3"/>
-                    </xs:appinfo>
-                </xs:annotation>
-            </xs:enumeration>
+            <xs:enumeration value="MP3"/>
             <xs:enumeration value="AAC"/>
         </xs:restriction>
     </xs:simpleType>
