@@ -1,7 +1,12 @@
-<jxb:bindings xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:jxb="https://jakarta.ee/xml/ns/jaxb" version="3.0">
-
-    	<jxb:bindings>
+<jxb:bindings xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jxb="https://jakarta.ee/xml/ns/jaxb" version="3.0">
+    <jxb:bindings>
 		<jxb:globalBindings typesafeEnumMaxMembers="1000"/>
-	</jxb:bindings>	    
+	</jxb:bindings>
+    <jxb:bindings schemaLocation="publish-metadata.xsd">
+        <jxb:bindings node="//xs:simpleType[@name='manifestFormat']">
+            <jxb:typesafeEnumClass>
+                <jxb:typesafeEnumMember name="MP3" value="MP3"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+    </jxb:bindings>
 </jxb:bindings>
