@@ -2,5 +2,5 @@
 	xmlns:jxb="https://jakarta.ee/xml/ns/jaxb" version="3.0">
     <jxb:bindings>
 		<jxb:globalBindings typesafeEnumMaxMembers="500"/>
-	</jxb:bindings>	    
+    </jxb:bindings>
 </jxb:bindings>

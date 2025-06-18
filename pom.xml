@@ -1,5 +1,5 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
-	 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>net.ebstv.emp</groupId>
@@ -18,71 +18,71 @@
     <jaxb2MavenPluginVersion>3.3.0</jaxb2MavenPluginVersion>
   </properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>jakarta.xml.bind</groupId>
-			<artifactId>jakarta.xml.bind-api</artifactId>
-			<version>4.0.2</version>
-		</dependency>
-		<dependency>
-			<groupId>com.sun.xml.bind</groupId>
-			<artifactId>jaxb-impl</artifactId>
-			<version>4.0.2</version>
-			<scope>runtime</scope>
-		</dependency>
-	</dependencies>
+  <dependencies>
+    <dependency>
+      <groupId>jakarta.xml.bind</groupId>
+      <artifactId>jakarta.xml.bind-api</artifactId>
+      <version>4.0.2</version>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.xml.bind</groupId>
+      <artifactId>jaxb-impl</artifactId>
+      <version>4.0.2</version>
+      <scope>runtime</scope>
+    </dependency>
+  </dependencies>
 
-	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>jaxb2-maven-plugin</artifactId>
-					<version>${jaxb2MavenPluginVersion}</version>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-		<resources>
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>jaxb2-maven-plugin</artifactId>
+          <version>${jaxb2MavenPluginVersion}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <resources>
       <resource>
-	<directory>${basedir}/src/main/xsd</directory>
-	<includes>
-	  <include>**/*</include>
-	</includes>
+        <directory>${basedir}/src/main/xsd</directory>
+        <includes>
+          <include>**/*</include>
+        </includes>
       </resource>
     </resources>
     <plugins>
       <plugin>
-	<groupId>org.codehaus.mojo</groupId>
-	<artifactId>properties-maven-plugin</artifactId>
-	<version>1.0-alpha-2</version>
-	<executions>
-	  <execution>
-	    <id>set-additional-system-properties</id>
-	    <goals>
-	      <goal>set-system-properties</goal>
-	    </goals>
-	  </execution>
-	</executions>
-	<configuration>
-	  <properties>
-	    <property>
-	      <name>javax.xml.accessExternalSchema</name>
-	      <value>file,http</value>
-	    </property>
-	  </properties>
-	</configuration>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>properties-maven-plugin</artifactId>
+        <version>1.0-alpha-2</version>
+        <executions>
+          <execution>
+            <id>set-additional-system-properties</id>
+            <goals>
+              <goal>set-system-properties</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <properties>
+            <property>
+              <name>javax.xml.accessExternalSchema</name>
+              <value>file,http</value>
+            </property>
+          </properties>
+        </configuration>
       </plugin>
       <plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-source-plugin</artifactId>
-	<executions>
-	  <execution>
-	    <id>attach-sources</id>
-	    <goals>
-	      <goal>jar</goal>
-	    </goals>
-	  </execution>
-	</executions>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
