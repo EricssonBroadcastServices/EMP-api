@@ -1473,6 +1473,14 @@
                             </xs:documentation>
                         </xs:annotation>
                     </xs:element>
+                    <xs:element minOccurs="0" name="episodeSortOrder" type="publish:sortOrderType">
+                        <xs:annotation>
+                            <xs:documentation>Sort order of episodes for this series. Some exposure endpoints will
+                                change behavior based on the value of this parameter. Empty value will be treated as
+                                sort order: asc.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>
@@ -1569,6 +1577,12 @@
                         </xs:annotation>
                     </xs:element>
                     <xs:element minOccurs="0" name="spokenLanguages" type="publish:languageListType"/>
+                    <xs:element minOccurs="0" name="firstRunDate" type="xs:dateTime">
+                        <xs:annotation>
+                            <xs:documentation>Informational field that holds the first run date.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>
@@ -3816,4 +3830,14 @@
             </xs:annotation>
         </xs:attribute>
     </xs:complexType>
+    <xs:simpleType name="sortOrderType">
+        <xs:annotation>
+            <xs:documentation>Enum type that holds values that describes a sort order
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="asc"/>
+            <xs:enumeration value="desc"/>
+        </xs:restriction>
+    </xs:simpleType>
 </xs:schema>
