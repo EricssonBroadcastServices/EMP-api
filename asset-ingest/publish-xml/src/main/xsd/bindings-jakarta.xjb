@@ -2,7 +2,7 @@
     <jxb:bindings>
 		<jxb:globalBindings typesafeEnumMaxMembers="1000"/>
 	</jxb:bindings>
-    <jxb:bindings schemaLocation="publish-metadata.xsd">
+    <jxb:bindings schemaLocation="publish-metadata-jakarta.xsd">
         <jxb:bindings node="//xs:simpleType[@name='manifestFormat']">
             <jxb:typesafeEnumClass>
                 <jxb:typesafeEnumMember name="MP3" value="MP3"/>
