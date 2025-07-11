@@ -2,8 +2,6 @@
 <xs:schema elementFormDefault="qualified"
            targetNamespace="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1" version="@@version@@"
            xmlns:publish="http://video-metadata.emp.ebsd.ericsson.net/publish-metadata/v1"
-           xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
-           jaxb:version="2.1"
            xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <!-- Message definitions -->
     <xs:element name="publish-metadata">
@@ -825,13 +823,7 @@
             <xs:enumeration value="HLS"/>
             <xs:enumeration value="DASH"/>
             <xs:enumeration value="SMOOTHSTREAMING"/>
-            <xs:enumeration value="MP3">
-                <xs:annotation>
-                    <xs:appinfo>
-                        <jaxb:typesafeEnumMember name="MP3"/>
-                    </xs:appinfo>
-                </xs:annotation>
-            </xs:enumeration>
+            <xs:enumeration value="MP3"/>
             <xs:enumeration value="AAC"/>
         </xs:restriction>
     </xs:simpleType>
@@ -1481,6 +1473,14 @@
                             </xs:documentation>
                         </xs:annotation>
                     </xs:element>
+                    <xs:element minOccurs="0" name="episodeSortOrder" type="publish:sortOrderType">
+                        <xs:annotation>
+                            <xs:documentation>Sort order of episodes for this series. Some exposure endpoints will
+                                change behavior based on the value of this parameter. Empty value will be treated as
+                                sort order: asc.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>
@@ -1577,6 +1577,12 @@
                         </xs:annotation>
                     </xs:element>
                     <xs:element minOccurs="0" name="spokenLanguages" type="publish:languageListType"/>
+                    <xs:element minOccurs="0" name="firstRunDate" type="xs:dateTime">
+                        <xs:annotation>
+                            <xs:documentation>Informational field that holds the first run date.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>
@@ -3825,4 +3831,14 @@
             </xs:annotation>
         </xs:attribute>
     </xs:complexType>
+    <xs:simpleType name="sortOrderType">
+        <xs:annotation>
+            <xs:documentation>Enum type that holds values that describes a sort order
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="asc"/>
+            <xs:enumeration value="desc"/>
+        </xs:restriction>
+    </xs:simpleType>
 </xs:schema>

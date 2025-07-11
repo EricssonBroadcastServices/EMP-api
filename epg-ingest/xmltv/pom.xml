@@ -17,24 +17,23 @@
   <build>
     <plugins>
       <plugin>
-	<groupId>org.codehaus.mojo</groupId>
-	<artifactId>jaxb2-maven-plugin</artifactId>
-	<version>${jaxb2MavenPluginVersion}</version>
-	<executions>
-	  <execution>
-	    <id>generate-xmltv</id>
-	    <phase>generate-sources</phase>
-	    <goals>
-	      <goal>xjc</goal>
-	    </goals>
-	    <configuration>
-	      <packageName>net.ericsson.ebsd.emp.generated.epg.xmltv</packageName>
-	      <outputDirectory>${basedir}/target/generated/</outputDirectory>
-	      <schemaDirectory>${basedir}/src/main/xsd/</schemaDirectory>
-	      <bindingDirectory>${basedir}/src/main/xsd/</bindingDirectory>
-	    </configuration>
-	  </execution>
-	</executions>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jaxb2-maven-plugin</artifactId>
+				<version>${jaxb2MavenPluginVersion}</version>
+				<executions>
+					<execution>
+						<id>generate-xmltv</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>xjc</goal>
+						</goals>
+						<configuration>
+							<packageName>net.ericsson.ebsd.emp.generated.epg.xmltv</packageName>
+							<outputDirectory>${basedir}/target/generated/</outputDirectory>
+							<sources><source>src/main/xsd/xmltv.xsd</source></sources>
+						</configuration>
+					</execution>
+				</executions>
       </plugin>
     </plugins>
   </build>
