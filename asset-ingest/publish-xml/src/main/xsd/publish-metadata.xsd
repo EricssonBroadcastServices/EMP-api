@@ -1937,6 +1937,13 @@
                     </xs:annotation>
                 </xs:element>
             </xs:choice>
+            <xs:element minOccurs="0" name="restrictedHoursPolicyId" type="publish:idType">
+            <xs:annotation>
+                <xs:documentation>The id of a policy that denies access
+                    to play during specifically assigned hours.
+                </xs:documentation>
+            </xs:annotation>
+             </xs:element>
             <xs:element minOccurs="0" name="publicationRights" type="publish:publicationRightsType"/>
             <xs:element minOccurs="0" name="drmRestrictions" type="publish:drmRestrictionsType"/>
             <xs:element minOccurs="0" name="customData" type="publish:customDataType"/>
