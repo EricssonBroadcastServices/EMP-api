@@ -256,6 +256,13 @@
             </xs:element>
             <xs:element name="language" type="publish:language"/>
         </xs:sequence>
+        <xs:attribute name="aiGenerated" type="xs:boolean" default="false">
+            <xs:annotation>
+                <xs:documentation>
+                    Indicates if this track was generated using AI without human QC
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:complexType>
     <xs:complexType name="SubtitleTrackListType">
         <xs:sequence>
