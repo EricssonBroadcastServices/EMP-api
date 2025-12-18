@@ -1508,9 +1508,16 @@
                             <xs:documentation>id for Series, not unique</xs:documentation>
                         </xs:annotation>
                     </xs:element>
-                    <xs:element minOccurs="0" name="seasonNumber" type="xs:positiveInteger">
+                    <xs:element minOccurs="0" name="seasonNumber" type="xs:nonNegativeInteger">
                         <xs:annotation>
                             <xs:documentation>Season number for the series.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="slugs" type="publish:slugsListType">
+                        <xs:annotation>
+                            <xs:documentation>Ordered list of slugs for this asset. Default slug is the first entry in
+                                the list.
                             </xs:documentation>
                         </xs:annotation>
                     </xs:element>
@@ -1575,7 +1582,7 @@
                                     </xs:documentation>
                                 </xs:annotation>
                             </xs:element>
-                            <xs:element name="episodeNumber" type="xs:positiveInteger">
+                            <xs:element name="episodeNumber" type="xs:nonNegativeInteger">
                                 <xs:annotation>
                                     <xs:documentation>Episode number for the program
                                     </xs:documentation>
