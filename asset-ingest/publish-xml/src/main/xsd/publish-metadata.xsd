@@ -1514,6 +1514,13 @@
                             </xs:documentation>
                         </xs:annotation>
                     </xs:element>
+                    <xs:element minOccurs="0" name="slugs" type="publish:slugsListType">
+                        <xs:annotation>
+                            <xs:documentation>Ordered list of slugs for this asset. Default slug is the first entry in
+                                the list.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
                     <xs:element minOccurs="0" name="numberOfEpisodes" type="xs:positiveInteger">
                         <xs:annotation>
                             <xs:documentation>If the content belongs to a series/season, this
