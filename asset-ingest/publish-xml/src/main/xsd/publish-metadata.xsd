@@ -1708,6 +1708,14 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element minOccurs="0" name="tagList" type="publish:tagListType">
+                <xs:annotation>
+                    <xs:documentation>
+                        Optional list of content descriptor tags that specify the reasons for the parental rating.
+                        These tags indicate specific content warnings (e.g. Violence, Language) and are specific to the rating scheme and country.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="simpleTitleType">

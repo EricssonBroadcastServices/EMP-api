@@ -96,11 +96,17 @@
                     <rating>R</rating>
                     <scheme>MPAA</scheme>
                     <country>US</country>
+                    <tagList>
+                        <tagIdRef>Language</tagIdRef>
+                    </tagList>
                 </parentalRating>
                 <parentalRating>
                     <rating>15</rating>
                     <scheme>Statens medieråd</scheme>
                     <country>SE</country>
+                    <tagList>
+                        <tagIdRef>Violance</tagIdRef>
+                    </tagList>
                 </parentalRating>
             </parentalRatingList>
             <externalReferenceList>
