@@ -394,7 +394,19 @@
     </xs:complexType>
     <xs:complexType name="variantTrackType">
         <xs:sequence>
-            <xs:element type="xs:string" name="track" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="track" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="roles" use="optional">
+                                <xs:simpleType>
+                                    <xs:list itemType="xs:string"/>
+                                </xs:simpleType>
+                            </xs:attribute>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
         </xs:sequence>
         <xs:attribute name="all" type="xs:boolean"/>
         <xs:attribute name="included" type="xs:boolean" default="true"/>
